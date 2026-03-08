@@ -1,1 +1,1207 @@
-https://pastebin.com/raw/GwgQFWTA
+<!DOCTYPE html>
+
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Hudson Sharp 5750W</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --bg:       #09090c;
+  --panel:    #111318;
+  --surface:  #181c26;
+  --border:   #232833;
+  --border2:  #2c3242;
+  --amber:    #f5a623;
+  --amber-dk: #c07d0a;
+  --blue:     #3b82f6;
+  --cyan:     #22d3ee;
+  --green:    #22c55e;
+  --red:      #ef4444;
+  --yellow:   #facc15;
+  --purple:   #a78bfa;
+  --orange:   #f97316;
+  --slate:    #64748b;
+  --text:     #cdd5e0;
+  --text2:    #7a8799;
+  --mono:     'Share Tech Mono', monospace;
+  --cond:     'Barlow Condensed', sans-serif;
+  --body:     'Barlow', sans-serif;
+}
+
+/* ═══════════════════════════════════════════
+RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html { height: 100%; }
+
+body {
+background: #09090c;
+color: #cdd5e0;
+font-family: ‘Barlow’, sans-serif;
+min-height: 100%;
+overscroll-behavior: none;
+}
+
+/* subtle scanline texture */
+body::after {
+content: ‘’;
+position: fixed;
+inset: 0;
+background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);
+pointer-events: none;
+z-index: 9000;
+}
+
+/* ═══════════════════════════════════════════
+SCREEN SYSTEM
+═══════════════════════════════════════════ */
+.screen { display: none; flex-direction: column; min-height: 100dvh; animation: screenIn .18s ease; }
+.screen.active { display: flex; }
+
+@keyframes screenIn {
+from { opacity: 0; transform: translateY(6px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════
+TOP BAR
+═══════════════════════════════════════════ */
+.topbar {
+background: #111318;
+border-bottom: 2px solid #f5a623;
+height: 54px;
+display: flex;
+align-items: center;
+padding: 0 16px;
+gap: 12px;
+position: sticky;
+top: 0;
+z-index: 100;
+flex-shrink: 0;
+}
+
+.back-btn {
+background: none;
+border: none;
+color: #f5a623;
+font-size: 26px;
+cursor: pointer;
+padding: 4px 8px 4px 0;
+line-height: 1;
+display: flex;
+align-items: center;
+}
+
+.topbar-title {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700;
+font-size: 18px;
+letter-spacing: .1em;
+text-transform: uppercase;
+color: #cdd5e0;
+flex: 1;
+}
+
+.topbar-btn {
+background: #f5a623;
+color: #000;
+border: none;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700;
+font-size: 14px;
+letter-spacing: .08em;
+text-transform: uppercase;
+padding: 8px 14px;
+border-radius: 2px;
+cursor: pointer;
+}
+.topbar-btn:active { opacity: .8; }
+
+/* ═══════════════════════════════════════════
+SCROLL CONTENT
+═══════════════════════════════════════════ */
+.content {
+flex: 1;
+overflow-y: auto;
+-webkit-overflow-scrolling: touch;
+padding: 20px 16px 56px;
+}
+
+/* ═══════════════════════════════════════════
+HOME
+═══════════════════════════════════════════ */
+.home-header {
+text-align: center;
+padding: 36px 0 30px;
+border-bottom: 1px solid #232833;
+margin-bottom: 28px;
+}
+
+.home-badge {
+display: inline-block;
+background: #f5a623;
+color: #000;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 900;
+font-size: 12px;
+letter-spacing: .25em;
+padding: 6px 16px;
+text-transform: uppercase;
+margin-bottom: 16px;
+}
+
+.home-title {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 900;
+font-size: 32px;
+letter-spacing: .06em;
+text-transform: uppercase;
+line-height: 1.15;
+color: #cdd5e0;
+}
+
+.home-title em {
+display: block;
+font-style: normal;
+font-size: 16px;
+font-weight: 600;
+color: #7a8799;
+letter-spacing: .18em;
+margin-top: 6px;
+}
+
+.home-status {
+display: inline-flex;
+align-items: center;
+gap: 7px;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
+color: #22c55e;
+margin-top: 18px;
+letter-spacing: .15em;
+}
+
+.pulse {
+width: 7px; height: 7px;
+border-radius: 50%;
+background: #22c55e;
+animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+0%,100% { opacity:1; box-shadow:0 0 6px #22c55e; }
+50%      { opacity:.25; box-shadow:none; }
+}
+
+.nav-grid { display: flex; flex-direction: column; gap: 14px; padding: 0 2px; }
+
+.nav-btn {
+background: #111318;
+border: 1px solid #2c3242;
+border-left-width: 5px;
+border-radius: 4px;
+padding: 22px 18px;
+display: flex;
+align-items: center;
+gap: 16px;
+cursor: pointer;
+text-align: left;
+width: 100%;
+transition: background .12s, transform .1s;
+}
+.nav-btn:active { transform: scale(.98); background: #181c26; }
+
+.nav-btn.c-amber { border-left-color: #f5a623; }
+.nav-btn.c-red   { border-left-color: #ef4444; }
+.nav-btn.c-blue  { border-left-color: #3b82f6; }
+
+.nb-icon  { font-size: 28px; flex-shrink: 0; }
+.nb-label { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: .06em; text-transform: uppercase; color: #cdd5e0; line-height: 1; }
+.nb-sub   { font-size: 13px; color: #7a8799; margin-top: 3px; }
+.nb-arr   { margin-left: auto; font-size: 24px; color: #7a8799; }
+
+/* ═══════════════════════════════════════════
+SECTION LABEL
+═══════════════════════════════════════════ */
+.slabel {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
+color: #f5a623;
+letter-spacing: .25em;
+text-transform: uppercase;
+display: flex;
+align-items: center;
+gap: 10px;
+margin: 22px 0 12px;
+}
+.slabel:first-child { margin-top: 0; }
+.slabel::after { content:’’; flex:1; height:1px; background:#232833; }
+
+/* ═══════════════════════════════════════════
+RECIPE LIST
+═══════════════════════════════════════════ */
+.recipe-card {
+background: #111318;
+border: 1px solid #2c3242;
+border-left: 5px solid #f5a623;
+border-radius: 3px;
+padding: 14px 15px;
+margin-bottom: 11px;
+cursor: pointer;
+transition: background .12s;
+animation: screenIn .2s ease;
+}
+.recipe-card:active { background: #181c26; }
+
+.rc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+
+.rc-name {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700;
+font-size: 18px;
+letter-spacing: .04em;
+color: #f5a623;
+text-transform: uppercase;
+flex: 1;
+line-height: 1.2;
+}
+
+.rc-del {
+background: none;
+border: 1px solid #3a1515;
+border-radius: 2px;
+color: #ef4444;
+font-size: 13px;
+padding: 4px 9px;
+cursor: pointer;
+font-family: ‘Share Tech Mono’, monospace;
+flex-shrink: 0;
+}
+.rc-del:active { background: #ef4444; color: #fff; }
+
+.rc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+
+.tag {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 11px;
+padding: 2px 8px;
+border-radius: 2px;
+background: #181c26;
+border: 1px solid #2c3242;
+color: #7a8799;
+}
+.tag.t-mat  { border-color: #22d3ee;  color: #22d3ee; }
+.tag.t-spd  { border-color: #f5a623; color: #f5a623; }
+
+.empty-state {
+text-align: center;
+padding: 50px 24px;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 12px;
+color: #7a8799;
+line-height: 2.2;
+border: 1px dashed #2c3242;
+border-radius: 3px;
+}
+
+/* ═══════════════════════════════════════════
+FORM
+═══════════════════════════════════════════ */
+.form-card {
+background: #111318;
+border: 1px solid #232833;
+border-radius: 3px;
+padding: 18px;
+margin-bottom: 16px;
+}
+
+.form-card-title {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700;
+font-size: 14px;
+letter-spacing: .12em;
+text-transform: uppercase;
+color: #f5a623;
+margin-bottom: 16px;
+padding-bottom: 10px;
+border-bottom: 1px solid #232833;
+}
+
+.field { margin-bottom: 14px; }
+.field:last-child { margin-bottom: 0; }
+
+.field label {
+display: block;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
+color: #7a8799;
+letter-spacing: .15em;
+text-transform: uppercase;
+margin-bottom: 6px;
+}
+
+.field input {
+width: 100%;
+background: #09090c;
+border: 1px solid #2c3242;
+border-radius: 3px;
+color: #cdd5e0;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 16px;
+padding: 12px 13px;
+outline: none;
+transition: border-color .15s;
+-webkit-appearance: none;
+}
+.field input:focus { border-color: #22d3ee; }
+
+.mat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 9px; }
+
+.mat-btn {
+background: #09090c;
+border: 1px solid #2c3242;
+border-radius: 3px;
+color: #7a8799;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 600;
+font-size: 15px;
+letter-spacing: .06em;
+padding: 13px 6px;
+cursor: pointer;
+text-align: center;
+transition: all .12s;
+}
+.mat-btn.active { background: #f5a623; border-color: #f5a623; color: #000; }
+.mat-btn:active { transform: scale(.97); }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* ═══════════════════════════════════════════
+BUTTONS
+═══════════════════════════════════════════ */
+.btn {
+width: 100%;
+border: none;
+border-radius: 3px;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700;
+font-size: 17px;
+letter-spacing: .1em;
+text-transform: uppercase;
+padding: 16px;
+cursor: pointer;
+margin-top: 6px;
+transition: opacity .12s, transform .1s;
+}
+.btn:active { transform: scale(.98); opacity: .9; }
+.btn-amber  { background: #f5a623; color: #000; }
+.btn-ghost  { background: transparent; border: 1px solid #2c3242; color: #7a8799; margin-top: 10px; }
+
+/* ═══════════════════════════════════════════
+BLOWER RESULTS
+═══════════════════════════════════════════ */
+#results-box { display: none; margin-top: 0; }
+#results-box.show { display: block; animation: screenIn .2s ease; }
+
+.blower-block {
+background: #111318;
+border: 1px solid #232833;
+border-radius: 3px;
+margin-bottom: 10px;
+overflow: hidden;
+}
+
+.blower-hdr {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 11px 14px;
+background: #181c26;
+border-bottom: 1px solid #232833;
+}
+
+.bdot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.bname { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; flex: 1; }
+
+.blower-cells { display: flex; }
+
+.bcell {
+flex: 1;
+padding: 13px;
+text-align: center;
+border-right: 1px solid #232833;
+}
+.bcell:last-child { border-right: none; }
+
+.bcell-lbl { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: #7a8799; letter-spacing: .15em; text-transform: uppercase; display: block; margin-bottom: 5px; }
+.bcell-val { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 900; font-size: 28px; line-height: 1; }
+.bcell-unit { font-family: ‘Share Tech Mono’, monospace; font-size: 11px; color: #7a8799; }
+
+.bar-wrap { padding: 0 14px 10px; }
+.bar-track { height: 7px; background: #09090c; border-radius: 4px; overflow: hidden; position: relative; margin-bottom: 5px; }
+.bar-fill  { position: absolute; top: 0; height: 100%; border-radius: 4px; opacity: .85; }
+.bar-ticks { display: flex; justify-content: space-between; }
+.bar-tick  { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: #7a8799; }
+
+/* ═══════════════════════════════════════════
+RECIPE DETAIL
+═══════════════════════════════════════════ */
+.info-block {
+background: #111318;
+border: 1px solid #232833;
+border-radius: 3px;
+overflow: hidden;
+margin-bottom: 8px;
+}
+
+.info-row {
+display: flex;
+align-items: center;
+padding: 12px 14px;
+border-bottom: 1px solid #232833;
+gap: 10px;
+}
+.info-row:last-child { border-bottom: none; }
+
+.ir-lbl {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 11px;
+color: #7a8799;
+letter-spacing: .1em;
+text-transform: uppercase;
+min-width: 130px;
+flex-shrink: 0;
+}
+
+.ir-val {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 15px;
+color: #cdd5e0;
+font-weight: bold;
+}
+.ir-val .u { font-size: 11px; color: #7a8799; margin-left: 2px; font-weight: normal; }
+
+/* ═══════════════════════════════════════════
+TROUBLESHOOTING
+═══════════════════════════════════════════ */
+.trouble-card {
+background: #111318;
+border: 1px solid #232833;
+border-radius: 3px;
+margin-bottom: 12px;
+overflow: hidden;
+}
+
+.tc-hdr {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 16px;
+cursor: pointer;
+border-left: 5px solid #ef4444;
+transition: background .12s;
+}
+.tc-hdr:active { background: #181c26; }
+
+.tc-icon { font-size: 22px; flex-shrink: 0; }
+.tc-prob { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 700; font-size: 19px; letter-spacing: .04em; text-transform: uppercase; flex: 1; }
+.tc-chev { font-size: 20px; color: #7a8799; transition: transform .2s; flex-shrink: 0; }
+.tc-hdr.open .tc-chev { transform: rotate(90deg); }
+
+.tc-body { display: none; padding: 0 16px 16px; border-top: 1px solid #232833; animation: screenIn .15s ease; }
+.tc-body.open { display: block; }
+
+.ts-group { margin-top: 14px; }
+.ts-glbl { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 8px; }
+.ts-glbl.cause    { color: #facc15; }
+.ts-glbl.solution { color: #22c55e; }
+
+.ts-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.ts-list li {
+display: flex; gap: 9px; align-items: flex-start;
+font-size: 14px; line-height: 1.45;
+padding: 9px 12px;
+background: #181c26;
+border-radius: 2px;
+}
+.ts-list li::before { content: ‘▸’; flex-shrink: 0; margin-top: 1px; }
+.ts-list.cause    li::before { color: #facc15; }
+.ts-list.solution li::before { color: #22c55e; }
+
+/* ═══════════════════════════════════════════
+MACHINE INFO
+═══════════════════════════════════════════ */
+.machine-hero {
+background: #111318;
+border: 1px solid #232833;
+border-top: 3px solid #3b82f6;
+border-radius: 3px;
+padding: 24px 18px;
+text-align: center;
+margin-bottom: 16px;
+}
+
+.mh-model { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 900; font-size: 44px; letter-spacing: .06em; color: #f5a623; }
+.mh-sub   { font-family: ‘Share Tech Mono’, monospace; font-size: 11px; color: #7a8799; letter-spacing: .15em; margin-top: 4px; }
+
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.stat-tile { background: #111318; border: 1px solid #232833; border-radius: 3px; padding: 14px; text-align: center; }
+.st-val { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 900; font-size: 26px; color: #cdd5e0; }
+.st-lbl { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #7a8799; letter-spacing: .12em; text-transform: uppercase; margin-top: 4px; }
+
+/* ═══════════════════════════════════════════
+TOAST
+═══════════════════════════════════════════ */
+.toast {
+position: fixed;
+bottom: 24px; left: 50%;
+transform: translateX(-50%) translateY(10px);
+background: #22c55e; color: #000;
+font-family: ‘Barlow Condensed’, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: .08em;
+padding: 12px 22px; border-radius: 3px;
+opacity: 0; transition: all .2s;
+pointer-events: none; z-index: 9999;
+white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.err  { background: #ef4444; color: #fff; }
+
+/* ═══════════════════════════════════════════
+UTILITY
+═══════════════════════════════════════════ */
+@media (max-width: 400px) {
+.grid2 { grid-template-columns: 1fr; }
+.blower-cells { flex-wrap: wrap; }
+.bcell { min-width: 33%; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HOME
+═══════════════════════════════════════════ -->
+
+<div class="screen active" id="s-home">
+  <div class="content">
+    <div class="home-header">
+      <div class="home-badge">Hudson Sharp</div>
+      <div class="home-title">
+        5750W Setup App
+        <em>Recept &amp; Probleemoplossing</em>
+      </div>
+      <div class="home-status">
+        <div class="pulse"></div>SYSTEEM GEREED
+      </div>
+    </div>
+
+```
+<div class="nav-grid">
+  <button class="nav-btn c-amber" onclick="go('s-recipes')">
+    <span class="nb-icon">📋</span>
+    <div>
+      <div class="nb-label">Recepten</div>
+      <div class="nb-sub">Machine-instellingen database</div>
+    </div>
+    <span class="nb-arr">›</span>
+  </button>
+
+  <button class="nav-btn c-red" onclick="go('s-trouble')">
+    <span class="nb-icon">🔧</span>
+    <div>
+      <div class="nb-label">Probleemoplossing</div>
+      <div class="nb-sub">Storingen &amp; oplossingen</div>
+    </div>
+    <span class="nb-arr">›</span>
+  </button>
+
+  <button class="nav-btn c-blue" onclick="go('s-machine')">
+    <span class="nb-icon">⚙️</span>
+    <div>
+      <div class="nb-label">Machine Info</div>
+      <div class="nb-sub">5750W specificaties</div>
+    </div>
+    <span class="nb-arr">›</span>
+  </button>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     RECIPES LIST
+═══════════════════════════════════════════ -->
+
+<div class="screen" id="s-recipes">
+  <div class="topbar">
+    <button class="back-btn" onclick="go('s-home')">‹</button>
+    <div class="topbar-title">Recepten</div>
+    <button class="topbar-btn" onclick="go('s-add')">＋ Nieuw</button>
+  </div>
+  <div class="content">
+    <div id="recipe-list"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     RECIPE DETAIL
+═══════════════════════════════════════════ -->
+
+<div class="screen" id="s-detail">
+  <div class="topbar">
+    <button class="back-btn" onclick="go('s-recipes')">‹</button>
+    <div class="topbar-title" id="detail-title">Recept</div>
+  </div>
+  <div class="content" id="detail-content"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ADD RECIPE
+═══════════════════════════════════════════ -->
+
+<div class="screen" id="s-add">
+  <div class="topbar">
+    <button class="back-btn" onclick="go('s-recipes')">‹</button>
+    <div class="topbar-title">Nieuw Recept</div>
+  </div>
+  <div class="content">
+
+```
+<div class="form-card">
+  <div class="form-card-title">Zak Specificaties</div>
+
+  <div class="grid2">
+    <div class="field">
+      <label>Breedte (cm)</label>
+      <input id="f-w" type="number" inputmode="decimal" placeholder="bv. 34.7">
+    </div>
+    <div class="field">
+      <label>Lengte (cm)</label>
+      <input id="f-l" type="number" inputmode="decimal" placeholder="bv. 44">
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Dikte (mm)</label>
+    <input id="f-t" type="number" inputmode="decimal" step="0.001" placeholder="bv. 0.028">
+  </div>
+
+  <div class="field">
+    <label>Materiaal</label>
+    <div class="mat-grid">
+      <button class="mat-btn active" id="mat-LDPE"     onclick="selectMat('LDPE')">LDPE</button>
+      <button class="mat-btn"        id="mat-HDPE"     onclick="selectMat('HDPE')">HDPE</button>
+      <button class="mat-btn"        id="mat-Recyclaat" onclick="selectMat('Recyclaat')">Recyclaat</button>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Snelheid (ZPM)</label>
+    <input id="f-s" type="number" inputmode="numeric" placeholder="bv. 250">
+  </div>
+</div>
+
+<button class="btn btn-amber" onclick="calcAndShow()">⚙  Berekenen</button>
+
+<!-- RESULTS -->
+<div id="results-box">
+  <div class="slabel" style="margin-top:22px;">Blower Timing — Berekend</div>
+  <div id="blower-results"></div>
+  <button class="btn btn-amber" style="margin-top:4px;" onclick="saveRecipe()">✓  Recept Opslaan</button>
+  <button class="btn btn-ghost" onclick="resetForm()">Annuleren</button>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TROUBLESHOOTING
+═══════════════════════════════════════════ -->
+
+<div class="screen" id="s-trouble">
+  <div class="topbar">
+    <button class="back-btn" onclick="go('s-home')">‹</button>
+    <div class="topbar-title">Probleemoplossing</div>
+  </div>
+  <div class="content" id="trouble-content"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MACHINE INFO
+═══════════════════════════════════════════ -->
+
+<div class="screen" id="s-machine">
+  <div class="topbar">
+    <button class="back-btn" onclick="go('s-home')">‹</button>
+    <div class="topbar-title">Machine Info</div>
+  </div>
+  <div class="content">
+
+```
+<div class="machine-hero">
+  <div class="mh-model">5750W</div>
+  <div class="mh-sub">HUDSON SHARP — HIGH SPEED ZAKKENMAKER</div>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-tile"><div class="st-val">2007</div><div class="st-lbl">Bouwjaar</div></div>
+  <div class="stat-tile"><div class="st-val">250</div><div class="st-lbl">Max ZPM</div></div>
+  <div class="stat-tile"><div class="st-val">LDPE</div><div class="st-lbl">Materiaal</div></div>
+  <div class="stat-tile"><div class="st-val">Wicket</div><div class="st-lbl">Zaktype</div></div>
+</div>
+
+<div class="slabel">Specificaties</div>
+<div class="info-block">
+  <div class="info-row"><div class="ir-lbl">Machine</div><div class="ir-val">Hudson Sharp 5750W</div></div>
+  <div class="info-row"><div class="ir-lbl">Bouwjaar</div><div class="ir-val">2007</div></div>
+  <div class="info-row"><div class="ir-lbl">Materiaal</div><div class="ir-val">LDPE</div></div>
+  <div class="info-row"><div class="ir-lbl">Zaktype</div><div class="ir-val">Wicket zakken</div></div>
+  <div class="info-row"><div class="ir-lbl">Max snelheid</div><div class="ir-val">250 <span class="u">ZPM</span></div></div>
+  <div class="info-row"><div class="ir-lbl">Typische snelheid</div><div class="ir-val">200–250 <span class="u">ZPM</span></div></div>
+  <div class="info-row"><div class="ir-lbl">Besturing</div><div class="ir-val">Graden-gebaseerde cam-timing</div></div>
+</div>
+
+<div class="slabel">Blower Uitgangen</div>
+<div class="info-block">
+  <div class="info-row"><div class="ir-lbl">Upper Blowers</div><div class="ir-val">Zak openen (bovenkant)</div></div>
+  <div class="info-row"><div class="ir-lbl">Upper Pipe</div><div class="ir-val">Bovenste luchtpijp</div></div>
+  <div class="info-row"><div class="ir-lbl">Middle Blowers</div><div class="ir-val">Midden — dik folie</div></div>
+  <div class="info-row"><div class="ir-lbl">Lower Blowers</div><div class="ir-val">Zak openen (onderkant)</div></div>
+  <div class="info-row"><div class="ir-lbl">Lower Pipe</div><div class="ir-val">Onderste luchtpijp</div></div>
+  <div class="info-row"><div class="ir-lbl">Output 6</div><div class="ir-val">Afname-lucht</div></div>
+  <div class="info-row"><div class="ir-lbl">Output 7 / 8</div><div class="ir-val">Aanvullende uitgangen</div></div>
+</div>
+
+<div class="slabel">Dikte Regels</div>
+<div class="info-block">
+  <div class="info-row"><div class="ir-lbl" style="color:#22d3ee">≤ 0.020 mm</div><div class="ir-val">Dun — standaard timing</div></div>
+  <div class="info-row"><div class="ir-lbl" style="color:#f5a623">≤ 0.030 mm</div><div class="ir-val">Middel — aangepaste timing</div></div>
+  <div class="info-row"><div class="ir-lbl" style="color:#ef4444">&gt; 0.030 mm</div><div class="ir-val">Dik — Middle Blower actief</div></div>
+</div>
+```
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+'use strict';
+
+// ═══════════════════════════════════════════════════
+// BLOWER CHANNEL DEFINITIONS
+// ═══════════════════════════════════════════════════
+const CHANNELS = [
+  { key:'upper',      label:'Upper Blowers',   color:'#22d3ee' },
+  { key:'upper_pipe', label:'Upper Pipe',       color:'#3b82f6' },
+  
+  { key:'lower',      label:'Lower Blowers',    color:'#a78bfa' },
+  { key:'lower_pipe', label:'Lower Pipe',        color:'#f97316' },
+  { key:'out6',       label:'Output 6',          color:'#f5a623' },
+  { key:'out7',       label:'Output 7',          color:'#64748b' },
+  { key:'out8',       label:'Output 8',          color:'#64748b' },
+];
+
+// ═══════════════════════════════════════════════════
+// BLOWER CALCULATOR
+// ═══════════════════════════════════════════════════
+function calculateBlowers(t) {
+  if (t <= 0.02) return {
+    upper_on:90,upper_off:300,
+    upper_pipe_on:30,upper_pipe_off:200,
+    
+    lower_on:50,lower_off:270,
+    lower_pipe_on:27,lower_pipe_off:220,
+    out6_on:60,out6_off:250,
+    out7_on:10,out7_off:10,
+    out8_on:10,out8_off:10,
+  };
+  if (t <= 0.03) return {
+    upper_on:120,upper_off:320,
+    upper_pipe_on:20,upper_pipe_off:190,
+    
+    lower_on:60,lower_off:280,
+    lower_pipe_on:30,lower_pipe_off:210,
+    out6_on:80,out6_off:300,
+    out7_on:10,out7_off:10,
+    out8_on:10,out8_off:10,
+  };
+  return {
+    upper_on:90,upper_off:300,
+    upper_pipe_on:30,upper_pipe_off:200,
+    
+    lower_on:50,lower_off:270,
+    lower_pipe_on:27,lower_pipe_off:220,
+    out6_on:135,out6_off:358,
+    out7_on:10,out7_off:10,
+    out8_on:10,out8_off:10,
+  };
+}
+
+// ═══════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('active');
+  el.querySelector('.content')?.scrollTo(0,0);
+  if (id === 's-recipes') renderRecipes();
+  if (id === 's-trouble') renderTrouble();
+}
+
+// ═══════════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════════
+function toast(msg, err=false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (err ? ' err' : '');
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+// ═══════════════════════════════════════════════════
+// STORAGE
+// ═══════════════════════════════════════════════════
+function loadRecipes() {
+  return JSON.parse(localStorage.getItem('hs_recepten') || '[]');
+}
+function saveAllRecipes(list) {
+  localStorage.setItem('hs_recepten', JSON.stringify(list));
+}
+
+// ═══════════════════════════════════════════════════
+// RECIPE LIST
+// ═══════════════════════════════════════════════════
+function renderRecipes() {
+  const list = loadRecipes();
+  const el   = document.getElementById('recipe-list');
+
+  if (!list.length) {
+    el.innerHTML = `<div class="empty-state">Geen recepten opgeslagen.<br>Tik op <b>＋ Nieuw</b> om te beginnen.</div>`;
+    return;
+  }
+
+  el.innerHTML = list.map(r => `
+    <div class="recipe-card">
+      <div class="rc-top" onclick="openDetail(${r.id})">
+        <div class="rc-name">${r.width} × ${r.length} cm</div>
+      </div>
+      <div class="rc-tags" onclick="openDetail(${r.id})">
+        <span class="tag t-mat">${r.material}</span>
+        <span class="tag">${r.thickness} mm</span>
+        <span class="tag t-spd">${r.speed} ZPM</span>
+        <span class="tag">${thicknessLabel(r.thickness)}</span>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px;">
+        <button class="rc-del" onclick="delRecipe(${r.id})">✕ Verwijder</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function delRecipe(id) {
+  if (!confirm('Recept verwijderen?')) return;
+  saveAllRecipes(loadRecipes().filter(r => r.id !== id));
+  toast('Recept verwijderd');
+  renderRecipes();
+}
+
+function thicknessLabel(t) {
+  if (t <= 0.02) return '≤ 20 µm';
+  if (t <= 0.03) return '21–30 µm';
+  return '> 30 µm';
+}
+
+// ═══════════════════════════════════════════════════
+// RECIPE DETAIL
+// ═══════════════════════════════════════════════════
+function openDetail(id) {
+  const r = loadRecipes().find(x => x.id === id);
+  if (!r) return;
+
+  document.getElementById('detail-title').textContent = `${r.width}×${r.length}`;
+
+  const blowerHTML = CHANNELS.map(ch => {
+    const on  = r[`${ch.key}_on`];
+    const off = r[`${ch.key}_off`];
+    const dur = off > on ? off - on : (360 - on + off);
+    const lft = (on / 360 * 100).toFixed(1);
+    const wid = dur <= 0 ? 0.4 : (dur / 360 * 100).toFixed(1);
+    return `
+      <div class="blower-block">
+        <div class="blower-hdr">
+          <div class="bdot" style="background:${ch.color};box-shadow:0 0 6px ${ch.color}55;"></div>
+          <div class="bname">${ch.label}</div>
+        </div>
+        <div class="blower-cells">
+          <div class="bcell">
+            <span class="bcell-lbl">AAN</span>
+            <span class="bcell-val" style="color:${ch.color}">${on}</span>
+            <span class="bcell-unit">°</span>
+          </div>
+          <div class="bcell">
+            <span class="bcell-lbl">UIT</span>
+            <span class="bcell-val" style="color:${ch.color}">${off}</span>
+            <span class="bcell-unit">°</span>
+          </div>
+          <div class="bcell">
+            <span class="bcell-lbl">DUUR</span>
+            <span class="bcell-val" style="color:#7a8799;font-size:22px">${dur}</span>
+            <span class="bcell-unit">°</span>
+          </div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar-track">
+            <div class="bar-fill" style="left:${lft}%;width:${wid}%;background:${ch.color};"></div>
+          </div>
+          <div class="bar-ticks">
+            ${[0,90,180,270,360].map(d=>`<span class="bar-tick">${d}°</span>`).join('')}
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('detail-content').innerHTML = `
+    <div class="slabel">Zak Specificaties</div>
+    <div class="info-block">
+      <div class="info-row"><div class="ir-lbl">Breedte</div><div class="ir-val">${r.width}<span class="u"> cm</span></div></div>
+      <div class="info-row"><div class="ir-lbl">Lengte</div><div class="ir-val">${r.length}<span class="u"> cm</span></div></div>
+      <div class="info-row"><div class="ir-lbl">Dikte</div><div class="ir-val">${r.thickness}<span class="u"> mm</span> — ${thicknessLabel(r.thickness)}</div></div>
+      <div class="info-row"><div class="ir-lbl">Materiaal</div><div class="ir-val">${r.material}</div></div>
+      <div class="info-row"><div class="ir-lbl">Snelheid</div><div class="ir-val">${r.speed}<span class="u"> ZPM</span></div></div>
+      <div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">${Math.round(60000/r.speed)}<span class="u"> ms</span></div></div>
+    </div>
+    <div class="slabel">⬛ Blower Timing</div>
+    ${blowerHTML}
+  `;
+
+  go('s-detail');
+}
+
+// ═══════════════════════════════════════════════════
+// ADD RECIPE FORM
+// ═══════════════════════════════════════════════════
+let selectedMat = 'LDPE';
+let currentTiming = null;
+
+function selectMat(m) {
+  selectedMat = m;
+  document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('mat-' + m).classList.add('active');
+}
+
+function calcAndShow() {
+  const w  = parseFloat(document.getElementById('f-w').value);
+  const l  = parseFloat(document.getElementById('f-l').value);
+  const t  = parseFloat(document.getElementById('f-t').value);
+  const s  = parseInt(document.getElementById('f-s').value);
+
+  if (!w||!l||!t||!s||w<=0||l<=0||t<=0||s<=0) {
+    toast('Vul alle velden correct in', true);
+    return;
+  }
+
+  currentTiming = calculateBlowers(t);
+
+  // Build blower display
+  const html = CHANNELS.map(ch => {
+    const on  = currentTiming[`${ch.key}_on`];
+    const off = currentTiming[`${ch.key}_off`];
+    const dur = off > on ? off - on : (360 - on + off);
+    const lft = (on / 360 * 100).toFixed(1);
+    const wid = dur <= 0 ? 0.4 : (dur / 360 * 100).toFixed(1);
+    return `
+      <div class="blower-block">
+        <div class="blower-hdr">
+          <div class="bdot" style="background:${ch.color};box-shadow:0 0 6px ${ch.color}55;"></div>
+          <div class="bname">${ch.label}</div>
+        </div>
+        <div class="blower-cells">
+          <div class="bcell">
+            <span class="bcell-lbl">AAN</span>
+            <span class="bcell-val" style="color:${ch.color}">${on}</span>
+            <span class="bcell-unit">°</span>
+          </div>
+          <div class="bcell">
+            <span class="bcell-lbl">UIT</span>
+            <span class="bcell-val" style="color:${ch.color}">${off}</span>
+            <span class="bcell-unit">°</span>
+          </div>
+          <div class="bcell">
+            <span class="bcell-lbl">DUUR</span>
+            <span class="bcell-val" style="color:#7a8799;font-size:22px">${dur}</span>
+            <span class="bcell-unit">°</span>
+          </div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar-track">
+            <div class="bar-fill" style="left:${lft}%;width:${wid}%;background:${ch.color};"></div>
+          </div>
+          <div class="bar-ticks">
+            ${[0,90,180,270,360].map(d=>`<span class="bar-tick">${d}°</span>`).join('')}
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('blower-results').innerHTML = html;
+  const box = document.getElementById('results-box');
+  box.classList.add('show');
+  box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function saveRecipe() {
+  const w = parseFloat(document.getElementById('f-w').value);
+  const l = parseFloat(document.getElementById('f-l').value);
+  const t = parseFloat(document.getElementById('f-t').value);
+  const s = parseInt(document.getElementById('f-s').value);
+
+  if (!currentTiming) return;
+
+  const recipe = {
+    id:       Date.now(),
+    width:    w,
+    length:   l,
+    thickness: t,
+    material: selectedMat,
+    speed:    s,
+    ...currentTiming
+  };
+
+  const list = loadRecipes();
+  list.push(recipe);
+  saveAllRecipes(list);
+
+  toast('Recept opgeslagen!');
+  resetForm();
+  go('s-recipes');
+}
+
+function resetForm() {
+  ['f-w','f-l','f-t','f-s'].forEach(id => document.getElementById(id).value = '');
+  selectMat('LDPE');
+  currentTiming = null;
+  document.getElementById('results-box').classList.remove('show');
+  document.getElementById('blower-results').innerHTML = '';
+  document.querySelector('.content')?.scrollTo(0,0);
+}
+
+// ═══════════════════════════════════════════════════
+// TROUBLESHOOTING
+// ═══════════════════════════════════════════════════
+const PROBLEMEN = [
+  {
+    icon: '🌀',
+    titel: 'Zak Krult Op',
+    oorzaken: [
+      'Te veel upper lucht',
+      'Te weinig lower lucht',
+      'Foliespanning te hoog',
+      'Sealtemperatuur te hoog',
+    ],
+    oplossingen: [
+      'Upper Blowers verlagen',
+      'Lower Blowers verhogen',
+      'Danserdruk verlagen',
+      'Sealtemperatuur verlagen',
+    ],
+  },
+  {
+    icon: '📐',
+    titel: 'Hoeken Vouwen Om',
+    oorzaken: [
+      'Stripper jets blazen te lang',
+      'Afname-lucht te sterk',
+      'Statische elektriciteit',
+    ],
+    oplossingen: [
+      'Upper Pipe timing verkorten',
+      'Duur Output 6 verkorten',
+      'Antistatische balk installeren',
+    ],
+  },
+  {
+    icon: '⚡',
+    titel: 'Gemiste Seals',
+    oorzaken: [
+      'Sealtemperatuur te laag',
+      'Sealbalk vervuild',
+      'Folie niet vlak tijdens sealen',
+    ],
+    oplossingen: [
+      'Sealtemperatuur verhogen',
+      'Sealbalk reinigen',
+      'Danser-spanning aanpassen',
+    ],
+  },
+  {
+    icon: '📦',
+    titel: 'Slechte Stapeling',
+    oorzaken: [
+      'Afname-timing onjuist',
+      'Luchtbalans onjuist',
+      'Start/stop-aanvoer onjuist',
+    ],
+    oplossingen: [
+      'Timing Output 6 aanpassen',
+      'Upper/Lower Blower balanceren',
+      'Start- en stopfeed aanpassen',
+    ],
+  },
+];
+
+function renderTrouble() {
+  document.getElementById('trouble-content').innerHTML = PROBLEMEN.map((p,i) => `
+    <div class="trouble-card">
+      <div class="tc-hdr" id="th-${i}" onclick="toggleTrouble(${i})">
+        <span class="tc-icon">${p.icon}</span>
+        <span class="tc-prob">${p.titel}</span>
+        <span class="tc-chev" id="tc-${i}">›</span>
+      </div>
+      <div class="tc-body" id="tb-${i}">
+        <div class="ts-group">
+          <div class="ts-glbl cause">▲ Mogelijke Oorzaken</div>
+          <ul class="ts-list cause">
+            ${p.oorzaken.map(o=>`<li>${o}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="ts-group">
+          <div class="ts-glbl solution">✓ Oplossingen</div>
+          <ul class="ts-list solution">
+            ${p.oplossingen.map(o=>`<li>${o}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleTrouble(i) {
+  const body = document.getElementById(`tb-${i}`);
+  const hdr  = document.getElementById(`th-${i}`);
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  hdr.classList.toggle('open', !open);
+}
+
+// ═══════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════
+renderRecipes();
+renderTrouble();
+</script>
+
+</body>
+</html>
