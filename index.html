@@ -585,11 +585,27 @@ UTILITY
 </head>
 <body>
 
+<!-- LOGIN -->
+
+<div class="screen active" id="s-login">
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:32px 24px;background:#09090c;">
+    <div style="background:#f5a623;color:#000;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.25em;padding:6px 16px;text-transform:uppercase;margin-bottom:20px;">Hudson Sharp</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:36px;letter-spacing:.06em;text-transform:uppercase;color:#cdd5e0;text-align:center;margin-bottom:6px;">5750W Setup App</div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#7a8799;letter-spacing:.15em;margin-bottom:40px;">VOER WACHTWOORD IN</div>
+    <div style="width:100%;max-width:320px;">
+      <input id="login-pw" type="password" placeholder="Wachtwoord" onkeydown="if(event.key==='Enter')doLogin()"
+        style="width:100%;background:#111318;border:1px solid #2c3242;border-radius:3px;color:#cdd5e0;font-family:'Share Tech Mono',monospace;font-size:18px;padding:16px;outline:none;margin-bottom:12px;-webkit-appearance:none;text-align:center;letter-spacing:.2em;">
+      <div id="login-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:12px;text-align:center;margin-bottom:12px;">Verkeerd wachtwoord</div>
+      <button onclick="doLogin()" style="width:100%;background:#f5a623;color:#000;border:none;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;padding:16px;cursor:pointer;">Inloggen</button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════════════════
      HOME
 ═══════════════════════════════════════════ -->
 
-<div class="screen active" id="s-home">
+<div class="screen" id="s-home">
   <div class="content">
     <div class="home-header">
       <div class="home-badge">Hudson Sharp</div>
@@ -872,21 +888,90 @@ function toast(msg, err=false) {
 }
 
 // ═══════════════════════════════════════════════════
-// STORAGE
+// FIREBASE CONFIG
 // ═══════════════════════════════════════════════════
-function loadRecipes() {
-  return JSON.parse(localStorage.getItem('hs_recepten') || '[]');
+const FIREBASE_URL = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
+const APP_PASSWORD = 'hudson2024';
+
+let isLoggedIn = false;
+
+function checkLogin() {
+  const stored = sessionStorage.getItem('hs_auth');
+  if (stored === APP_PASSWORD) {
+    isLoggedIn = true;
+    go('s-home');
+  } else {
+    showLogin();
+  }
 }
-function saveAllRecipes(list) {
-  localStorage.setItem('hs_recepten', JSON.stringify(list));
+
+function showLogin() {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('s-login').classList.add('active');
+}
+
+function doLogin() {
+  const pw = document.getElementById('login-pw').value;
+  if (pw === APP_PASSWORD) {
+    sessionStorage.setItem('hs_auth', pw);
+    isLoggedIn = true;
+    document.getElementById('login-err').style.display = 'none';
+    go('s-home');
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+    document.getElementById('login-pw').value = '';
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// FIREBASE STORAGE
+// ═══════════════════════════════════════════════════
+async function loadRecipes() {
+  try {
+    const res = await fetch(`${FIREBASE_URL}/recepten.json`);
+    const data = await res.json();
+    if (!data) return [];
+    return Object.entries(data).map(([key, val]) => ({...val, firebaseKey: key}));
+  } catch(e) {
+    console.error('Firebase load error:', e);
+    return [];
+  }
+}
+
+async function saveAllRecipes(list) {
+  // Not used directly - use addRecipe/deleteRecipe
+}
+
+async function addRecipeToFirebase(recipe) {
+  try {
+    const res = await fetch(`${FIREBASE_URL}/recepten.json`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(recipe)
+    });
+    return await res.json();
+  } catch(e) {
+    console.error('Firebase save error:', e);
+  }
+}
+
+async function deleteRecipeFromFirebase(firebaseKey) {
+  try {
+    await fetch(`${FIREBASE_URL}/recepten/${firebaseKey}.json`, {
+      method: 'DELETE'
+    });
+  } catch(e) {
+    console.error('Firebase delete error:', e);
+  }
 }
 
 // ═══════════════════════════════════════════════════
 // RECIPE LIST
 // ═══════════════════════════════════════════════════
-function renderRecipes() {
-  const list = loadRecipes();
-  const el   = document.getElementById('recipe-list');
+async function renderRecipes() {
+  const el = document.getElementById('recipe-list');
+  el.innerHTML = `<div class="empty-state">Laden...</div>`;
+  const list = await loadRecipes();
 
   if (!list.length) {
     el.innerHTML = `<div class="empty-state">Geen recepten opgeslagen.<br>Tik op <b>＋ Nieuw</b> om te beginnen.</div>`;
@@ -895,25 +980,25 @@ function renderRecipes() {
 
   el.innerHTML = list.map(r => `
     <div class="recipe-card">
-      <div class="rc-top" onclick="openDetail(${r.id})">
+      <div class="rc-top" onclick="openDetailByKey('${r.firebaseKey}')">
         <div class="rc-name">${r.width} × ${r.length} cm</div>
       </div>
-      <div class="rc-tags" onclick="openDetail(${r.id})">
+      <div class="rc-tags" onclick="openDetailByKey('${r.firebaseKey}')">
         <span class="tag t-mat">${r.material}</span>
         <span class="tag">${r.thickness} mm</span>
         <span class="tag t-spd">${r.speed} ZPM</span>
         <span class="tag">${thicknessLabel(r.thickness)}</span>
       </div>
       <div style="margin-top:10px;display:flex;gap:8px;">
-        <button class="rc-del" onclick="delRecipe(${r.id})">✕ Verwijder</button>
+        <button class="rc-del" onclick="delRecipe('${r.firebaseKey}')">✕ Verwijder</button>
       </div>
     </div>
   `).join('');
 }
 
-function delRecipe(id) {
+async function delRecipe(firebaseKey) {
   if (!confirm('Recept verwijderen?')) return;
-  saveAllRecipes(loadRecipes().filter(r => r.id !== id));
+  await deleteRecipeFromFirebase(firebaseKey);
   toast('Recept verwijderd');
   renderRecipes();
 }
@@ -927,9 +1012,14 @@ function thicknessLabel(t) {
 // ═══════════════════════════════════════════════════
 // RECIPE DETAIL
 // ═══════════════════════════════════════════════════
-function openDetail(id) {
-  const r = loadRecipes().find(x => x.id === id);
+async function openDetailByKey(firebaseKey) {
+  const list = await loadRecipes();
+  const r = list.find(x => x.firebaseKey === firebaseKey);
   if (!r) return;
+  openDetailRender(r);
+}
+
+function openDetailRender(r) {
 
   document.getElementById('detail-title').textContent = `${r.width}×${r.length}`;
 
@@ -1062,7 +1152,7 @@ function calcAndShow() {
   box.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function saveRecipe() {
+async function saveRecipe() {
   const w = parseFloat(document.getElementById('f-w').value);
   const l = parseFloat(document.getElementById('f-l').value);
   const t = parseFloat(document.getElementById('f-t').value);
@@ -1071,19 +1161,14 @@ function saveRecipe() {
   if (!currentTiming) return;
 
   const recipe = {
-    id:       Date.now(),
-    width:    w,
-    length:   l,
-    thickness: t,
-    material: selectedMat,
-    speed:    s,
+    id: Date.now(),
+    width: w, length: l, thickness: t,
+    material: selectedMat, speed: s,
     ...currentTiming
   };
 
-  const list = loadRecipes();
-  list.push(recipe);
-  saveAllRecipes(list);
-
+  toast('Opslaan...');
+  await addRecipeToFirebase(recipe);
   toast('Recept opgeslagen!');
   resetForm();
   go('s-recipes');
@@ -1199,7 +1284,7 @@ function toggleTrouble(i) {
 // ═══════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════
-renderRecipes();
+checkLogin();
 renderTrouble();
 </script>
 
