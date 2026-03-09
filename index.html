@@ -5,17 +5,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Hudson Sharp 5750W</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Exo+2:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════
-   DESIGN TOKENS
+   HMI DESIGN TOKENS
 ═══════════════════════════════════════════ */
 :root {
-  --bg:       #09090c;
-  --panel:    #111318;
-  --surface:  #181c26;
-  --border:   #232833;
-  --border2:  #2c3242;
+  --bg:       #070a0f;
+  --panel:    #0a0e16;
+  --surface:  #0f1420;
+  --border:   #1a2235;
+  --border2:  #1e2a3d;
   --amber:    #f5a623;
   --amber-dk: #c07d0a;
   --blue:     #3b82f6;
@@ -26,34 +26,42 @@
   --purple:   #a78bfa;
   --orange:   #f97316;
   --slate:    #64748b;
-  --text:     #cdd5e0;
-  --text2:    #7a8799;
+  --text:     #c8d8e8;
+  --text2:    #4a6080;
   --mono:     'Share Tech Mono', monospace;
-  --cond:     'Barlow Condensed', sans-serif;
-  --body:     'Barlow', sans-serif;
+  --hmi:      'Rajdhani', sans-serif;
+  --body:     'Exo 2', sans-serif;
 }
 
 /* ═══════════════════════════════════════════
 RESET & BASE
 ═══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
 html { height: 100%; }
-
 body {
-background: #09090c;
-color: #cdd5e0;
-font-family: ‘Barlow’, sans-serif;
+background: #070a0f;
+color: #c8d8e8;
+font-family: ‘Exo 2’, sans-serif;
 min-height: 100%;
 overscroll-behavior: none;
 }
 
-/* subtle scanline texture */
+/* Grid texture overlay */
+body::before {
+content: ‘’;
+position: fixed; inset: 0;
+background-image:
+linear-gradient(rgba(34,211,238,.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(34,211,238,.03) 1px, transparent 1px);
+background-size: 40px 40px;
+pointer-events: none;
+z-index: 0;
+}
+/* Scanlines */
 body::after {
 content: ‘’;
-position: fixed;
-inset: 0;
-background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);
+position: fixed; inset: 0;
+background: repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.04) 3px,rgba(0,0,0,.04) 4px);
 pointer-events: none;
 z-index: 9000;
 }
@@ -61,21 +69,21 @@ z-index: 9000;
 /* ═══════════════════════════════════════════
 SCREEN SYSTEM
 ═══════════════════════════════════════════ */
-.screen { display: none; flex-direction: column; min-height: 100dvh; animation: screenIn .18s ease; }
+.screen { display: none; flex-direction: column; min-height: 100dvh; position: relative; z-index: 1; animation: screenIn .2s ease; }
 .screen.active { display: flex; }
 
 @keyframes screenIn {
-from { opacity: 0; transform: translateY(6px); }
+from { opacity: 0; transform: translateY(8px); }
 to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ═══════════════════════════════════════════
-TOP BAR
+TOP BAR — HMI style
 ═══════════════════════════════════════════ */
 .topbar {
-background: #111318;
-border-bottom: 2px solid #f5a623;
-height: 54px;
+background: #0a0e16;
+border-bottom: 1px solid #1a2235;
+height: 56px;
 display: flex;
 align-items: center;
 padding: 0 16px;
@@ -85,26 +93,35 @@ top: 0;
 z-index: 100;
 flex-shrink: 0;
 }
+.topbar::after {
+content: ‘’;
+position: absolute;
+bottom: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(90deg, #f5a623, #ff6b00 40%, transparent);
+}
 
 .back-btn {
 background: none;
-border: none;
+border: 1px solid #1a2235;
+border-radius: 3px;
 color: #f5a623;
-font-size: 26px;
+font-size: 22px;
 cursor: pointer;
-padding: 4px 8px 4px 0;
+padding: 4px 10px;
 line-height: 1;
 display: flex;
 align-items: center;
 }
+.back-btn:active { background: #1a2235; }
 
 .topbar-title {
-font-family: ‘Barlow Condensed’, sans-serif;
+font-family: ‘Rajdhani’, sans-serif;
 font-weight: 700;
-font-size: 18px;
-letter-spacing: .1em;
+font-size: 20px;
+letter-spacing: .15em;
 text-transform: uppercase;
-color: #cdd5e0;
+color: #c8d8e8;
 flex: 1;
 }
 
@@ -112,12 +129,12 @@ flex: 1;
 background: #f5a623;
 color: #000;
 border: none;
-font-family: ‘Barlow Condensed’, sans-serif;
+font-family: ‘Rajdhani’, sans-serif;
 font-weight: 700;
-font-size: 14px;
-letter-spacing: .08em;
+font-size: 15px;
+letter-spacing: .1em;
 text-transform: uppercase;
-padding: 8px 14px;
+padding: 9px 16px;
 border-radius: 2px;
 cursor: pointer;
 }
@@ -130,61 +147,66 @@ SCROLL CONTENT
 flex: 1;
 overflow-y: auto;
 -webkit-overflow-scrolling: touch;
-padding: 20px 16px 56px;
+padding: 18px 14px 60px;
 }
 
 /* ═══════════════════════════════════════════
 HOME
 ═══════════════════════════════════════════ */
 .home-header {
-text-align: center;
-padding: 36px 0 30px;
-border-bottom: 1px solid #232833;
-margin-bottom: 28px;
+padding: 28px 4px 24px;
+border-bottom: 1px solid #1a2235;
+margin-bottom: 22px;
+position: relative;
 }
 
 .home-badge {
-display: inline-block;
+display: inline-flex;
+align-items: center;
+gap: 6px;
 background: #f5a623;
 color: #000;
-font-family: ‘Barlow Condensed’, sans-serif;
-font-weight: 900;
-font-size: 12px;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
 letter-spacing: .25em;
-padding: 6px 16px;
+padding: 5px 14px;
 text-transform: uppercase;
-margin-bottom: 16px;
+margin-bottom: 14px;
 }
 
 .home-title {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-weight: 900;
-font-size: 32px;
-letter-spacing: .06em;
+font-family: ‘Rajdhani’, sans-serif;
+font-weight: 700;
+font-size: 34px;
+letter-spacing: .1em;
 text-transform: uppercase;
-line-height: 1.15;
-color: #cdd5e0;
+line-height: 1.1;
+color: #c8d8e8;
 }
-
 .home-title em {
 display: block;
 font-style: normal;
-font-size: 16px;
-font-weight: 600;
-color: #7a8799;
-letter-spacing: .18em;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 11px;
+font-weight: 400;
+color: #4a6080;
+letter-spacing: .2em;
 margin-top: 6px;
 }
 
 .home-status {
 display: inline-flex;
 align-items: center;
-gap: 7px;
+gap: 8px;
 font-family: ‘Share Tech Mono’, monospace;
 font-size: 10px;
 color: #22c55e;
-margin-top: 18px;
+margin-top: 16px;
 letter-spacing: .15em;
+background: rgba(34,197,94,.06);
+border: 1px solid rgba(34,197,94,.2);
+padding: 5px 12px;
+border-radius: 2px;
 }
 
 .pulse {
@@ -193,120 +215,195 @@ border-radius: 50%;
 background: #22c55e;
 animation: pulse 2s infinite;
 }
-
 @keyframes pulse {
-0%,100% { opacity:1; box-shadow:0 0 6px #22c55e; }
-50%      { opacity:.25; box-shadow:none; }
+0%,100% { opacity:1; box-shadow:0 0 8px #22c55e88; }
+50%      { opacity:.2; box-shadow:none; }
 }
 
-.nav-grid { display: flex; flex-direction: column; gap: 14px; padding: 0 2px; }
+/* HOME NAV BUTTONS */
+.nav-grid { display: flex; flex-direction: column; gap: 10px; }
 
 .nav-btn {
-background: #111318;
-border: 1px solid #2c3242;
-border-left-width: 5px;
-border-radius: 4px;
-padding: 22px 18px;
+background: #0a0e16;
+border: 1px solid #1a2235;
+border-left: 4px solid #1a2235;
+border-radius: 3px;
+padding: 20px 16px;
 display: flex;
 align-items: center;
 gap: 16px;
 cursor: pointer;
 text-align: left;
 width: 100%;
-transition: background .12s, transform .1s;
+transition: background .12s, border-color .12s;
+position: relative;
+overflow: hidden;
 }
-.nav-btn:active { transform: scale(.98); background: #181c26; }
+.nav-btn::after {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0; height: 1px;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,.04), transparent);
+}
+.nav-btn:active { background: #0f1420; }
 
 .nav-btn.c-amber { border-left-color: #f5a623; }
 .nav-btn.c-red   { border-left-color: #ef4444; }
 .nav-btn.c-blue  { border-left-color: #3b82f6; }
 
-.nb-icon  { font-size: 28px; flex-shrink: 0; }
-.nb-label { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: .06em; text-transform: uppercase; color: #cdd5e0; line-height: 1; }
-.nb-sub   { font-size: 13px; color: #7a8799; margin-top: 3px; }
-.nb-arr   { margin-left: auto; font-size: 24px; color: #7a8799; }
+.nb-icon  { font-size: 26px; flex-shrink: 0; width: 44px; height: 44px; display:flex; align-items:center; justify-content:center; background:#0f1420; border:1px solid #1a2235; border-radius:3px; }
+.nb-label { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: .1em; text-transform: uppercase; color: #c8d8e8; line-height: 1; }
+.nb-sub   { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #4a6080; margin-top: 4px; letter-spacing: .05em; }
+.nb-arr   { margin-left: auto; font-size: 22px; color: #1a2235; }
 
 /* ═══════════════════════════════════════════
 SECTION LABEL
 ═══════════════════════════════════════════ */
 .slabel {
 font-family: ‘Share Tech Mono’, monospace;
-font-size: 10px;
+font-size: 9px;
 color: #f5a623;
-letter-spacing: .25em;
+letter-spacing: .3em;
 text-transform: uppercase;
 display: flex;
 align-items: center;
 gap: 10px;
-margin: 22px 0 12px;
+margin: 20px 0 10px;
 }
 .slabel:first-child { margin-top: 0; }
-.slabel::after { content:’’; flex:1; height:1px; background:#232833; }
+.slabel::after { content:’’; flex:1; height:1px; background: linear-gradient(90deg,#1a2235,transparent); }
 
 /* ═══════════════════════════════════════════
 RECIPE LIST
 ═══════════════════════════════════════════ */
 .recipe-card {
-background: #111318;
-border: 1px solid #2c3242;
-border-left: 5px solid #f5a623;
-border-radius: 3px;
+background: #0a0e16;
+border: 1px solid #1a2235;
+border-left: 4px solid #f5a623;
+border-radius: 2px;
 padding: 14px 15px;
-margin-bottom: 11px;
-cursor: pointer;
-transition: background .12s;
+margin-bottom: 10px;
 animation: screenIn .2s ease;
+position: relative;
+overflow: hidden;
 }
-.recipe-card:active { background: #181c26; }
+.recipe-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0; height: 1px;
+background: linear-gradient(90deg, #f5a62344, transparent);
+}
 
 .rc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-
 .rc-name {
-font-family: ‘Barlow Condensed’, sans-serif;
+font-family: ‘Rajdhani’, sans-serif;
 font-weight: 700;
-font-size: 18px;
-letter-spacing: .04em;
+font-size: 22px;
+letter-spacing: .1em;
 color: #f5a623;
 text-transform: uppercase;
 flex: 1;
-line-height: 1.2;
+line-height: 1.1;
 }
+
+/* ═══════════════════════════════════════════
+TREE STRUCTURE
+═══════════════════════════════════════════ */
+.tree-group { margin-bottom: 14px; }
+
+.tree-header {
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 10px 14px;
+background: #0f1420;
+border: 1px solid #1a2235;
+border-left: 4px solid #f5a623;
+border-radius: 2px 2px 0 0;
+}
+.tree-icon { font-size: 16px; }
+.tree-klant { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 17px; letter-spacing: .1em; text-transform: uppercase; color: #f5a623; flex: 1; }
+.tree-count { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #4a6080; }
+
+.tree-item {
+background: #0a0e16;
+border: 1px solid #1a2235;
+border-top: none;
+cursor: pointer;
+transition: background .12s;
+}
+.tree-item:last-child { border-radius: 0 0 2px 2px; }
+.tree-item:active { background: #0f1420; }
+
+.tree-item-inner {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 12px;
+}
+
+.tree-connector {
+width: 16px;
+height: 24px;
+border-left: 1px solid #1a2235;
+border-bottom: 1px solid #1a2235;
+flex-shrink: 0;
+margin-left: 8px;
+border-radius: 0 0 0 4px;
+}
+
+.tree-content { flex: 1; min-width: 0; }
+.tree-name { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 18px; letter-spacing: .08em; color: #c8d8e8; }
+.tree-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; align-items: center; }
+.tree-place { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #22d3ee; }
+
+.rc-edit {
+background: none;
+border: 1px solid #1a3a2a;
+border-radius: 2px;
+color: #22c55e;
+font-size: 12px;
+padding: 5px 10px;
+cursor: pointer;
+font-family: ‘Share Tech Mono’, monospace;
+flex-shrink: 0;
+}
+.rc-edit:active { background: #22c55e; color: #000; }
 
 .rc-del {
 background: none;
-border: 1px solid #3a1515;
+border: 1px solid #2a1010;
 border-radius: 2px;
 color: #ef4444;
-font-size: 13px;
-padding: 4px 9px;
+font-size: 12px;
+padding: 5px 10px;
 cursor: pointer;
 font-family: ‘Share Tech Mono’, monospace;
 flex-shrink: 0;
 }
 .rc-del:active { background: #ef4444; color: #fff; }
 
-.rc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
-
+.rc-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
 .tag {
 font-family: ‘Share Tech Mono’, monospace;
-font-size: 11px;
-padding: 2px 8px;
+font-size: 10px;
+padding: 3px 8px;
 border-radius: 2px;
-background: #181c26;
-border: 1px solid #2c3242;
-color: #7a8799;
+background: #0f1420;
+border: 1px solid #1a2235;
+color: #4a6080;
 }
-.tag.t-mat  { border-color: #22d3ee;  color: #22d3ee; }
-.tag.t-spd  { border-color: #f5a623; color: #f5a623; }
+.tag.t-mat  { border-color: #22d3ee44; color: #22d3ee; }
+.tag.t-spd  { border-color: #f5a62344; color: #f5a623; }
 
 .empty-state {
 text-align: center;
-padding: 50px 24px;
+padding: 48px 24px;
 font-family: ‘Share Tech Mono’, monospace;
-font-size: 12px;
-color: #7a8799;
-line-height: 2.2;
-border: 1px dashed #2c3242;
+font-size: 11px;
+color: #4a6080;
+line-height: 2.4;
+border: 1px dashed #1a2235;
 border-radius: 3px;
 }
 
@@ -314,73 +411,70 @@ border-radius: 3px;
 FORM
 ═══════════════════════════════════════════ */
 .form-card {
-background: #111318;
-border: 1px solid #232833;
-border-radius: 3px;
+background: #0a0e16;
+border: 1px solid #1a2235;
+border-top: 2px solid #f5a623;
+border-radius: 2px;
 padding: 18px;
-margin-bottom: 16px;
+margin-bottom: 14px;
 }
-
 .form-card-title {
-font-family: ‘Barlow Condensed’, sans-serif;
+font-family: ‘Rajdhani’, sans-serif;
 font-weight: 700;
-font-size: 14px;
-letter-spacing: .12em;
+font-size: 15px;
+letter-spacing: .2em;
 text-transform: uppercase;
 color: #f5a623;
 margin-bottom: 16px;
 padding-bottom: 10px;
-border-bottom: 1px solid #232833;
+border-bottom: 1px solid #1a2235;
 }
 
 .field { margin-bottom: 14px; }
 .field:last-child { margin-bottom: 0; }
-
 .field label {
 display: block;
 font-family: ‘Share Tech Mono’, monospace;
-font-size: 10px;
-color: #7a8799;
-letter-spacing: .15em;
+font-size: 9px;
+color: #4a6080;
+letter-spacing: .2em;
 text-transform: uppercase;
 margin-bottom: 6px;
 }
-
 .field input {
 width: 100%;
-background: #09090c;
-border: 1px solid #2c3242;
-border-radius: 3px;
-color: #cdd5e0;
+background: #070a0f;
+border: 1px solid #1a2235;
+border-radius: 2px;
+color: #c8d8e8;
 font-family: ‘Share Tech Mono’, monospace;
 font-size: 16px;
-padding: 12px 13px;
+padding: 13px 14px;
 outline: none;
-transition: border-color .15s;
+transition: border-color .15s, box-shadow .15s;
 -webkit-appearance: none;
 }
-.field input:focus { border-color: #22d3ee; }
+.field input:focus { border-color: #22d3ee; box-shadow: 0 0 0 2px rgba(34,211,238,.08); }
 
-.mat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 9px; }
-
+.mat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
 .mat-btn {
-background: #09090c;
-border: 1px solid #2c3242;
-border-radius: 3px;
-color: #7a8799;
-font-family: ‘Barlow Condensed’, sans-serif;
+background: #070a0f;
+border: 1px solid #1a2235;
+border-radius: 2px;
+color: #4a6080;
+font-family: ‘Rajdhani’, sans-serif;
 font-weight: 600;
-font-size: 15px;
-letter-spacing: .06em;
-padding: 13px 6px;
+font-size: 16px;
+letter-spacing: .1em;
+padding: 14px 6px;
 cursor: pointer;
 text-align: center;
 transition: all .12s;
 }
-.mat-btn.active { background: #f5a623; border-color: #f5a623; color: #000; }
+.mat-btn.active { background: #f5a623; border-color: #f5a623; color: #000; font-weight: 700; }
 .mat-btn:active { transform: scale(.97); }
 
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
 /* ═══════════════════════════════════════════
 BUTTONS
@@ -388,147 +482,144 @@ BUTTONS
 .btn {
 width: 100%;
 border: none;
-border-radius: 3px;
-font-family: ‘Barlow Condensed’, sans-serif;
+border-radius: 2px;
+font-family: ‘Rajdhani’, sans-serif;
 font-weight: 700;
-font-size: 17px;
-letter-spacing: .1em;
+font-size: 18px;
+letter-spacing: .15em;
 text-transform: uppercase;
 padding: 16px;
 cursor: pointer;
-margin-top: 6px;
+margin-top: 8px;
 transition: opacity .12s, transform .1s;
 }
 .btn:active { transform: scale(.98); opacity: .9; }
-.btn-amber  { background: #f5a623; color: #000; }
-.btn-ghost  { background: transparent; border: 1px solid #2c3242; color: #7a8799; margin-top: 10px; }
+.btn-amber { background: linear-gradient(135deg, #f5a623, #ff6b00); color: #000; }
+.btn-ghost { background: transparent; border: 1px solid #1a2235; color: #4a6080; margin-top: 10px; }
 
 /* ═══════════════════════════════════════════
-BLOWER RESULTS
+BLOWER RESULTS — HMI panels
 ═══════════════════════════════════════════ */
 #results-box { display: none; margin-top: 0; }
 #results-box.show { display: block; animation: screenIn .2s ease; }
 
 .blower-block {
-background: #111318;
-border: 1px solid #232833;
-border-radius: 3px;
-margin-bottom: 10px;
+background: #0a0e16;
+border: 1px solid #1a2235;
+border-radius: 2px;
+margin-bottom: 8px;
 overflow: hidden;
+position: relative;
 }
 
 .blower-hdr {
 display: flex;
 align-items: center;
 gap: 10px;
-padding: 11px 14px;
-background: #181c26;
-border-bottom: 1px solid #232833;
+padding: 10px 14px;
+background: #0f1420;
+border-bottom: 1px solid #1a2235;
 }
 
-.bdot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.bname { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; flex: 1; }
+.bdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.bname { font-family: ‘Rajdhani’, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .15em; text-transform: uppercase; flex: 1; color: #8a9ab0; }
 
 .blower-cells { display: flex; }
-
 .bcell {
 flex: 1;
-padding: 13px;
+padding: 14px 10px;
 text-align: center;
-border-right: 1px solid #232833;
+border-right: 1px solid #1a2235;
 }
 .bcell:last-child { border-right: none; }
 
-.bcell-lbl { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: #7a8799; letter-spacing: .15em; text-transform: uppercase; display: block; margin-bottom: 5px; }
-.bcell-val { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 900; font-size: 28px; line-height: 1; }
-.bcell-unit { font-family: ‘Share Tech Mono’, monospace; font-size: 11px; color: #7a8799; }
+.bcell-lbl { font-family: ‘Share Tech Mono’, monospace; font-size: 8px; color: #4a6080; letter-spacing: .2em; text-transform: uppercase; display: block; margin-bottom: 6px; }
+.bcell-val { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 30px; line-height: 1; }
+.bcell-unit { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #4a6080; }
 
-.bar-wrap { padding: 0 14px 10px; }
-.bar-track { height: 7px; background: #09090c; border-radius: 4px; overflow: hidden; position: relative; margin-bottom: 5px; }
-.bar-fill  { position: absolute; top: 0; height: 100%; border-radius: 4px; opacity: .85; }
+.bar-wrap { padding: 0 14px 12px; }
+.bar-track { height: 6px; background: #070a0f; border-radius: 3px; overflow: hidden; position: relative; margin-bottom: 6px; border: 1px solid #1a2235; }
+.bar-fill  { position: absolute; top: 0; height: 100%; border-radius: 3px; opacity: .9; }
 .bar-ticks { display: flex; justify-content: space-between; }
-.bar-tick  { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: #7a8799; }
+.bar-tick  { font-family: ‘Share Tech Mono’, monospace; font-size: 8px; color: #4a6080; }
 
 /* ═══════════════════════════════════════════
 RECIPE DETAIL
 ═══════════════════════════════════════════ */
 .info-block {
-background: #111318;
-border: 1px solid #232833;
-border-radius: 3px;
+background: #0a0e16;
+border: 1px solid #1a2235;
+border-radius: 2px;
 overflow: hidden;
 margin-bottom: 8px;
 }
-
 .info-row {
 display: flex;
 align-items: center;
 padding: 12px 14px;
-border-bottom: 1px solid #232833;
+border-bottom: 1px solid #1a2235;
 gap: 10px;
 }
 .info-row:last-child { border-bottom: none; }
-
 .ir-lbl {
 font-family: ‘Share Tech Mono’, monospace;
-font-size: 11px;
-color: #7a8799;
-letter-spacing: .1em;
+font-size: 10px;
+color: #4a6080;
+letter-spacing: .12em;
 text-transform: uppercase;
-min-width: 130px;
+min-width: 120px;
 flex-shrink: 0;
 }
-
 .ir-val {
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 15px;
-color: #cdd5e0;
-font-weight: bold;
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 17px;
+font-weight: 600;
+color: #c8d8e8;
 }
-.ir-val .u { font-size: 11px; color: #7a8799; margin-left: 2px; font-weight: normal; }
+.ir-val .u { font-size: 12px; color: #4a6080; margin-left: 3px; font-weight: 400; font-family: ‘Share Tech Mono’, monospace; }
 
 /* ═══════════════════════════════════════════
 TROUBLESHOOTING
 ═══════════════════════════════════════════ */
 .trouble-card {
-background: #111318;
-border: 1px solid #232833;
-border-radius: 3px;
-margin-bottom: 12px;
+background: #0a0e16;
+border: 1px solid #1a2235;
+border-radius: 2px;
+margin-bottom: 10px;
 overflow: hidden;
 }
-
 .tc-hdr {
 display: flex;
 align-items: center;
 gap: 12px;
 padding: 16px;
 cursor: pointer;
-border-left: 5px solid #ef4444;
+border-left: 4px solid #ef4444;
 transition: background .12s;
 }
-.tc-hdr:active { background: #181c26; }
-
-.tc-icon { font-size: 22px; flex-shrink: 0; }
-.tc-prob { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 700; font-size: 19px; letter-spacing: .04em; text-transform: uppercase; flex: 1; }
-.tc-chev { font-size: 20px; color: #7a8799; transition: transform .2s; flex-shrink: 0; }
+.tc-hdr:active { background: #0f1420; }
+.tc-icon { font-size: 20px; flex-shrink: 0; }
+.tc-prob { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 20px; letter-spacing: .08em; text-transform: uppercase; flex: 1; }
+.tc-chev { font-size: 20px; color: #4a6080; transition: transform .2s; flex-shrink: 0; }
 .tc-hdr.open .tc-chev { transform: rotate(90deg); }
 
-.tc-body { display: none; padding: 0 16px 16px; border-top: 1px solid #232833; animation: screenIn .15s ease; }
+.tc-body { display: none; padding: 0 16px 16px; border-top: 1px solid #1a2235; animation: screenIn .15s ease; }
 .tc-body.open { display: block; }
 
-.ts-group { margin-top: 14px; }
-.ts-glbl { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 8px; }
+.ts-group { margin-top: 12px; }
+.ts-glbl { font-family: ‘Share Tech Mono’, monospace; font-size: 8px; letter-spacing: .25em; text-transform: uppercase; margin-bottom: 8px; }
 .ts-glbl.cause    { color: #facc15; }
 .ts-glbl.solution { color: #22c55e; }
 
-.ts-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.ts-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
 .ts-list li {
-display: flex; gap: 9px; align-items: flex-start;
+display: flex; gap: 10px; align-items: flex-start;
 font-size: 14px; line-height: 1.45;
 padding: 9px 12px;
-background: #181c26;
+background: #0f1420;
+border: 1px solid #1a2235;
 border-radius: 2px;
+font-family: ‘Exo 2’, sans-serif;
 }
 .ts-list li::before { content: ‘▸’; flex-shrink: 0; margin-top: 1px; }
 .ts-list.cause    li::before { color: #facc15; }
@@ -538,22 +629,44 @@ border-radius: 2px;
 MACHINE INFO
 ═══════════════════════════════════════════ */
 .machine-hero {
-background: #111318;
-border: 1px solid #232833;
+background: #0a0e16;
+border: 1px solid #1a2235;
 border-top: 3px solid #3b82f6;
-border-radius: 3px;
+border-radius: 2px;
 padding: 24px 18px;
 text-align: center;
-margin-bottom: 16px;
+margin-bottom: 14px;
+position: relative;
+overflow: hidden;
+}
+.machine-hero::before {
+content: ‘5750W’;
+position: absolute;
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 120px;
+font-weight: 900;
+color: rgba(59,130,246,.04);
+right: -10px; bottom: -20px;
+line-height: 1;
+pointer-events: none;
 }
 
-.mh-model { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 900; font-size: 44px; letter-spacing: .06em; color: #f5a623; }
-.mh-sub   { font-family: ‘Share Tech Mono’, monospace; font-size: 11px; color: #7a8799; letter-spacing: .15em; margin-top: 4px; }
+.mh-model { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 48px; letter-spacing: .1em; color: #f5a623; line-height: 1; }
+.mh-sub   { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #4a6080; letter-spacing: .2em; margin-top: 6px; }
 
-.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-.stat-tile { background: #111318; border: 1px solid #232833; border-radius: 3px; padding: 14px; text-align: center; }
-.st-val { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 900; font-size: 26px; color: #cdd5e0; }
-.st-lbl { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #7a8799; letter-spacing: .12em; text-transform: uppercase; margin-top: 4px; }
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.stat-tile {
+background: #0a0e16;
+border: 1px solid #1a2235;
+border-radius: 2px;
+padding: 14px;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+.stat-tile::before { content:’’; position:absolute; top:0;left:0;right:0;height:2px; background: linear-gradient(90deg,#22d3ee44,transparent); }
+.st-val { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 28px; color: #c8d8e8; }
+.st-lbl { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: #4a6080; letter-spacing: .15em; text-transform: uppercase; margin-top: 4px; }
 
 /* ═══════════════════════════════════════════
 TOAST
@@ -563,8 +676,8 @@ position: fixed;
 bottom: 24px; left: 50%;
 transform: translateX(-50%) translateY(10px);
 background: #22c55e; color: #000;
-font-family: ‘Barlow Condensed’, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: .08em;
-padding: 12px 22px; border-radius: 3px;
+font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 16px; letter-spacing: .1em;
+padding: 12px 24px; border-radius: 2px;
 opacity: 0; transition: all .2s;
 pointer-events: none; z-index: 9999;
 white-space: nowrap;
@@ -588,16 +701,31 @@ UTILITY
 <!-- LOGIN -->
 
 <div class="screen active" id="s-login">
-  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:32px 24px;background:#09090c;">
-    <div style="background:#f5a623;color:#000;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.25em;padding:6px 16px;text-transform:uppercase;margin-bottom:20px;">Hudson Sharp</div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:36px;letter-spacing:.06em;text-transform:uppercase;color:#cdd5e0;text-align:center;margin-bottom:6px;">5750W Setup App</div>
-    <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#7a8799;letter-spacing:.15em;margin-bottom:40px;">VOER WACHTWOORD IN</div>
-    <div style="width:100%;max-width:320px;">
-      <input id="login-pw" type="password" placeholder="Wachtwoord" onkeydown="if(event.key==='Enter')doLogin()"
-        style="width:100%;background:#111318;border:1px solid #2c3242;border-radius:3px;color:#cdd5e0;font-family:'Share Tech Mono',monospace;font-size:18px;padding:16px;outline:none;margin-bottom:12px;-webkit-appearance:none;text-align:center;letter-spacing:.2em;">
-      <div id="login-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:12px;text-align:center;margin-bottom:12px;">Verkeerd wachtwoord</div>
-      <button onclick="doLogin()" style="width:100%;background:#f5a623;color:#000;border:none;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;padding:16px;cursor:pointer;">Inloggen</button>
-    </div>
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:32px 24px;background:#070a0f;position:relative;z-index:1;">
+    <!-- corner marks -->
+    <div style="position:absolute;top:20px;left:20px;width:24px;height:24px;border-top:2px solid #f5a623;border-left:2px solid #f5a623;"></div>
+    <div style="position:absolute;top:20px;right:20px;width:24px;height:24px;border-top:2px solid #f5a623;border-right:2px solid #f5a623;"></div>
+    <div style="position:absolute;bottom:20px;left:20px;width:24px;height:24px;border-bottom:2px solid #f5a623;border-left:2px solid #f5a623;"></div>
+    <div style="position:absolute;bottom:20px;right:20px;width:24px;height:24px;border-bottom:2px solid #f5a623;border-right:2px solid #f5a623;"></div>
+
+```
+<div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.3em;margin-bottom:24px;text-transform:uppercase;">Industrial Control System</div>
+
+<div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
+
+<div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
+<div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:40px;">SETUP APP</div>
+
+<div style="width:100%;max-width:300px;">
+  <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;">Toegangscode</div>
+  <input id="login-pw" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"
+    style="width:100%;background:#0a0e16;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:22px;padding:16px;outline:none;margin-bottom:10px;-webkit-appearance:none;text-align:center;letter-spacing:.3em;transition:border-color .15s;"
+    onfocus="this.style.borderColor='#22d3ee'" onblur="this.style.borderColor='#1a2235'">
+  <div id="login-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">TOEGANG GEWEIGERD</div>
+  <button onclick="doLogin()" style="width:100%;background:linear-gradient(135deg,#f5a623,#ff6b00);color:#000;border:none;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:.2em;text-transform:uppercase;padding:16px;cursor:pointer;">Inloggen</button>
+</div>
+```
+
   </div>
 </div>
 
@@ -662,7 +790,15 @@ UTILITY
     <div class="topbar-title">Recepten</div>
     <button class="topbar-btn" onclick="go('s-add')">＋ Nieuw</button>
   </div>
-  <div class="content">
+  <div style="padding:10px 14px 0;background:#070a0f;position:sticky;top:56px;z-index:99;">
+    <div style="position:relative;">
+      <input id="search-input" type="text" inputmode="text" placeholder="Zoek op klant, plaats of afmeting..."
+        oninput="filterRecipes()"
+        style="width:100%;background:#0a0e16;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:13px;padding:11px 14px 11px 36px;outline:none;-webkit-appearance:none;">
+      <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#4a6080;font-size:14px;">🔍</span>
+    </div>
+  </div>
+  <div class="content" style="padding-top:10px;">
     <div id="recipe-list"></div>
   </div>
 </div>
@@ -691,6 +827,21 @@ UTILITY
   <div class="content">
 
 ```
+<div class="form-card">
+  <div class="form-card-title">Klant & Locatie</div>
+
+  <div class="grid2">
+    <div class="field">
+      <label>Klantnummer</label>
+      <input id="f-klant" type="text" inputmode="text" placeholder="bv. 1001">
+    </div>
+    <div class="field">
+      <label>Plaatsnaam</label>
+      <input id="f-plaats" type="text" inputmode="text" placeholder="bv. Amsterdam">
+    </div>
+  </div>
+</div>
+
 <div class="form-card">
   <div class="form-card-title">Zak Specificaties</div>
 
@@ -817,14 +968,13 @@ UTILITY
 // BLOWER CHANNEL DEFINITIONS
 // ═══════════════════════════════════════════════════
 const CHANNELS = [
-  { key:'upper',      label:'Upper Blowers',   color:'#22d3ee' },
-  { key:'upper_pipe', label:'Upper Pipe',       color:'#3b82f6' },
-  
-  { key:'lower',      label:'Lower Blowers',    color:'#a78bfa' },
   { key:'lower_pipe', label:'Lower Pipe',        color:'#f97316' },
+  { key:'lower',      label:'Lower Blowers',     color:'#a78bfa' },
+  { key:'upper_pipe', label:'Upper Pipe',        color:'#3b82f6' },
+  { key:'upper',      label:'Upper Blowers',     color:'#22d3ee' },
   { key:'out6',       label:'Output 6',          color:'#f5a623' },
   { key:'out7',       label:'Output 7',          color:'#64748b' },
-  { key:'out8',       label:'Output 8',          color:'#64748b' },
+  { key:'out8',       label:'Output 8',          color:'#94a3b8' },
 ];
 
 // ═══════════════════════════════════════════════════
@@ -968,32 +1118,109 @@ async function deleteRecipeFromFirebase(firebaseKey) {
 // ═══════════════════════════════════════════════════
 // RECIPE LIST
 // ═══════════════════════════════════════════════════
+let _allRecipes = [];
+
 async function renderRecipes() {
   const el = document.getElementById('recipe-list');
   el.innerHTML = `<div class="empty-state">Laden...</div>`;
-  const list = await loadRecipes();
+  _allRecipes = await loadRecipes();
+  const search = document.getElementById('search-input')?.value || '';
+  renderRecipeTree(_allRecipes, search);
+}
 
+function filterRecipes() {
+  const q = document.getElementById('search-input').value;
+  renderRecipeTree(_allRecipes, q);
+}
+
+function renderRecipeTree(list, query='') {
+  const el = document.getElementById('recipe-list');
   if (!list.length) {
     el.innerHTML = `<div class="empty-state">Geen recepten opgeslagen.<br>Tik op <b>＋ Nieuw</b> om te beginnen.</div>`;
     return;
   }
 
-  el.innerHTML = list.map(r => `
-    <div class="recipe-card">
-      <div class="rc-top" onclick="openDetailByKey('${r.firebaseKey}')">
-        <div class="rc-name">${r.width} × ${r.length} cm</div>
+  const q = query.toLowerCase().trim();
+
+  // Filter
+  const filtered = q ? list.filter(r =>
+    (r.klant||'').toLowerCase().includes(q) ||
+    (r.plaats||'').toLowerCase().includes(q) ||
+    `${r.width}`.includes(q) ||
+    `${r.length}`.includes(q) ||
+    (r.material||'').toLowerCase().includes(q)
+  ) : list;
+
+  if (!filtered.length) {
+    el.innerHTML = `<div class="empty-state">Geen resultaten voor "<b>${query}</b>"</div>`;
+    return;
+  }
+
+  // Group by klantnummer
+  const groups = {};
+  filtered.forEach(r => {
+    const k = r.klant || '— Geen klantnummer —';
+    if (!groups[k]) groups[k] = [];
+    groups[k].push(r);
+  });
+
+  // Sort groups
+  const sortedKeys = Object.keys(groups).sort((a,b) => a.localeCompare(b));
+
+  el.innerHTML = sortedKeys.map(klant => {
+    const recipes = groups[klant];
+    const items = recipes.map(r => `
+      <div class="tree-item" onclick="openDetailByKey('${r.firebaseKey}')">
+        <div class="tree-item-inner">
+          <div class="tree-connector"></div>
+          <div class="tree-content">
+            <div class="tree-name">${r.width} × ${r.length} cm</div>
+            <div class="tree-meta">
+              ${r.plaats ? `<span class="tree-place">📍 ${r.plaats}</span>` : ''}
+              <span class="tag t-mat" style="font-size:9px;padding:2px 6px;">${r.material}</span>
+              <span class="tag" style="font-size:9px;padding:2px 6px;">${r.thickness} mm</span>
+              <span class="tag t-spd" style="font-size:9px;padding:2px 6px;">${r.speed} ZPM</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0;">
+            <button class="rc-edit" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();editRecipe('${r.firebaseKey}')">✎</button>
+            <button class="rc-del" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();delRecipe('${r.firebaseKey}')">✕</button>
+          </div>
+        </div>
       </div>
-      <div class="rc-tags" onclick="openDetailByKey('${r.firebaseKey}')">
-        <span class="tag t-mat">${r.material}</span>
-        <span class="tag">${r.thickness} mm</span>
-        <span class="tag t-spd">${r.speed} ZPM</span>
-        <span class="tag">${thicknessLabel(r.thickness)}</span>
+    `).join('');
+
+    return `
+      <div class="tree-group">
+        <div class="tree-header">
+          <span class="tree-icon">📁</span>
+          <span class="tree-klant">Klant ${klant}</span>
+          <span class="tree-count">${recipes.length} zak${recipes.length !== 1 ? 'ken' : ''}</span>
+        </div>
+        ${items}
       </div>
-      <div style="margin-top:10px;display:flex;gap:8px;">
-        <button class="rc-del" onclick="delRecipe('${r.firebaseKey}')">✕ Verwijder</button>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
+}
+
+async function editRecipe(firebaseKey) {
+  const list = await loadRecipes();
+  const r = list.find(x => x.firebaseKey === firebaseKey);
+  if (!r) return;
+
+  document.getElementById('f-klant').value = r.klant || '';
+  document.getElementById('f-plaats').value = r.plaats || '';
+  document.getElementById('f-w').value = r.width;
+  document.getElementById('f-l').value = r.length;
+  document.getElementById('f-t').value = r.thickness;
+  document.getElementById('f-s').value = r.speed;
+  selectMat(r.material);
+
+  document.getElementById('s-add').dataset.editKey = firebaseKey;
+  document.querySelector('#s-add .topbar-title').textContent = 'Recept Bewerken';
+
+  calcAndShow();
+  go('s-add');
 }
 
 async function delRecipe(firebaseKey) {
@@ -1023,6 +1250,54 @@ function openDetailRender(r) {
 
   document.getElementById('detail-title').textContent = `${r.width}×${r.length}`;
 
+  // ── 360° SVG DIAGRAM ──
+  const cx = 160, cy = 160, R = 110, strokeW = 18;
+  const toRad = deg => (deg - 90) * Math.PI / 180;
+  const arcPath = (onDeg, offDeg, radius) => {
+    const dur = offDeg > onDeg ? offDeg - onDeg : (360 - onDeg + offDeg);
+    if (dur <= 0) return '';
+    const large = dur > 180 ? 1 : 0;
+    const x1 = cx + radius * Math.cos(toRad(onDeg));
+    const y1 = cy + radius * Math.sin(toRad(onDeg));
+    const x2 = cx + radius * Math.cos(toRad(offDeg));
+    const y2 = cy + radius * Math.sin(toRad(offDeg));
+    return `M ${x1} ${y1} A ${radius} ${radius} 0 ${large} 1 ${x2} ${y2}`;
+  };
+
+  const radii = [58, 72, 86, 100, 114, 128, 142];
+  const channelArcs = CHANNELS.map((ch, i) => {
+    const on  = r[`${ch.key}_on`];
+    const off = r[`${ch.key}_off`];
+    const d = arcPath(on, off, radii[i]);
+    if (!d) return '';
+    return `<path d="${d}" stroke="${ch.color}" stroke-width="${strokeW - 2}" fill="none" stroke-linecap="round" opacity="0.85"/>`;
+  }).join('');
+
+  // tick marks at 0,90,180,270
+  const ticks = [0,90,180,270].map(deg => {
+    const angle = toRad(deg);
+    const x1 = cx + 148 * Math.cos(angle);
+    const y1 = cy + 148 * Math.sin(angle);
+    const x2 = cx + 158 * Math.cos(angle);
+    const y2 = cy + 158 * Math.sin(angle);
+    const lx = cx + 170 * Math.cos(angle);
+    const ly = cy + 170 * Math.sin(angle);
+    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#f5a623" stroke-width="2"/>
+            <text x="${lx}" y="${ly}" fill="#f5a623" font-size="11" font-family="Share Tech Mono,monospace" text-anchor="middle" dominant-baseline="middle">${deg}°</text>`;
+  }).join('');
+
+  const legendHTML = CHANNELS.map((ch, i) => {
+    const on  = r[`${ch.key}_on`];
+    const off = r[`${ch.key}_off`];
+    const dur = off > on ? off - on : (360 - on + off);
+    return `<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #1a2235;">
+      <div style="width:10px;height:10px;border-radius:50%;background:${ch.color};flex-shrink:0;box-shadow:0 0 5px ${ch.color}88;"></div>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;color:#8a9ab0;letter-spacing:.08em;flex:1;text-transform:uppercase;">${ch.label}</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:${ch.color};">${on}°→${off}°</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;min-width:32px;text-align:right;">${dur}°</div>
+    </div>`;
+  }).join('');
+
   const blowerHTML = CHANNELS.map(ch => {
     const on  = r[`${ch.key}_on`];
     const off = r[`${ch.key}_off`];
@@ -1048,7 +1323,7 @@ function openDetailRender(r) {
           </div>
           <div class="bcell">
             <span class="bcell-lbl">DUUR</span>
-            <span class="bcell-val" style="color:#7a8799;font-size:22px">${dur}</span>
+            <span class="bcell-val" style="color:#4a6080;font-size:22px">${dur}</span>
             <span class="bcell-unit">°</span>
           </div>
         </div>
@@ -1064,8 +1339,32 @@ function openDetailRender(r) {
   }).join('');
 
   document.getElementById('detail-content').innerHTML = `
+
+    <div class="slabel">360° Cyclus Diagram</div>
+    <div style="background:#0a0e16;border:1px solid #1a2235;border-radius:2px;padding:16px;margin-bottom:8px;">
+      <svg viewBox="0 0 320 320" width="100%" style="display:block;max-width:320px;margin:0 auto;">
+        <!-- background rings -->
+        ${radii.map(r => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1a2235" stroke-width="1"/>`).join('')}
+        <!-- outer ring -->
+        <circle cx="${cx}" cy="${cy}" r="152" fill="none" stroke="#1a2235" stroke-width="1.5"/>
+        <!-- blower arcs -->
+        ${channelArcs}
+        <!-- tick marks -->
+        ${ticks}
+        <!-- center -->
+        <circle cx="${cx}" cy="${cy}" r="36" fill="#0f1420" stroke="#1a2235" stroke-width="1.5"/>
+        <text x="${cx}" y="${cy - 8}" fill="#f5a623" font-size="18" font-family="Rajdhani,sans-serif" font-weight="700" text-anchor="middle">360°</text>
+        <text x="${cx}" y="${cy + 10}" fill="#4a6080" font-size="8" font-family="Share Tech Mono,monospace" text-anchor="middle">CYCLUS</text>
+        <!-- speed label -->
+        <text x="${cx}" y="308" fill="#4a6080" font-size="9" font-family="Share Tech Mono,monospace" text-anchor="middle">${r.speed} ZPM · ${r.material}</text>
+      </svg>
+      <div style="margin-top:12px;">${legendHTML}</div>
+    </div>
+
     <div class="slabel">Zak Specificaties</div>
     <div class="info-block">
+      ${r.klant ? `<div class="info-row"><div class="ir-lbl">Klantnummer</div><div class="ir-val" style="color:#f5a623;">${r.klant}</div></div>` : ''}
+      ${r.plaats ? `<div class="info-row"><div class="ir-lbl">Plaatsnaam</div><div class="ir-val" style="color:#22d3ee;">📍 ${r.plaats}</div></div>` : ''}
       <div class="info-row"><div class="ir-lbl">Breedte</div><div class="ir-val">${r.width}<span class="u"> cm</span></div></div>
       <div class="info-row"><div class="ir-lbl">Lengte</div><div class="ir-val">${r.length}<span class="u"> cm</span></div></div>
       <div class="info-row"><div class="ir-lbl">Dikte</div><div class="ir-val">${r.thickness}<span class="u"> mm</span> — ${thicknessLabel(r.thickness)}</div></div>
@@ -1073,7 +1372,7 @@ function openDetailRender(r) {
       <div class="info-row"><div class="ir-lbl">Snelheid</div><div class="ir-val">${r.speed}<span class="u"> ZPM</span></div></div>
       <div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">${Math.round(60000/r.speed)}<span class="u"> ms</span></div></div>
     </div>
-    <div class="slabel">⬛ Blower Timing</div>
+    <div class="slabel">Blower Timing</div>
     ${blowerHTML}
   `;
 
@@ -1152,30 +1451,54 @@ function calcAndShow() {
   box.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+async function updateRecipeInFirebase(firebaseKey, recipe) {
+  try {
+    await fetch(`${FIREBASE_URL}/recepten/${firebaseKey}.json`, {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(recipe)
+    });
+  } catch(e) {
+    console.error('Firebase update error:', e);
+  }
+}
+
 async function saveRecipe() {
   const w = parseFloat(document.getElementById('f-w').value);
   const l = parseFloat(document.getElementById('f-l').value);
   const t = parseFloat(document.getElementById('f-t').value);
   const s = parseInt(document.getElementById('f-s').value);
+  const klant = document.getElementById('f-klant').value.trim();
+  const plaats = document.getElementById('f-plaats').value.trim();
 
   if (!currentTiming) return;
 
   const recipe = {
     id: Date.now(),
+    klant, plaats,
     width: w, length: l, thickness: t,
     material: selectedMat, speed: s,
     ...currentTiming
   };
 
+  const editKey = document.getElementById('s-add').dataset.editKey;
+
   toast('Opslaan...');
-  await addRecipeToFirebase(recipe);
-  toast('Recept opgeslagen!');
+  if (editKey) {
+    await updateRecipeInFirebase(editKey, recipe);
+    toast('Recept bijgewerkt!');
+    delete document.getElementById('s-add').dataset.editKey;
+    document.querySelector('#s-add .topbar-title').textContent = 'Nieuw Recept';
+  } else {
+    await addRecipeToFirebase(recipe);
+    toast('Recept opgeslagen!');
+  }
   resetForm();
   go('s-recipes');
 }
 
 function resetForm() {
-  ['f-w','f-l','f-t','f-s'].forEach(id => document.getElementById(id).value = '');
+  ['f-klant','f-plaats','f-w','f-l','f-t','f-s'].forEach(id => document.getElementById(id).value = '');
   selectMat('LDPE');
   currentTiming = null;
   document.getElementById('results-box').classList.remove('show');
@@ -1188,33 +1511,77 @@ function resetForm() {
 // ═══════════════════════════════════════════════════
 const PROBLEMEN = [
   {
-    icon: '🌀',
-    titel: 'Zak Krult Op',
+    icon: '💨',
+    titel: 'Lucht in Zak',
     oorzaken: [
       'Te veel upper lucht',
       'Te weinig lower lucht',
-      'Foliespanning te hoog',
-      'Sealtemperatuur te hoog',
+      'Output 6 blaast lucht in zak',
     ],
     oplossingen: [
       'Upper Blowers verlagen',
       'Lower Blowers verhogen',
+      'Output 6 uitstellen',
+    ],
+    suggesties: [
+      { kanaal: 'Upper Blowers', aan: -20, uit: -20 },
+      { kanaal: 'Lower Blowers', aan: +10, uit: +10 },
+      { kanaal: 'Output 6',      aan: +15, uit: -20 },
+    ],
+  },
+  {
+    icon: '🌀',
+    titel: 'Zak Krult Op',
+    oorzaken: [
+      'Sealtemperatuur te hoog',
+      'Onvoldoende koellucht',
+      'Foliespanning te hoog',
+    ],
+    oplossingen: [
+      'Lower Blowers verhogen',
+      'Output 6 koeling verhogen',
       'Danserdruk verlagen',
-      'Sealtemperatuur verlagen',
+    ],
+    suggesties: [
+      { kanaal: 'Lower Blowers', aan: +20, uit: +20 },
+      { kanaal: 'Output 6',      aan: +15, uit: +15 },
     ],
   },
   {
     icon: '📐',
     titel: 'Hoeken Vouwen Om',
     oorzaken: [
-      'Stripper jets blazen te lang',
-      'Afname-lucht te sterk',
+      'Te veel upper lucht',
+      'Te weinig lower lucht',
       'Statische elektriciteit',
     ],
     oplossingen: [
-      'Upper Pipe timing verkorten',
-      'Duur Output 6 verkorten',
+      'Upper Blowers verlagen',
+      'Lower Blowers verhogen',
       'Antistatische balk installeren',
+    ],
+    suggesties: [
+      { kanaal: 'Upper Blowers', aan: -15, uit: -15 },
+      { kanaal: 'Lower Blowers', aan: +20, uit: +20 },
+      { kanaal: 'Output 6',      aan: +10, uit: +10 },
+    ],
+  },
+  {
+    icon: '🫧',
+    titel: 'Zak Opent Niet',
+    oorzaken: [
+      'Onvoldoende luchtdruk',
+      'Stripper jets te zwak',
+      'Upper Pipe timing te kort',
+    ],
+    oplossingen: [
+      'Upper Pipe verhogen',
+      'Lower Blowers verhogen',
+      'Stripper jet druk verhogen',
+    ],
+    suggesties: [
+      { kanaal: 'Upper Pipe',    aan: -10, uit: +10 },
+      { kanaal: 'Lower Blowers', aan: +15, uit: +15 },
     ],
   },
   {
@@ -1230,19 +1597,25 @@ const PROBLEMEN = [
       'Sealbalk reinigen',
       'Danser-spanning aanpassen',
     ],
+    suggesties: [],
   },
   {
     icon: '📦',
     titel: 'Slechte Stapeling',
     oorzaken: [
-      'Afname-timing onjuist',
       'Luchtbalans onjuist',
+      'Output 6 timing onjuist',
       'Start/stop-aanvoer onjuist',
     ],
     oplossingen: [
-      'Timing Output 6 aanpassen',
-      'Upper/Lower Blower balanceren',
+      'Lower lucht verhogen',
+      'Output 6 timing aanpassen',
       'Start- en stopfeed aanpassen',
+    ],
+    suggesties: [
+      { kanaal: 'Upper Blowers', aan: -10, uit: -10 },
+      { kanaal: 'Lower Blowers', aan: +15, uit: +15 },
+      { kanaal: 'Output 6',      aan: +20, uit: +20 },
     ],
   },
 ];
@@ -1268,6 +1641,19 @@ function renderTrouble() {
             ${p.oplossingen.map(o=>`<li>${o}</li>`).join('')}
           </ul>
         </div>
+        ${p.suggesties.length ? `
+        <div class="ts-group">
+          <div class="ts-glbl" style="color:#22d3ee;">⚙ Blower Suggesties</div>
+          <ul class="ts-list" style="margin-top:4px;">
+            ${p.suggesties.map(s => `
+              <li style="justify-content:space-between;">
+                <span>${s.kanaal}</span>
+                <span style="font-family:'Share Tech Mono',monospace;color:#22d3ee;font-size:13px;">
+                  AAN ${s.aan > 0 ? '+' : ''}${s.aan}° &nbsp; UIT ${s.uit > 0 ? '+' : ''}${s.uit}°
+                </span>
+              </li>`).join('')}
+          </ul>
+        </div>` : ''}
       </div>
     </div>
   `).join('');
@@ -1283,10 +1669,3 @@ function toggleTrouble(i) {
 
 // ═══════════════════════════════════════════════════
 // INIT
-// ═══════════════════════════════════════════════════
-checkLogin();
-renderTrouble();
-</script>
-
-</body>
-</html>
