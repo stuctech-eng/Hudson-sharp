@@ -537,6 +537,23 @@ border-right: 1px solid #1a2235;
 .bcell-val { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 30px; line-height: 1; }
 .bcell-unit { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #4a6080; }
 
+.blower-input {
+width: 100%;
+background: #070a0f;
+border: 1px solid #1a2235;
+border-radius: 2px;
+font-family: ‘Rajdhani’, sans-serif;
+font-weight: 700;
+font-size: 26px;
+line-height: 1;
+text-align: center;
+padding: 4px 2px;
+outline: none;
+-webkit-appearance: none;
+transition: border-color .15s;
+}
+.blower-input:focus { border-color: #22d3ee; background: #0a0e16; }
+
 .bar-wrap { padding: 0 14px 12px; }
 .bar-track { height: 6px; background: #070a0f; border-radius: 3px; overflow: hidden; position: relative; margin-bottom: 6px; border: 1px solid #1a2235; }
 .bar-fill  { position: absolute; top: 0; height: 100%; border-radius: 3px; opacity: .9; }
@@ -1220,6 +1237,16 @@ async function editRecipe(firebaseKey) {
   document.querySelector('#s-add .topbar-title').textContent = 'Recept Bewerken';
 
   calcAndShow();
+
+  // Override calculated values with saved values
+  CHANNELS.forEach(ch => {
+    const onEl  = document.getElementById(`bi-${ch.key}-on`);
+    const offEl = document.getElementById(`bi-${ch.key}-off`);
+    if (onEl)  onEl.value  = r[`${ch.key}_on`];
+    if (offEl) offEl.value = r[`${ch.key}_off`];
+    updateBlowerTiming(ch.key);
+  });
+
   go('s-add');
 }
 
@@ -1404,7 +1431,7 @@ function calcAndShow() {
 
   currentTiming = calculateBlowers(t);
 
-  // Build blower display
+  // Build editable blower display
   const html = CHANNELS.map(ch => {
     const on  = currentTiming[`${ch.key}_on`];
     const off = currentTiming[`${ch.key}_off`];
@@ -1419,24 +1446,28 @@ function calcAndShow() {
         </div>
         <div class="blower-cells">
           <div class="bcell">
-            <span class="bcell-lbl">AAN</span>
-            <span class="bcell-val" style="color:${ch.color}">${on}</span>
-            <span class="bcell-unit">°</span>
+            <span class="bcell-lbl">AAN °</span>
+            <input class="blower-input" id="bi-${ch.key}-on" type="number" inputmode="numeric"
+              value="${on}" min="0" max="360"
+              oninput="updateBlowerTiming('${ch.key}')"
+              style="color:${ch.color};">
           </div>
           <div class="bcell">
-            <span class="bcell-lbl">UIT</span>
-            <span class="bcell-val" style="color:${ch.color}">${off}</span>
-            <span class="bcell-unit">°</span>
+            <span class="bcell-lbl">UIT °</span>
+            <input class="blower-input" id="bi-${ch.key}-off" type="number" inputmode="numeric"
+              value="${off}" min="0" max="360"
+              oninput="updateBlowerTiming('${ch.key}')"
+              style="color:${ch.color};">
           </div>
           <div class="bcell">
             <span class="bcell-lbl">DUUR</span>
-            <span class="bcell-val" style="color:#7a8799;font-size:22px">${dur}</span>
+            <span class="bcell-val" id="bd-${ch.key}" style="color:#4a6080;font-size:22px">${dur}</span>
             <span class="bcell-unit">°</span>
           </div>
         </div>
         <div class="bar-wrap">
           <div class="bar-track">
-            <div class="bar-fill" style="left:${lft}%;width:${wid}%;background:${ch.color};"></div>
+            <div class="bar-fill" id="bf-${ch.key}" style="left:${lft}%;width:${wid}%;background:${ch.color};"></div>
           </div>
           <div class="bar-ticks">
             ${[0,90,180,270,360].map(d=>`<span class="bar-tick">${d}°</span>`).join('')}
@@ -1449,6 +1480,23 @@ function calcAndShow() {
   const box = document.getElementById('results-box');
   box.classList.add('show');
   box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function updateBlowerTiming(key) {
+  const on  = parseInt(document.getElementById(`bi-${key}-on`).value)  || 0;
+  const off = parseInt(document.getElementById(`bi-${key}-off`).value) || 0;
+  const dur = off > on ? off - on : (360 - on + off);
+  const lft = (on / 360 * 100).toFixed(1);
+  const wid = dur <= 0 ? 0.4 : (dur / 360 * 100).toFixed(1);
+
+  const durEl = document.getElementById(`bd-${key}`);
+  const barEl = document.getElementById(`bf-${key}`);
+  if (durEl) durEl.textContent = dur;
+  if (barEl) { barEl.style.left = lft + '%'; barEl.style.width = wid + '%'; }
+
+  // update currentTiming live
+  currentTiming[`${key}_on`]  = on;
+  currentTiming[`${key}_off`] = off;
 }
 
 async function updateRecipeInFirebase(firebaseKey, recipe) {
@@ -1473,12 +1521,21 @@ async function saveRecipe() {
 
   if (!currentTiming) return;
 
+  // Read values from editable inputs (operator may have changed them)
+  const timing = {};
+  CHANNELS.forEach(ch => {
+    const onEl  = document.getElementById(`bi-${ch.key}-on`);
+    const offEl = document.getElementById(`bi-${ch.key}-off`);
+    timing[`${ch.key}_on`]  = onEl  ? (parseInt(onEl.value)  || 0) : currentTiming[`${ch.key}_on`];
+    timing[`${ch.key}_off`] = offEl ? (parseInt(offEl.value) || 0) : currentTiming[`${ch.key}_off`];
+  });
+
   const recipe = {
     id: Date.now(),
     klant, plaats,
     width: w, length: l, thickness: t,
     material: selectedMat, speed: s,
-    ...currentTiming
+    ...timing
   };
 
   const editKey = document.getElementById('s-add').dataset.editKey;
