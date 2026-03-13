@@ -3,977 +3,468 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Hudson Sharp 5750W</title>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Exo+2:wght@400;600;800;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TSA 1600">
+<meta name="theme-color" content="#070a10">
+<title>TSA D-Roller 1600</title>
 <style>
-/* ═══════════════════════════════════════════
-   HMI DESIGN TOKENS
-═══════════════════════════════════════════ */
-:root {
-  --bg:       #070a0f;
-  --panel:    #0a0e16;
-  --surface:  #0f1420;
-  --border:   #1a2235;
-  --border2:  #1e2a3d;
-  --amber:    #f5a623;
-  --amber-dk: #c07d0a;
-  --blue:     #3b82f6;
-  --cyan:     #22d3ee;
-  --green:    #22c55e;
-  --red:      #ef4444;
-  --yellow:   #facc15;
-  --purple:   #a78bfa;
-  --orange:   #f97316;
-  --slate:    #64748b;
-  --text:     #c8d8e8;
-  --text2:    #4a6080;
-  --mono:     'Share Tech Mono', monospace;
-  --hmi:      'Rajdhani', sans-serif;
-  --body:     'Exo 2', sans-serif;
-}
-
-/* ═══════════════════════════════════════════
-RESET & BASE
-═══════════════════════════════════════════ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html { height: 100%; }
-body {
-background: #070a0f;
-color: #c8d8e8;
-font-family: ‘Exo 2’, sans-serif;
-min-height: 100%;
-overscroll-behavior: none;
-}
-
-/* Grid texture overlay */
-body::before {
-content: ‘’;
-position: fixed; inset: 0;
-background-image:
-linear-gradient(rgba(34,211,238,.03) 1px, transparent 1px),
-linear-gradient(90deg, rgba(34,211,238,.03) 1px, transparent 1px);
-background-size: 40px 40px;
-pointer-events: none;
-z-index: 0;
-}
-/* Scanlines */
-body::after {
-content: ‘’;
-position: fixed; inset: 0;
-background: repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.04) 3px,rgba(0,0,0,.04) 4px);
-pointer-events: none;
-z-index: 9000;
-}
-
-/* ═══════════════════════════════════════════
-SCREEN SYSTEM
-═══════════════════════════════════════════ */
-.screen { display: none; flex-direction: column; min-height: 100dvh; position: relative; z-index: 1; animation: screenIn .2s ease; }
-.screen.active { display: flex; }
-
-@keyframes screenIn {
-from { opacity: 0; transform: translateY(8px); }
-to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ═══════════════════════════════════════════
-TOP BAR — HMI style
-═══════════════════════════════════════════ */
-.topbar {
-background: #0a0e16;
-border-bottom: 1px solid #1a2235;
-height: 56px;
-display: flex;
-align-items: center;
-padding: 0 16px;
-gap: 12px;
-position: sticky;
-top: 0;
-z-index: 100;
-flex-shrink: 0;
-}
-.topbar::after {
-content: ‘’;
-position: absolute;
-bottom: 0; left: 0; right: 0;
-height: 2px;
-background: linear-gradient(90deg, #f5a623, #ff6b00 40%, transparent);
-}
-
-.back-btn {
-background: none;
-border: 1px solid #1a2235;
-border-radius: 3px;
-color: #f5a623;
-font-size: 22px;
-cursor: pointer;
-padding: 4px 10px;
-line-height: 1;
-display: flex;
-align-items: center;
-}
-.back-btn:active { background: #1a2235; }
-
-.topbar-title {
-font-family: ‘Rajdhani’, sans-serif;
-font-weight: 700;
-font-size: 20px;
-letter-spacing: .15em;
-text-transform: uppercase;
-color: #c8d8e8;
-flex: 1;
-}
-
-.topbar-btn {
-background: #f5a623;
-color: #000;
-border: none;
-font-family: ‘Rajdhani’, sans-serif;
-font-weight: 700;
-font-size: 15px;
-letter-spacing: .1em;
-text-transform: uppercase;
-padding: 9px 16px;
-border-radius: 2px;
-cursor: pointer;
-}
-.topbar-btn:active { opacity: .8; }
-
-/* ═══════════════════════════════════════════
-SCROLL CONTENT
-═══════════════════════════════════════════ */
-.content {
-flex: 1;
-overflow-y: auto;
--webkit-overflow-scrolling: touch;
-padding: 18px 14px 60px;
-}
-
-/* ═══════════════════════════════════════════
-HOME
-═══════════════════════════════════════════ */
-.home-header {
-padding: 28px 4px 24px;
-border-bottom: 1px solid #1a2235;
-margin-bottom: 22px;
-position: relative;
-}
-
-.home-badge {
-display: inline-flex;
-align-items: center;
-gap: 6px;
-background: #f5a623;
-color: #000;
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 10px;
-letter-spacing: .25em;
-padding: 5px 14px;
-text-transform: uppercase;
-margin-bottom: 14px;
-}
-
-.home-title {
-font-family: ‘Rajdhani’, sans-serif;
-font-weight: 700;
-font-size: 34px;
-letter-spacing: .1em;
-text-transform: uppercase;
-line-height: 1.1;
-color: #c8d8e8;
-}
-.home-title em {
-display: block;
-font-style: normal;
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 11px;
-font-weight: 400;
-color: #4a6080;
-letter-spacing: .2em;
-margin-top: 6px;
-}
-
-.home-status {
-display: inline-flex;
-align-items: center;
-gap: 8px;
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 10px;
-color: #22c55e;
-margin-top: 16px;
-letter-spacing: .15em;
-background: rgba(34,197,94,.06);
-border: 1px solid rgba(34,197,94,.2);
-padding: 5px 12px;
-border-radius: 2px;
-}
-
-.pulse {
-width: 7px; height: 7px;
-border-radius: 50%;
-background: #22c55e;
-animation: pulse 2s infinite;
-}
-@keyframes pulse {
-0%,100% { opacity:1; box-shadow:0 0 8px #22c55e88; }
-50%      { opacity:.2; box-shadow:none; }
-}
-
-/* HOME NAV BUTTONS */
-.nav-grid { display: flex; flex-direction: column; gap: 10px; }
-
-.nav-btn {
-background: #0a0e16;
-border: 1px solid #1a2235;
-border-left: 4px solid #1a2235;
-border-radius: 3px;
-padding: 20px 16px;
-display: flex;
-align-items: center;
-gap: 16px;
-cursor: pointer;
-text-align: left;
-width: 100%;
-transition: background .12s, border-color .12s;
-position: relative;
-overflow: hidden;
-}
-.nav-btn::after {
-content: ‘’;
-position: absolute;
-top: 0; left: 0; right: 0; height: 1px;
-background: linear-gradient(90deg, transparent, rgba(255,255,255,.04), transparent);
-}
-.nav-btn:active { background: #0f1420; }
-
-.nav-btn.c-amber { border-left-color: #f5a623; }
-.nav-btn.c-red   { border-left-color: #ef4444; }
-.nav-btn.c-blue  { border-left-color: #3b82f6; }
-
-.nb-icon  { font-size: 26px; flex-shrink: 0; width: 44px; height: 44px; display:flex; align-items:center; justify-content:center; background:#0f1420; border:1px solid #1a2235; border-radius:3px; }
-.nb-label { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: .1em; text-transform: uppercase; color: #c8d8e8; line-height: 1; }
-.nb-sub   { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #4a6080; margin-top: 4px; letter-spacing: .05em; }
-.nb-arr   { margin-left: auto; font-size: 22px; color: #1a2235; }
-
-/* ═══════════════════════════════════════════
-SECTION LABEL
-═══════════════════════════════════════════ */
-.slabel {
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 9px;
-color: #f5a623;
-letter-spacing: .3em;
-text-transform: uppercase;
-display: flex;
-align-items: center;
-gap: 10px;
-margin: 20px 0 10px;
-}
-.slabel:first-child { margin-top: 0; }
-.slabel::after { content:’’; flex:1; height:1px; background: linear-gradient(90deg,#1a2235,transparent); }
-
-/* ═══════════════════════════════════════════
-RECIPE LIST
-═══════════════════════════════════════════ */
-.recipe-card {
-background: #0a0e16;
-border: 1px solid #1a2235;
-border-left: 4px solid #f5a623;
-border-radius: 2px;
-padding: 14px 15px;
-margin-bottom: 10px;
-animation: screenIn .2s ease;
-position: relative;
-overflow: hidden;
-}
-.recipe-card::before {
-content: ‘’;
-position: absolute;
-top: 0; left: 0; right: 0; height: 1px;
-background: linear-gradient(90deg, #f5a62344, transparent);
-}
-
-.rc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-.rc-name {
-font-family: ‘Rajdhani’, sans-serif;
-font-weight: 700;
-font-size: 22px;
-letter-spacing: .1em;
-color: #f5a623;
-text-transform: uppercase;
-flex: 1;
-line-height: 1.1;
-}
-
-/* ═══════════════════════════════════════════
-TREE STRUCTURE
-═══════════════════════════════════════════ */
-.tree-group { margin-bottom: 14px; }
-
-.tree-header {
-display: flex;
-align-items: center;
-gap: 8px;
-padding: 10px 14px;
-background: #0f1420;
-border: 1px solid #1a2235;
-border-left: 4px solid #f5a623;
-border-radius: 2px 2px 0 0;
-}
-.tree-icon { font-size: 16px; }
-.tree-klant { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 17px; letter-spacing: .1em; text-transform: uppercase; color: #f5a623; flex: 1; }
-.tree-count { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #4a6080; }
-
-.tree-item {
-background: #0a0e16;
-border: 1px solid #1a2235;
-border-top: none;
-cursor: pointer;
-transition: background .12s;
-}
-.tree-item:last-child { border-radius: 0 0 2px 2px; }
-.tree-item:active { background: #0f1420; }
-
-.tree-item-inner {
-display: flex;
-align-items: center;
-gap: 10px;
-padding: 10px 12px;
-}
-
-.tree-connector {
-width: 16px;
-height: 24px;
-border-left: 1px solid #1a2235;
-border-bottom: 1px solid #1a2235;
-flex-shrink: 0;
-margin-left: 8px;
-border-radius: 0 0 0 4px;
-}
-
-.tree-content { flex: 1; min-width: 0; }
-.tree-name { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 18px; letter-spacing: .08em; color: #c8d8e8; }
-.tree-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; align-items: center; }
-.tree-place { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #22d3ee; }
-
-.rc-edit {
-background: none;
-border: 1px solid #1a3a2a;
-border-radius: 2px;
-color: #22c55e;
-font-size: 12px;
-padding: 5px 10px;
-cursor: pointer;
-font-family: ‘Share Tech Mono’, monospace;
-flex-shrink: 0;
-}
-.rc-edit:active { background: #22c55e; color: #000; }
-
-.rc-del {
-background: none;
-border: 1px solid #2a1010;
-border-radius: 2px;
-color: #ef4444;
-font-size: 12px;
-padding: 5px 10px;
-cursor: pointer;
-font-family: ‘Share Tech Mono’, monospace;
-flex-shrink: 0;
-}
-.rc-del:active { background: #ef4444; color: #fff; }
-
-.rc-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-.tag {
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 10px;
-padding: 3px 8px;
-border-radius: 2px;
-background: #0f1420;
-border: 1px solid #1a2235;
-color: #4a6080;
-}
-.tag.t-mat  { border-color: #22d3ee44; color: #22d3ee; }
-.tag.t-spd  { border-color: #f5a62344; color: #f5a623; }
-
-.empty-state {
-text-align: center;
-padding: 48px 24px;
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 11px;
-color: #4a6080;
-line-height: 2.4;
-border: 1px dashed #1a2235;
-border-radius: 3px;
-}
-
-/* ═══════════════════════════════════════════
-FORM
-═══════════════════════════════════════════ */
-.form-card {
-background: #0a0e16;
-border: 1px solid #1a2235;
-border-top: 2px solid #f5a623;
-border-radius: 2px;
-padding: 18px;
-margin-bottom: 14px;
-}
-.form-card-title {
-font-family: ‘Rajdhani’, sans-serif;
-font-weight: 700;
-font-size: 15px;
-letter-spacing: .2em;
-text-transform: uppercase;
-color: #f5a623;
-margin-bottom: 16px;
-padding-bottom: 10px;
-border-bottom: 1px solid #1a2235;
-}
-
-.field { margin-bottom: 14px; }
-.field:last-child { margin-bottom: 0; }
-.field label {
-display: block;
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 9px;
-color: #4a6080;
-letter-spacing: .2em;
-text-transform: uppercase;
-margin-bottom: 6px;
-}
-.field input {
-width: 100%;
-background: #070a0f;
-border: 1px solid #1a2235;
-border-radius: 2px;
-color: #c8d8e8;
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 16px;
-padding: 13px 14px;
-outline: none;
-transition: border-color .15s, box-shadow .15s;
--webkit-appearance: none;
-}
-.field input:focus { border-color: #22d3ee; box-shadow: 0 0 0 2px rgba(34,211,238,.08); }
-
-.mat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-.mat-btn {
-background: #070a0f;
-border: 1px solid #1a2235;
-border-radius: 2px;
-color: #4a6080;
-font-family: ‘Rajdhani’, sans-serif;
-font-weight: 600;
-font-size: 16px;
-letter-spacing: .1em;
-padding: 14px 6px;
-cursor: pointer;
-text-align: center;
-transition: all .12s;
-}
-.mat-btn.active { background: #f5a623; border-color: #f5a623; color: #000; font-weight: 700; }
-.mat-btn:active { transform: scale(.97); }
-
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-
-/* ═══════════════════════════════════════════
-BUTTONS
-═══════════════════════════════════════════ */
-.btn {
-width: 100%;
-border: none;
-border-radius: 2px;
-font-family: ‘Rajdhani’, sans-serif;
-font-weight: 700;
-font-size: 18px;
-letter-spacing: .15em;
-text-transform: uppercase;
-padding: 16px;
-cursor: pointer;
-margin-top: 8px;
-transition: opacity .12s, transform .1s;
-}
-.btn:active { transform: scale(.98); opacity: .9; }
-.btn-amber { background: linear-gradient(135deg, #f5a623, #ff6b00); color: #000; }
-.btn-ghost { background: transparent; border: 1px solid #1a2235; color: #4a6080; margin-top: 10px; }
-
-/* ═══════════════════════════════════════════
-BLOWER RESULTS — HMI panels
-═══════════════════════════════════════════ */
-#results-box { display: none; margin-top: 0; }
-#results-box.show { display: block; animation: screenIn .2s ease; }
-
-.blower-block {
-background: #0a0e16;
-border: 1px solid #1a2235;
-border-radius: 2px;
-margin-bottom: 8px;
-overflow: hidden;
-position: relative;
-}
-
-.blower-hdr {
-display: flex;
-align-items: center;
-gap: 10px;
-padding: 10px 14px;
-background: #0f1420;
-border-bottom: 1px solid #1a2235;
-}
-
-.bdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.bname { font-family: ‘Rajdhani’, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .15em; text-transform: uppercase; flex: 1; color: #8a9ab0; }
-
-.blower-cells { display: flex; }
-.bcell {
-flex: 1;
-padding: 14px 10px;
-text-align: center;
-border-right: 1px solid #1a2235;
-}
-.bcell:last-child { border-right: none; }
-
-.bcell-lbl { font-family: ‘Share Tech Mono’, monospace; font-size: 8px; color: #4a6080; letter-spacing: .2em; text-transform: uppercase; display: block; margin-bottom: 6px; }
-.bcell-val { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 30px; line-height: 1; }
-.bcell-unit { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #4a6080; }
-
-.blower-input {
-width: 100%;
-background: #070a0f;
-border: 1px solid #1a2235;
-border-radius: 2px;
-font-family: ‘Rajdhani’, sans-serif;
-font-weight: 700;
-font-size: 26px;
-line-height: 1;
-text-align: center;
-padding: 4px 2px;
-outline: none;
--webkit-appearance: none;
-transition: border-color .15s;
-}
-.blower-input:focus { border-color: #22d3ee; background: #0a0e16; }
-
-.bar-wrap { padding: 0 14px 12px; }
-.bar-track { height: 6px; background: #070a0f; border-radius: 3px; overflow: hidden; position: relative; margin-bottom: 6px; border: 1px solid #1a2235; }
-.bar-fill  { position: absolute; top: 0; height: 100%; border-radius: 3px; opacity: .9; }
-.bar-ticks { display: flex; justify-content: space-between; }
-.bar-tick  { font-family: ‘Share Tech Mono’, monospace; font-size: 8px; color: #4a6080; }
-
-/* ═══════════════════════════════════════════
-RECIPE DETAIL
-═══════════════════════════════════════════ */
-.info-block {
-background: #0a0e16;
-border: 1px solid #1a2235;
-border-radius: 2px;
-overflow: hidden;
-margin-bottom: 8px;
-}
-.info-row {
-display: flex;
-align-items: center;
-padding: 12px 14px;
-border-bottom: 1px solid #1a2235;
-gap: 10px;
-}
-.info-row:last-child { border-bottom: none; }
-.ir-lbl {
-font-family: ‘Share Tech Mono’, monospace;
-font-size: 10px;
-color: #4a6080;
-letter-spacing: .12em;
-text-transform: uppercase;
-min-width: 120px;
-flex-shrink: 0;
-}
-.ir-val {
-font-family: ‘Rajdhani’, sans-serif;
-font-size: 17px;
-font-weight: 600;
-color: #c8d8e8;
-}
-.ir-val .u { font-size: 12px; color: #4a6080; margin-left: 3px; font-weight: 400; font-family: ‘Share Tech Mono’, monospace; }
-
-/* ═══════════════════════════════════════════
-TROUBLESHOOTING
-═══════════════════════════════════════════ */
-.trouble-card {
-background: #0a0e16;
-border: 1px solid #1a2235;
-border-radius: 2px;
-margin-bottom: 10px;
-overflow: hidden;
-}
-.tc-hdr {
-display: flex;
-align-items: center;
-gap: 12px;
-padding: 16px;
-cursor: pointer;
-border-left: 4px solid #ef4444;
-transition: background .12s;
-}
-.tc-hdr:active { background: #0f1420; }
-.tc-icon { font-size: 20px; flex-shrink: 0; }
-.tc-prob { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 20px; letter-spacing: .08em; text-transform: uppercase; flex: 1; }
-.tc-chev { font-size: 20px; color: #4a6080; transition: transform .2s; flex-shrink: 0; }
-.tc-hdr.open .tc-chev { transform: rotate(90deg); }
-
-.tc-body { display: none; padding: 0 16px 16px; border-top: 1px solid #1a2235; animation: screenIn .15s ease; }
-.tc-body.open { display: block; }
-
-.ts-group { margin-top: 12px; }
-.ts-glbl { font-family: ‘Share Tech Mono’, monospace; font-size: 8px; letter-spacing: .25em; text-transform: uppercase; margin-bottom: 8px; }
-.ts-glbl.cause    { color: #facc15; }
-.ts-glbl.solution { color: #22c55e; }
-
-.ts-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-.ts-list li {
-display: flex; gap: 10px; align-items: flex-start;
-font-size: 14px; line-height: 1.45;
-padding: 9px 12px;
-background: #0f1420;
-border: 1px solid #1a2235;
-border-radius: 2px;
-font-family: ‘Exo 2’, sans-serif;
-}
-.ts-list li::before { content: ‘▸’; flex-shrink: 0; margin-top: 1px; }
-.ts-list.cause    li::before { color: #facc15; }
-.ts-list.solution li::before { color: #22c55e; }
-
-/* ═══════════════════════════════════════════
-MACHINE INFO
-═══════════════════════════════════════════ */
-.machine-hero {
-background: #0a0e16;
-border: 1px solid #1a2235;
-border-top: 3px solid #3b82f6;
-border-radius: 2px;
-padding: 24px 18px;
-text-align: center;
-margin-bottom: 14px;
-position: relative;
-overflow: hidden;
-}
-.machine-hero::before {
-content: ‘5750W’;
-position: absolute;
-font-family: ‘Rajdhani’, sans-serif;
-font-size: 120px;
-font-weight: 900;
-color: rgba(59,130,246,.04);
-right: -10px; bottom: -20px;
-line-height: 1;
-pointer-events: none;
-}
-
-.mh-model { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 48px; letter-spacing: .1em; color: #f5a623; line-height: 1; }
-.mh-sub   { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #4a6080; letter-spacing: .2em; margin-top: 6px; }
-
-.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-.stat-tile {
-background: #0a0e16;
-border: 1px solid #1a2235;
-border-radius: 2px;
-padding: 14px;
-text-align: center;
-position: relative;
-overflow: hidden;
-}
-.stat-tile::before { content:’’; position:absolute; top:0;left:0;right:0;height:2px; background: linear-gradient(90deg,#22d3ee44,transparent); }
-.st-val { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 28px; color: #c8d8e8; }
-.st-lbl { font-family: ‘Share Tech Mono’, monospace; font-size: 9px; color: #4a6080; letter-spacing: .15em; text-transform: uppercase; margin-top: 4px; }
-
-/* ═══════════════════════════════════════════
-TOAST
-═══════════════════════════════════════════ */
-.toast {
-position: fixed;
-bottom: 24px; left: 50%;
-transform: translateX(-50%) translateY(10px);
-background: #22c55e; color: #000;
-font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 16px; letter-spacing: .1em;
-padding: 12px 24px; border-radius: 2px;
-opacity: 0; transition: all .2s;
-pointer-events: none; z-index: 9999;
-white-space: nowrap;
-}
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-.toast.err  { background: #ef4444; color: #fff; }
-
-/* ═══════════════════════════════════════════
-UTILITY
-═══════════════════════════════════════════ */
-@media (max-width: 400px) {
-.grid2 { grid-template-columns: 1fr; }
-.blower-cells { flex-wrap: wrap; }
-.bcell { min-width: 33%; }
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{height:100%}
+body{background:#070a10;color:#e5e7eb;font-family:'Courier New',Courier,monospace;min-height:100%;overscroll-behavior:none;font-size:17px}
+.screen{display:none;flex-direction:column;min-height:100dvh;position:relative;z-index:1}
+.screen.active{display:flex}
+.topbar{background:#0f1520;border-bottom:2px solid #f59e0b;height:56px;display:flex;align-items:center;padding:0 16px;gap:12px;position:sticky;top:0;z-index:100;flex-shrink:0}
+.back-btn{background:none;border:1px solid #1a2540;border-radius:4px;color:#f59e0b;font-size:22px;cursor:pointer;padding:4px 10px;line-height:1}
+.topbar-title{font-weight:700;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:#e5e7eb;flex:1}
+.topbar-btn{background:#f59e0b;color:#000;border:none;font-weight:700;font-size:14px;letter-spacing:1px;padding:9px 14px;border-radius:4px;cursor:pointer;font-family:inherit}
+.content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 14px 80px}
+.slabel{font-size:9px;color:#f59e0b;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin:20px 0 10px}
+.slabel:first-child{margin-top:0}
+.slabel::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,#1a2540,transparent)}
+.nav-grid{display:flex;flex-direction:column;gap:10px}
+.nav-btn{background:#0f1520;border:1px solid #1a2540;border-left:4px solid #1a2540;border-radius:4px;padding:18px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;text-align:left;width:100%}
+.nav-btn:active{background:#141d2e}
+.nav-btn.c-amber{border-left-color:#f59e0b}
+.nav-btn.c-red{border-left-color:#ef4444}
+.nav-btn.c-blue{border-left-color:#60a5fa}
+.nb-icon{font-size:24px;flex-shrink:0;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:#0a0d14;border:1px solid #1a2540;border-radius:4px}
+.nb-label{font-weight:700;font-size:20px;letter-spacing:1px;text-transform:uppercase;color:#e5e7eb;line-height:1}
+.nb-sub{font-size:10px;color:#9ca3af;margin-top:4px}
+.nb-arr{margin-left:auto;font-size:20px;color:#1a2540}
+.tree-group{margin-bottom:12px}
+.tree-header{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#141d2e;border:1px solid #1a2540;border-left:4px solid #f59e0b;border-radius:4px 4px 0 0}
+.tree-klant{font-weight:700;font-size:16px;letter-spacing:1px;text-transform:uppercase;color:#f59e0b;flex:1}
+.tree-count{font-size:10px;color:#9ca3af}
+.tree-item{background:#0f1520;border:1px solid #1a2540;border-top:none;cursor:pointer}
+.tree-item:last-child{border-radius:0 0 4px 4px}
+.tree-item:active{background:#141d2e}
+.tree-item-inner{display:flex;align-items:center;gap:10px;padding:10px 12px}
+.tree-connector{width:16px;height:24px;border-left:1px solid #1a2540;border-bottom:1px solid #1a2540;flex-shrink:0;margin-left:8px;border-radius:0 0 0 4px}
+.tree-content{flex:1;min-width:0}
+.tree-name{font-weight:700;font-size:18px;letter-spacing:1px;color:#e5e7eb}
+.tree-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.tag{font-size:9px;padding:2px 7px;border-radius:3px;background:#0a0d14;border:1px solid #1a2540;color:#9ca3af}
+.tag-mat{border-color:rgba(96,165,250,.4);color:#60a5fa}
+.tag-spd{border-color:rgba(245,158,11,.4);color:#f59e0b}
+.tag-rec{border-color:rgba(52,211,153,.4);color:#34d399}
+.rc-del{background:none;border:1px solid #2a1010;border-radius:3px;color:#ef4444;font-size:14px;padding:6px 10px;cursor:pointer;flex-shrink:0}
+.empty-state{text-align:center;padding:48px 24px;font-size:11px;color:#6b7280;line-height:2.4;border:1px dashed #1a2540;border-radius:6px}
+.form-card{background:#0f1520;border:1px solid #1a2540;border-top:2px solid #f59e0b;border-radius:4px;padding:16px;margin-bottom:12px}
+.form-card-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#f59e0b;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #1a2540}
+.field{margin-bottom:12px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:9px;color:#9ca3af;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;background:#070a10;border:1px solid #1a2540;border-radius:4px;color:#e5e7eb;font-family:'Courier New',Courier,monospace;font-size:17px;padding:12px 14px;outline:none;-webkit-appearance:none;transition:border-color .15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#f59e0b}
+.field textarea{resize:vertical;font-size:14px}
+.field select{color:#e5e7eb}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.mat-btn{background:#070a10;border:1px solid #1a2540;border-radius:4px;color:#6b7280;font-family:'Courier New',Courier,monospace;font-weight:700;font-size:13px;padding:12px 6px;cursor:pointer;text-align:center}
+.mat-btn.active{background:#f59e0b;border-color:#f59e0b;color:#000}
+.static-btn{background:#070a10;border:1px solid #1a2540;border-radius:4px;color:#6b7280;font-family:'Courier New',Courier,monospace;font-size:11px;padding:10px 6px;cursor:pointer;text-align:center;flex:1}
+.static-btn.active{background:rgba(52,211,153,.15);border-color:#34d399;color:#34d399}
+.toggle-btn{border:none;padding:10px 20px;border-radius:4px;cursor:pointer;font-weight:700;font-size:13px;font-family:'Courier New',Courier,monospace;letter-spacing:1px}
+.toggle-aan{background:rgba(52,211,153,.15);color:#34d399;border:1px solid #34d399}
+.toggle-uit{background:#0f1520;color:#6b7280;border:1px solid #1a2540}
+.result-box{background:#070a10;border:1px solid #f59e0b;border-radius:6px;padding:12px 8px;display:flex;justify-content:space-around;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.result-item{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:60px}
+.result-icon{font-size:16px}
+.result-val{font-size:20px;font-weight:700;color:#fcd34d}
+.result-lbl{font-size:9px;color:#9ca3af;letter-spacing:1px;text-align:center}
+.calc-box{background:#070a10;border:1px solid #60a5fa;border-radius:6px;padding:14px 16px;margin-bottom:12px}
+.calc-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1a2540}
+.calc-row:last-child{border-bottom:none}
+.calc-lbl{font-size:11px;color:#9ca3af;letter-spacing:1px}
+.calc-val{font-size:20px;font-weight:700;color:#60a5fa}
+.info-block{background:#0f1520;border:1px solid #1a2540;border-radius:4px;overflow:hidden;margin-bottom:8px}
+.info-row{display:flex;align-items:center;padding:11px 14px;border-bottom:1px solid #1a2540;gap:10px}
+.info-row:last-child{border-bottom:none}
+.ir-lbl{font-size:10px;color:#9ca3af;letter-spacing:1px;text-transform:uppercase;min-width:130px;flex-shrink:0}
+.ir-val{font-size:18px;font-weight:600;color:#e5e7eb}
+.trouble-card{background:#0f1520;border:1px solid #1a2540;border-radius:4px;margin-bottom:10px;overflow:hidden}
+.tc-hdr{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;border-left:4px solid #ef4444}
+.tc-hdr:active{background:#141d2e}
+.tc-icon{font-size:20px;flex-shrink:0}
+.tc-cat{font-size:9px;color:#9ca3af;letter-spacing:2px;text-transform:uppercase}
+.tc-prob{font-weight:700;font-size:18px;letter-spacing:1px;color:#e5e7eb}
+.tc-chev{font-size:18px;color:#6b7280;margin-left:auto;flex-shrink:0}
+.tc-body{display:none;padding:0 16px 14px;border-top:1px solid #1a2540}
+.tc-body.open{display:block}
+.ts-glbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;margin:12px 0 8px}
+.ts-cause{color:#facc15}
+.ts-solution{color:#34d399}
+.ts-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.ts-list li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;padding:8px 12px;background:#0a0d14;border:1px solid #1a2540;border-radius:3px}
+.ts-list li::before{content:'>';flex-shrink:0;margin-top:1px}
+.ts-cause li::before{color:#facc15}
+.ts-solution li::before{color:#34d399}
+.snel-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.snel-btn{background:#0f1520;border:1px solid #1a2540;border-radius:4px;color:#6b7280;font-family:'Courier New',Courier,monospace;font-size:12px;padding:12px 10px;cursor:pointer;text-align:center}
+.snel-btn.active{background:rgba(245,158,11,.1);border-color:#f59e0b;color:#f59e0b}
+.cat-row{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px}
+.cat-btn{background:#0f1520;border:1px solid #1a2540;border-radius:4px;color:#6b7280;font-family:'Courier New',Courier,monospace;font-size:10px;padding:7px 12px;cursor:pointer;white-space:nowrap}
+.cat-btn.active{background:rgba(245,158,11,.1);border-color:#f59e0b;color:#f59e0b}
+.btn{width:100%;border:none;border-radius:4px;font-family:'Courier New',Courier,monospace;font-weight:700;font-size:16px;letter-spacing:2px;text-transform:uppercase;padding:15px;cursor:pointer;margin-top:8px}
+.btn:active{opacity:.85}
+.btn-amber{background:#f59e0b;color:#000}
+.btn-ghost{background:transparent;border:1px solid #1a2540;color:#6b7280;margin-top:10px}
+.temp-grid{display:flex;align-items:center;justify-content:center;gap:20px;padding:12px 0}
+.temp-card{background:#070a10;border:1px solid #1a2540;border-radius:6px;padding:14px 18px;text-align:center;flex:1}
+.temp-lbl{font-size:9px;color:#6b7280;letter-spacing:1px;margin-bottom:8px}
+.temp-input{background:transparent;border:none;border-bottom:2px solid #1a2540;color:#e5e7eb;font-size:34px;font-weight:700;font-family:'Courier New',Courier,monospace;text-align:center;width:100%;outline:none}
+.temp-unit{font-size:12px;color:#6b7280;margin-top:4px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:#34d399;color:#000;font-weight:700;font-size:14px;letter-spacing:1px;padding:12px 24px;border-radius:4px;opacity:0;transition:all .2s;pointer-events:none;z-index:9999;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.err{background:#ef4444;color:#fff}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#0f1520;border-top:1px solid #1a2540;display:flex;z-index:100}
+.bnav-btn{flex:1;padding:10px 0;background:transparent;border:none;color:#9ca3af;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;font-family:'Courier New',Courier,monospace}
+.bnav-btn.active{color:#f59e0b}
+.bnav-icon{font-size:20px}
+.bnav-label{font-size:8px;letter-spacing:1px;text-transform:uppercase}
+.pulse{width:7px;height:7px;border-radius:50%;background:#34d399;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 8px #34d39988}50%{opacity:.2;box-shadow:none}}
+.home-status{display:inline-flex;align-items:center;gap:8px;font-size:10px;color:#34d399;margin-top:14px;letter-spacing:2px;background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);padding:5px 12px;border-radius:4px}
+.flow-step{background:#0f1520;border:1px solid #1a2540;border-radius:6px;margin-bottom:6px;overflow:hidden;cursor:pointer}
+.flow-step-hdr{display:flex;align-items:center;gap:14px;padding:16px}
+.flow-step-hdr:active{background:#141d2e}
+.flow-step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;color:#000}
+.flow-step-info{flex:1}
+.flow-step-naam{font-weight:700;font-size:18px;letter-spacing:1px;color:#e5e7eb}
+.flow-step-desc{font-size:11px;color:#9ca3af;margin-top:2px;line-height:1.4}
+.flow-step-chev{font-size:18px;color:#9ca3af;flex-shrink:0}
+.flow-arrow{text-align:center;color:#9ca3af;font-size:18px;margin:2px 0;line-height:1}
+.flow-body{display:none;padding:0 16px 14px;border-top:1px solid #1a2540}
+.flow-body.open{display:block}
+.flow-prob{background:#0a0d14;border:1px solid #1a2540;border-radius:4px;margin-top:10px;overflow:hidden}
+.flow-prob-titel{font-weight:700;font-size:15px;color:#e5e7eb;padding:10px 14px;border-bottom:1px solid #1a2540;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.flow-prob-titel:active{background:#0f1520}
+.flow-prob-body{display:none;padding:10px 14px}
+.flow-prob-body.open{display:block}
+.flow-check-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;margin:8px 0 6px}
+.flow-items{list-style:none;display:flex;flex-direction:column;gap:4px}
+.flow-items li{font-size:13px;padding:7px 10px;background:#070a10;border:1px solid #1a2540;border-radius:3px;display:flex;gap:8px;align-items:flex-start;line-height:1.4}
+.flow-items li::before{flex-shrink:0;margin-top:1px}
+@media(max-width:380px){.grid2{grid-template-columns:1fr}}
 </style>
-
 </head>
 <body>
 
 <!-- LOGIN -->
 
 <div class="screen active" id="s-login">
-  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:32px 24px;background:#070a0f;position:relative;z-index:1;">
-    <!-- corner marks -->
-    <div style="position:absolute;top:20px;left:20px;width:24px;height:24px;border-top:2px solid #f5a623;border-left:2px solid #f5a623;"></div>
-    <div style="position:absolute;top:20px;right:20px;width:24px;height:24px;border-top:2px solid #f5a623;border-right:2px solid #f5a623;"></div>
-    <div style="position:absolute;bottom:20px;left:20px;width:24px;height:24px;border-bottom:2px solid #f5a623;border-left:2px solid #f5a623;"></div>
-    <div style="position:absolute;bottom:20px;right:20px;width:24px;height:24px;border-bottom:2px solid #f5a623;border-right:2px solid #f5a623;"></div>
-
-```
-<div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.3em;margin-bottom:24px;text-transform:uppercase;">Industrial Control System</div>
-
-<div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
-
-<div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
-<div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:40px;">SETUP APP</div>
-
-<div style="width:100%;max-width:300px;">
-  <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;">Toegangscode</div>
-  <input id="login-pw" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"
-    style="width:100%;background:#0a0e16;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:22px;padding:16px;outline:none;margin-bottom:10px;-webkit-appearance:none;text-align:center;letter-spacing:.3em;transition:border-color .15s;"
-    onfocus="this.style.borderColor='#22d3ee'" onblur="this.style.borderColor='#1a2235'">
-  <div id="login-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">TOEGANG GEWEIGERD</div>
-  <button onclick="doLogin()" style="width:100%;background:linear-gradient(135deg,#f5a623,#ff6b00);color:#000;border:none;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:.2em;text-transform:uppercase;padding:16px;cursor:pointer;">Inloggen</button>
-</div>
-```
-
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:32px 24px;background:#070a10;position:relative;z-index:1;">
+    <div style="position:absolute;top:20px;left:20px;width:24px;height:24px;border-top:2px solid #f59e0b;border-left:2px solid #f59e0b;"></div>
+    <div style="position:absolute;top:20px;right:20px;width:24px;height:24px;border-top:2px solid #f59e0b;border-right:2px solid #f59e0b;"></div>
+    <div style="position:absolute;bottom:20px;left:20px;width:24px;height:24px;border-bottom:2px solid #f59e0b;border-left:2px solid #f59e0b;"></div>
+    <div style="position:absolute;bottom:20px;right:20px;width:24px;height:24px;border-bottom:2px solid #f59e0b;border-right:2px solid #f59e0b;"></div>
+    <div style="background:#f59e0b;color:#000;font-size:9px;letter-spacing:3px;padding:5px 16px;text-transform:uppercase;margin-bottom:14px;">AMUTEC</div>
+    <div style="font-weight:700;font-size:40px;letter-spacing:4px;text-transform:uppercase;color:#e5e7eb;text-align:center;line-height:1;">TSA</div>
+    <div style="font-weight:700;font-size:18px;letter-spacing:4px;text-transform:uppercase;color:#6b7280;margin-bottom:8px;">D-ROLLER 1600</div>
+    <div style="font-size:10px;color:#9ca3af;letter-spacing:2px;margin-bottom:36px;">MACHINE DATABASE</div>
+    <div style="width:100%;max-width:300px;">
+      <div style="font-size:9px;color:#6b7280;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Wachtwoord</div>
+      <input id="login-pw" type="password" placeholder="........" onkeydown="if(event.key==='Enter')doLogin()"
+        style="width:100%;background:#0f1520;border:1px solid #1a2540;border-radius:4px;color:#e5e7eb;font-family:'Courier New',Courier,monospace;font-size:22px;padding:14px;outline:none;margin-bottom:10px;text-align:center;letter-spacing:6px;">
+      <div id="login-err" style="display:none;color:#ef4444;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:2px;">ONGELDIG WACHTWOORD</div>
+      <button onclick="doLogin()" style="width:100%;background:#f59e0b;color:#000;border:none;border-radius:4px;font-family:'Courier New',Courier,monospace;font-weight:700;font-size:18px;letter-spacing:3px;text-transform:uppercase;padding:15px;cursor:pointer;">INLOGGEN</button>
+      <div style="font-size:11px;color:#9ca3af;text-align:center;margin-top:12px;">Wachtwoord: <span style="color:#f59e0b;">tsa1600</span></div>
+      <div style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px;letter-spacing:2px;">v2.0 — 2026-03-13</div>
+    </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     HOME
-═══════════════════════════════════════════ -->
+<!-- HOME -->
 
 <div class="screen" id="s-home">
-  <div class="content">
-    <div class="home-header">
-      <div class="home-badge">Hudson Sharp</div>
-      <div class="home-title">
-        5750W Setup App
-        <em>Recept &amp; Probleemoplossing</em>
-      </div>
-      <div class="home-status">
-        <div class="pulse"></div>SYSTEEM GEREED
-      </div>
-    </div>
+  <div style="display:flex;flex-direction:column;min-height:100dvh;padding:0 0 70px;">
 
 ```
-<div class="nav-grid">
-  <button class="nav-btn c-amber" onclick="go('s-recipes')">
-    <span class="nb-icon">📋</span>
-    <div>
-      <div class="nb-label">Recepten</div>
-      <div class="nb-sub">Machine-instellingen database</div>
+<!-- HEADER -->
+<div style="padding:28px 20px 20px;border-bottom:1px solid #1a2540;">
+  <div style="display:inline-block;background:#f59e0b;color:#000;font-size:9px;letter-spacing:3px;padding:4px 14px;text-transform:uppercase;margin-bottom:12px;">AMUTEC</div>
+  <div style="font-weight:700;font-size:34px;letter-spacing:2px;text-transform:uppercase;color:#e5e7eb;line-height:1.1;">TSA D-Roller<br>1600</div>
+  <div style="font-size:11px;color:#9ca3af;letter-spacing:2px;margin-top:6px;">Machine Database &amp; Recepten</div>
+  <div class="home-status" style="margin-top:12px;"><div class="pulse"></div>SYSTEEM GEREED</div>
+</div>
+
+<!-- NAV KNOPPEN - vullen rest van scherm -->
+<div style="flex:1;display:flex;flex-direction:column;gap:0;padding:0;">
+
+  <button onclick="go('s-recepten')" style="flex:1;background:#0f1520;border:none;border-bottom:1px solid #1a2540;border-left:5px solid #f59e0b;display:flex;align-items:center;gap:16px;padding:0 20px;cursor:pointer;text-align:left;width:100%;">
+    <div style="width:52px;height:52px;background:#0a0d14;border:1px solid #1a2540;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;">&#128203;</div>
+    <div style="flex:1;">
+      <div style="font-weight:700;font-size:22px;letter-spacing:2px;text-transform:uppercase;color:#e5e7eb;">Recepten</div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:3px;">Machine-instellingen database</div>
     </div>
-    <span class="nb-arr">›</span>
+    <div style="font-size:26px;color:#f59e0b;">&#8250;</div>
   </button>
 
-  <button class="nav-btn c-red" onclick="go('s-trouble')">
-    <span class="nb-icon">🔧</span>
-    <div>
-      <div class="nb-label">Probleemoplossing</div>
-      <div class="nb-sub">Storingen &amp; oplossingen</div>
+  <button onclick="go('s-flow')" style="flex:1;background:#0f1520;border:none;border-bottom:1px solid #1a2540;border-left:5px solid #34d399;display:flex;align-items:center;gap:16px;padding:0 20px;cursor:pointer;text-align:left;width:100%;">
+    <div style="width:52px;height:52px;background:#0a0d14;border:1px solid #1a2540;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;">&#128295;</div>
+    <div style="flex:1;">
+      <div style="font-weight:700;font-size:22px;letter-spacing:2px;text-transform:uppercase;color:#e5e7eb;">Problemen</div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:3px;">Oorzaak &amp; oplossing per probleem</div>
     </div>
-    <span class="nb-arr">›</span>
+    <div style="font-size:26px;color:#34d399;">&#8250;</div>
   </button>
 
-  <button class="nav-btn c-blue" onclick="go('s-machine')">
-    <span class="nb-icon">⚙️</span>
-    <div>
-      <div class="nb-label">Machine Info</div>
-      <div class="nb-sub">5750W specificaties</div>
+  <button onclick="go('s-calculator')" style="flex:1;background:#0f1520;border:none;border-bottom:1px solid #1a2540;border-left:5px solid #60a5fa;display:flex;align-items:center;gap:16px;padding:0 20px;cursor:pointer;text-align:left;width:100%;">
+    <div style="width:52px;height:52px;background:#0a0d14;border:1px solid #1a2540;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;">&#9881;</div>
+    <div style="flex:1;">
+      <div style="font-weight:700;font-size:22px;letter-spacing:2px;text-transform:uppercase;color:#e5e7eb;">Calculator</div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:3px;">Offset, rolwissel, roldiameter</div>
     </div>
-    <span class="nb-arr">›</span>
+    <div style="font-size:26px;color:#60a5fa;">&#8250;</div>
   </button>
+
 </div>
 ```
 
   </div>
+
+  <nav class="bottom-nav">
+    <button class="bnav-btn" onclick="go('s-recepten')"><span class="bnav-icon">&#128203;</span><span class="bnav-label">Recepten</span></button>
+    <button class="bnav-btn" onclick="go('s-flow')"><span class="bnav-icon">&#128295;</span><span class="bnav-label">Problemen</span></button>
+    <button class="bnav-btn" onclick="go('s-calculator')"><span class="bnav-icon">&#9881;</span><span class="bnav-label">Calc</span></button>
+  </nav>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     RECIPES LIST
-═══════════════════════════════════════════ -->
+<!-- RECEPTEN LIJST -->
 
-<div class="screen" id="s-recipes">
+<div class="screen" id="s-recepten">
   <div class="topbar">
-    <button class="back-btn" onclick="go('s-home')">‹</button>
+    <button class="back-btn" onclick="go('s-home')">&#8249;</button>
     <div class="topbar-title">Recepten</div>
-    <button class="topbar-btn" onclick="go('s-add')">＋ Nieuw</button>
+    <button class="topbar-btn" onclick="go('s-nieuw')">+ Nieuw</button>
   </div>
-  <div style="padding:10px 14px 0;background:#070a0f;position:sticky;top:56px;z-index:99;">
+  <div style="padding:10px 14px 0;background:#070a10;position:sticky;top:56px;z-index:99;">
     <div style="position:relative;">
-      <input id="search-input" type="text" inputmode="text" placeholder="Zoek op klant, plaats of afmeting..."
-        oninput="filterRecipes()"
-        style="width:100%;background:#0a0e16;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:13px;padding:11px 14px 11px 36px;outline:none;-webkit-appearance:none;">
-      <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#4a6080;font-size:14px;">🔍</span>
+      <input id="zoek-input" type="text" placeholder="Zoek op klant of materiaal..." oninput="filterRecepten()"
+        style="width:100%;background:#0f1520;border:1px solid #1a2540;border-radius:4px;color:#e5e7eb;font-family:'Courier New',Courier,monospace;font-size:13px;padding:10px 14px 10px 36px;outline:none;-webkit-appearance:none;">
+      <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#6b7280;">&#128269;</span>
     </div>
   </div>
-  <div class="content" style="padding-top:10px;">
-    <div id="recipe-list"></div>
-  </div>
+  <div class="content" style="padding-top:10px;" id="recepten-lijst"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     RECIPE DETAIL
-═══════════════════════════════════════════ -->
+<!-- RECEPT DETAIL -->
 
 <div class="screen" id="s-detail">
   <div class="topbar">
-    <button class="back-btn" onclick="go('s-recipes')">‹</button>
+    <button class="back-btn" onclick="go('s-recepten')">&#8249;</button>
     <div class="topbar-title" id="detail-title">Recept</div>
   </div>
   <div class="content" id="detail-content"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     ADD RECIPE
-═══════════════════════════════════════════ -->
+<!-- NIEUW / BEWERK RECEPT -->
 
-<div class="screen" id="s-add">
+<div class="screen" id="s-nieuw">
   <div class="topbar">
-    <button class="back-btn" onclick="go('s-recipes')">‹</button>
-    <div class="topbar-title">Nieuw Recept</div>
+    <button class="back-btn" onclick="go('s-recepten')">&#8249;</button>
+    <div class="topbar-title" id="nieuw-title">Nieuw Recept</div>
   </div>
   <div class="content">
 
 ```
 <div class="form-card">
-  <div class="form-card-title">Klant & Locatie</div>
-
+  <div class="form-card-title">Klant & Product</div>
   <div class="grid2">
-    <div class="field">
-      <label>Klantnummer</label>
-      <input id="f-klant" type="text" inputmode="text" placeholder="bv. 1001">
+    <div class="field"><label>Klantnummer</label><input id="f-klantnr" type="text" placeholder="bv. 1001"></div>
+    <div class="field"><label>Klantnaam</label><input id="f-klantnaam" type="text" placeholder="bv. ACME BV"></div>
+  </div>
+  <div class="grid2">
+    <div class="field"><label>Producttype</label>
+      <select id="f-prodtype"><option>Zak</option><option>Hoes</option><option>Vel</option><option>Krimpfolie</option><option>Uitsparing</option><option>Andere</option></select>
     </div>
-    <div class="field">
-      <label>Plaatsnaam</label>
-      <input id="f-plaats" type="text" inputmode="text" placeholder="bv. Amsterdam">
+    <div class="field"><label>Omschrijving</label><input id="f-prodoms" type="text" placeholder="bv. draagtas"></div>
+  </div>
+  <div class="field">
+```
+
+<label>Naam operator <span style="color:#ef4444;">*</span></label>
+
+  <div style="position:relative;">
+    <input id="f-versie" type="text" placeholder="Kies of typ naam" autocomplete="off" readonly
+      onclick="this.removeAttribute('readonly');toonNaamDropdown()" oninput="toonNaamDropdown()"
+      onblur="setTimeout(sluitNaamDropdown,200)"
+      style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:4px;color:#e5e7eb;font-family:'Courier New',Courier,monospace;font-size:17px;padding:12px 14px;outline:none;">
+    <div id="naam-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:#0f1520;border:1px solid #f59e0b;border-top:none;border-radius:0 0 4px 4px;z-index:200;"></div>
+  </div>
+</div>
+    </div>
+
+```
+<div class="form-card">
+  <div class="form-card-title">Materiaal</div>
+  <div class="field">
+    <label>Materiaalsoort</label>
+    <div class="grid3" style="margin-bottom:8px;">
+      <button class="mat-btn active" id="mat-peld"  onclick="selectMat('peld')">PE-LD</button>
+      <button class="mat-btn" id="mat-lldpe" onclick="selectMat('lldpe')">LLDPE</button>
+      <button class="mat-btn" id="mat-ldpe"  onclick="selectMat('ldpe')">LDPE</button>
+    </div>
+    <div class="grid3" style="margin-bottom:8px;">
+      <button class="mat-btn" id="mat-pehd"  onclick="selectMat('pehd')">PE-HD</button>
+      <button class="mat-btn" id="mat-pp"    onclick="selectMat('pp')">PP</button>
+      <button class="mat-btn" id="mat-andere" onclick="selectMat('andere')">Andere</button>
+    </div>
+    <div class="grid3">
+      <button class="mat-btn" id="mat-recycle-mix"  onclick="selectMat('recycle-mix')">&#9851; Mix</button>
+      <button class="mat-btn" id="mat-recycle-peld" onclick="selectMat('recycle-peld')">&#9851; PE-LD</button>
+      <button class="mat-btn" id="mat-recycle-pehd" onclick="selectMat('recycle-pehd')">&#9851; PE-HD</button>
     </div>
   </div>
 </div>
 
 <div class="form-card">
-  <div class="form-card-title">Zak Specificaties</div>
-
+  <div class="form-card-title">Zakmaat & Berekening</div>
+  <div class="grid3">
+    <div class="field"><label>Breedte (mm)</label><input id="f-breedte" type="number" placeholder="400" oninput="herbereken()"></div>
+    <div class="field"><label>Lengte (mm)</label><input id="f-lengte" type="number" placeholder="600" oninput="herbereken()"></div>
+    <div class="field"><label>Dikte (um)</label><input id="f-dikte" type="number" placeholder="30" oninput="herbereken()"></div>
+  </div>
   <div class="grid2">
-    <div class="field">
-      <label>Breedte (cm)</label>
-      <input id="f-w" type="number" inputmode="decimal" placeholder="bv. 34.7">
-    </div>
-    <div class="field">
-      <label>Lengte (cm)</label>
-      <input id="f-l" type="number" inputmode="decimal" placeholder="bv. 44">
-    </div>
+    <div class="field"><label>Koker dia (mm)</label><input id="f-koker" type="number" placeholder="76" oninput="herbereken()"></div>
+    <div class="field"><label>Roldia wissel (mm)</label><input id="f-roldia" type="number" placeholder="300" oninput="herbereken()"></div>
   </div>
-
-  <div class="field">
-    <label>Dikte (mm)</label>
-    <input id="f-t" type="number" inputmode="decimal" step="0.001" placeholder="bv. 0.028">
-  </div>
-
-  <div class="field">
-    <label>Materiaal</label>
-    <div class="mat-grid">
-      <button class="mat-btn active" id="mat-LDPE"     onclick="selectMat('LDPE')">LDPE</button>
-      <button class="mat-btn"        id="mat-HDPE"     onclick="selectMat('HDPE')">HDPE</button>
-      <button class="mat-btn"        id="mat-Recyclaat" onclick="selectMat('Recyclaat')">Recyclaat</button>
+  <div id="calc-results" style="display:none;">
+    <div class="result-box" style="margin-top:12px;">
+      <div class="result-item"><span class="result-icon">&#9889;</span><span class="result-val" id="r-zakmin">-</span><span class="result-lbl">zak/min</span></div>
+      <div class="result-item"><span class="result-icon">&#9201;</span><span class="result-val" id="r-seal">-</span><span class="result-lbl">seal (s)</span></div>
+      <div class="result-item"><span class="result-icon">&#9881;</span><span class="result-val" id="r-snelheid">-</span><span class="result-lbl">m/min</span></div>
+      <div class="result-item"><span class="result-icon">&#128260;</span><span class="result-val" id="r-zakrol">-</span><span class="result-lbl">zak/rol</span></div>
     </div>
   </div>
-
-  <div class="field">
-    <label>Snelheid (ZPM)</label>
-    <input id="f-s" type="number" inputmode="numeric" placeholder="bv. 250">
+  <div class="grid2" style="margin-top:10px;">
+    <div class="field"><label>Sealtijd (s)</label><input id="f-seal" type="number" step="0.01" placeholder="0.75"></div>
+    <div class="field"><label>Snelheid (m/min)</label><input id="f-snelheid" type="number" placeholder="140"></div>
+  </div>
+  <div class="grid2">
+    <div class="field"><label>Zakken/min</label><input id="f-zakmin" type="number" placeholder="233"></div>
+    <div class="field"><label>Zakken/rol</label><input id="f-zakrol" type="number" placeholder="5000"></div>
   </div>
 </div>
 
-<button class="btn btn-amber" onclick="calcAndShow()">⚙  Berekenen</button>
-
-<!-- RESULTS -->
-<div id="results-box">
-  <div class="slabel" style="margin-top:22px;">Blower Timing — Berekend</div>
-  <div id="blower-results"></div>
-  <button class="btn btn-amber" style="margin-top:4px;" onclick="saveRecipe()">✓  Recept Opslaan</button>
-  <button class="btn btn-ghost" onclick="resetForm()">Annuleren</button>
+<div class="form-card">
+  <div class="form-card-title">Machine - Static & Cycle</div>
+  <div class="field">
+    <label>Static Charger</label>
+    <div style="display:flex;gap:8px;">
+      <button class="static-btn active" id="static-Off" onclick="selectStatic('Off')">Off</button>
+      <button class="static-btn" id="static-Always-on" onclick="selectStatic('Always-on')">Always on</button>
+      <button class="static-btn" id="static-End-of-roll" onclick="selectStatic('End-of-roll')">End of roll</button>
+    </div>
+  </div>
+  <div class="field"><label>Material to be charged (mm)</label><input id="f-static-mat" type="number" placeholder="bv. 400"></div>
+  <div class="field"><label>Cycle met drukker</label>
+    <button id="drukker-btn" class="toggle-btn toggle-uit" onclick="toggleDrukker()">UIT</button>
+  </div>
+  <div id="drukker-extra" style="display:none;">
+    <div class="field"><label>Drukker instelling</label><input id="f-drukker" type="text" placeholder="bv. 2 cycli"></div>
+  </div>
 </div>
+
+<div class="form-card">
+  <div class="form-card-title">Seal Temperaturen</div>
+  <div class="temp-grid">
+    <div class="temp-card">
+      <div class="temp-lbl">BOVEN</div>
+      <input class="temp-input" id="f-temp-boven" type="number" placeholder="157">
+      <div class="temp-unit">C</div>
+    </div>
+    <div style="font-size:20px;color:#9ca3af;align-self:center;">|</div>
+    <div class="temp-card">
+      <div class="temp-lbl">ONDER</div>
+      <input class="temp-input" id="f-temp-onder" type="number" placeholder="154">
+      <div class="temp-unit">C</div>
+    </div>
+  </div>
+  <div id="mat-info-temp" style="display:none;margin-top:10px;background:#070a10;border:1px solid rgba(96,165,250,.3);border-radius:4px;padding:8px 12px;font-size:11px;color:#60a5fa;"></div>
+</div>
+
+<div class="form-card" style="border-top-color:#60a5fa;">
+  <div class="form-card-title" style="color:#60a5fa;">Werkelijke Offset (leerdata)</div>
+  <div style="font-size:11px;color:#9ca3af;margin-bottom:12px;line-height:1.6;">Vul de offset in die op de machine werkte. Offset 2 is altijd automatisch de helft.</div>
+  <div class="field"><label>Werkelijke Offset 1</label><input id="f-offset1" type="number" placeholder="bv. 10850"></div>
+  <div id="f-offset2-toon" style="display:none;margin-top:8px;background:#070a10;border:1px solid rgba(96,165,250,.3);border-radius:4px;padding:10px 14px;font-size:13px;color:#60a5fa;"></div>
+</div>
+
+<div class="form-card">
+  <div class="form-card-title">Notities</div>
+  <div class="field"><textarea id="f-notities" rows="3" placeholder="Opmerkingen..."></textarea></div>
+</div>
+
+<button class="btn btn-amber" onclick="slaOp()">Opslaan</button>
+<button class="btn btn-ghost" onclick="resetForm()">Annuleer</button>
+<div style="height:20px;"></div>
 ```
 
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     TROUBLESHOOTING
-═══════════════════════════════════════════ -->
+<!-- CALCULATOR -->
 
-<div class="screen" id="s-trouble">
+<div class="screen" id="s-calculator">
   <div class="topbar">
-    <button class="back-btn" onclick="go('s-home')">‹</button>
+    <button class="back-btn" onclick="go('s-home')">&#8249;</button>
+    <div class="topbar-title">Calculator</div>
+  </div>
+  <div class="content">
+    <div class="form-card" style="border-top-color:#60a5fa;">
+      <div class="form-card-title" style="color:#60a5fa;">Invoer</div>
+      <div class="grid2">
+        <div class="field"><label>Zaklengte (mm)</label><input id="c-lengte" type="number" placeholder="600" oninput="calcUpdate()"></div>
+        <div class="field"><label>Zakken/rol</label><input id="c-zakrol" type="number" placeholder="5000" oninput="calcUpdate()"></div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label>Foliedikte (um)</label><input id="c-dikte" type="number" placeholder="30" oninput="calcUpdate()"></div>
+        <div class="field"><label>Kerndiameter (mm)</label><input id="c-kern" type="number" placeholder="76" oninput="calcUpdate()"></div>
+      </div>
+    </div>
+
+```
+<div class="slabel">Offset Berekening</div>
+<div class="calc-box">
+  <div class="calc-row">
+    <span class="calc-lbl">&#9881; OFFSET 1</span>
+    <span class="calc-val" id="c-offset1">-</span>
+  </div>
+  <div class="calc-row">
+    <span class="calc-lbl">&#9881; OFFSET 2 (Turret arm 2)</span>
+    <span class="calc-val" id="c-offset2">-</span>
+  </div>
+</div>
+
+<div class="slabel">Rolwissel Berekening</div>
+<div class="calc-box">
+  <div class="calc-row">
+    <span class="calc-lbl">&#128260; ROL LENGTE</span>
+    <span class="calc-val" id="c-rollengte">- m</span>
+  </div>
+  <div class="calc-row">
+    <span class="calc-lbl">&#128260; ROL DIAMETER</span>
+    <span class="calc-val" id="c-roldiameter">- mm</span>
+  </div>
+</div>
+
+<div id="calc-dataset-info" style="display:none;margin-top:8px;background:#070a10;border:1px solid rgba(245,158,11,.3);border-radius:4px;padding:10px 14px;font-size:11px;color:#f59e0b;line-height:1.6;"></div>
+```
+
+  </div>
+</div>
+
+<!-- MACHINE FLOW NAVIGATOR -->
+
+<div class="screen" id="s-flow">
+  <div class="topbar">
+    <button class="back-btn" onclick="go('s-home')">&#8249;</button>
     <div class="topbar-title">Probleemoplossing</div>
   </div>
-  <div class="content" id="trouble-content"></div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     MACHINE INFO
-═══════════════════════════════════════════ -->
-
-<div class="screen" id="s-machine">
-  <div class="topbar">
-    <button class="back-btn" onclick="go('s-home')">‹</button>
-    <div class="topbar-title">Machine Info</div>
-  </div>
-  <div class="content">
-
-```
-<div class="machine-hero">
-  <div class="mh-model">5750W</div>
-  <div class="mh-sub">HUDSON SHARP — HIGH SPEED ZAKKENMAKER</div>
-</div>
-
-<div class="stat-grid">
-  <div class="stat-tile"><div class="st-val">2007</div><div class="st-lbl">Bouwjaar</div></div>
-  <div class="stat-tile"><div class="st-val">250</div><div class="st-lbl">Max ZPM</div></div>
-  <div class="stat-tile"><div class="st-val">LDPE</div><div class="st-lbl">Materiaal</div></div>
-  <div class="stat-tile"><div class="st-val">Wicket</div><div class="st-lbl">Zaktype</div></div>
-</div>
-
-<div class="slabel">Specificaties</div>
-<div class="info-block">
-  <div class="info-row"><div class="ir-lbl">Machine</div><div class="ir-val">Hudson Sharp 5750W</div></div>
-  <div class="info-row"><div class="ir-lbl">Bouwjaar</div><div class="ir-val">2007</div></div>
-  <div class="info-row"><div class="ir-lbl">Materiaal</div><div class="ir-val">LDPE</div></div>
-  <div class="info-row"><div class="ir-lbl">Zaktype</div><div class="ir-val">Wicket zakken</div></div>
-  <div class="info-row"><div class="ir-lbl">Max snelheid</div><div class="ir-val">250 <span class="u">ZPM</span></div></div>
-  <div class="info-row"><div class="ir-lbl">Typische snelheid</div><div class="ir-val">200–250 <span class="u">ZPM</span></div></div>
-  <div class="info-row"><div class="ir-lbl">Besturing</div><div class="ir-val">Graden-gebaseerde cam-timing</div></div>
-</div>
-
-<div class="slabel">Blower Uitgangen</div>
-<div class="info-block">
-  <div class="info-row"><div class="ir-lbl">Upper Blowers</div><div class="ir-val">Zak openen (bovenkant)</div></div>
-  <div class="info-row"><div class="ir-lbl">Upper Pipe</div><div class="ir-val">Bovenste luchtpijp</div></div>
-  <div class="info-row"><div class="ir-lbl">Middle Blowers</div><div class="ir-val">Midden — dik folie</div></div>
-  <div class="info-row"><div class="ir-lbl">Lower Blowers</div><div class="ir-val">Zak openen (onderkant)</div></div>
-  <div class="info-row"><div class="ir-lbl">Lower Pipe</div><div class="ir-val">Onderste luchtpijp</div></div>
-  <div class="info-row"><div class="ir-lbl">Output 6</div><div class="ir-val">Afname-lucht</div></div>
-  <div class="info-row"><div class="ir-lbl">Output 7 / 8</div><div class="ir-val">Aanvullende uitgangen</div></div>
-</div>
-
-<div class="slabel">Dikte Regels</div>
-<div class="info-block">
-  <div class="info-row"><div class="ir-lbl" style="color:#22d3ee">≤ 0.020 mm</div><div class="ir-val">Dun — standaard timing</div></div>
-  <div class="info-row"><div class="ir-lbl" style="color:#f5a623">≤ 0.030 mm</div><div class="ir-val">Middel — aangepaste timing</div></div>
-  <div class="info-row"><div class="ir-lbl" style="color:#ef4444">&gt; 0.030 mm</div><div class="ir-val">Dik — Middle Blower actief</div></div>
-</div>
-```
-
-  </div>
+  <div class="content" id="flow-content"></div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -981,107 +472,273 @@ UTILITY
 <script>
 'use strict';
 
-// ═══════════════════════════════════════════════════
-// BLOWER CHANNEL DEFINITIONS
-// ═══════════════════════════════════════════════════
-const CHANNELS = [
-  { key:'lower_pipe', label:'Lower Pipe',        color:'#f97316' },
-  { key:'lower',      label:'Lower Blowers',     color:'#a78bfa' },
-  { key:'upper_pipe', label:'Upper Pipe',        color:'#3b82f6' },
-  { key:'upper',      label:'Upper Blowers',     color:'#22d3ee' },
-  { key:'out6',       label:'Output 6',          color:'#f5a623' },
-  { key:'out7',       label:'Output 7',          color:'#64748b' },
-  { key:'out8',       label:'Output 8',          color:'#94a3b8' },
+var FB_URL = 'https://amutec-tsa-ra-1640-default-rtdb.europe-west1.firebasedatabase.app';
+var APP_PW = 'tsa1600';
+
+var MATERIALEN = {
+  'peld':         {label:'PE-LD virgin',  temp_b:157,temp_o:154,sv:1.00,st:1.00,recycle:false},
+  'lldpe':        {label:'LDPE/LLDPE',    temp_b:152,temp_o:149,sv:1.05,st:0.95,recycle:false},
+  'ldpe':         {label:'LDPE',          temp_b:155,temp_o:152,sv:1.00,st:1.00,recycle:false},
+  'pehd':         {label:'PE-HD virgin',  temp_b:172,temp_o:169,sv:0.90,st:1.10,recycle:false},
+  'pp':           {label:'PP virgin',     temp_b:177,temp_o:174,sv:0.85,st:1.15,recycle:false},
+  'andere':       {label:'Andere',        temp_b:160,temp_o:157,sv:1.00,st:1.00,recycle:false},
+  'recycle-mix':  {label:'Recycle Mix',   temp_b:170,temp_o:168,sv:0.70,st:1.30,recycle:true},
+  'recycle-peld': {label:'Recycle PE-LD', temp_b:163,temp_o:160,sv:0.80,st:1.20,recycle:true},
+  'recycle-pehd': {label:'Recycle PE-HD', temp_b:178,temp_o:175,sv:0.75,st:1.25,recycle:true}
+};
+
+// ── OFFSET DATA ───────────────────────────────────────────────────────────
+var OFFSET_DATA = [
+  {lengte:80,   offset:10850},
+  {lengte:110,  offset:10950},
+  {lengte:115,  offset:10850},
+  {lengte:200,  offset:10850},
+  {lengte:400,  offset:10850},
+  {lengte:1000, offset:10950},
+  {lengte:1200, offset:10750},
+  {lengte:1500, offset:10950},
+  {lengte:1530, offset:10650},
+  {lengte:1600, offset:10750},
+  {lengte:1800, offset:10975},
+  {lengte:1900, offset:10550},
+  {lengte:2800, offset:10759},
+  {lengte:3000, offset:10975},
+  {lengte:3500, offset:11000}
 ];
 
-// ═══════════════════════════════════════════════════
-// BLOWER CALCULATOR
-// ═══════════════════════════════════════════════════
-function calculateBlowers(t) {
-  if (t <= 0.02) return {
-    upper_on:90,upper_off:300,
-    upper_pipe_on:30,upper_pipe_off:200,
-    
-    lower_on:50,lower_off:270,
-    lower_pipe_on:27,lower_pipe_off:220,
-    out6_on:60,out6_off:250,
-    out7_on:10,out7_off:10,
-    out8_on:10,out8_off:10,
-  };
-  if (t <= 0.03) return {
-    upper_on:120,upper_off:320,
-    upper_pipe_on:20,upper_pipe_off:190,
-    
-    lower_on:60,lower_off:280,
-    lower_pipe_on:30,lower_pipe_off:210,
-    out6_on:80,out6_off:300,
-    out7_on:10,out7_off:10,
-    out8_on:10,out8_off:10,
-  };
+// ── MECHANISCHE CONSTANTEN ───────────────────────────────────────────────
+var MECH_BASIS = 10290; // mm (seal→perforatie 10mm + perforatie→hart koker 10280mm)
+
+function interpoleerOffset(dataset, lengte) {
+  var sorted = dataset.slice().sort(function(a,b){return a.lengte-b.lengte;});
+  var lower = sorted[0];
+  var upper = sorted[sorted.length-1];
+  for(var i=0;i<sorted.length;i++){
+    if(sorted[i].lengte <= lengte) lower = sorted[i];
+    if(sorted[i].lengte >= lengte) { upper = sorted[i]; break; }
+  }
+  if(lower.lengte === upper.lengte) return lower.offset;
+  var ratio = (lengte - lower.lengte) / (upper.lengte - lower.lengte);
+  return Math.round(lower.offset + ratio * (upper.offset - lower.offset));
+}
+
+function berekenFormuleOffset(lengte) {
+  // Basis = mechanische afstand
+  // Correctie = zaklengte factor (kortere zakken = minder correctie, langere = meer)
+  // Gebaseerd op dataset: correctie loopt van ~200 (korte zak) tot ~710 (lange zak)
+  // Logaritmisch want verschil wordt kleiner bij langere zakken
+  var correctie;
+  if(lengte <= 100)       correctie = 200;
+  else if(lengte >= 3500) correctie = 710;
+  else {
+    // Logaritmische interpolatie tussen 200 en 710
+    var t = Math.log(lengte / 100) / Math.log(3500 / 100);
+    correctie = Math.round(200 + t * 510);
+  }
+  return MECH_BASIS + correctie;
+}
+
+function berekenOffset(lengte) {
+  if(!lengte) return 0;
+
+  // Stap 1: formule gebaseerd op mechanische afstand
+  var formuleOffset = berekenFormuleOffset(lengte);
+
+  // Stap 2: leerdata correctie — gemiddeld verschil tussen formule en werkelijkheid
+  if(window._leerdataOffset && window._leerdataOffset.length >= 3) {
+    // Bereken gemiddelde afwijking van de formule op basis van leerdata
+    var afwijkingen = [];
+    for(var i=0;i<window._leerdataOffset.length;i++){
+      var ld = window._leerdataOffset[i];
+      var formuleVoorLd = berekenFormuleOffset(ld.lengte);
+      afwijkingen.push(ld.offset - formuleVoorLd);
+    }
+    // Gewogen gemiddelde — dichtstbijzijnde leerdata punten wegen zwaarder
+    var gewogenSom = 0, gewichtTotaal = 0;
+    for(var j=0;j<window._leerdataOffset.length;j++){
+      var ld2 = window._leerdataOffset[j];
+      var afstand = Math.abs(ld2.lengte - lengte) + 1;
+      var gewicht = 1 / afstand;
+      gewogenSom += afwijkingen[j] * gewicht;
+      gewichtTotaal += gewicht;
+    }
+    var correctieLeer = Math.round(gewogenSom / gewichtTotaal);
+    return formuleOffset + correctieLeer;
+  }
+
+  // Geen leerdata: alleen formule + vaste dataset interpolatie als fallback
+  var gecombineerd = OFFSET_DATA.slice();
+  var dataOffset = interpoleerOffset(gecombineerd, lengte);
+
+  // Gemiddelde van formule en vaste dataset
+  return Math.round((formuleOffset + dataOffset) / 2);
+}
+
+function laadLeerdataOffset() {
+  // Haal alle recepten op en extraheer werkelijke offsets
+  fbLoad('/recepten', function(lijst){
+    var leerdata = [];
+    for(var i=0;i<lijst.length;i++){
+      var r = lijst[i];
+      if(r.lengte && r.offset1_werke && parseFloat(r.offset1_werke) > 0){
+        leerdata.push({
+          lengte: parseFloat(r.lengte),
+          offset: parseFloat(r.offset1_werke),
+          bron: 'leerdata'
+        });
+      }
+    }
+    window._leerdataOffset = leerdata;
+    // Update calculator als die open staat
+    var cinput = document.getElementById('c-lengte');
+    if(cinput && cinput.value) calcUpdate();
+  });
+}
+
+function berekenOffset2(offset1) {
+  if(!offset1) return 0;
+  return Math.round(offset1 / 2);
+}
+
+function berekenRolData(lengte, zakkenPerRol, folieDikte, kernDiameter) {
+  if(!lengte || !zakkenPerRol) return null;
+  var rolLengte = lengte * zakkenPerRol;
+  var dikte = folieDikte / 1000;
+  var radiusCore = kernDiameter / 2;
+  var rolRadius = Math.sqrt(radiusCore * radiusCore + (rolLengte * dikte) / Math.PI);
+  var rolDiameter = Math.round(rolRadius * 2);
   return {
-    upper_on:90,upper_off:300,
-    upper_pipe_on:30,upper_pipe_off:200,
-    
-    lower_on:50,lower_off:270,
-    lower_pipe_on:27,lower_pipe_off:220,
-    out6_on:135,out6_off:358,
-    out7_on:10,out7_off:10,
-    out8_on:10,out8_off:10,
+    rolLengte: Math.round(rolLengte),
+    rolDiameter: rolDiameter
   };
 }
 
-// ═══════════════════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════════════════
-function go(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.classList.add('active');
-  el.querySelector('.content')?.scrollTo(0,0);
-  if (id === 's-recipes') renderRecipes();
-  if (id === 's-trouble') renderTrouble();
-}
+function calcUpdate() {
+  var lengte  = parseFloat(document.getElementById('c-lengte').value) || 0;
+  var zakrol  = parseFloat(document.getElementById('c-zakrol').value) || 0;
+  var dikte   = parseFloat(document.getElementById('c-dikte').value) || 30;
+  var kern    = parseFloat(document.getElementById('c-kern').value) || 76;
 
-// ═══════════════════════════════════════════════════
-// TOAST
-// ═══════════════════════════════════════════════════
-function toast(msg, err=false) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show' + (err ? ' err' : '');
-  clearTimeout(t._tid);
-  t._tid = setTimeout(() => t.classList.remove('show'), 2400);
-}
+  // Offset
+  var o1 = lengte ? berekenOffset(lengte) : 0;
+  var o2 = berekenOffset2(o1);
+  document.getElementById('c-offset1').textContent = o1 ? o1 : '-';
+  document.getElementById('c-offset2').textContent = o2 ? o2 : '-';
 
-// ═══════════════════════════════════════════════════
-// FIREBASE CONFIG
-// ═══════════════════════════════════════════════════
-const FIREBASE_URL = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
-const APP_PASSWORD = 'hudson2024';
-
-let isLoggedIn = false;
-
-function checkLogin() {
-  const stored = sessionStorage.getItem('hs_auth');
-  if (stored === APP_PASSWORD) {
-    isLoggedIn = true;
-    go('s-home');
+  // Rol data
+  var rolData = berekenRolData(lengte, zakrol, dikte, kern);
+  if(rolData) {
+    document.getElementById('c-rollengte').textContent = Math.round(rolData.rolLengte/1000) + ' m';
+    document.getElementById('c-roldiameter').textContent = rolData.rolDiameter + ' mm';
   } else {
-    showLogin();
+    document.getElementById('c-rollengte').textContent = '- m';
+    document.getElementById('c-roldiameter').textContent = '- mm';
+  }
+
+  // Info interpolatie
+  if(lengte) {
+    var sorted = OFFSET_DATA.slice().sort(function(a,b){return a.lengte-b.lengte;});
+    var lower = sorted[0], upper = sorted[sorted.length-1];
+    for(var i=0;i<sorted.length;i++){
+      if(sorted[i].lengte<=lengte) lower=sorted[i];
+      if(sorted[i].lengte>=lengte){upper=sorted[i];break;}
+    }
+    var info = document.getElementById('calc-dataset-info');
+    info.style.display = 'block';
+    if(lower.lengte === lengte) {
+      info.textContent = 'Exacte match in dataset: lengte ' + lengte + ' mm -> offset ' + lower.offset;
+    } else {
+      info.textContent = 'Interpolatie: ' + lower.lengte + 'mm (' + lower.offset + ') tot ' + upper.lengte + 'mm (' + upper.offset + ')';
+    }
   }
 }
 
-function showLogin() {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('s-login').classList.add('active');
+// ── PROBLEMEN ─────────────────────────────────────────────────────────────
+var PROBLEMEN = [
+  {cat:'ROLWISSEL',kleur:'#ef4444',titel:'Halve zak op nieuwe rol',
+    oorzaken:['Offset verkeerd ingesteld','Rolwissel timing fout','Perforatie positie verkeerd'],
+    oplossingen:['Offset opnieuw berekenen via Calculator','Rolwissel cyclus controleren','Perforatie positie controleren']},
+  {cat:'ROLWISSEL',kleur:'#ef4444',titel:'Wissel breekt / laat los',
+    oorzaken:['Folie heeft slappe kant','Drukker laat los aan einde wissel','Roldiameter wissel te klein','Snelheid te hoog tijdens wissel'],
+    oplossingen:['Static naar End of roll','Roldiameter wissel verhogen','Snelheid verlagen bij wissel','Hekje controleren en bijstellen']},
+  {cat:'ROLWISSEL',kleur:'#ef4444',titel:'Rol bouwt niet strak op',
+    oorzaken:['Winder torque te laag','Drukrol te laag','Folie spanning te laag'],
+    oplossingen:['Winder torque verhogen','Drukrol afstellen','Dancer spanning verhogen']},
+  {cat:'ROLWISSEL',kleur:'#ef4444',titel:'Rol loopt scheef',
+    oorzaken:['Folie niet gecentreerd','Winder spanning ongelijk','Invoerrollen scheef'],
+    oplossingen:['Folie centreren','Winder spanning controleren','Invoerrollen uitlijnen']},
+  {cat:'FOLIEGELEIDING',kleur:'#fb923c',titel:'Folie loopt scheef',
+    oorzaken:['Slappe kant folie','Hekje staat scheef','Niprollen niet parallel','Rol scheef op afroller'],
+    oplossingen:['Hekje centreren op folierand','Afroller loodrecht instellen','Niprollen parallelstand controleren','Static charger aanzetten']},
+  {cat:'FOLIEGELEIDING',kleur:'#fb923c',titel:'Slappe kant in folie',
+    oorzaken:['Ongelijke dikte over breedte','Ongelijke winding op rol','Recycle: minder uniformiteit'],
+    oplossingen:['Static naar Always on','Hekje strakker aan slappe zijde','Snelheid verlagen']},
+  {cat:'FOLIEGELEIDING',kleur:'#fb923c',titel:'Folie plakt aan rollen',
+    oorzaken:['Te veel statische lading','Luchtvochtigheid te laag'],
+    oplossingen:['Antistatic inschakelen','Ionisatie controleren']},
+  {cat:'PERFORATIE',kleur:'#a78bfa',titel:'Zak scheurt te vroeg',
+    oorzaken:['Perforatie te diep','Foliespanning te hoog','Perforatiemessen bot'],
+    oplossingen:['Perforatiedruk verlagen','Dancer spanning verlagen','Mes vervangen']},
+  {cat:'PERFORATIE',kleur:'#a78bfa',titel:'Zak scheurt niet goed af',
+    oorzaken:['Perforatie te licht','Mes bot','Folie te elastisch'],
+    oplossingen:['Perforatie dieper zetten','Mes vervangen','Perforatie pitch aanpassen']},
+  {cat:'SEAL',kleur:'#f59e0b',titel:'Seal breekt open',
+    oorzaken:['Temperatuur te laag','Sealtijd te kort','Sealdruk te laag'],
+    oplossingen:['Temperatuur verhogen','Sealtijd verhogen','Druk controleren']},
+  {cat:'SEAL',kleur:'#f59e0b',titel:'Seal verbrandt / PTFE tape',
+    oorzaken:['Temperatuur te hoog','Sealtijd te lang','PTFE tape beschadigd'],
+    oplossingen:['Temperatuur verlagen','Sealtijd verkorten','PTFE tape vervangen']},
+  {cat:'SEAL',kleur:'#f59e0b',titel:'Uitgerekte seal',
+    oorzaken:['Folie te strak in neutrale zone','Koeltijd te kort','Niprollen trekken te vroeg'],
+    oplossingen:['Niproldruk verlagen','Koeltijd verhogen','Temperatuur iets verlagen']},
+  {cat:'STATIC',kleur:'#60a5fa',titel:'Static charger instelling',
+    oorzaken:['PE/PP slecht geleidend','Droge omgeving','Recycle: onregelmatig oppervlak'],
+    oplossingen:['Einde rol: End of roll','Slappe folie: Always on','Static charger reinigen']}
+];
+
+var CATS = ['ROLWISSEL','FOLIEGELEIDING','PERFORATIE','SEAL','STATIC'];
+var SNELKNOPPEN = [
+  {label:'Halve zak op rol', zoek:'Halve zak'},
+  {label:'Seal breekt',      zoek:'Seal breekt'},
+  {label:'Zak scheurt niet', zoek:'scheurt niet'},
+  {label:'Folie scheef',     zoek:'loopt scheef'}
+];
+
+var selectedMat = 'peld';
+var selectedStatic = 'Off';
+var drukkerAan = false;
+var editKey = null;
+var actieveCat = null;
+var _recepten = [];
+
+function go(id) {
+  var screens = document.querySelectorAll('.screen');
+  for(var i=0;i<screens.length;i++) screens[i].classList.remove('active');
+  document.getElementById(id).classList.add('active');
+  var c = document.getElementById(id).querySelector('.content');
+  if(c) c.scrollTop = 0;
+  var btns = document.querySelectorAll('.bnav-btn');
+  for(var j=0;j<btns.length;j++) btns[j].classList.remove('active');
+  if(id==='s-recepten'||id==='s-detail'||id==='s-nieuw') btns[0] && btns[0].classList.add('active');
+  if(id==='s-flow') btns[1] && btns[1].classList.add('active');
+  if(id==='s-calculator') btns[2] && btns[2].classList.add('active');
+  if(id==='s-recepten') laadRecepten();
+  if(id==='s-flow') renderFlow();
+  if(id==='s-calculator') laadLeerdataOffset();
+}
+
+function toast(msg, err) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (err ? ' err' : '');
+  clearTimeout(t._t);
+  t._t = setTimeout(function(){t.classList.remove('show');}, 2400);
 }
 
 function doLogin() {
-  const pw = document.getElementById('login-pw').value;
-  if (pw === APP_PASSWORD) {
-    sessionStorage.setItem('hs_auth', pw);
-    isLoggedIn = true;
+  var pw = document.getElementById('login-pw').value;
+  if(pw === APP_PW) {
+    sessionStorage.setItem('tsa_auth', pw);
     document.getElementById('login-err').style.display = 'none';
     go('s-home');
   } else {
@@ -1090,646 +747,680 @@ function doLogin() {
   }
 }
 
-// ═══════════════════════════════════════════════════
-// FIREBASE STORAGE
-// ═══════════════════════════════════════════════════
-async function loadRecipes() {
-  try {
-    const res = await fetch(`${FIREBASE_URL}/recepten.json`);
-    const data = await res.json();
-    if (!data) return [];
-    return Object.entries(data).map(([key, val]) => ({...val, firebaseKey: key}));
-  } catch(e) {
-    console.error('Firebase load error:', e);
-    return [];
-  }
+function checkLogin() {
+  if(sessionStorage.getItem('tsa_auth') === APP_PW) go('s-home');
 }
 
-async function saveAllRecipes(list) {
-  // Not used directly - use addRecipe/deleteRecipe
+function fbLoad(pad, cb) {
+  fetch(FB_URL + pad + '.json')
+    .then(function(r){return r.json();})
+    .then(function(data){
+      if(!data){cb([]);return;}
+      var arr = [];
+      var keys = Object.keys(data);
+      for(var i=0;i<keys.length;i++){
+        var obj = Object.assign({}, data[keys[i]]);
+        obj._key = keys[i];
+        arr.push(obj);
+      }
+      cb(arr);
+    })
+    .catch(function(){cb([]);});
 }
 
-async function addRecipeToFirebase(recipe) {
-  try {
-    const res = await fetch(`${FIREBASE_URL}/recepten.json`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(recipe)
-    });
-    return await res.json();
-  } catch(e) {
-    console.error('Firebase save error:', e);
-  }
+function fbPost(pad, obj, cb) {
+  fetch(FB_URL+pad+'.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(obj)})
+    .then(function(r){return r.json();}).then(function(d){if(cb)cb(d);}).catch(function(){});
 }
 
-async function deleteRecipeFromFirebase(firebaseKey) {
-  try {
-    await fetch(`${FIREBASE_URL}/recepten/${firebaseKey}.json`, {
-      method: 'DELETE'
-    });
-  } catch(e) {
-    console.error('Firebase delete error:', e);
-  }
+function fbDelete(pad, key, cb) {
+  fetch(FB_URL+pad+'/'+key+'.json',{method:'DELETE'})
+    .then(function(r){
+      if(r.ok){ if(cb)cb(); }
+      else{ toast('Fout bij verwijderen',true); }
+    })
+    .catch(function(e){ toast('Verbindingsfout',true); });
 }
 
-// ═══════════════════════════════════════════════════
-// RECIPE LIST
-// ═══════════════════════════════════════════════════
-let _allRecipes = [];
-
-async function renderRecipes() {
-  const el = document.getElementById('recipe-list');
-  el.innerHTML = `<div class="empty-state">Laden...</div>`;
-  _allRecipes = await loadRecipes();
-  const search = document.getElementById('search-input')?.value || '';
-  renderRecipeTree(_allRecipes, search);
+function fbPatch(pad, key, obj, cb) {
+  fetch(FB_URL+pad+'/'+key+'.json',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(obj)})
+    .then(function(){if(cb)cb();}).catch(function(){});
 }
-
-function filterRecipes() {
-  const q = document.getElementById('search-input').value;
-  renderRecipeTree(_allRecipes, q);
-}
-
-function renderRecipeTree(list, query='') {
-  const el = document.getElementById('recipe-list');
-  if (!list.length) {
-    el.innerHTML = `<div class="empty-state">Geen recepten opgeslagen.<br>Tik op <b>＋ Nieuw</b> om te beginnen.</div>`;
-    return;
-  }
-
-  const q = query.toLowerCase().trim();
-
-  // Filter
-  const filtered = q ? list.filter(r =>
-    (r.klant||'').toLowerCase().includes(q) ||
-    (r.plaats||'').toLowerCase().includes(q) ||
-    `${r.width}`.includes(q) ||
-    `${r.length}`.includes(q) ||
-    (r.material||'').toLowerCase().includes(q)
-  ) : list;
-
-  if (!filtered.length) {
-    el.innerHTML = `<div class="empty-state">Geen resultaten voor "<b>${query}</b>"</div>`;
-    return;
-  }
-
-  // Group by klantnummer
-  const groups = {};
-  filtered.forEach(r => {
-    const k = r.klant || '— Geen klantnummer —';
-    if (!groups[k]) groups[k] = [];
-    groups[k].push(r);
-  });
-
-  // Sort groups
-  const sortedKeys = Object.keys(groups).sort((a,b) => a.localeCompare(b));
-
-  el.innerHTML = sortedKeys.map(klant => {
-    const recipes = groups[klant];
-    const items = recipes.map(r => `
-      <div class="tree-item" onclick="openDetailByKey('${r.firebaseKey}')">
-        <div class="tree-item-inner">
-          <div class="tree-connector"></div>
-          <div class="tree-content">
-            <div class="tree-name">${r.width} × ${r.length} cm</div>
-            <div class="tree-meta">
-              ${r.plaats ? `<span class="tree-place">📍 ${r.plaats}</span>` : ''}
-              <span class="tag t-mat" style="font-size:9px;padding:2px 6px;">${r.material}</span>
-              <span class="tag" style="font-size:9px;padding:2px 6px;">${r.thickness} mm</span>
-              <span class="tag t-spd" style="font-size:9px;padding:2px 6px;">${r.speed} ZPM</span>
-            </div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0;">
-            <button class="rc-edit" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();editRecipe('${r.firebaseKey}')">✎</button>
-            <button class="rc-del" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();delRecipe('${r.firebaseKey}')">✕</button>
-          </div>
-        </div>
-      </div>
-    `).join('');
-
-    return `
-      <div class="tree-group">
-        <div class="tree-header">
-          <span class="tree-icon">📁</span>
-          <span class="tree-klant">Klant ${klant}</span>
-          <span class="tree-count">${recipes.length} zak${recipes.length !== 1 ? 'ken' : ''}</span>
-        </div>
-        ${items}
-      </div>
-    `;
-  }).join('');
-}
-
-async function editRecipe(firebaseKey) {
-  const list = await loadRecipes();
-  const r = list.find(x => x.firebaseKey === firebaseKey);
-  if (!r) return;
-
-  document.getElementById('f-klant').value = r.klant || '';
-  document.getElementById('f-plaats').value = r.plaats || '';
-  document.getElementById('f-w').value = r.width;
-  document.getElementById('f-l').value = r.length;
-  document.getElementById('f-t').value = r.thickness;
-  document.getElementById('f-s').value = r.speed;
-  selectMat(r.material);
-
-  document.getElementById('s-add').dataset.editKey = firebaseKey;
-  document.querySelector('#s-add .topbar-title').textContent = 'Recept Bewerken';
-
-  calcAndShow();
-
-  // Override calculated values with saved values
-  CHANNELS.forEach(ch => {
-    const onEl  = document.getElementById(`bi-${ch.key}-on`);
-    const offEl = document.getElementById(`bi-${ch.key}-off`);
-    if (onEl)  onEl.value  = r[`${ch.key}_on`];
-    if (offEl) offEl.value = r[`${ch.key}_off`];
-    updateBlowerTiming(ch.key);
-  });
-
-  go('s-add');
-}
-
-async function delRecipe(firebaseKey) {
-  if (!confirm('Recept verwijderen?')) return;
-  await deleteRecipeFromFirebase(firebaseKey);
-  toast('Recept verwijderd');
-  renderRecipes();
-}
-
-function thicknessLabel(t) {
-  if (t <= 0.02) return '≤ 20 µm';
-  if (t <= 0.03) return '21–30 µm';
-  return '> 30 µm';
-}
-
-// ═══════════════════════════════════════════════════
-// RECIPE DETAIL
-// ═══════════════════════════════════════════════════
-async function openDetailByKey(firebaseKey) {
-  const list = await loadRecipes();
-  const r = list.find(x => x.firebaseKey === firebaseKey);
-  if (!r) return;
-  openDetailRender(r);
-}
-
-function openDetailRender(r) {
-
-  document.getElementById('detail-title').textContent = `${r.width}×${r.length}`;
-
-  // ── 360° SVG DIAGRAM ──
-  const cx = 160, cy = 160, R = 110, strokeW = 18;
-  const toRad = deg => (deg - 90) * Math.PI / 180;
-  const arcPath = (onDeg, offDeg, radius) => {
-    const dur = offDeg > onDeg ? offDeg - onDeg : (360 - onDeg + offDeg);
-    if (dur <= 0) return '';
-    const large = dur > 180 ? 1 : 0;
-    const x1 = cx + radius * Math.cos(toRad(onDeg));
-    const y1 = cy + radius * Math.sin(toRad(onDeg));
-    const x2 = cx + radius * Math.cos(toRad(offDeg));
-    const y2 = cy + radius * Math.sin(toRad(offDeg));
-    return `M ${x1} ${y1} A ${radius} ${radius} 0 ${large} 1 ${x2} ${y2}`;
-  };
-
-  const radii = [58, 72, 86, 100, 114, 128, 142];
-  const channelArcs = CHANNELS.map((ch, i) => {
-    const on  = r[`${ch.key}_on`];
-    const off = r[`${ch.key}_off`];
-    const d = arcPath(on, off, radii[i]);
-    if (!d) return '';
-    return `<path d="${d}" stroke="${ch.color}" stroke-width="${strokeW - 2}" fill="none" stroke-linecap="round" opacity="0.85"/>`;
-  }).join('');
-
-  // tick marks at 0,90,180,270
-  const ticks = [0,90,180,270].map(deg => {
-    const angle = toRad(deg);
-    const x1 = cx + 148 * Math.cos(angle);
-    const y1 = cy + 148 * Math.sin(angle);
-    const x2 = cx + 158 * Math.cos(angle);
-    const y2 = cy + 158 * Math.sin(angle);
-    const lx = cx + 170 * Math.cos(angle);
-    const ly = cy + 170 * Math.sin(angle);
-    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#f5a623" stroke-width="2"/>
-            <text x="${lx}" y="${ly}" fill="#f5a623" font-size="11" font-family="Share Tech Mono,monospace" text-anchor="middle" dominant-baseline="middle">${deg}°</text>`;
-  }).join('');
-
-  const legendHTML = CHANNELS.map((ch, i) => {
-    const on  = r[`${ch.key}_on`];
-    const off = r[`${ch.key}_off`];
-    const dur = off > on ? off - on : (360 - on + off);
-    return `<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #1a2235;">
-      <div style="width:10px;height:10px;border-radius:50%;background:${ch.color};flex-shrink:0;box-shadow:0 0 5px ${ch.color}88;"></div>
-      <div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;color:#8a9ab0;letter-spacing:.08em;flex:1;text-transform:uppercase;">${ch.label}</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:${ch.color};">${on}°→${off}°</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;min-width:32px;text-align:right;">${dur}°</div>
-    </div>`;
-  }).join('');
-
-  const blowerHTML = CHANNELS.map(ch => {
-    const on  = r[`${ch.key}_on`];
-    const off = r[`${ch.key}_off`];
-    const dur = off > on ? off - on : (360 - on + off);
-    const lft = (on / 360 * 100).toFixed(1);
-    const wid = dur <= 0 ? 0.4 : (dur / 360 * 100).toFixed(1);
-    return `
-      <div class="blower-block">
-        <div class="blower-hdr">
-          <div class="bdot" style="background:${ch.color};box-shadow:0 0 6px ${ch.color}55;"></div>
-          <div class="bname">${ch.label}</div>
-        </div>
-        <div class="blower-cells">
-          <div class="bcell">
-            <span class="bcell-lbl">AAN</span>
-            <span class="bcell-val" style="color:${ch.color}">${on}</span>
-            <span class="bcell-unit">°</span>
-          </div>
-          <div class="bcell">
-            <span class="bcell-lbl">UIT</span>
-            <span class="bcell-val" style="color:${ch.color}">${off}</span>
-            <span class="bcell-unit">°</span>
-          </div>
-          <div class="bcell">
-            <span class="bcell-lbl">DUUR</span>
-            <span class="bcell-val" style="color:#4a6080;font-size:22px">${dur}</span>
-            <span class="bcell-unit">°</span>
-          </div>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar-track">
-            <div class="bar-fill" style="left:${lft}%;width:${wid}%;background:${ch.color};"></div>
-          </div>
-          <div class="bar-ticks">
-            ${[0,90,180,270,360].map(d=>`<span class="bar-tick">${d}°</span>`).join('')}
-          </div>
-        </div>
-      </div>`;
-  }).join('');
-
-  document.getElementById('detail-content').innerHTML = `
-
-    <div class="slabel">360° Cyclus Diagram</div>
-    <div style="background:#0a0e16;border:1px solid #1a2235;border-radius:2px;padding:16px;margin-bottom:8px;">
-      <svg viewBox="0 0 320 320" width="100%" style="display:block;max-width:320px;margin:0 auto;">
-        <!-- background rings -->
-        ${radii.map(r => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1a2235" stroke-width="1"/>`).join('')}
-        <!-- outer ring -->
-        <circle cx="${cx}" cy="${cy}" r="152" fill="none" stroke="#1a2235" stroke-width="1.5"/>
-        <!-- blower arcs -->
-        ${channelArcs}
-        <!-- tick marks -->
-        ${ticks}
-        <!-- center -->
-        <circle cx="${cx}" cy="${cy}" r="36" fill="#0f1420" stroke="#1a2235" stroke-width="1.5"/>
-        <text x="${cx}" y="${cy - 8}" fill="#f5a623" font-size="18" font-family="Rajdhani,sans-serif" font-weight="700" text-anchor="middle">360°</text>
-        <text x="${cx}" y="${cy + 10}" fill="#4a6080" font-size="8" font-family="Share Tech Mono,monospace" text-anchor="middle">CYCLUS</text>
-        <!-- speed label -->
-        <text x="${cx}" y="308" fill="#4a6080" font-size="9" font-family="Share Tech Mono,monospace" text-anchor="middle">${r.speed} ZPM · ${r.material}</text>
-      </svg>
-      <div style="margin-top:12px;">${legendHTML}</div>
-    </div>
-
-    <div class="slabel">Zak Specificaties</div>
-    <div class="info-block">
-      ${r.klant ? `<div class="info-row"><div class="ir-lbl">Klantnummer</div><div class="ir-val" style="color:#f5a623;">${r.klant}</div></div>` : ''}
-      ${r.plaats ? `<div class="info-row"><div class="ir-lbl">Plaatsnaam</div><div class="ir-val" style="color:#22d3ee;">📍 ${r.plaats}</div></div>` : ''}
-      <div class="info-row"><div class="ir-lbl">Breedte</div><div class="ir-val">${r.width}<span class="u"> cm</span></div></div>
-      <div class="info-row"><div class="ir-lbl">Lengte</div><div class="ir-val">${r.length}<span class="u"> cm</span></div></div>
-      <div class="info-row"><div class="ir-lbl">Dikte</div><div class="ir-val">${r.thickness}<span class="u"> mm</span> — ${thicknessLabel(r.thickness)}</div></div>
-      <div class="info-row"><div class="ir-lbl">Materiaal</div><div class="ir-val">${r.material}</div></div>
-      <div class="info-row"><div class="ir-lbl">Snelheid</div><div class="ir-val">${r.speed}<span class="u"> ZPM</span></div></div>
-      <div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">${Math.round(60000/r.speed)}<span class="u"> ms</span></div></div>
-    </div>
-    <div class="slabel">Blower Timing</div>
-    ${blowerHTML}
-  `;
-
-  go('s-detail');
-}
-
-// ═══════════════════════════════════════════════════
-// ADD RECIPE FORM
-// ═══════════════════════════════════════════════════
-let selectedMat = 'LDPE';
-let currentTiming = null;
 
 function selectMat(m) {
   selectedMat = m;
-  document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('mat-' + m).classList.add('active');
+  document.querySelectorAll('.mat-btn').forEach(function(b){b.classList.remove('active');});
+  var el = document.getElementById('mat-'+m);
+  if(el) el.classList.add('active');
+  herbereken();
 }
 
-function calcAndShow() {
-  const w  = parseFloat(document.getElementById('f-w').value);
-  const l  = parseFloat(document.getElementById('f-l').value);
-  const t  = parseFloat(document.getElementById('f-t').value);
-  const s  = parseInt(document.getElementById('f-s').value);
-
-  if (!w||!l||!t||!s||w<=0||l<=0||t<=0||s<=0) {
-    toast('Vul alle velden correct in', true);
-    return;
-  }
-
-  currentTiming = calculateBlowers(t);
-
-  // Build editable blower display
-  const html = CHANNELS.map(ch => {
-    const on  = currentTiming[`${ch.key}_on`];
-    const off = currentTiming[`${ch.key}_off`];
-    const dur = off > on ? off - on : (360 - on + off);
-    const lft = (on / 360 * 100).toFixed(1);
-    const wid = dur <= 0 ? 0.4 : (dur / 360 * 100).toFixed(1);
-    return `
-      <div class="blower-block">
-        <div class="blower-hdr">
-          <div class="bdot" style="background:${ch.color};box-shadow:0 0 6px ${ch.color}55;"></div>
-          <div class="bname">${ch.label}</div>
-        </div>
-        <div class="blower-cells">
-          <div class="bcell">
-            <span class="bcell-lbl">AAN °</span>
-            <input class="blower-input" id="bi-${ch.key}-on" type="number" inputmode="numeric"
-              value="${on}" min="0" max="360"
-              oninput="updateBlowerTiming('${ch.key}')"
-              style="color:${ch.color};">
-          </div>
-          <div class="bcell">
-            <span class="bcell-lbl">UIT °</span>
-            <input class="blower-input" id="bi-${ch.key}-off" type="number" inputmode="numeric"
-              value="${off}" min="0" max="360"
-              oninput="updateBlowerTiming('${ch.key}')"
-              style="color:${ch.color};">
-          </div>
-          <div class="bcell">
-            <span class="bcell-lbl">DUUR</span>
-            <span class="bcell-val" id="bd-${ch.key}" style="color:#4a6080;font-size:22px">${dur}</span>
-            <span class="bcell-unit">°</span>
-          </div>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar-track">
-            <div class="bar-fill" id="bf-${ch.key}" style="left:${lft}%;width:${wid}%;background:${ch.color};"></div>
-          </div>
-          <div class="bar-ticks">
-            ${[0,90,180,270,360].map(d=>`<span class="bar-tick">${d}°</span>`).join('')}
-          </div>
-        </div>
-      </div>`;
-  }).join('');
-
-  document.getElementById('blower-results').innerHTML = html;
-  const box = document.getElementById('results-box');
-  box.classList.add('show');
-  box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+function selectStatic(s) {
+  selectedStatic = s;
+  document.querySelectorAll('.static-btn').forEach(function(b){b.classList.remove('active');});
+  var el = document.getElementById('static-'+s);
+  if(el) el.classList.add('active');
 }
 
-function updateBlowerTiming(key) {
-  const on  = parseInt(document.getElementById(`bi-${key}-on`).value)  || 0;
-  const off = parseInt(document.getElementById(`bi-${key}-off`).value) || 0;
-  const dur = off > on ? off - on : (360 - on + off);
-  const lft = (on / 360 * 100).toFixed(1);
-  const wid = dur <= 0 ? 0.4 : (dur / 360 * 100).toFixed(1);
-
-  const durEl = document.getElementById(`bd-${key}`);
-  const barEl = document.getElementById(`bf-${key}`);
-  if (durEl) durEl.textContent = dur;
-  if (barEl) { barEl.style.left = lft + '%'; barEl.style.width = wid + '%'; }
-
-  // update currentTiming live
-  currentTiming[`${key}_on`]  = on;
-  currentTiming[`${key}_off`] = off;
+function toggleDrukker() {
+  drukkerAan = !drukkerAan;
+  var btn = document.getElementById('drukker-btn');
+  var extra = document.getElementById('drukker-extra');
+  btn.textContent = drukkerAan ? 'AAN' : 'UIT';
+  btn.className = 'toggle-btn ' + (drukkerAan ? 'toggle-aan' : 'toggle-uit');
+  extra.style.display = drukkerAan ? 'block' : 'none';
 }
 
-async function updateRecipeInFirebase(firebaseKey, recipe) {
-  try {
-    await fetch(`${FIREBASE_URL}/recepten/${firebaseKey}.json`, {
-      method: 'PATCH',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(recipe)
-    });
-  } catch(e) {
-    console.error('Firebase update error:', e);
-  }
+function herbereken() {
+  var mat = MATERIALEN[selectedMat];
+  var l = parseFloat(document.getElementById('f-lengte').value);
+  var d = parseFloat(document.getElementById('f-dikte').value);
+  var koker = parseFloat(document.getElementById('f-koker').value) || 76;
+  var rol = parseFloat(document.getElementById('f-roldia').value) || 300;
+  if(!mat||!l||!d){document.getElementById('calc-results').style.display='none';return;}
+  var sealtijd = Math.round(d*0.025*mat.st*100)/100;
+  var snelheid = Math.round(200*mat.sv);
+  var zakmin = Math.round(snelheid*1000/l);
+  var zakrol = Math.floor((Math.PI*(rol*rol-koker*koker))/(4*(d/1000)*l));
+  document.getElementById('r-zakmin').textContent = zakmin;
+  document.getElementById('r-seal').textContent = sealtijd;
+  document.getElementById('r-snelheid').textContent = snelheid;
+  document.getElementById('r-zakrol').textContent = zakrol;
+  document.getElementById('calc-results').style.display = 'block';
+  if(!document.getElementById('f-seal').value) document.getElementById('f-seal').value = sealtijd;
+  if(!document.getElementById('f-snelheid').value) document.getElementById('f-snelheid').value = snelheid;
+  if(!document.getElementById('f-zakmin').value) document.getElementById('f-zakmin').value = zakmin;
+  if(!document.getElementById('f-zakrol').value) document.getElementById('f-zakrol').value = zakrol;
+  if(!document.getElementById('f-temp-boven').value) document.getElementById('f-temp-boven').value = mat.temp_b;
+  if(!document.getElementById('f-temp-onder').value) document.getElementById('f-temp-onder').value = mat.temp_o;
+  var infoEl = document.getElementById('mat-info-temp');
+  infoEl.style.display = 'block';
+  infoEl.textContent = mat.label + ' - aanbevolen: ' + (mat.temp_b-8) + 'C - ' + (mat.temp_b+8) + 'C' + (mat.recycle ? ' - Recycle: hogere temp' : '');
 }
 
-async function saveRecipe() {
-  const w = parseFloat(document.getElementById('f-w').value);
-  const l = parseFloat(document.getElementById('f-l').value);
-  const t = parseFloat(document.getElementById('f-t').value);
-  const s = parseInt(document.getElementById('f-s').value);
-  const klant = document.getElementById('f-klant').value.trim();
-  const plaats = document.getElementById('f-plaats').value.trim();
-
-  if (!currentTiming) return;
-
-  // Read values from editable inputs (operator may have changed them)
-  const timing = {};
-  CHANNELS.forEach(ch => {
-    const onEl  = document.getElementById(`bi-${ch.key}-on`);
-    const offEl = document.getElementById(`bi-${ch.key}-off`);
-    timing[`${ch.key}_on`]  = onEl  ? (parseInt(onEl.value)  || 0) : currentTiming[`${ch.key}_on`];
-    timing[`${ch.key}_off`] = offEl ? (parseInt(offEl.value) || 0) : currentTiming[`${ch.key}_off`];
-  });
-
-  const recipe = {
-    id: Date.now(),
-    klant, plaats,
-    width: w, length: l, thickness: t,
-    material: selectedMat, speed: s,
-    ...timing
+function slaOp() {
+  var klantnr = document.getElementById('f-klantnr').value.trim();
+  var klantnaam = document.getElementById('f-klantnaam').value.trim();
+  var operator = document.getElementById('f-versie').value.trim();
+  if(!klantnr && !klantnaam){toast('Vul klantnummer of naam in',true);return;}
+  if(!operator){toast('Vul naam operator in',true);document.getElementById('f-versie').focus();return;}
+  var recept = {
+    klantnr:klantnr,klantnaam:klantnaam,
+    prodtype:document.getElementById('f-prodtype').value,
+    prodoms:document.getElementById('f-prodoms').value.trim(),
+    versie:document.getElementById('f-versie').value||'',
+    materiaal:selectedMat,
+    breedte:document.getElementById('f-breedte').value,
+    lengte:document.getElementById('f-lengte').value,
+    dikte:document.getElementById('f-dikte').value,
+    koker:document.getElementById('f-koker').value||76,
+    roldia:document.getElementById('f-roldia').value||300,
+    seal:document.getElementById('f-seal').value,
+    snelheid:document.getElementById('f-snelheid').value,
+    zakmin:document.getElementById('f-zakmin').value,
+    zakrol:document.getElementById('f-zakrol').value,
+    static_ch:selectedStatic,
+    static_mat:document.getElementById('f-static-mat').value.trim(),
+    drukker:drukkerAan,
+    drukker_inst:document.getElementById('f-drukker').value.trim(),
+    temp_boven:document.getElementById('f-temp-boven').value,
+    temp_onder:document.getElementById('f-temp-onder').value,
+    notities:document.getElementById('f-notities').value.trim(),
+    offset1_werke:document.getElementById('f-offset1').value||'',
+    datum:new Date().toISOString().split('T')[0]
   };
-
-  const editKey = document.getElementById('s-add').dataset.editKey;
-
   toast('Opslaan...');
-  if (editKey) {
-    await updateRecipeInFirebase(editKey, recipe);
-    toast('Recept bijgewerkt!');
-    delete document.getElementById('s-add').dataset.editKey;
-    document.querySelector('#s-add .topbar-title').textContent = 'Nieuw Recept';
+  if(editKey){
+    fbPatch('/recepten',editKey,recept,function(){toast('Recept bijgewerkt!');resetForm();go('s-recepten');});
   } else {
-    await addRecipeToFirebase(recipe);
-    toast('Recept opgeslagen!');
+    fbPost('/recepten',recept,function(){toast('Recept opgeslagen!');resetForm();go('s-recepten');});
   }
-  resetForm();
-  go('s-recipes');
 }
 
 function resetForm() {
-  ['f-klant','f-plaats','f-w','f-l','f-t','f-s'].forEach(id => document.getElementById(id).value = '');
-  selectMat('LDPE');
-  currentTiming = null;
-  document.getElementById('results-box').classList.remove('show');
-  document.getElementById('blower-results').innerHTML = '';
-  document.querySelector('.content')?.scrollTo(0,0);
+  var ids=['f-klantnr','f-klantnaam','f-prodoms','f-versie','f-breedte','f-lengte','f-dikte','f-koker','f-roldia','f-seal','f-snelheid','f-zakmin','f-zakrol','f-static-mat','f-drukker','f-temp-boven','f-temp-onder','f-notities','f-offset1'];
+  for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el)el.value='';}
+  document.getElementById('f-prodtype').value='Zak';
+  selectMat('peld'); selectStatic('Off');
+  drukkerAan=false;
+  document.getElementById('drukker-btn').textContent='UIT';
+  document.getElementById('drukker-btn').className='toggle-btn toggle-uit';
+  document.getElementById('drukker-extra').style.display='none';
+  document.getElementById('calc-results').style.display='none';
+  document.getElementById('mat-info-temp').style.display='none';
+  document.getElementById('nieuw-title').textContent='Nieuw Recept';
+  editKey=null;
 }
 
-// ═══════════════════════════════════════════════════
-// TROUBLESHOOTING
-// ═══════════════════════════════════════════════════
-const PROBLEMEN = [
+function laadRecepten() {
+  var el = document.getElementById('recepten-lijst');
+  el.innerHTML = '<div class="empty-state">Laden...</div>';
+  fbLoad('/recepten',function(data){_recepten=data;renderReceptenTree(data,'');});
+}
+
+function filterRecepten() {
+  renderReceptenTree(_recepten, document.getElementById('zoek-input').value);
+}
+
+function renderReceptenTree(lijst, query) {
+  var el = document.getElementById('recepten-lijst');
+  if(!lijst.length){el.innerHTML='<div class="empty-state">Nog geen recepten.<br>Tik op + Nieuw om te beginnen.</div>';return;}
+  var q = query.toLowerCase().trim();
+  var gefilterd = q ? lijst.filter(function(r){
+    return (r.klantnr||'').toLowerCase().indexOf(q)>=0||
+           (r.klantnaam||'').toLowerCase().indexOf(q)>=0||
+           (r.materiaal||'').toLowerCase().indexOf(q)>=0||
+           (r.prodtype||'').toLowerCase().indexOf(q)>=0;
+  }) : lijst;
+  if(!gefilterd.length){el.innerHTML='<div class="empty-state">Geen resultaten voor "'+query+'"</div>';return;}
+  var groepen={};
+  for(var i=0;i<gefilterd.length;i++){
+    var r=gefilterd[i];
+    var k=(r.klantnr||'-')+(r.klantnaam?' - '+r.klantnaam:'');
+    if(!groepen[k]) groepen[k]=[];
+    groepen[k].push(r);
+  }
+  var keys=Object.keys(groepen).sort();
+  var html='';
+  for(var ki=0;ki<keys.length;ki++){
+    var klant=keys[ki],items='';
+    for(var ri=0;ri<groepen[klant].length;ri++){
+      var rec=groepen[klant][ri];
+      var mat=MATERIALEN[rec.materiaal];
+      items+='<div class="tree-item" onclick="openDetail(\''+rec._key+'\')">' +
+        '<div class="tree-item-inner">' +
+          '<div class="tree-connector"></div>' +
+          '<div class="tree-content">' +
+            '<div class="tree-name">'+(rec.prodtype||'')+(rec.breedte?' '+rec.breedte+'mm':'')+(rec.lengte?' x '+rec.lengte+'mm':'')+(rec.dikte?' / '+rec.dikte+'\u03bcm':'')+'</div>' +
+            '<div class="tree-meta">' +
+              '<span class="tag">'+(rec.versie||'')+'</span>' +
+              '<span class="tag">'+(rec.datum||'')+'</span>' +
+              (mat?'<span class="tag '+(mat.recycle?'tag-rec':'tag-mat')+'">'+mat.label+'</span>':'') +
+              (rec.snelheid?'<span class="tag tag-spd">'+rec.snelheid+' m/min</span>':'') +
+            '</div>' +
+          '</div>' +
+          '<button class="rc-del" onclick="event.stopPropagation();verwijderRecept(this,\''+rec._key+'\')">&#10005;</button>' +
+        '</div>' +
+      '</div>';
+    }
+    html+='<div class="tree-group">' +
+      '<div class="tree-header"><span>&#128193;</span><span class="tree-klant">'+klant+'</span><span class="tree-count">'+groepen[klant].length+' rec.</span></div>'+items+'</div>';
+  }
+  el.innerHTML=html;
+}
+
+function verwijderRecept(btn, key) {
+  window._deleteKey = key;
+  toonPinModal(function(){
+    var k = window._deleteKey;
+    fbDelete('/recepten', k, function(){
+      toast('Verwijderd');
+      window._deleteKey = null;
+      laadRecepten();
+    });
+  });
+}
+
+function toonPinModal(onSuccess) {
+  var overlay = document.getElementById('pin-overlay');
+  overlay.style.display = 'flex';
+  document.getElementById('pin-input').value = '';
+  document.getElementById('pin-err').style.display = 'none';
+  document.getElementById('pin-input').focus();
+  window._pinCallback = onSuccess;
+}
+
+function sluitPinModal() {
+  document.getElementById('pin-overlay').style.display = 'none';
+  window._pinCallback = null;
+}
+
+function bevestigPin() {
+  var pin = document.getElementById('pin-input').value.trim();
+  if(pin === '007') {
+    var cb = window._pinCallback;
+    sluitPinModal();
+    if(cb) cb();
+  } else {
+    document.getElementById('pin-err').style.display = 'block';
+    document.getElementById('pin-input').value = '';
+    document.getElementById('pin-input').focus();
+  }
+}
+
+function openDetail(key) {
+  fbLoad('/recepten',function(lijst){
+    var r=null;for(var i=0;i<lijst.length;i++){if(lijst[i]._key===key){r=lijst[i];break;}}
+    if(!r) return;
+    var mat=MATERIALEN[r.materiaal]||{};
+    document.getElementById('detail-title').textContent=(r.klantnr||'')+' - '+(r.prodtype||'');
+    function row(lbl,val){if(!val&&val!==0)return '';return '<div class="info-row"><div class="ir-lbl">'+lbl+'</div><div class="ir-val">'+val+'</div></div>';}
+    document.getElementById('detail-content').innerHTML=
+      '<div class="slabel">Klant & Product</div>' +
+      '<div class="info-block">'+row('Klantnummer',r.klantnr)+row('Klantnaam',r.klantnaam)+row('Producttype',r.prodtype)+row('Omschrijving',r.prodoms)+row('Operator',r.versie)+row('Datum',r.datum)+'</div>'+
+      '<div class="slabel">Materiaal & Afmetingen</div>' +
+      '<div class="info-block">'+row('Materiaal',mat.label||r.materiaal)+row('Breedte',r.breedte+' mm')+row('Lengte',r.lengte+' mm')+row('Dikte',r.dikte+' um')+'</div>'+
+      '<div class="slabel">Productie Parameters</div>' +
+      '<div class="info-block">'+row('Sealtijd',r.seal+' s')+row('Snelheid',r.snelheid+' m/min')+row('Zakken/min',r.zakmin)+row('Zakken/rol',r.zakrol)+row('Koker dia',r.koker+' mm')+row('Roldia wissel',r.roldia+' mm')+'</div>'+
+      '<div class="slabel">Machine Instellingen</div>' +
+      '<div class="info-block">'+row('Static charger',r.static_ch)+row('Static mat (mm)',r.static_mat)+row('Cycle drukker',r.drukker?'AAN - '+(r.drukker_inst||''):'UIT')+'</div>'+
+      '<div class="slabel">Seal Temperaturen</div>' +
+      '<div style="display:flex;gap:16px;margin-bottom:8px;">' +
+        '<div class="temp-card"><div class="temp-lbl">BOVEN</div><div style="font-size:34px;font-weight:700;color:#fcd34d;text-align:center;">'+(r.temp_boven||'-')+'</div><div class="temp-unit">C</div></div>' +
+        '<div style="font-size:20px;color:#9ca3af;align-self:center;">|</div>' +
+        '<div class="temp-card"><div class="temp-lbl">ONDER</div><div style="font-size:34px;font-weight:700;color:#fcd34d;text-align:center;">'+(r.temp_onder||'-')+'</div><div class="temp-unit">C</div></div>' +
+      '</div>'+
+      (r.notities?'<div class="slabel">Notities</div><div class="info-block"><div style="padding:12px 14px;font-size:13px;color:#9ca3af;line-height:1.6;">'+r.notities+'</div></div>':'')+
+      '<button class="btn btn-amber" style="margin-top:8px;" onclick="bewerkRecept(\''+key+'\')">Bewerken</button>';
+    go('s-detail');
+  });
+}
+
+function bewerkRecept(key) {
+  fbLoad('/recepten',function(lijst){
+    var r=null;for(var i=0;i<lijst.length;i++){if(lijst[i]._key===key){r=lijst[i];break;}}
+    if(!r) return;
+    var fields=['klantnr','klantnaam','prodoms','versie','breedte','lengte','dikte','koker','roldia','seal','snelheid','zakmin','zakrol','drukker_inst','temp_boven','temp_onder','notities','offset1_werke'];
+    var fnames=['f-klantnr','f-klantnaam','f-prodoms','f-versie','f-breedte','f-lengte','f-dikte','f-koker','f-roldia','f-seal','f-snelheid','f-zakmin','f-zakrol','f-drukker','f-temp-boven','f-temp-onder','f-notities','f-offset1'];
+    for(var i=0;i<fields.length;i++){var el=document.getElementById(fnames[i]);if(el)el.value=r[fields[i]]||'';}
+    document.getElementById('f-prodtype').value=r.prodtype||'Zak';
+    document.getElementById('f-static-mat').value=r.static_mat||'';
+    selectMat(r.materiaal||'peld');
+    selectStatic(r.static_ch||'Off');
+    if(r.drukker){drukkerAan=true;document.getElementById('drukker-btn').textContent='AAN';document.getElementById('drukker-btn').className='toggle-btn toggle-aan';document.getElementById('drukker-extra').style.display='block';}
+    editKey=key;
+    document.getElementById('nieuw-title').textContent='Recept Bewerken';
+    go('s-nieuw');
+  });
+}
+
+
+// ── PROBLEEMSTELLINGEN ────────────────────────────────────────────────────
+
+document.addEventListener('input', function(e){
+  if(e.target && e.target.id === 'f-offset1'){
+    var v = parseFloat(e.target.value);
+    var toon = document.getElementById('f-offset2-toon');
+    if(v > 0){
+      toon.style.display = 'block';
+      toon.textContent = 'Offset 2 (automatisch): ' + Math.round(v/2);
+    } else {
+      toon.style.display = 'none';
+    }
+  }
+});
+
+var OPERATORS = ['Dirk', 'Casper'];
+
+function toonNaamDropdown() {
+  var input = document.getElementById('f-versie');
+  var dd = document.getElementById('naam-dropdown');
+  var val = input.value.toLowerCase();
+  var gefilterd = val ? OPERATORS.filter(function(n){ return n.toLowerCase().indexOf(val) >= 0; }) : OPERATORS;
+  if(!gefilterd.length){ dd.style.display='none'; return; }
+  dd.innerHTML = gefilterd.map(function(n){
+    return '<div onclick="kiesOperator(\'' + n + '\')" style="padding:13px 14px;cursor:pointer;font-size:17px;border-bottom:1px solid #1a2540;color:#e5e7eb;" onmousedown="event.preventDefault()">' + n + '</div>';
+  }).join('');
+  dd.style.display = 'block';
+}
+
+function sluitNaamDropdown() {
+  document.getElementById('naam-dropdown').style.display = 'none';
+}
+
+function kiesOperator(naam) {
+  document.getElementById('f-versie').value = naam;
+  sluitNaamDropdown();
+}
+
+var PROBLEEMGROEPEN = [
   {
-    icon: '💨',
-    titel: 'Lucht in Zak',
-    oorzaken: [
-      'Te veel upper lucht',
-      'Te weinig lower lucht',
-      'Output 6 blaast lucht in zak',
-    ],
-    oplossingen: [
-      'Upper Blowers verlagen',
-      'Lower Blowers verhogen',
-      'Output 6 uitstellen',
-    ],
-    suggesties: [
-      { kanaal: 'Upper Blowers', aan: -20, uit: -20 },
-      { kanaal: 'Lower Blowers', aan: +10, uit: +10 },
-      { kanaal: 'Output 6',      aan: +15, uit: -20 },
-    ],
+    id:'wissel', icon:'&#128260;', kleur:'#60a5fa',
+    vraag:'Waarom wisselt hij niet goed?',
+    omschrijving:'De machine wisselt niet correct naar een nieuwe rol',
+    problemen:[
+      {titel:'Halve zak op de nieuwe rol',
+        oorzaken:[
+          'Offset 1 staat verkeerd ingesteld',
+          'Rolwissel timing klopt niet',
+          'Perforatie positie staat niet goed'
+        ],
+        oplossingen:[
+          'Offset opnieuw berekenen via de Calculator',
+          'Rolwissel cyclus controleren en bijstellen',
+          'Perforatie positie controleren en corrigeren'
+        ]},
+      {titel:'Wissel breekt of laat los',
+        oorzaken:[
+          'Folie heeft een slappe kant',
+          'Drukker laat te vroeg los aan het einde van de wissel',
+          'Roldiameter bij de wissel is te klein',
+          'Machinesnelheid is te hoog tijdens de wissel'
+        ],
+        oplossingen:[
+          'Static charger instellen op Einde van de rol',
+          'Roldiameter bij de wissel verhogen',
+          'Machinesnelheid verlagen tijdens de wissel',
+          'Hekje controleren en bijstellen'
+        ]},
+      {titel:'Rol bouwt niet strak op',
+        oorzaken:[
+          'Winder koppel staat te laag',
+          'Drukrol staat te laag afgesteld',
+          'Foliespanning is te laag'
+        ],
+        oplossingen:[
+          'Winder koppel verhogen',
+          'Drukrol opnieuw afstellen',
+          'Dancer spanning verhogen'
+        ]},
+      {titel:'Rol loopt scheef op de winder',
+        oorzaken:[
+          'Folie loopt niet gecentreerd',
+          'Winder spanning staat ongelijk'
+        ],
+        oplossingen:[
+          'Folie centreren voor de winder',
+          'Winder koppel controleren en aanpassen'
+        ]}
+    ]
   },
   {
-    icon: '🌀',
-    titel: 'Zak Krult Op',
-    oorzaken: [
-      'Sealtemperatuur te hoog',
-      'Onvoldoende koellucht',
-      'Foliespanning te hoog',
-    ],
-    oplossingen: [
-      'Lower Blowers verhogen',
-      'Output 6 koeling verhogen',
-      'Danserdruk verlagen',
-    ],
-    suggesties: [
-      { kanaal: 'Lower Blowers', aan: +20, uit: +20 },
-      { kanaal: 'Output 6',      aan: +15, uit: +15 },
-    ],
+    id:'seal', icon:'&#9632;', kleur:'#f59e0b',
+    vraag:'Waarom sealt hij niet goed?',
+    omschrijving:'De sealnaad is niet in orde',
+    problemen:[
+      {titel:'Seal breekt open na het sealen',
+        oorzaken:[
+          'Sealtemperatuur staat te laag',
+          'Sealtijd is te kort',
+          'Sealdruk staat te laag'
+        ],
+        oplossingen:[
+          'Temperatuur verhogen (controleer recept)',
+          'Sealtijd verlengen',
+          'Sealdruk controleren en verhogen'
+        ]},
+      {titel:'Seal verbrandt of PTFE tape is beschadigd',
+        oorzaken:[
+          'Sealtemperatuur staat te hoog',
+          'Sealtijd is te lang',
+          'PTFE tape is beschadigd of versleten'
+        ],
+        oplossingen:[
+          'Temperatuur verlagen',
+          'Sealtijd verkorten',
+          'PTFE tape vervangen'
+        ]},
+      {titel:'Seal is uitgerekt of vervormd',
+        oorzaken:[
+          'Folie staat te strak in de neutrale zone',
+          'Koeltijd is te kort',
+          'Niprollen trekken te vroeg aan'
+        ],
+        oplossingen:[
+          'Niproldruk verlagen',
+          'Koeltijd verhogen',
+          'Temperatuur iets verlagen'
+        ]}
+    ]
   },
   {
-    icon: '📐',
-    titel: 'Hoeken Vouwen Om',
-    oorzaken: [
-      'Te veel upper lucht',
-      'Te weinig lower lucht',
-      'Statische elektriciteit',
-    ],
-    oplossingen: [
-      'Upper Blowers verlagen',
-      'Lower Blowers verhogen',
-      'Antistatische balk installeren',
-    ],
-    suggesties: [
-      { kanaal: 'Upper Blowers', aan: -15, uit: -15 },
-      { kanaal: 'Lower Blowers', aan: +20, uit: +20 },
-      { kanaal: 'Output 6',      aan: +10, uit: +10 },
-    ],
+    id:'niprollen', icon:'&#8651;', kleur:'#a78bfa',
+    vraag:'Waarom kan de folie om de niprollen draaien?',
+    omschrijving:'Folie wikkelt zich om de niprollen of voeringsrollen',
+    problemen:[
+      {titel:'Folie wikkelt zich om de niprollen',
+        oorzaken:[
+          'Sealtemperatuur staat te hoog waardoor de folie te zacht is',
+          'Sealtijd is te lang',
+          'Folie wordt te warm bij de niprollen',
+          'Koeling werkt niet goed'
+        ],
+        oplossingen:[
+          'Sealtemperatuur verlagen',
+          'Sealtijd verkorten',
+          'Koeling controleren op werking',
+          'Folie afkoelen voor de niprollen'
+        ]},
+      {titel:'Folie slip op de niprollen',
+        oorzaken:[
+          'Niprollen zijn vuil of vettig',
+          'Nip druk staat te laag'
+        ],
+        oplossingen:[
+          'Niprollen reinigen',
+          'Nip druk verhogen'
+        ]},
+      {titel:'Zaklengte varieert',
+        oorzaken:[
+          'Encoder slip op de niprollen',
+          'Niprollen zijn vuil',
+          'Foliespanning wisselt'
+        ],
+        oplossingen:[
+          'Niprollen reinigen',
+          'Encoder controleren',
+          'Foliespanning controleren en stabiliseren'
+        ]}
+    ]
   },
   {
-    icon: '🫧',
-    titel: 'Zak Opent Niet',
-    oorzaken: [
-      'Onvoldoende luchtdruk',
-      'Stripper jets te zwak',
-      'Upper Pipe timing te kort',
-    ],
-    oplossingen: [
-      'Upper Pipe verhogen',
-      'Lower Blowers verhogen',
-      'Stripper jet druk verhogen',
-    ],
-    suggesties: [
-      { kanaal: 'Upper Pipe',    aan: -10, uit: +10 },
-      { kanaal: 'Lower Blowers', aan: +15, uit: +15 },
-    ],
+    id:'plooien', icon:'&#9699;', kleur:'#fb923c',
+    vraag:'Verwijderen van plooien',
+    omschrijving:'Folie vertoont plooien of kreukels',
+    problemen:[
+      {titel:'Folie loopt scheef en geeft plooien',
+        oorzaken:[
+          'Moederrol staat niet gecentreerd op de afroller',
+          'Invoerrollen staan niet loodrecht',
+          'Foliespanning is ongelijk over de breedte',
+          'Dancer staat verkeerd afgesteld'
+        ],
+        oplossingen:[
+          'Moederrol centreren op de afroller',
+          'Invoerrollen uitlijnen',
+          'Folie centreren via het hekje',
+          'Dancer opnieuw afstellen'
+        ]},
+      {titel:'Slappe kant in de folie geeft plooien',
+        oorzaken:[
+          'Foliedikte is ongelijk over de breedte',
+          'Winding op de moederrol is ongelijk',
+          'Bij recyclefolie: minder uniformiteit'
+        ],
+        oplossingen:[
+          'Static charger instellen op Altijd aan',
+          'Hekje strakker afstellen aan de slappe zijde',
+          'Machinesnelheid verlagen',
+          'Andere moederrol proberen'
+        ]},
+      {titel:'Plooien in de sealzone',
+        oorzaken:[
+          'Folie staat te strak voor de seal',
+          'Folie loopt scheef naar de seal'
+        ],
+        oplossingen:[
+          'Foliespanning voor de seal controleren',
+          'Geleidingsrollen voor de seal uitlijnen',
+          'Sealdruk controleren'
+        ]}
+    ]
   },
   {
-    icon: '⚡',
-    titel: 'Gemiste Seals',
-    oorzaken: [
-      'Sealtemperatuur te laag',
-      'Sealbalk vervuild',
-      'Folie niet vlak tijdens sealen',
-    ],
-    oplossingen: [
-      'Sealtemperatuur verhogen',
-      'Sealbalk reinigen',
-      'Danser-spanning aanpassen',
-    ],
-    suggesties: [],
+    id:'uitsparing', icon:'&#9633;', kleur:'#34d399',
+    vraag:'Het maken van een uitsparing',
+    omschrijving:'Instellen en produceren van zakken met uitsparing',
+    problemen:[
+      {titel:'Uitsparing staat niet op de juiste positie',
+        oorzaken:[
+          'Offset staat niet correct ingesteld',
+          'Perforatie positie klopt niet ten opzichte van de uitsparing',
+          'Folie loopt tijdens productie iets scheef'
+        ],
+        oplossingen:[
+          'Offset opnieuw instellen en controleren',
+          'Perforatie positie corrigeren',
+          'Folie centreren en hekje bijstellen'
+        ]},
+      {titel:'Uitsparing is niet gelijkmatig',
+        oorzaken:[
+          'Uitsparing mes staat scheef',
+          'Foliespanning wisselt',
+          'Machinesnelheid is te hoog'
+        ],
+        oplossingen:[
+          'Uitsparing mes controleren en uitlijnen',
+          'Foliespanning stabiliseren',
+          'Machinesnelheid iets verlagen'
+        ]},
+      {titel:'Folie scheurt bij de uitsparing',
+        oorzaken:[
+          'Uitsparing te diep gesneden',
+          'Folie kwaliteit is wisselend',
+          'Mes is bot of beschadigd'
+        ],
+        oplossingen:[
+          'Snijdiepte verminderen',
+          'Moederrol controleren op kwaliteit',
+          'Mes vervangen'
+        ]}
+    ]
   },
   {
-    icon: '📦',
-    titel: 'Slechte Stapeling',
-    oorzaken: [
-      'Luchtbalans onjuist',
-      'Output 6 timing onjuist',
-      'Start/stop-aanvoer onjuist',
-    ],
-    oplossingen: [
-      'Lower lucht verhogen',
-      'Output 6 timing aanpassen',
-      'Start- en stopfeed aanpassen',
-    ],
-    suggesties: [
-      { kanaal: 'Upper Blowers', aan: -10, uit: -10 },
-      { kanaal: 'Lower Blowers', aan: +15, uit: +15 },
-      { kanaal: 'Output 6',      aan: +20, uit: +20 },
-    ],
-  },
+    id:'static', icon:'&#9889;', kleur:'#facc15',
+    vraag:'Static charger instelling',
+    omschrijving:'Instelling van de static charger voor goede rolvorming',
+    problemen:[
+      {titel:'Folie plakt aan de rollen',
+        oorzaken:[
+          'Te veel statische lading op de folie',
+          'Luchtvochtigheid in de ruimte is te laag',
+          'Static charger staat te hoog ingesteld'
+        ],
+        oplossingen:[
+          'Static charger uitschakelen of verlagen',
+          'Ionisatie balk controleren op werking',
+          'Luchtvochtigheid in de ruimte controleren'
+        ]},
+      {titel:'Rol vormt niet goed door statische lading',
+        oorzaken:[
+          'PE of PP is slecht geleidend materiaal',
+          'Droge omgeving vergroot statische lading',
+          'Recyclefolie heeft onregelmatig oppervlak'
+        ],
+        oplossingen:[
+          'Einde van de rol: static instellen op Einde van de rol',
+          'Slappe folie: static instellen op Altijd aan',
+          'Static charger reinigen en controleren'
+        ]},
+      {titel:'Wissel mislukt door statische aantrekking',
+        oorzaken:[
+          'Folie trekt statisch aan de nieuwe rolkern',
+          'Static charger staat op verkeerde stand'
+        ],
+        oplossingen:[
+          'Static instellen op Einde van de rol',
+          'Timing van de static charger controleren'
+        ]}
+    ]
+  }
 ];
 
-function renderTrouble() {
-  document.getElementById('trouble-content').innerHTML = PROBLEMEN.map((p,i) => `
-    <div class="trouble-card">
-      <div class="tc-hdr" id="th-${i}" onclick="toggleTrouble(${i})">
-        <span class="tc-icon">${p.icon}</span>
-        <span class="tc-prob">${p.titel}</span>
-        <span class="tc-chev" id="tc-${i}">›</span>
-      </div>
-      <div class="tc-body" id="tb-${i}">
-        <div class="ts-group">
-          <div class="ts-glbl cause">▲ Mogelijke Oorzaken</div>
-          <ul class="ts-list cause">
-            ${p.oorzaken.map(o=>`<li>${o}</li>`).join('')}
-          </ul>
-        </div>
-        <div class="ts-group">
-          <div class="ts-glbl solution">✓ Oplossingen</div>
-          <ul class="ts-list solution">
-            ${p.oplossingen.map(o=>`<li>${o}</li>`).join('')}
-          </ul>
-        </div>
-        ${p.suggesties.length ? `
-        <div class="ts-group">
-          <div class="ts-glbl" style="color:#22d3ee;">⚙ Blower Suggesties</div>
-          <ul class="ts-list" style="margin-top:4px;">
-            ${p.suggesties.map(s => `
-              <li style="justify-content:space-between;">
-                <span>${s.kanaal}</span>
-                <span style="font-family:'Share Tech Mono',monospace;color:#22d3ee;font-size:13px;">
-                  AAN ${s.aan > 0 ? '+' : ''}${s.aan}° &nbsp; UIT ${s.uit > 0 ? '+' : ''}${s.uit}°
-                </span>
-              </li>`).join('')}
-          </ul>
-        </div>` : ''}
-      </div>
-    </div>
-  `).join('');
+function renderFlow() {
+  var el = document.getElementById('flow-content');
+  var html = '<div style="font-size:11px;color:#6b7280;margin-bottom:16px;line-height:1.7;">Kies een probleemstelling. Tik daarna op het probleem voor de oorzaak en oplossing.</div>';
+
+  for(var i=0;i<PROBLEEMGROEPEN.length;i++){
+    var g = PROBLEEMGROEPEN[i];
+    html += '<div class="flow-step" id="fs-'+i+'">' +
+      '<div class="flow-step-hdr" onclick="toggleFlowStep('+i+')">' +
+        '<div class="flow-step-num" style="background:'+g.kleur+';font-size:20px;">'+g.icon+'</div>' +
+        '<div class="flow-step-info">' +
+          '<div class="flow-step-naam">'+g.vraag+'</div>' +
+          '<div class="flow-step-desc">'+g.omschrijving+'</div>' +
+        '</div>' +
+        '<span class="flow-step-chev" id="fsc-'+i+'">&#8250;</span>' +
+      '</div>' +
+      '<div class="flow-body" id="fb-'+i+'">';
+
+    for(var p=0;p<g.problemen.length;p++){
+      var pr = g.problemen[p];
+      var pid = 'fp-'+i+'-'+p;
+      html += '<div class="flow-prob">' +
+        '<div class="flow-prob-titel" onclick="toggleFlowProb(\''+pid+'\')">' +
+          '<span>'+pr.titel+'</span><span style="color:#9ca3af;font-size:16px;">&#8250;</span>' +
+        '</div>' +
+        '<div class="flow-prob-body" id="'+pid+'">';
+
+      html += '<div class="flow-check-lbl" style="color:#facc15;">Oorzaak</div><ul class="flow-items">';
+      for(var oi=0;oi<pr.oorzaken.length;oi++)
+        html += '<li style="border-color:rgba(250,204,21,.2);"><span style="color:#facc15;">&#9656;</span>'+pr.oorzaken[oi]+'</li>';
+      html += '</ul>';
+
+      html += '<div class="flow-check-lbl" style="color:#34d399;margin-top:12px;">Oplossing</div><ul class="flow-items">';
+      for(var ci=0;ci<pr.oplossingen.length;ci++)
+        html += '<li style="border-color:rgba(52,211,153,.2);"><span style="color:#34d399;">&#10003;</span>'+pr.oplossingen[ci]+'</li>';
+      html += '</ul>';
+
+      html += '</div></div>';
+    }
+
+    html += '</div></div>';
+    if(i < PROBLEEMGROEPEN.length-1)
+      html += '<div style="text-align:center;color:#1a2540;font-size:16px;margin:4px 0;">&#9135;</div>';
+  }
+
+  el.innerHTML = html;
 }
 
-function toggleTrouble(i) {
-  const body = document.getElementById(`tb-${i}`);
-  const hdr  = document.getElementById(`th-${i}`);
-  const open = body.classList.contains('open');
+function toggleFlowStep(i) {
+  var body = document.getElementById('fb-'+i);
+  var chev = document.getElementById('fsc-'+i);
+  var open = body.classList.contains('open');
   body.classList.toggle('open', !open);
-  hdr.classList.toggle('open', !open);
+  chev.style.transform = open ? '' : 'rotate(90deg)';
+  chev.style.color = open ? '#6b7280' : '#f59e0b';
 }
 
-// ═══════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════
+function toggleFlowProb(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+
+var APP_VERSION = '2.0';
+
+function checkVersie() {
+  fetch('version.json?t=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(data.version && data.version !== APP_VERSION) {
+        // Nieuwe versie beschikbaar - hard reload
+        window.location.href = window.location.pathname + '?v=' + data.version;
+      }
+    })
+    .catch(function(){});
+}
+
+checkVersie();
 checkLogin();
-renderTrouble();
 </script>
 
+<!-- PIN MODAL -->
+
+<div id="pin-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;align-items:center;justify-content:center;padding:24px;">
+  <div style="background:#0f1520;border:1px solid #1a2540;border-top:2px solid #ef4444;border-radius:6px;padding:28px 24px;width:100%;max-width:300px;">
+    <div style="font-size:9px;color:#ef4444;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;">Beveiligd</div>
+    <div style="font-weight:700;font-size:18px;letter-spacing:1px;color:#e5e7eb;margin-bottom:4px;">Pincode vereist</div>
+    <div style="font-size:12px;color:#6b7280;margin-bottom:20px;">Voer de pincode in om te verwijderen</div>
+    <input id="pin-input" type="password" inputmode="numeric" maxlength="6"
+      placeholder="· · · · · ·"
+      onkeydown="if(event.key==='Enter')bevestigPin()"
+      style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:4px;color:#e5e7eb;font-family:'Courier New',Courier,monospace;font-size:28px;padding:14px;outline:none;text-align:center;letter-spacing:8px;margin-bottom:8px;">
+    <div id="pin-err" style="display:none;color:#ef4444;font-size:11px;letter-spacing:1px;text-align:center;margin-bottom:10px;">VERKEERDE PINCODE</div>
+    <button onclick="bevestigPin()" style="width:100%;background:#ef4444;color:#fff;border:none;border-radius:4px;font-family:'Courier New',Courier,monospace;font-weight:700;font-size:15px;letter-spacing:2px;padding:14px;cursor:pointer;margin-bottom:10px;">VERWIJDEREN</button>
+    <button onclick="sluitPinModal()" style="width:100%;background:transparent;color:#6b7280;border:1px solid #1a2540;border-radius:4px;font-family:'Courier New',Courier,monospace;font-size:13px;padding:12px;cursor:pointer;">Annuleer</button>
+  </div>
+</div>
 </body>
 </html>
