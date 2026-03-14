@@ -319,8 +319,16 @@ padding: 10px 14px;
 background: #0f1420;
 border: 1px solid #1a2235;
 border-left: 4px solid #f5a623;
-border-radius: 2px 2px 0 0;
+border-radius: 2px;
+cursor: pointer;
+transition: background .12s;
 }
+.tree-header.open { border-radius: 2px 2px 0 0; }
+.tree-header:active { background: #1a2540; }
+.tree-chevron { margin-left: auto; font-size: 18px; color: #4a6080; transition: transform .2s; flex-shrink: 0; }
+.tree-header.open .tree-chevron { transform: rotate(90deg); color: #f5a623; }
+.tree-items { display: none; }
+.tree-items.open { display: block; }
 .tree-icon { font-size: 16px; }
 .tree-klant { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 17px; letter-spacing: .1em; text-transform: uppercase; color: #f5a623; flex: 1; }
 .tree-count { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #4a6080; }
@@ -705,7 +713,15 @@ white-space: nowrap;
 /* ═══════════════════════════════════════════
 UTILITY
 ═══════════════════════════════════════════ */
-@media (max-width: 400px) {
+.naam-dropdown-item {
+padding: 13px 14px;
+cursor: pointer;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 14px;
+border-bottom: 1px solid #1a2235;
+color: #c8d8e8;
+}
+.naam-dropdown-item:active { background: #f5a623; color: #000; }
 .grid2 { grid-template-columns: 1fr; }
 .blower-cells { flex-wrap: wrap; }
 .bcell { min-width: 33%; }
@@ -857,6 +873,17 @@ UTILITY
       <input id="f-plaats" type="text" inputmode="text" placeholder="bv. Amsterdam">
     </div>
   </div>
+  <div class="field">
+    <label>Operator</label>
+    <div style="position:relative;">
+      <input id="f-operator" type="text" inputmode="text" placeholder="Kies of typ naam"
+        autocomplete="off"
+        onclick="toonOperatorDropdown()"
+        oninput="toonOperatorDropdown()"
+        onblur="setTimeout(sluitOperatorDropdown, 200)">
+      <div id="operator-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:#0f1420;border:1px solid #f5a623;border-top:none;border-radius:0 0 2px 2px;z-index:200;max-height:160px;overflow-y:auto;"></div>
+    </div>
+  </div>
 </div>
 
 <div class="form-card">
@@ -976,10 +1003,101 @@ UTILITY
   </div>
 </div>
 
+<!-- PIN MODAL -->
+
+<div id="pin-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;align-items:center;justify-content:center;padding:24px;">
+  <div style="background:#0f1420;border:1px solid #1a2235;border-top:2px solid #ef4444;border-radius:4px;padding:28px 24px;width:100%;max-width:300px;">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#ef4444;letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px;">Beveiligd</div>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;color:#c8d8e8;margin-bottom:20px;">PIN vereist om te verwijderen</div>
+    <input id="pin-input" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·"
+      onkeydown="if(event.key==='Enter')bevestigPin()"
+      style="width:100%;background:#070a0f;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:28px;padding:14px;outline:none;text-align:center;letter-spacing:8px;margin-bottom:8px;-webkit-appearance:none;">
+    <div id="pin-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">VERKEERDE PIN</div>
+    <button onclick="bevestigPin()" style="width:100%;background:#ef4444;color:#fff;border:none;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;letter-spacing:.15em;padding:14px;cursor:pointer;margin-bottom:10px;">BEVESTIGEN</button>
+    <button onclick="sluitPin()" style="width:100%;background:transparent;color:#4a6080;border:1px solid #1a2235;border-radius:2px;font-family:'Rajdhani',sans-serif;font-size:15px;padding:12px;cursor:pointer;">Annuleer</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-'use strict';
+// ═══════════════════════════════════════════════════
+// INSTELLINGEN
+// ═══════════════════════════════════════════════════
+const APP_VERSION = '2.0';
+const DELETE_PIN  = '007';
+const OPERATORS   = ['Dirk', 'Casper'];
+
+// ═══════════════════════════════════════════════════
+// VERSIE CHECK
+// ═══════════════════════════════════════════════════
+function checkVersie() {
+  fetch('version.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      if (data.version && data.version !== APP_VERSION)
+        window.location.href = window.location.pathname + '?v=' + data.version;
+    }).catch(() => {});
+}
+
+// ═══════════════════════════════════════════════════
+// INKLAPBARE GROEPEN
+// ═══════════════════════════════════════════════════
+function toggleGroep(gid) {
+  const hdr   = document.getElementById(gid);
+  const items = document.getElementById(gid + '-items');
+  if (!hdr || !items) return;
+  hdr.classList.toggle('open');
+  items.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════════
+// PIN MODAL
+// ═══════════════════════════════════════════════════
+function vraagPinVerwijder(firebaseKey) {
+  window._deleteKey = firebaseKey;
+  document.getElementById('pin-overlay').style.display = 'flex';
+  document.getElementById('pin-input').value = '';
+  document.getElementById('pin-err').style.display = 'none';
+  setTimeout(() => document.getElementById('pin-input').focus(), 100);
+}
+function sluitPin() {
+  document.getElementById('pin-overlay').style.display = 'none';
+  window._deleteKey = null;
+}
+function bevestigPin() {
+  const pin = document.getElementById('pin-input').value.trim();
+  if (pin === DELETE_PIN) {
+    sluitPin();
+    delRecipe(window._deleteKey);
+  } else {
+    document.getElementById('pin-err').style.display = 'block';
+    document.getElementById('pin-input').value = '';
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// OPERATOR DROPDOWN
+// ═══════════════════════════════════════════════════
+function toonOperatorDropdown() {
+  const input = document.getElementById('f-operator');
+  const dd    = document.getElementById('operator-dropdown');
+  const val   = input.value.toLowerCase();
+  const gefilterd = val ? OPERATORS.filter(n => n.toLowerCase().includes(val)) : OPERATORS;
+  if (!gefilterd.length) { dd.style.display = 'none'; return; }
+  dd.innerHTML = gefilterd.map(n =>
+    `<div class="naam-dropdown-item" onclick="kiesOperator('${n}')" onmousedown="event.preventDefault()">${n}</div>`
+  ).join('');
+  dd.style.display = 'block';
+}
+function sluitOperatorDropdown() {
+  const dd = document.getElementById('operator-dropdown');
+  if (dd) dd.style.display = 'none';
+}
+function kiesOperator(naam) {
+  document.getElementById('f-operator').value = naam;
+  sluitOperatorDropdown();
+}
 
 // ═══════════════════════════════════════════════════
 // BLOWER CHANNEL DEFINITIONS
@@ -1163,6 +1281,7 @@ function renderRecipeTree(list, query='') {
   const filtered = q ? list.filter(r =>
     (r.klant||'').toLowerCase().includes(q) ||
     (r.plaats||'').toLowerCase().includes(q) ||
+    (r.operator||'').toLowerCase().includes(q) ||
     `${r.width}`.includes(q) ||
     `${r.length}`.includes(q) ||
     (r.material||'').toLowerCase().includes(q)
@@ -1184,8 +1303,10 @@ function renderRecipeTree(list, query='') {
   // Sort groups
   const sortedKeys = Object.keys(groups).sort((a,b) => a.localeCompare(b));
 
-  el.innerHTML = sortedKeys.map(klant => {
+  el.innerHTML = sortedKeys.map((klant, gi) => {
     const recipes = groups[klant];
+    const gid = `tg-${gi}`;
+    const isOpen = q !== ''; // open bij zoeken, dicht bij laden
     const items = recipes.map(r => `
       <div class="tree-item" onclick="openDetailByKey('${r.firebaseKey}')">
         <div class="tree-item-inner">
@@ -1194,6 +1315,7 @@ function renderRecipeTree(list, query='') {
             <div class="tree-name">${r.width} × ${r.length} cm</div>
             <div class="tree-meta">
               ${r.plaats ? `<span class="tree-place">📍 ${r.plaats}</span>` : ''}
+              ${r.operator ? `<span class="tree-place" style="color:#a78bfa;">👤 ${r.operator}</span>` : ''}
               <span class="tag t-mat" style="font-size:9px;padding:2px 6px;">${r.material}</span>
               <span class="tag" style="font-size:9px;padding:2px 6px;">${r.thickness} mm</span>
               <span class="tag t-spd" style="font-size:9px;padding:2px 6px;">${r.speed} ZPM</span>
@@ -1201,7 +1323,7 @@ function renderRecipeTree(list, query='') {
           </div>
           <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0;">
             <button class="rc-edit" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();editRecipe('${r.firebaseKey}')">✎</button>
-            <button class="rc-del" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();delRecipe('${r.firebaseKey}')">✕</button>
+            <button class="rc-del" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();vraagPinVerwijder('${r.firebaseKey}')">✕</button>
           </div>
         </div>
       </div>
@@ -1209,12 +1331,15 @@ function renderRecipeTree(list, query='') {
 
     return `
       <div class="tree-group">
-        <div class="tree-header">
+        <div class="tree-header ${isOpen ? 'open' : ''}" id="${gid}" onclick="toggleGroep('${gid}')">
           <span class="tree-icon">📁</span>
           <span class="tree-klant">Klant ${klant}</span>
           <span class="tree-count">${recipes.length} zak${recipes.length !== 1 ? 'ken' : ''}</span>
+          <span class="tree-chevron">›</span>
         </div>
-        ${items}
+        <div class="tree-items ${isOpen ? 'open' : ''}" id="${gid}-items">
+          ${items}
+        </div>
       </div>
     `;
   }).join('');
@@ -1227,6 +1352,7 @@ async function editRecipe(firebaseKey) {
 
   document.getElementById('f-klant').value = r.klant || '';
   document.getElementById('f-plaats').value = r.plaats || '';
+  document.getElementById('f-operator').value = r.operator || '';
   document.getElementById('f-w').value = r.width;
   document.getElementById('f-l').value = r.length;
   document.getElementById('f-t').value = r.thickness;
@@ -1392,6 +1518,7 @@ function openDetailRender(r) {
     <div class="info-block">
       ${r.klant ? `<div class="info-row"><div class="ir-lbl">Klantnummer</div><div class="ir-val" style="color:#f5a623;">${r.klant}</div></div>` : ''}
       ${r.plaats ? `<div class="info-row"><div class="ir-lbl">Plaatsnaam</div><div class="ir-val" style="color:#22d3ee;">📍 ${r.plaats}</div></div>` : ''}
+      ${r.operator ? `<div class="info-row"><div class="ir-lbl">Operator</div><div class="ir-val" style="color:#a78bfa;">👤 ${r.operator}</div></div>` : ''}
       <div class="info-row"><div class="ir-lbl">Breedte</div><div class="ir-val">${r.width}<span class="u"> cm</span></div></div>
       <div class="info-row"><div class="ir-lbl">Lengte</div><div class="ir-val">${r.length}<span class="u"> cm</span></div></div>
       <div class="info-row"><div class="ir-lbl">Dikte</div><div class="ir-val">${r.thickness}<span class="u"> mm</span> — ${thicknessLabel(r.thickness)}</div></div>
@@ -1518,6 +1645,7 @@ async function saveRecipe() {
   const s = parseInt(document.getElementById('f-s').value);
   const klant = document.getElementById('f-klant').value.trim();
   const plaats = document.getElementById('f-plaats').value.trim();
+  const operator = document.getElementById('f-operator').value.trim();
 
   if (!currentTiming) return;
 
@@ -1532,7 +1660,7 @@ async function saveRecipe() {
 
   const recipe = {
     id: Date.now(),
-    klant, plaats,
+    klant, plaats, operator,
     width: w, length: l, thickness: t,
     material: selectedMat, speed: s,
     ...timing
@@ -1555,7 +1683,7 @@ async function saveRecipe() {
 }
 
 function resetForm() {
-  ['f-klant','f-plaats','f-w','f-l','f-t','f-s'].forEach(id => document.getElementById(id).value = '');
+  ['f-klant','f-plaats','f-operator','f-w','f-l','f-t','f-s'].forEach(id => document.getElementById(id).value = '');
   selectMat('LDPE');
   currentTiming = null;
   document.getElementById('results-box').classList.remove('show');
@@ -1727,6 +1855,7 @@ function toggleTrouble(i) {
 // ═══════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════
+checkVersie();
 checkLogin();
 renderTrouble();
 </script>
