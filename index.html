@@ -735,7 +735,6 @@ color: #c8d8e8;
 
 <div class="screen active" id="s-login">
   <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;padding:32px 24px;background:#070a0f;position:relative;z-index:1;">
-    <!-- corner marks -->
     <div style="position:absolute;top:20px;left:20px;width:24px;height:24px;border-top:2px solid #f5a623;border-left:2px solid #f5a623;"></div>
     <div style="position:absolute;top:20px;right:20px;width:24px;height:24px;border-top:2px solid #f5a623;border-right:2px solid #f5a623;"></div>
     <div style="position:absolute;bottom:20px;left:20px;width:24px;height:24px;border-bottom:2px solid #f5a623;border-left:2px solid #f5a623;"></div>
@@ -743,21 +742,43 @@ color: #c8d8e8;
 
 ```
 <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.3em;margin-bottom:24px;text-transform:uppercase;">Industrial Control System</div>
-
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
-
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
-<div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:40px;">SETUP APP</div>
-
+<div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
 <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v2.0</div>
 
 <div style="width:100%;max-width:300px;">
-  <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;">Toegangscode</div>
-  <input id="login-pw" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"
-    style="width:100%;background:#0a0e16;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:22px;padding:16px;outline:none;margin-bottom:10px;-webkit-appearance:none;text-align:center;letter-spacing:.3em;transition:border-color .15s;"
-    onfocus="this.style.borderColor='#22d3ee'" onblur="this.style.borderColor='#1a2235'">
-  <div id="login-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">TOEGANG GEWEIGERD</div>
-  <button onclick="doLogin()" style="width:100%;background:linear-gradient(135deg,#f5a623,#ff6b00);color:#000;border:none;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:.2em;text-transform:uppercase;padding:16px;cursor:pointer;">Inloggen</button>
+
+  <!-- STAP 1: Naam kiezen -->
+  <div id="login-stap1">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;">Wie ben jij?</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <button onclick="kiesOperatorLogin('Dirk')"
+        style="background:#0a0e16;border:1px solid #1a2235;border-left:4px solid #f5a623;border-radius:2px;color:#c8d8e8;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;letter-spacing:.1em;padding:18px 20px;cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:space-between;">
+        <span>👤 Dirk</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#f5a623;letter-spacing:.15em;">ADMIN</span>
+      </button>
+      <button onclick="kiesOperatorLogin('Casper')"
+        style="background:#0a0e16;border:1px solid #1a2235;border-left:4px solid #22d3ee;border-radius:2px;color:#c8d8e8;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;letter-spacing:.1em;padding:18px 20px;cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:space-between;">
+        <span>👤 Casper</span>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#22d3ee;letter-spacing:.15em;">OPERATOR</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- STAP 2: Pincode -->
+  <div id="login-stap2" style="display:none;">
+    <div id="login-naam-toon" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#f5a623;letter-spacing:.1em;text-align:center;margin-bottom:16px;"></div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;">Pincode</div>
+    <input id="login-pin" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·"
+      onkeydown="if(event.key==='Enter')doLogin()"
+      style="width:100%;background:#0a0e16;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:26px;padding:16px;outline:none;margin-bottom:10px;-webkit-appearance:none;text-align:center;letter-spacing:.4em;transition:border-color .15s;"
+      onfocus="this.style.borderColor='#22d3ee'" onblur="this.style.borderColor='#1a2235'">
+    <div id="login-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">VERKEERDE PINCODE</div>
+    <button onclick="doLogin()" style="width:100%;background:linear-gradient(135deg,#f5a623,#ff6b00);color:#000;border:none;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:.2em;text-transform:uppercase;padding:16px;cursor:pointer;margin-bottom:10px;">Inloggen</button>
+    <button onclick="terug()" style="width:100%;background:transparent;border:1px solid #1a2235;border-radius:2px;color:#4a6080;font-family:'Rajdhani',sans-serif;font-size:15px;padding:12px;cursor:pointer;">‹ Terug</button>
+  </div>
+
 </div>
 ```
 
@@ -783,6 +804,7 @@ color: #c8d8e8;
     </div>
     <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v2.0</div>
   </div>
+  <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
 
 <!-- Schermvullende knoppen -->
@@ -877,12 +899,20 @@ color: #c8d8e8;
   <div class="grid2">
     <div class="field">
       <label>Klantnummer</label>
-      <input id="f-klant" type="text" inputmode="text" placeholder="bv. 1001">
+      <input id="f-klant" type="text" inputmode="text" placeholder="bv. 0042"
+        autocomplete="off"
+        oninput="toonKlantDropdown()"
+        onblur="setTimeout(sluitKlantDropdown,200)">
+      <div id="klant-dropdown" style="display:none;position:absolute;background:#0f1420;border:1px solid #f5a623;border-top:none;border-radius:0 0 2px 2px;z-index:200;width:calc(100% - 28px);max-height:180px;overflow-y:auto;"></div>
     </div>
     <div class="field">
-      <label>Plaatsnaam</label>
-      <input id="f-plaats" type="text" inputmode="text" placeholder="bv. Amsterdam">
+      <label>Klantnaam</label>
+      <input id="f-klantnaam" type="text" inputmode="text" placeholder="bv. Bakkerij De Vries">
     </div>
+  </div>
+  <div class="field">
+    <label>Plaatsnaam</label>
+    <input id="f-plaats" type="text" inputmode="text" placeholder="bv. Amsterdam">
   </div>
   <div class="field">
     <label>Operator</label>
@@ -1036,8 +1066,14 @@ color: #c8d8e8;
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
 const APP_VERSION = '2.0';
-const DELETE_PIN  = '007';
-const OPERATORS   = ['Dirk', 'Casper'];
+const OPERATORS_CONFIG = [
+  { naam: 'Dirk',   pin: '007', rol: 'admin' },
+  { naam: 'Casper', pin: '100', rol: 'operator' },
+];
+const OPERATORS = OPERATORS_CONFIG.map(o => o.naam);
+
+let huidigGebruiker = null; // { naam, rol }
+let _loginNaam = null;
 
 // ═══════════════════════════════════════════════════
 // VERSIE CHECK
@@ -1047,12 +1083,71 @@ function checkVersie() {
     .then(r => r.json())
     .then(data => {
       if (data.version) {
-        const el = document.getElementById('home-versie');
-        if (el) el.textContent = 'v' + data.version;
+        ['login-versie','home-versie'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = 'v' + data.version;
+        });
         if (data.version !== APP_VERSION)
           window.location.href = window.location.pathname + '?v=' + data.version;
       }
     }).catch(() => {});
+}
+
+// ═══════════════════════════════════════════════════
+// LOGIN
+// ═══════════════════════════════════════════════════
+function kiesOperatorLogin(naam) {
+  _loginNaam = naam;
+  document.getElementById('login-stap1').style.display = 'none';
+  document.getElementById('login-stap2').style.display = 'block';
+  document.getElementById('login-naam-toon').textContent = '👤 ' + naam;
+  document.getElementById('login-pin').value = '';
+  document.getElementById('login-err').style.display = 'none';
+  setTimeout(() => document.getElementById('login-pin').focus(), 100);
+}
+
+function terug() {
+  _loginNaam = null;
+  document.getElementById('login-stap2').style.display = 'none';
+  document.getElementById('login-stap1').style.display = 'block';
+  document.getElementById('login-err').style.display = 'none';
+}
+
+function doLogin() {
+  const pin = document.getElementById('login-pin').value.trim();
+  const config = OPERATORS_CONFIG.find(o => o.naam === _loginNaam);
+  if (config && pin === config.pin) {
+    huidigGebruiker = { naam: config.naam, rol: config.rol };
+    sessionStorage.setItem('hs_user', JSON.stringify(huidigGebruiker));
+    document.getElementById('login-err').style.display = 'none';
+    updateHomeGebruiker();
+    go('s-home');
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+    document.getElementById('login-pin').value = '';
+  }
+}
+
+function checkLogin() {
+  const stored = sessionStorage.getItem('hs_user');
+  if (stored) {
+    huidigGebruiker = JSON.parse(stored);
+    updateHomeGebruiker();
+    go('s-home');
+  }
+}
+
+function updateHomeGebruiker() {
+  const el = document.getElementById('home-gebruiker');
+  if (!el || !huidigGebruiker) return;
+  const kleur = huidigGebruiker.rol === 'admin' ? '#f5a623' : '#22d3ee';
+  el.innerHTML = `Ingelogd: <span style="color:${kleur};font-weight:700;">${huidigGebruiker.naam}</span> <span style="color:#4a6080;font-size:9px;">-- ${huidigGebruiker.rol.toUpperCase()}</span>`;
+}
+
+function magBewerken(recept) {
+  if (!huidigGebruiker) return false;
+  if (huidigGebruiker.rol === 'admin') return true;
+  return (recept.operator || '') === huidigGebruiker.naam;
 }
 
 // ═══════════════════════════════════════════════════
@@ -1082,7 +1177,8 @@ function sluitPin() {
 }
 function bevestigPin() {
   const pin = document.getElementById('pin-input').value.trim();
-  if (pin === DELETE_PIN) {
+  const config = OPERATORS_CONFIG.find(o => o.naam === huidigGebruiker?.naam);
+  if (config && pin === config.pin) {
     sluitPin();
     delRecipe(window._deleteKey);
   } else {
@@ -1112,6 +1208,44 @@ function sluitOperatorDropdown() {
 function kiesOperator(naam) {
   document.getElementById('f-operator').value = naam;
   sluitOperatorDropdown();
+}
+
+// ═══════════════════════════════════════════════════
+// KLANT AUTOCOMPLETE
+// ═══════════════════════════════════════════════════
+function toonKlantDropdown() {
+  const input = document.getElementById('f-klant');
+  const dd    = document.getElementById('klant-dropdown');
+  const val   = input.value.toLowerCase().trim();
+  if (!val || !_allRecipes.length) { dd.style.display = 'none'; return; }
+
+  // Unieke klanten uit bestaande recepten
+  const klanten = {};
+  _allRecipes.forEach(r => {
+    if (r.klant) klanten[r.klant] = r.klantnaam || '';
+  });
+
+  const gefilterd = Object.entries(klanten)
+    .filter(([nr, nm]) => nr.toLowerCase().includes(val) || (nm||'').toLowerCase().includes(val))
+    .sort(([a],[b]) => a.localeCompare(b, undefined, {numeric:true}));
+
+  if (!gefilterd.length) { dd.style.display = 'none'; return; }
+
+  dd.innerHTML = gefilterd.map(([nr, nm]) =>
+    `<div class="naam-dropdown-item" onclick="kiesKlant('${nr}','${nm}')" onmousedown="event.preventDefault()">
+      <span style="color:#f5a623;font-weight:700;">${nr}</span>${nm ? ` -- ${nm}` : ''}
+    </div>`
+  ).join('');
+  dd.style.display = 'block';
+}
+function sluitKlantDropdown() {
+  const dd = document.getElementById('klant-dropdown');
+  if (dd) dd.style.display = 'none';
+}
+function kiesKlant(nr, naam) {
+  document.getElementById('f-klant').value = nr;
+  if (naam) document.getElementById('f-klantnaam').value = naam;
+  sluitKlantDropdown();
 }
 
 // ═══════════════════════════════════════════════════
@@ -1227,15 +1361,14 @@ function doLogin() {
 // FIREBASE STORAGE
 // ═══════════════════════════════════════════════════
 async function loadRecipes() {
-  try {
-    const res = await fetch(`${FIREBASE_URL}/recepten.json`);
-    const data = await res.json();
-    if (!data) return [];
-    return Object.entries(data).map(([key, val]) => ({...val, firebaseKey: key}));
-  } catch(e) {
-    console.error('Firebase load error:', e);
-    return [];
-  }
+  return [
+    { firebaseKey:'t1', klant:'0001', klantnaam:'Bakkerij De Vries', plaats:'Amsterdam', operator:'Dirk', width:34.7, length:44, thickness:0.028, material:'LDPE', speed:220,
+      lower_pipe_on:30,lower_pipe_off:210, lower_on:60,lower_off:280, upper_pipe_on:20,upper_pipe_off:190, upper_on:120,upper_off:320, out6_on:80,out6_off:300, out7_on:10,out7_off:10, out8_on:10,out8_off:10 },
+    { firebaseKey:'t2', klant:'0001', klantnaam:'Bakkerij De Vries', plaats:'Rotterdam', operator:'Casper', width:28, length:38, thickness:0.018, material:'HDPE', speed:240,
+      lower_pipe_on:27,lower_pipe_off:220, lower_on:50,lower_off:270, upper_pipe_on:30,upper_pipe_off:200, upper_on:90,upper_off:300, out6_on:60,out6_off:250, out7_on:10,out7_off:10, out8_on:10,out8_off:10 },
+    { firebaseKey:'t3', klant:'0042', klantnaam:'Plastiek BV', plaats:'Utrecht', operator:'Dirk', width:45, length:60, thickness:0.035, material:'Recyclaat', speed:180,
+      lower_pipe_on:27,lower_pipe_off:220, lower_on:50,lower_off:270, upper_pipe_on:30,upper_pipe_off:200, upper_on:90,upper_off:300, out6_on:135,out6_off:358, out7_on:10,out7_off:10, out8_on:10,out8_off:10 },
+  ];
 }
 
 async function saveAllRecipes(list) {
@@ -1315,14 +1448,18 @@ function renderRecipeTree(list, query='') {
     groups[k].push(r);
   });
 
-  // Sort groups
-  const sortedKeys = Object.keys(groups).sort((a,b) => a.localeCompare(b));
+  // Sort recipes within group by klantnummer (leading zeros aware)
+  const sortedKeys = Object.keys(groups).sort((a,b) => a.localeCompare(b, undefined, {numeric:true}));
 
   el.innerHTML = sortedKeys.map((klant, gi) => {
     const recipes = groups[klant];
     const gid = `tg-${gi}`;
-    const isOpen = q !== ''; // open bij zoeken, dicht bij laden
-    const items = recipes.map(r => `
+    const isOpen = q !== '';
+    const klantnaam = recipes[0]?.klantnaam || '';
+
+    const items = recipes.map(r => {
+      const kanBewerken = magBewerken(r);
+      return `
       <div class="tree-item" onclick="openDetailByKey('${r.firebaseKey}')">
         <div class="tree-item-inner">
           <div class="tree-connector"></div>
@@ -1337,26 +1474,28 @@ function renderRecipeTree(list, query='') {
             </div>
           </div>
           <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0;">
-            <button class="rc-edit" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();editRecipe('${r.firebaseKey}')">✎</button>
-            <button class="rc-del" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();vraagPinVerwijder('${r.firebaseKey}')">✕</button>
+            ${kanBewerken ? `<button class="rc-edit" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();editRecipe('${r.firebaseKey}')">✎</button>` : ''}
+            ${kanBewerken ? `<button class="rc-del" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();vraagPinVerwijder('${r.firebaseKey}')">🗑</button>` : ''}
           </div>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
 
     return `
       <div class="tree-group">
         <div class="tree-header ${isOpen ? 'open' : ''}" id="${gid}" onclick="toggleGroep('${gid}')">
           <span class="tree-icon">📁</span>
-          <span class="tree-klant">Klant ${klant}</span>
+          <div style="flex:1;">
+            <span class="tree-klant">${klant.padStart(4,'0')}</span>
+            ${klantnaam ? `<span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;margin-left:8px;">${klantnaam}</span>` : ''}
+          </div>
           <span class="tree-count">${recipes.length} zak${recipes.length !== 1 ? 'ken' : ''}</span>
           <span class="tree-chevron">›</span>
         </div>
         <div class="tree-items ${isOpen ? 'open' : ''}" id="${gid}-items">
           ${items}
         </div>
-      </div>
-    `;
+      </div>`;
   }).join('');
 }
 
@@ -1366,6 +1505,7 @@ async function editRecipe(firebaseKey) {
   if (!r) return;
 
   document.getElementById('f-klant').value = r.klant || '';
+  document.getElementById('f-klantnaam').value = r.klantnaam || '';
   document.getElementById('f-plaats').value = r.plaats || '';
   document.getElementById('f-operator').value = r.operator || '';
   document.getElementById('f-w').value = r.width;
@@ -1658,13 +1798,13 @@ async function saveRecipe() {
   const l = parseFloat(document.getElementById('f-l').value);
   const t = parseFloat(document.getElementById('f-t').value);
   const s = parseInt(document.getElementById('f-s').value);
-  const klant = document.getElementById('f-klant').value.trim();
-  const plaats = document.getElementById('f-plaats').value.trim();
-  const operator = document.getElementById('f-operator').value.trim();
+  const klant    = document.getElementById('f-klant').value.trim();
+  const klantnaam = document.getElementById('f-klantnaam').value.trim();
+  const plaats   = document.getElementById('f-plaats').value.trim();
+  const operator = huidigGebruiker ? huidigGebruiker.naam : (document.getElementById('f-operator').value.trim());
 
   if (!currentTiming) return;
 
-  // Read values from editable inputs (operator may have changed them)
   const timing = {};
   CHANNELS.forEach(ch => {
     const onEl  = document.getElementById(`bi-${ch.key}-on`);
@@ -1675,7 +1815,7 @@ async function saveRecipe() {
 
   const recipe = {
     id: Date.now(),
-    klant, plaats, operator,
+    klant, klantnaam, plaats, operator,
     width: w, length: l, thickness: t,
     material: selectedMat, speed: s,
     ...timing
@@ -1698,7 +1838,7 @@ async function saveRecipe() {
 }
 
 function resetForm() {
-  ['f-klant','f-plaats','f-operator','f-w','f-l','f-t','f-s'].forEach(id => document.getElementById(id).value = '');
+  ['f-klant','f-klantnaam','f-plaats','f-operator','f-w','f-l','f-t','f-s'].forEach(id => document.getElementById(id).value = '');
   selectMat('LDPE');
   currentTiming = null;
   document.getElementById('results-box').classList.remove('show');
@@ -1873,7 +2013,6 @@ function toggleTrouble(i) {
 checkVersie();
 checkLogin();
 renderTrouble();
-// Versienummer op login én home
 ['login-versie','home-versie'].forEach(id => {
   const el = document.getElementById(id);
   if (el) el.textContent = 'v' + APP_VERSION;
