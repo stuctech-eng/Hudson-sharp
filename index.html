@@ -1361,14 +1361,15 @@ function doLogin() {
 // FIREBASE STORAGE
 // ═══════════════════════════════════════════════════
 async function loadRecipes() {
-  return [
-    { firebaseKey:'t1', klant:'0001', klantnaam:'Bakkerij De Vries', plaats:'Amsterdam', operator:'Dirk', width:34.7, length:44, thickness:0.028, material:'LDPE', speed:220,
-      lower_pipe_on:30,lower_pipe_off:210, lower_on:60,lower_off:280, upper_pipe_on:20,upper_pipe_off:190, upper_on:120,upper_off:320, out6_on:80,out6_off:300, out7_on:10,out7_off:10, out8_on:10,out8_off:10 },
-    { firebaseKey:'t2', klant:'0001', klantnaam:'Bakkerij De Vries', plaats:'Rotterdam', operator:'Casper', width:28, length:38, thickness:0.018, material:'HDPE', speed:240,
-      lower_pipe_on:27,lower_pipe_off:220, lower_on:50,lower_off:270, upper_pipe_on:30,upper_pipe_off:200, upper_on:90,upper_off:300, out6_on:60,out6_off:250, out7_on:10,out7_off:10, out8_on:10,out8_off:10 },
-    { firebaseKey:'t3', klant:'0042', klantnaam:'Plastiek BV', plaats:'Utrecht', operator:'Dirk', width:45, length:60, thickness:0.035, material:'Recyclaat', speed:180,
-      lower_pipe_on:27,lower_pipe_off:220, lower_on:50,lower_off:270, upper_pipe_on:30,upper_pipe_off:200, upper_on:90,upper_off:300, out6_on:135,out6_off:358, out7_on:10,out7_off:10, out8_on:10,out8_off:10 },
-  ];
+  try {
+    const res = await fetch(`${FIREBASE_URL}/recepten.json`);
+    const data = await res.json();
+    if (!data) return [];
+    return Object.entries(data).map(([key, val]) => ({...val, firebaseKey: key}));
+  } catch(e) {
+    console.error('Firebase load error:', e);
+    return [];
+  }
 }
 
 async function saveAllRecipes(list) {
