@@ -39,8 +39,8 @@ RESET & BASE
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 html { height: 100%; }
 body {
-background: #070a0f;
-color: #c8d8e8;
+background: #070a10;
+color: #e5e7eb;
 font-family: ‘Exo 2’, sans-serif;
 min-height: 100%;
 overscroll-behavior: none;
@@ -81,8 +81,8 @@ to   { opacity: 1; transform: translateY(0); }
 TOP BAR -- HMI style
 ═══════════════════════════════════════════ */
 .topbar {
-background: #0a0e16;
-border-bottom: 1px solid #1a2235;
+background: #0f1520;
+border-bottom: 2px solid #f59e0b;
 height: 56px;
 display: flex;
 align-items: center;
@@ -98,14 +98,14 @@ content: ‘’;
 position: absolute;
 bottom: 0; left: 0; right: 0;
 height: 2px;
-background: linear-gradient(90deg, #f5a623, #ff6b00 40%, transparent);
+display:none;
 }
 
 .back-btn {
 background: none;
-border: 1px solid #1a2235;
-border-radius: 3px;
-color: #f5a623;
+border: 1px solid #1a2540;
+border-radius: 4px;
+color: #f59e0b;
 font-size: 22px;
 cursor: pointer;
 padding: 4px 10px;
@@ -113,7 +113,7 @@ line-height: 1;
 display: flex;
 align-items: center;
 }
-.back-btn:active { background: #1a2235; }
+.back-btn:active { background: #1a2540; }
 
 .topbar-title {
 font-family: ‘Rajdhani’, sans-serif;
@@ -121,12 +121,12 @@ font-weight: 700;
 font-size: 20px;
 letter-spacing: .15em;
 text-transform: uppercase;
-color: #c8d8e8;
+color: #e5e7eb;
 flex: 1;
 }
 
 .topbar-btn {
-background: #f5a623;
+background: #f59e0b;
 color: #000;
 border: none;
 font-family: ‘Rajdhani’, sans-serif;
@@ -135,7 +135,7 @@ font-size: 15px;
 letter-spacing: .1em;
 text-transform: uppercase;
 padding: 9px 16px;
-border-radius: 2px;
+border-radius: 4px;
 cursor: pointer;
 }
 .topbar-btn:active { opacity: .8; }
@@ -309,60 +309,60 @@ line-height: 1.1;
 /* ═══════════════════════════════════════════
 TREE STRUCTURE
 ═══════════════════════════════════════════ */
-.tree-group { margin-bottom: 14px; }
+.tree-group { margin-bottom: 8px; }
 
 .tree-header {
 display: flex;
 align-items: center;
 gap: 8px;
-padding: 10px 14px;
-background: #0f1420;
-border: 1px solid #1a2235;
-border-left: 4px solid #f5a623;
-border-radius: 2px;
+padding: 14px 16px;
+background: #0f1520;
+border: 1px solid #1a2540;
+border-left: 5px solid #f59e0b;
+border-radius: 4px;
 cursor: pointer;
 transition: background .12s;
 }
-.tree-header.open { border-radius: 2px 2px 0 0; }
+.tree-header.open { border-radius: 4px 4px 0 0; background: #141d2e; }
 .tree-header:active { background: #1a2540; }
-.tree-chevron { margin-left: auto; font-size: 18px; color: #4a6080; transition: transform .2s; flex-shrink: 0; }
-.tree-header.open .tree-chevron { transform: rotate(90deg); color: #f5a623; }
+.tree-chevron { margin-left: auto; font-size: 20px; color: #6b7280; transition: transform .2s; flex-shrink: 0; }
+.tree-header.open .tree-chevron { transform: rotate(90deg); color: #f59e0b; }
 .tree-items { display: none; }
 .tree-items.open { display: block; }
-.tree-icon { font-size: 16px; }
-.tree-klant { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 17px; letter-spacing: .1em; text-transform: uppercase; color: #f5a623; flex: 1; }
-.tree-count { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #4a6080; }
+.tree-icon { font-size: 18px; }
+.tree-klant { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 20px; letter-spacing: .1em; text-transform: uppercase; color: #f59e0b; }
+.tree-count { font-family: ‘Share Tech Mono’, monospace; font-size: 11px; color: #6b7280; margin-right: 8px; }
 
 .tree-item {
-background: #0a0e16;
-border: 1px solid #1a2235;
+background: #0f1520;
+border: 1px solid #1a2540;
 border-top: none;
 cursor: pointer;
 transition: background .12s;
 }
-.tree-item:last-child { border-radius: 0 0 2px 2px; }
-.tree-item:active { background: #0f1420; }
+.tree-item:last-child { border-radius: 0 0 4px 4px; }
+.tree-item:active { background: #141d2e; }
 
 .tree-item-inner {
 display: flex;
 align-items: center;
 gap: 10px;
-padding: 10px 12px;
+padding: 12px 14px;
 }
 
 .tree-connector {
 width: 16px;
 height: 24px;
-border-left: 1px solid #1a2235;
-border-bottom: 1px solid #1a2235;
+border-left: 1px solid #1a2540;
+border-bottom: 1px solid #1a2540;
 flex-shrink: 0;
 margin-left: 8px;
 border-radius: 0 0 0 4px;
 }
 
 .tree-content { flex: 1; min-width: 0; }
-.tree-name { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 18px; letter-spacing: .08em; color: #c8d8e8; }
-.tree-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; align-items: center; }
+.tree-name { font-family: ‘Rajdhani’, sans-serif; font-weight: 700; font-size: 20px; letter-spacing: .05em; color: #e5e7eb; }
+.tree-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; align-items: center; }
 .tree-place { font-family: ‘Share Tech Mono’, monospace; font-size: 10px; color: #22d3ee; }
 
 .rc-edit {
@@ -745,7 +745,7 @@ color: #c8d8e8;
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
-<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v2.5</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v2.8</div>
 
 <div style="width:100%;max-width:300px;">
 
@@ -805,7 +805,7 @@ color: #c8d8e8;
     <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#22c55e;letter-spacing:.15em;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);padding:4px 10px;border-radius:2px;">
       <div class="pulse"></div>SYSTEEM GEREED
     </div>
-    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v2.5</div>
+    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v2.8</div>
   </div>
   <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
@@ -1049,6 +1049,18 @@ color: #c8d8e8;
 
 <!-- PIN MODAL -->
 
+<!-- PROBLEEM ADVIES POPUP -->
+
+<div id="probleem-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;align-items:flex-end;justify-content:center;padding:0;">
+  <div style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #f59e0b;border-radius:12px 12px 0 0;padding:24px 20px 40px;width:100%;max-width:500px;max-height:80vh;overflow-y:auto;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <div id="probleem-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;letter-spacing:.1em;text-transform:uppercase;color:#f59e0b;"></div>
+      <button onclick="sluitProbleemAdvies()" style="background:none;border:1px solid #1a2540;border-radius:4px;color:#9ca3af;font-size:20px;padding:4px 10px;cursor:pointer;">✕</button>
+    </div>
+    <div id="probleem-inhoud"></div>
+  </div>
+</div>
+
 <div id="pin-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;align-items:center;justify-content:center;padding:24px;">
   <div style="background:#0f1420;border:1px solid #1a2235;border-top:2px solid #ef4444;border-radius:4px;padding:28px 24px;width:100%;max-width:300px;">
     <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#ef4444;letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px;">Beveiligd</div>
@@ -1068,7 +1080,7 @@ color: #c8d8e8;
 // ═══════════════════════════════════════════════════
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
-const APP_VERSION = '2.5';
+const APP_VERSION = '2.8';
 
 const OPERATORS_CONFIG = {
   'Dirk':   { pin: '007', admin: true  },
@@ -1134,16 +1146,19 @@ function kiesOperatorLogin(naam) {
   // Highlight geselecteerde knop
   document.querySelectorAll('#operator-knoppen button').forEach(b => {
     b.style.opacity = b.textContent.includes(naam) ? '1' : '0.4';
+    b.style.borderColor = b.textContent.includes(naam) ? '#f59e0b' : '#1a2540';
   });
-  // Toon pincode veld inline
+  // Toon pincode veld direct
   const blok = document.getElementById('login-pin-blok');
-  const kleuren = { 'Dirk': '#f5a623', 'Casper': '#22d3ee' };
+  const kleuren = { 'Dirk': '#f59e0b', 'Casper': '#22d3ee' };
   document.getElementById('login-naam-toon').innerHTML =
-    `PINCODE <span style="color:${kleuren[naam]||'#f5a623'};font-weight:700;">${naam.toUpperCase()}</span>`;
+    `PINCODE <span style="color:${kleuren[naam]||'#f59e0b'};font-weight:700;">${naam.toUpperCase()}</span>`;
   document.getElementById('login-pin').value = '';
   document.getElementById('login-err').style.display = 'none';
   blok.style.display = 'block';
-  setTimeout(() => document.getElementById('login-pin').focus(), 100);
+  // Scroll naar pincode en focus direct
+  blok.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  document.getElementById('login-pin').focus();
 }
 
 function doLogin() {
@@ -1569,8 +1584,81 @@ function thicknessLabel(t) {
 }
 
 // ═══════════════════════════════════════════════════
-// RECIPE DETAIL
+// PROBLEEMOPLOSSING ADVIEZEN
 // ═══════════════════════════════════════════════════
+const PROBLEEM_ADVIEZEN = {
+  krult: {
+    titel: '🌀 Zak krult op',
+    kleur: '#22d3ee',
+    acties: [
+      { kanaal: 'Lower Blowers',  actie: 'Meer lucht',     detail: '+10° tot +20°',   richting: '+' },
+      { kanaal: 'Upper Blowers',  actie: 'Minder lucht',   detail: '-10° tot -15°',   richting: '-' },
+      { kanaal: 'Sealtemperatuur',actie: 'Verlagen',        detail: '2–5°C omlaag',    richting: '-' },
+    ]
+  },
+  hoeken: {
+    titel: '📐 Hoeken vouwen om',
+    kleur: '#a78bfa',
+    acties: [
+      { kanaal: 'Upper Blowers',  actie: 'Minder lucht',   detail: '-10° tot -15°',   richting: '-' },
+      { kanaal: 'Lower Blowers',  actie: 'Meer lucht',     detail: '+15° tot +20°',   richting: '+' },
+      { kanaal: 'Output 6',       actie: 'Later aanzetten', detail: '+10°',            richting: '+' },
+    ]
+  },
+  lucht: {
+    titel: '💨 Lucht in de zak',
+    kleur: '#3b82f6',
+    acties: [
+      { kanaal: 'Upper Blowers',  actie: 'Minder lucht',   detail: '-15° tot -20°',   richting: '-' },
+      { kanaal: 'Output 6',       actie: 'Later aan, eerder uit', detail: 'AAN +15° / UIT -15°', richting: '±' },
+      { kanaal: 'Lower Pipe',     actie: 'Korter open',    detail: '-10°',            richting: '-' },
+    ]
+  },
+  stapeling: {
+    titel: '📦 Slechte stapeling',
+    kleur: '#f59e0b',
+    acties: [
+      { kanaal: 'Output 6',       actie: 'Langer aan',     detail: '+15° tot +20°',   richting: '+' },
+      { kanaal: 'Lower Blowers',  actie: 'Meer lucht',     detail: '+10°',            richting: '+' },
+      { kanaal: 'Snelheid',       actie: 'Iets verlagen',  detail: '5–10 ZPM minder', richting: '-' },
+    ]
+  },
+  opent: {
+    titel: '🫧 Zak opent niet',
+    kleur: '#22c55e',
+    acties: [
+      { kanaal: 'Upper Pipe',     actie: 'Eerder aan, langer open', detail: 'AAN -10° / UIT +10°', richting: '+' },
+      { kanaal: 'Lower Blowers',  actie: 'Meer lucht',     detail: '+15°',            richting: '+' },
+      { kanaal: 'Stripperjet',    actie: 'Luchtdruk verhogen', detail: 'Boven + onder', richting: '+' },
+    ]
+  }
+};
+
+function toonProbleemAdvies(type) {
+  const p = PROBLEEM_ADVIEZEN[type];
+  if (!p) return;
+  document.getElementById('probleem-titel').textContent = p.titel;
+  document.getElementById('probleem-inhoud').innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${p.acties.map(a => `
+        <div style="background:#070a10;border:1px solid #1a2540;border-left:4px solid ${p.kleur};border-radius:4px;padding:14px 16px;display:flex;align-items:center;gap:14px;">
+          <div style="width:36px;height:36px;background:${p.kleur}22;border:1px solid ${p.kleur}66;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:${p.kleur};flex-shrink:0;">${a.richting}</div>
+          <div style="flex:1;">
+            <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;letter-spacing:.05em;">${a.kanaal}</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:${p.kleur};margin-top:3px;">${a.actie}</div>
+          </div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:12px;color:#6b7280;text-align:right;">${a.detail}</div>
+        </div>
+      `).join('')}
+    </div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;text-align:center;margin-top:16px;letter-spacing:.1em;">Pas één instelling tegelijk aan -- wacht 10–15 zakken voor beoordeling</div>
+  `;
+  document.getElementById('probleem-overlay').style.display = 'flex';
+}
+
+function sluitProbleemAdvies() {
+  document.getElementById('probleem-overlay').style.display = 'none';
+}
 async function openDetailByKey(firebaseKey) {
   const list = await loadRecipes();
   const r = list.find(x => x.firebaseKey === firebaseKey);
@@ -1705,6 +1793,30 @@ function openDetailRender(r) {
       <div class="info-row"><div class="ir-lbl">Snelheid</div><div class="ir-val">${r.speed}<span class="u"> ZPM</span></div></div>
       <div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">${Math.round(60000/r.speed)}<span class="u"> ms</span></div></div>
     </div>
+    <div class="slabel">Probleemoplossing</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+      <button onclick="toonProbleemAdvies('krult')" style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 10px;cursor:pointer;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">🌀</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Zak krult op</div>
+      </button>
+      <button onclick="toonProbleemAdvies('hoeken')" style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 10px;cursor:pointer;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">📐</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Hoeken vouwen</div>
+      </button>
+      <button onclick="toonProbleemAdvies('lucht')" style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 10px;cursor:pointer;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">💨</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Lucht in zak</div>
+      </button>
+      <button onclick="toonProbleemAdvies('stapeling')" style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 10px;cursor:pointer;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">📦</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Slechte stapeling</div>
+      </button>
+      <button onclick="toonProbleemAdvies('opent')" style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 10px;cursor:pointer;text-align:center;grid-column:1/-1;">
+        <div style="font-size:22px;margin-bottom:6px;">🫧</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Zak opent niet</div>
+      </button>
+    </div>
+
     <div class="slabel">Blower Timing</div>
     ${blowerHTML}
   `;
