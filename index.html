@@ -763,18 +763,7 @@ color: #c8d8e8;
   <!-- STAP 2: Naam kiezen -->
   <div id="login-stap2" style="display:none;">
     <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;">Wie ben jij?</div>
-    <div style="display:flex;flex-direction:column;gap:10px;">
-      <button onclick="kiesOperatorLogin('Dirk')"
-        style="background:#0a0e16;border:1px solid #1a2235;border-left:4px solid #f5a623;border-radius:2px;color:#c8d8e8;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;letter-spacing:.1em;padding:18px 20px;cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:space-between;">
-        <span>👤 Dirk</span>
-        <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#f5a623;letter-spacing:.15em;">ADMIN</span>
-      </button>
-      <button onclick="kiesOperatorLogin('Casper')"
-        style="background:#0a0e16;border:1px solid #1a2235;border-left:4px solid #22d3ee;border-radius:2px;color:#c8d8e8;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;letter-spacing:.1em;padding:18px 20px;cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:space-between;">
-        <span>👤 Casper</span>
-        <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#22d3ee;letter-spacing:.15em;">OPERATOR</span>
-      </button>
-    </div>
+    <div id="operator-knoppen" style="display:flex;flex-direction:column;gap:10px;"></div>
     <button onclick="terugStap1()" style="width:100%;background:transparent;border:1px solid #1a2235;border-radius:2px;color:#4a6080;font-family:'Rajdhani',sans-serif;font-size:15px;padding:12px;cursor:pointer;margin-top:10px;">‹ Terug</button>
   </div>
 
@@ -1078,14 +1067,16 @@ color: #c8d8e8;
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
 const APP_VERSION = '2.1';
-const OPERATORS_CONFIG = [
-  { naam: 'Dirk',   pin: '007', rol: 'admin' },
-  { naam: 'Casper', pin: '100', rol: 'operator' },
-];
-const OPERATORS = OPERATORS_CONFIG.map(o => o.naam);
 
-let huidigGebruiker = null; // { naam, rol }
+const OPERATORS_CONFIG = {
+  'Dirk':   { pin: '007', admin: true  },
+  'Casper': { pin: '100', admin: false }
+};
+const OPERATORS = Object.keys(OPERATORS_CONFIG);
+
+let _huidigeOperator = null;
 let _loginNaam = null;
+let _geselecteerdeOperator = null;
 
 // ═══════════════════════════════════════════════════
 // VERSIE CHECK
@@ -1114,16 +1105,30 @@ function checkAppPw() {
   const pw = document.getElementById('login-pw').value;
   if (pw === APP_PASSWORD) {
     document.getElementById('login-err1').style.display = 'none';
-    document.getElementById('login-stap1').style.display = 'none';
-    document.getElementById('login-stap2').style.display = 'block';
+    toonStap2();
   } else {
     document.getElementById('login-err1').style.display = 'block';
     document.getElementById('login-pw').value = '';
   }
 }
 
+function toonStap2() {
+  document.getElementById('login-stap1').style.display = 'none';
+  const stap2 = document.getElementById('login-stap2');
+  stap2.style.display = 'block';
+  const kleuren = { 'Dirk': '#f5a623', 'Casper': '#22d3ee' };
+  const rollen  = { 'Dirk': 'ADMIN',   'Casper': 'OPERATOR' };
+  document.getElementById('operator-knoppen').innerHTML = Object.keys(OPERATORS_CONFIG).map(naam => `
+    <button onclick="kiesOperatorLogin('${naam}')"
+      style="background:#0a0e16;border:1px solid #1a2235;border-left:4px solid ${kleuren[naam]||'#4a6080'};border-radius:2px;color:#c8d8e8;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;letter-spacing:.1em;padding:18px 20px;cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:space-between;width:100%;">
+      <span>👤 ${naam}</span>
+      <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:${kleuren[naam]||'#4a6080'};letter-spacing:.15em;">${rollen[naam]||'OPERATOR'}</span>
+    </button>
+  `).join('');
+}
+
 function kiesOperatorLogin(naam) {
-  _loginNaam = naam;
+  _geselecteerdeOperator = naam;
   document.getElementById('login-stap2').style.display = 'none';
   document.getElementById('login-stap3').style.display = 'block';
   document.getElementById('login-naam-toon').textContent = '👤 ' + naam;
@@ -1132,29 +1137,15 @@ function kiesOperatorLogin(naam) {
   setTimeout(() => document.getElementById('login-pin').focus(), 100);
 }
 
-function terugStap1() {
-  document.getElementById('login-stap2').style.display = 'none';
-  document.getElementById('login-stap1').style.display = 'block';
-  document.getElementById('login-pw').value = '';
-}
-
-function terugStap2() {
-  _loginNaam = null;
-  document.getElementById('login-stap3').style.display = 'none';
-  document.getElementById('login-stap2').style.display = 'block';
-  document.getElementById('login-err').style.display = 'none';
-}
-
-function terug() { terugStap2(); }
-
 function doLogin() {
   const pin = document.getElementById('login-pin').value.trim();
-  const config = OPERATORS_CONFIG.find(o => o.naam === _loginNaam);
-  if (config && pin === config.pin) {
-    huidigGebruiker = { naam: config.naam, rol: config.rol };
-    sessionStorage.setItem('hs_user', JSON.stringify(huidigGebruiker));
+  const cfg = OPERATORS_CONFIG[_geselecteerdeOperator];
+  if (cfg && pin === cfg.pin) {
+    _huidigeOperator = _geselecteerdeOperator;
     sessionStorage.setItem('hs_auth', APP_PASSWORD);
+    sessionStorage.setItem('hs_operator', _huidigeOperator);
     document.getElementById('login-err').style.display = 'none';
+    toonAdminFuncties(cfg.admin);
     updateHomeGebruiker();
     go('s-home');
   } else {
@@ -1164,26 +1155,48 @@ function doLogin() {
 }
 
 function checkLogin() {
-  const stored = sessionStorage.getItem('hs_user');
-  const auth   = sessionStorage.getItem('hs_auth');
-  if (stored && auth === APP_PASSWORD) {
-    huidigGebruiker = JSON.parse(stored);
+  const auth = sessionStorage.getItem('hs_auth');
+  const naam = sessionStorage.getItem('hs_operator');
+  if (auth === APP_PASSWORD && naam && OPERATORS_CONFIG[naam]) {
+    _huidigeOperator = naam;
+    toonAdminFuncties(OPERATORS_CONFIG[naam].admin);
     updateHomeGebruiker();
     go('s-home');
   }
 }
 
+function toonAdminFuncties(isAdmin) {
+  document.querySelectorAll('.admin-only').forEach(el => {
+    el.style.display = isAdmin ? '' : 'none';
+  });
+}
+
+function terugStap1() {
+  document.getElementById('login-stap2').style.display = 'none';
+  document.getElementById('login-stap1').style.display = 'block';
+  document.getElementById('login-pw').value = '';
+}
+
+function terugStap2() {
+  _geselecteerdeOperator = null;
+  document.getElementById('login-stap3').style.display = 'none';
+  document.getElementById('login-stap2').style.display = 'block';
+  document.getElementById('login-err').style.display = 'none';
+}
+
 function updateHomeGebruiker() {
   const el = document.getElementById('home-gebruiker');
-  if (!el || !huidigGebruiker) return;
-  const kleur = huidigGebruiker.rol === 'admin' ? '#f5a623' : '#22d3ee';
-  el.innerHTML = `Ingelogd: <span style="color:${kleur};font-weight:700;">${huidigGebruiker.naam}</span> <span style="color:#4a6080;font-size:9px;">-- ${huidigGebruiker.rol.toUpperCase()}</span>`;
+  if (!el || !_huidigeOperator) return;
+  const cfg   = OPERATORS_CONFIG[_huidigeOperator];
+  const kleur = cfg?.admin ? '#f5a623' : '#22d3ee';
+  const rol   = cfg?.admin ? 'ADMIN' : 'OPERATOR';
+  el.innerHTML = `Ingelogd: <span style="color:${kleur};font-weight:700;">${_huidigeOperator}</span> <span style="color:#4a6080;font-size:9px;">-- ${rol}</span>`;
 }
 
 function magBewerken(recept) {
-  if (!huidigGebruiker) return false;
-  if (huidigGebruiker.rol === 'admin') return true;
-  return (recept.operator || '') === huidigGebruiker.naam;
+  if (!_huidigeOperator) return false;
+  if (OPERATORS_CONFIG[_huidigeOperator]?.admin) return true;
+  return (recept.operator || '') === _huidigeOperator;
 }
 
 // ═══════════════════════════════════════════════════
@@ -1213,8 +1226,8 @@ function sluitPin() {
 }
 function bevestigPin() {
   const pin = document.getElementById('pin-input').value.trim();
-  const config = OPERATORS_CONFIG.find(o => o.naam === huidigGebruiker?.naam);
-  if (config && pin === config.pin) {
+  const cfg = OPERATORS_CONFIG[_huidigeOperator];
+  if (cfg && pin === cfg.pin) {
     sluitPin();
     delRecipe(window._deleteKey);
   } else {
@@ -1361,37 +1374,6 @@ function toast(msg, err=false) {
 // FIREBASE CONFIG
 // ═══════════════════════════════════════════════════
 const FIREBASE_URL = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
-const APP_PASSWORD = 'hudson2024';
-
-let isLoggedIn = false;
-
-function checkLogin() {
-  const stored = sessionStorage.getItem('hs_auth');
-  if (stored === APP_PASSWORD) {
-    isLoggedIn = true;
-    go('s-home');
-  } else {
-    showLogin();
-  }
-}
-
-function showLogin() {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('s-login').classList.add('active');
-}
-
-function doLogin() {
-  const pw = document.getElementById('login-pw').value;
-  if (pw === APP_PASSWORD) {
-    sessionStorage.setItem('hs_auth', pw);
-    isLoggedIn = true;
-    document.getElementById('login-err').style.display = 'none';
-    go('s-home');
-  } else {
-    document.getElementById('login-err').style.display = 'block';
-    document.getElementById('login-pw').value = '';
-  }
-}
 
 // ═══════════════════════════════════════════════════
 // FIREBASE STORAGE
@@ -1838,7 +1820,7 @@ async function saveRecipe() {
   const klant    = document.getElementById('f-klant').value.trim();
   const klantnaam = document.getElementById('f-klantnaam').value.trim();
   const plaats   = document.getElementById('f-plaats').value.trim();
-  const operator = huidigGebruiker ? huidigGebruiker.naam : (document.getElementById('f-operator').value.trim());
+  const operator = _huidigeOperator || document.getElementById('f-operator').value.trim();
 
   if (!currentTiming) return;
 
