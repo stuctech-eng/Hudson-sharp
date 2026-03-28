@@ -749,8 +749,19 @@ color: #c8d8e8;
 
 <div style="width:100%;max-width:300px;">
 
-  <!-- STAP 1: Naam kiezen -->
+  <!-- STAP 1: App wachtwoord -->
   <div id="login-stap1">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;">App wachtwoord</div>
+    <input id="login-pw" type="password" placeholder="••••••••"
+      onkeydown="if(event.key==='Enter')checkAppPw()"
+      style="width:100%;background:#0a0e16;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:22px;padding:16px;outline:none;margin-bottom:10px;-webkit-appearance:none;text-align:center;letter-spacing:.3em;transition:border-color .15s;"
+      onfocus="this.style.borderColor='#22d3ee'" onblur="this.style.borderColor='#1a2235'">
+    <div id="login-err1" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">ONGELDIG WACHTWOORD</div>
+    <button onclick="checkAppPw()" style="width:100%;background:linear-gradient(135deg,#f5a623,#ff6b00);color:#000;border:none;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:.2em;text-transform:uppercase;padding:16px;cursor:pointer;">Verder →</button>
+  </div>
+
+  <!-- STAP 2: Naam kiezen -->
+  <div id="login-stap2" style="display:none;">
     <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;">Wie ben jij?</div>
     <div style="display:flex;flex-direction:column;gap:10px;">
       <button onclick="kiesOperatorLogin('Dirk')"
@@ -764,10 +775,11 @@ color: #c8d8e8;
         <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#22d3ee;letter-spacing:.15em;">OPERATOR</span>
       </button>
     </div>
+    <button onclick="terugStap1()" style="width:100%;background:transparent;border:1px solid #1a2235;border-radius:2px;color:#4a6080;font-family:'Rajdhani',sans-serif;font-size:15px;padding:12px;cursor:pointer;margin-top:10px;">‹ Terug</button>
   </div>
 
-  <!-- STAP 2: Pincode -->
-  <div id="login-stap2" style="display:none;">
+  <!-- STAP 3: Pincode -->
+  <div id="login-stap3" style="display:none;">
     <div id="login-naam-toon" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#f5a623;letter-spacing:.1em;text-align:center;margin-bottom:16px;"></div>
     <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;">Pincode</div>
     <input id="login-pin" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·"
@@ -776,7 +788,7 @@ color: #c8d8e8;
       onfocus="this.style.borderColor='#22d3ee'" onblur="this.style.borderColor='#1a2235'">
     <div id="login-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">VERKEERDE PINCODE</div>
     <button onclick="doLogin()" style="width:100%;background:linear-gradient(135deg,#f5a623,#ff6b00);color:#000;border:none;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:.2em;text-transform:uppercase;padding:16px;cursor:pointer;margin-bottom:10px;">Inloggen</button>
-    <button onclick="terug()" style="width:100%;background:transparent;border:1px solid #1a2235;border-radius:2px;color:#4a6080;font-family:'Rajdhani',sans-serif;font-size:15px;padding:12px;cursor:pointer;">‹ Terug</button>
+    <button onclick="terugStap2()" style="width:100%;background:transparent;border:1px solid #1a2235;border-radius:2px;color:#4a6080;font-family:'Rajdhani',sans-serif;font-size:15px;padding:12px;cursor:pointer;">‹ Terug</button>
   </div>
 
 </div>
@@ -1096,22 +1108,44 @@ function checkVersie() {
 // ═══════════════════════════════════════════════════
 // LOGIN
 // ═══════════════════════════════════════════════════
+const APP_PASSWORD = 'hudson2024';
+
+function checkAppPw() {
+  const pw = document.getElementById('login-pw').value;
+  if (pw === APP_PASSWORD) {
+    document.getElementById('login-err1').style.display = 'none';
+    document.getElementById('login-stap1').style.display = 'none';
+    document.getElementById('login-stap2').style.display = 'block';
+  } else {
+    document.getElementById('login-err1').style.display = 'block';
+    document.getElementById('login-pw').value = '';
+  }
+}
+
 function kiesOperatorLogin(naam) {
   _loginNaam = naam;
-  document.getElementById('login-stap1').style.display = 'none';
-  document.getElementById('login-stap2').style.display = 'block';
+  document.getElementById('login-stap2').style.display = 'none';
+  document.getElementById('login-stap3').style.display = 'block';
   document.getElementById('login-naam-toon').textContent = '👤 ' + naam;
   document.getElementById('login-pin').value = '';
   document.getElementById('login-err').style.display = 'none';
   setTimeout(() => document.getElementById('login-pin').focus(), 100);
 }
 
-function terug() {
-  _loginNaam = null;
+function terugStap1() {
   document.getElementById('login-stap2').style.display = 'none';
   document.getElementById('login-stap1').style.display = 'block';
+  document.getElementById('login-pw').value = '';
+}
+
+function terugStap2() {
+  _loginNaam = null;
+  document.getElementById('login-stap3').style.display = 'none';
+  document.getElementById('login-stap2').style.display = 'block';
   document.getElementById('login-err').style.display = 'none';
 }
+
+function terug() { terugStap2(); }
 
 function doLogin() {
   const pin = document.getElementById('login-pin').value.trim();
@@ -1119,6 +1153,7 @@ function doLogin() {
   if (config && pin === config.pin) {
     huidigGebruiker = { naam: config.naam, rol: config.rol };
     sessionStorage.setItem('hs_user', JSON.stringify(huidigGebruiker));
+    sessionStorage.setItem('hs_auth', APP_PASSWORD);
     document.getElementById('login-err').style.display = 'none';
     updateHomeGebruiker();
     go('s-home');
@@ -1130,7 +1165,8 @@ function doLogin() {
 
 function checkLogin() {
   const stored = sessionStorage.getItem('hs_user');
-  if (stored) {
+  const auth   = sessionStorage.getItem('hs_auth');
+  if (stored && auth === APP_PASSWORD) {
     huidigGebruiker = JSON.parse(stored);
     updateHomeGebruiker();
     go('s-home');
