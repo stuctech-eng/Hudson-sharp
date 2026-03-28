@@ -745,7 +745,7 @@ color: #c8d8e8;
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
-<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v2.9</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v3.0</div>
 
 <div style="width:100%;max-width:300px;">
 
@@ -805,7 +805,7 @@ color: #c8d8e8;
     <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#22c55e;letter-spacing:.15em;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);padding:4px 10px;border-radius:2px;">
       <div class="pulse"></div>SYSTEEM GEREED
     </div>
-    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v2.9</div>
+    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v3.0</div>
   </div>
   <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
@@ -1049,6 +1049,29 @@ color: #c8d8e8;
 
 <!-- PIN MODAL -->
 
+<!-- OPTIES SCHERM -->
+
+<div id="opties-scherm" style="display:none;position:fixed;inset:0;background:#070a10;z-index:9001;flex-direction:column;">
+  <div style="background:#0f1520;border-bottom:2px solid #22c55e;height:56px;display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0;">
+    <button onclick="sluitOptiesScherm()" style="background:none;border:1px solid #1a2540;border-radius:4px;color:#f59e0b;font-size:22px;cursor:pointer;padding:4px 10px;">‹</button>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.12em;text-transform:uppercase;color:#e5e7eb;flex:1;">Aangepaste Opties</div>
+  </div>
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 16px 60px;" id="opties-inhoud"></div>
+</div>
+
+<!-- OPTIE BEWERK SCHERM -->
+
+<div id="optie-bewerk-scherm" style="display:none;position:fixed;inset:0;background:#070a10;z-index:9002;flex-direction:column;">
+  <div style="background:#0f1520;border-bottom:2px solid #f59e0b;height:56px;display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0;">
+    <button onclick="sluitOptieBewerk()" style="background:none;border:1px solid #1a2540;border-radius:4px;color:#f59e0b;font-size:22px;cursor:pointer;padding:4px 10px;">‹</button>
+    <div id="optie-bewerk-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.12em;text-transform:uppercase;color:#e5e7eb;flex:1;"></div>
+  </div>
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 16px 60px;">
+    <div id="optie-bewerk-inhoud"></div>
+    <button onclick="slaOptieOp()" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#000;border:none;border-radius:4px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.15em;text-transform:uppercase;padding:16px;cursor:pointer;margin-top:16px;">✓ Opslaan</button>
+  </div>
+</div>
+
 <!-- PROBLEEM KEUZE POPUP -->
 
 <div id="probleem-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9000;align-items:flex-end;justify-content:center;">
@@ -1118,7 +1141,7 @@ color: #c8d8e8;
 // ═══════════════════════════════════════════════════
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
-const APP_VERSION = '2.9';
+const APP_VERSION = '3.0';
 
 const OPERATORS_CONFIG = {
   'Dirk':   { pin: '007', admin: true  },
@@ -1564,7 +1587,7 @@ function renderRecipeTree(list, query='') {
           <span class="tree-icon">📁</span>
           <div style="flex:1;">
             <span class="tree-klant">${klant.padStart(4,'0')}</span>
-            ${klantnaam ? `<span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;margin-left:8px;">-- ${klantnaam.toUpperCase()}</span>` : ''}
+            ${klantnaam ? `<span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;color:#f59e0b;margin-left:6px;">-- ${klantnaam.toUpperCase()}</span>` : ''}
           </div>
           <span class="tree-count">${recipes.length} rec.</span>
           <span class="tree-chevron">›</span>
@@ -1622,8 +1645,133 @@ function thicknessLabel(t) {
 }
 
 // ═══════════════════════════════════════════════════
-// PROBLEEMOPLOSSING ADVIEZEN
+// OPTIES SYSTEEM
 // ═══════════════════════════════════════════════════
+let _huidigReceptKey = null;
+let _huidigOptieNr   = null;
+let _huidigOptieData = null;
+
+async function toonOptiesScherm(firebaseKey) {
+  _huidigReceptKey = firebaseKey;
+  const list = await loadRecipes();
+  const r = list.find(x => x.firebaseKey === firebaseKey);
+  if (!r) return;
+
+  const opties = r.opties || {};
+  const nummers = ['1','2','3'];
+
+  document.getElementById('opties-inhoud').innerHTML = `
+    <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;letter-spacing:.15em;margin-bottom:16px;">
+      Optimale settings zijn beveiligd. Aanpassingen opslaan als Optie 1, 2 of 3.
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${nummers.map(nr => {
+        const opt = opties[nr];
+        return `
+        <div style="background:#0f1520;border:1px solid #1a2540;border-left:5px solid ${opt ? '#22c55e' : '#1a2540'};border-radius:4px;padding:16px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${opt ? '12px' : '0'};">
+            <div>
+              <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;color:${opt ? '#22c55e' : '#6b7280'};letter-spacing:.1em;">Optie ${nr}</div>
+              ${opt ? `<div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;margin-top:2px;">👤 ${opt.operator || '?'} -- ${opt.datum || ''}</div>` : `<div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;margin-top:2px;">Nog leeg</div>`}
+            </div>
+            <button onclick="bewerkOptie('${firebaseKey}','${nr}')"
+              style="background:${opt ? '#1a2e1a' : '#0f1520'};border:1px solid ${opt ? '#22c55e66' : '#1a2540'};border-radius:4px;color:${opt ? '#22c55e' : '#6b7280'};font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em;padding:10px 16px;cursor:pointer;">
+              ${opt ? '✎ Bewerk' : '＋ Nieuw'}
+            </button>
+          </div>
+          ${opt ? `
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              ${CHANNELS.map(ch => {
+                const on  = opt[ch.key+'_on'];
+                const off = opt[ch.key+'_off'];
+                const baseOn  = r[ch.key+'_on'];
+                const baseOff = r[ch.key+'_off'];
+                const afwijking = (on !== baseOn || off !== baseOff);
+                return `<span style="font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 7px;border-radius:3px;background:${afwijking ? '#22c55e22' : '#0a0d14'};border:1px solid ${afwijking ? '#22c55e44' : '#1a2540'};color:${afwijking ? '#22c55e' : '#6b7280'};">${ch.label}: ${on}°→${off}°</span>`;
+              }).join('')}
+            </div>
+          ` : ''}
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+  document.getElementById('opties-scherm').style.display = 'flex';
+}
+
+function sluitOptiesScherm() {
+  document.getElementById('opties-scherm').style.display = 'none';
+}
+
+async function bewerkOptie(firebaseKey, nr) {
+  _huidigReceptKey = firebaseKey;
+  _huidigOptieNr   = nr;
+  const list = await loadRecipes();
+  const r = list.find(x => x.firebaseKey === firebaseKey);
+  if (!r) return;
+
+  const opt = (r.opties && r.opties[nr]) || r; // gebruik bestaande optie of basis recept
+  _huidigOptieData = {};
+
+  document.getElementById('optie-bewerk-titel').textContent = `Optie ${nr} bewerken`;
+  document.getElementById('optie-bewerk-inhoud').innerHTML = `
+    <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;margin-bottom:16px;letter-spacing:.1em;">
+      Pas de waarden aan. Optimale settings staan links ter referentie.
+    </div>
+    ${CHANNELS.map(ch => {
+      const baseOn  = r[`${ch.key}_on`];
+      const baseOff = r[`${ch.key}_off`];
+      const optOn   = opt[`${ch.key}_on`] ?? baseOn;
+      const optOff  = opt[`${ch.key}_off`] ?? baseOff;
+      return `
+      <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;margin-bottom:8px;overflow:hidden;">
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:#141d2e;border-bottom:1px solid #1a2540;">
+          <div style="width:8px;height:8px;border-radius:50%;background:${ch.color};flex-shrink:0;"></div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#9ca3af;flex:1;">${ch.label}</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;">Optimaal: ${baseOn}°→${baseOff}°</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#1a2540;">
+          <div style="background:#0f1520;padding:12px;text-align:center;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#6b7280;letter-spacing:.2em;margin-bottom:6px;">AAN °</div>
+            <input id="opt-${ch.key}-on" type="number" inputmode="numeric" value="${optOn}"
+              style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:${ch.color};font-family:'Rajdhani',sans-serif;font-weight:700;font-size:26px;text-align:center;padding:8px;outline:none;-webkit-appearance:none;">
+          </div>
+          <div style="background:#0f1520;padding:12px;text-align:center;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#6b7280;letter-spacing:.2em;margin-bottom:6px;">UIT °</div>
+            <input id="opt-${ch.key}-off" type="number" inputmode="numeric" value="${optOff}"
+              style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:${ch.color};font-family:'Rajdhani',sans-serif;font-weight:700;font-size:26px;text-align:center;padding:8px;outline:none;-webkit-appearance:none;">
+          </div>
+        </div>
+      </div>`;
+    }).join('')}
+  `;
+  document.getElementById('optie-bewerk-scherm').style.display = 'flex';
+}
+
+async function slaOptieOp() {
+  const timing = {};
+  CHANNELS.forEach(ch => {
+    timing[`${ch.key}_on`]  = parseInt(document.getElementById(`opt-${ch.key}-on`).value)  || 0;
+    timing[`${ch.key}_off`] = parseInt(document.getElementById(`opt-${ch.key}-off`).value) || 0;
+  });
+
+  const optie = {
+    ...timing,
+    operator: _huidigeOperator || '?',
+    datum: new Date().toISOString().split('T')[0]
+  };
+
+  toast('Opslaan...');
+  await updateRecipeInFirebase(_huidigReceptKey, {
+    [`opties/${_huidigOptieNr}`]: optie
+  });
+  toast(`Optie ${_huidigOptieNr} opgeslagen!`);
+  sluitOptieBewerk();
+  toonOptiesScherm(_huidigReceptKey);
+}
+
+function sluitOptieBewerk() {
+  document.getElementById('optie-bewerk-scherm').style.display = 'none';
+}
 const PROBLEEM_ADVIEZEN = {
   krult: {
     titel: '🌀 Zak krult op',
@@ -1842,17 +1990,29 @@ function openDetailRender(r) {
       <div class="info-row"><div class="ir-lbl">Snelheid</div><div class="ir-val">${r.speed}<span class="u"> ZPM</span></div></div>
       <div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">${Math.round(60000/r.speed)}<span class="u"> ms</span></div></div>
     </div>
-    <div class="slabel">Probleemoplossing</div>
-    <button onclick="toonProbleemKeuze()" style="width:100%;background:#0f1520;border:1px solid #1a2540;border-left:5px solid #ef4444;border-radius:4px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;margin-bottom:8px;">
-      <span style="font-size:24px;">🔧</span>
-      <div style="flex:1;text-align:left;">
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;color:#e5e7eb;">Probleem oplossen</div>
-        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;margin-top:3px;">Tik voor advies per probleem</div>
-      </div>
-      <span style="font-size:22px;color:#ef4444;">›</span>
-    </button>
+    <div class="slabel">Instellingen & Opties</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:8px;">
+      <button onclick="toonProbleemKeuze()" style="width:100%;background:#0f1520;border:1px solid #1a2540;border-left:5px solid #ef4444;border-radius:4px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:24px;">🔧</span>
+        <div style="flex:1;text-align:left;">
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;color:#e5e7eb;">Probleem oplossen</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;margin-top:3px;">Tik voor advies per probleem</div>
+        </div>
+        <span style="font-size:22px;color:#ef4444;">›</span>
+      </button>
+      <button onclick="toonOptiesScherm('${r.firebaseKey}')" style="width:100%;background:#0f1520;border:1px solid #1a2540;border-left:5px solid #22c55e;border-radius:4px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:24px;">💾</span>
+        <div style="flex:1;text-align:left;">
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;color:#e5e7eb;">Aangepaste opties</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;margin-top:3px;">
+            ${r.opties ? Object.keys(r.opties).length + ' opties opgeslagen' : 'Nog geen opties -- tik om toe te voegen'}
+          </div>
+        </div>
+        <span style="font-size:22px;color:#22c55e;">›</span>
+      </button>
+    </div>
 
-    <div class="slabel">Blower Timing</div>
+    <div class="slabel">Optimale Blower Timing</div>
     ${blowerHTML}
   `;
 
