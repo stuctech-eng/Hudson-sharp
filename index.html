@@ -745,7 +745,7 @@ color: #c8d8e8;
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
-<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v3.5</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v3.7</div>
 
 <div style="width:100%;max-width:300px;">
 
@@ -805,7 +805,7 @@ color: #c8d8e8;
     <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#22c55e;letter-spacing:.15em;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);padding:4px 10px;border-radius:2px;">
       <div class="pulse"></div>SYSTEEM GEREED
     </div>
-    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v3.5</div>
+    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v3.7</div>
   </div>
   <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
@@ -1153,11 +1153,15 @@ color: #c8d8e8;
 // ═══════════════════════════════════════════════════
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
-const APP_VERSION = '3.5';
+const APP_VERSION = '3.7';
 
 const OPERATORS_CONFIG = {
   'Dirk':   { pin: '007', admin: true  },
-  'Casper': { pin: '100', admin: false }
+  'Casper': { pin: '100', admin: false },
+  'Jack':   { pin: '200', admin: false },
+  'Henk':   { pin: '300', admin: false },
+  'Leroy':  { pin: '400', admin: false },
+  'Sharon': { pin: '500', admin: false },
 };
 const OPERATORS = Object.keys(OPERATORS_CONFIG);
 
@@ -1210,8 +1214,8 @@ function toonStap2() {
   document.getElementById('login-stap1').style.display = 'none';
   const stap2 = document.getElementById('login-stap2');
   stap2.style.display = 'block';
-  const kleuren = { 'Dirk': '#f5a623', 'Casper': '#22d3ee' };
-  const rollen  = { 'Dirk': 'ADMIN',   'Casper': 'OPERATOR' };
+  const kleuren = { 'Dirk': '#f59e0b', 'Casper': '#22d3ee', 'Jack': '#3b82f6', 'Henk': '#a78bfa', 'Leroy': '#22c55e', 'Sharon': '#f97316' };
+  const rollen  = { 'Dirk': 'ADMIN', 'Casper': 'OPERATOR', 'Jack': 'OPERATOR', 'Henk': 'OPERATOR', 'Leroy': 'OPERATOR', 'Sharon': 'OPERATOR' };
   document.getElementById('operator-knoppen').innerHTML = Object.keys(OPERATORS_CONFIG).map(naam => `
     <button onclick="kiesOperatorLogin('${naam}')"
       style="background:#0a0e16;border:1px solid #1a2235;border-left:4px solid ${kleuren[naam]||'#4a6080'};border-radius:2px;color:#c8d8e8;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;letter-spacing:.1em;padding:18px 20px;cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:space-between;width:100%;">
@@ -1230,7 +1234,7 @@ function kiesOperatorLogin(naam) {
   });
   // Toon pincode veld direct
   const blok = document.getElementById('login-pin-blok');
-  const kleuren = { 'Dirk': '#f59e0b', 'Casper': '#22d3ee' };
+  const kleuren = { 'Dirk': '#f59e0b', 'Casper': '#22d3ee', 'Jack': '#3b82f6', 'Henk': '#a78bfa', 'Leroy': '#22c55e', 'Sharon': '#f97316' };
   document.getElementById('login-naam-toon').innerHTML =
     `PINCODE <span style="color:${kleuren[naam]||'#f59e0b'};font-weight:700;">${naam.toUpperCase()}</span>`;
   document.getElementById('login-pin').value = '';
@@ -1831,10 +1835,10 @@ function sluitOptieBewerk() {
 // ═══════════════════════════════════════════════════
 // OPERATORS POPUP
 // ═══════════════════════════════════════════════════
-const OPERATOR_NAMEN = ['Sharon', 'Henk', 'Jack', 'Dirk', 'Leroy', 'Casper'];
+const OPERATOR_NAMEN = ['Dirk', 'Casper', 'Jack', 'Henk', 'Leroy', 'Sharon'];
 
 async function toonOperatorsPopup(firebaseKey) {
-  const list = await loadRecipes();
+  const list = _allRecipes.length ? _allRecipes : await loadRecipes();
   const r = list.find(x => x.firebaseKey === firebaseKey);
   if (!r) return;
 
@@ -2113,6 +2117,39 @@ function openDetailRender(r) {
 
   document.getElementById('detail-content').innerHTML = `
     ${optBanner}
+    <div class="slabel">Zak Specificaties</div>
+    <div class="info-block">
+      ${r.klant ? `<div class="info-row"><div class="ir-lbl">Klantnummer</div><div class="ir-val" style="color:#f5a623;">${r.klant}</div></div>` : ''}
+      ${r.plaats ? `<div class="info-row"><div class="ir-lbl">Plaatsnaam</div><div class="ir-val" style="color:#22d3ee;">📍 ${r.plaats}</div></div>` : ''}
+      ${r.operator ? `<div class="info-row"><div class="ir-lbl">Operator</div><div class="ir-val" style="color:#a78bfa;">👤 ${r.operator}</div></div>` : ''}
+      <div class="info-row"><div class="ir-lbl">Breedte</div><div class="ir-val">${r.width}<span class="u"> cm</span></div></div>
+      <div class="info-row"><div class="ir-lbl">Lengte</div><div class="ir-val">${r.length}<span class="u"> cm</span></div></div>
+      <div class="info-row"><div class="ir-lbl">Dikte</div><div class="ir-val">${r.thickness}<span class="u"> mm</span> -- ${thicknessLabel(r.thickness)}</div></div>
+      <div class="info-row"><div class="ir-lbl">Materiaal</div><div class="ir-val">${r.material}</div></div>
+      <div class="info-row"><div class="ir-lbl">Snelheid</div><div class="ir-val">${r.speed}<span class="u"> ZPM</span></div></div>
+      <div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">${Math.round(60000/r.speed)}<span class="u"> ms</span></div></div>
+    </div>
+
+    <div class="slabel">Instellingen & Opties</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px;">
+      <button onclick="toonProbleemKeuze()" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #ef4444;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">🔧</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:#ef4444;">Probleem</div>
+      </button>
+      <button onclick="toonOptiesScherm('${r.firebaseKey}')" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #22c55e;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">💾</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:#22c55e;">Opties</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#6b7280;margin-top:3px;">${r.opties ? Object.keys(r.opties).length + ' opgeslagen' : 'leeg'}</div>
+      </button>
+      <button onclick="toonOperatorsPopup('${r.firebaseKey}')" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #a78bfa;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">👥</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:#a78bfa;">Operators</div>
+      </button>
+    </div>
+
+    <div class="slabel">Optimale Blower Timing</div>
+    ${blowerHTML}
+
     <div class="slabel">360° Cyclus Diagram</div>
     <div style="background:#0a0e16;border:1px solid #1a2235;border-radius:2px;padding:16px;margin-bottom:8px;">
       <svg viewBox="0 0 320 320" width="100%" style="display:block;max-width:320px;margin:0 auto;">
@@ -2128,56 +2165,10 @@ function openDetailRender(r) {
         <circle cx="${cx}" cy="${cy}" r="36" fill="#0f1420" stroke="#1a2235" stroke-width="1.5"/>
         <text x="${cx}" y="${cy - 8}" fill="#f5a623" font-size="18" font-family="Rajdhani,sans-serif" font-weight="700" text-anchor="middle">360°</text>
         <text x="${cx}" y="${cy + 10}" fill="#4a6080" font-size="8" font-family="Share Tech Mono,monospace" text-anchor="middle">CYCLUS</text>
-        <!-- speed label -->
         <text x="${cx}" y="308" fill="#4a6080" font-size="9" font-family="Share Tech Mono,monospace" text-anchor="middle">${r.speed} ZPM · ${r.material}</text>
       </svg>
       <div style="margin-top:12px;">${legendHTML}</div>
     </div>
-
-    <div class="slabel">Zak Specificaties</div>
-    <div class="info-block">
-      ${r.klant ? `<div class="info-row"><div class="ir-lbl">Klantnummer</div><div class="ir-val" style="color:#f5a623;">${r.klant}</div></div>` : ''}
-      ${r.plaats ? `<div class="info-row"><div class="ir-lbl">Plaatsnaam</div><div class="ir-val" style="color:#22d3ee;">📍 ${r.plaats}</div></div>` : ''}
-      ${r.operator ? `<div class="info-row"><div class="ir-lbl">Operator</div><div class="ir-val" style="color:#a78bfa;">👤 ${r.operator}</div></div>` : ''}
-      <div class="info-row"><div class="ir-lbl">Breedte</div><div class="ir-val">${r.width}<span class="u"> cm</span></div></div>
-      <div class="info-row"><div class="ir-lbl">Lengte</div><div class="ir-val">${r.length}<span class="u"> cm</span></div></div>
-      <div class="info-row"><div class="ir-lbl">Dikte</div><div class="ir-val">${r.thickness}<span class="u"> mm</span> -- ${thicknessLabel(r.thickness)}</div></div>
-      <div class="info-row"><div class="ir-lbl">Materiaal</div><div class="ir-val">${r.material}</div></div>
-      <div class="info-row"><div class="ir-lbl">Snelheid</div><div class="ir-val">${r.speed}<span class="u"> ZPM</span></div></div>
-      <div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">${Math.round(60000/r.speed)}<span class="u"> ms</span></div></div>
-    </div>
-    <div class="slabel">Instellingen & Opties</div>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:8px;">
-      <button onclick="toonProbleemKeuze()" style="width:100%;background:#0f1520;border:1px solid #1a2540;border-left:5px solid #ef4444;border-radius:4px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;">
-        <span style="font-size:24px;">🔧</span>
-        <div style="flex:1;text-align:left;">
-          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;color:#e5e7eb;">Probleem oplossen</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;margin-top:3px;">Tik voor advies per probleem</div>
-        </div>
-        <span style="font-size:22px;color:#ef4444;">›</span>
-      </button>
-      <button onclick="toonOptiesScherm('${r.firebaseKey}')" style="width:100%;background:#0f1520;border:1px solid #1a2540;border-left:5px solid #22c55e;border-radius:4px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;">
-        <span style="font-size:24px;">💾</span>
-        <div style="flex:1;text-align:left;">
-          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;color:#e5e7eb;">Aangepaste opties</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;margin-top:3px;">
-            ${r.opties ? Object.keys(r.opties).length + ' opties opgeslagen' : 'Nog geen opties -- tik om toe te voegen'}
-          </div>
-        </div>
-        <span style="font-size:22px;color:#22c55e;">›</span>
-      </button>
-      <button onclick="toonOperatorsPopup('${r.firebaseKey}')" style="width:100%;background:#0f1520;border:1px solid #1a2540;border-left:5px solid #a78bfa;border-radius:4px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;">
-        <span style="font-size:24px;">👥</span>
-        <div style="flex:1;text-align:left;">
-          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;color:#e5e7eb;">Operators</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;margin-top:3px;">Aanpassingen per operator t.o.v. optimaal</div>
-        </div>
-        <span style="font-size:22px;color:#a78bfa;">›</span>
-      </button>
-    </div>
-
-    <div class="slabel">Optimale Blower Timing</div>
-    ${blowerHTML}
   `;
 
   go('s-detail');
