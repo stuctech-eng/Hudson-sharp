@@ -745,7 +745,7 @@ color: #c8d8e8;
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
-<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v4.1</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v4.3</div>
 
 <div style="width:100%;max-width:300px;">
 
@@ -805,7 +805,7 @@ color: #c8d8e8;
     <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#22c55e;letter-spacing:.15em;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);padding:4px 10px;border-radius:2px;">
       <div class="pulse"></div>SYSTEEM GEREED
     </div>
-    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v4.1</div>
+    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v4.3</div>
   </div>
   <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
@@ -843,6 +843,92 @@ color: #c8d8e8;
     <div style="font-size:28px;color:#3b82f6;">›</div>
   </button>
 
+  <!-- ADMIN ONLY -->
+  <div id="admin-knop-blok" style="display:none;flex:0 0 auto;">
+    <button onclick="go('s-info-app')" style="width:100%;background:#0a0e16;border:none;border-left:5px solid #f59e0b;border-top:1px solid #1a2540;display:flex;align-items:center;gap:18px;padding:18px 22px;cursor:pointer;text-align:left;position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,158,11,.06),transparent);pointer-events:none;"></div>
+      <div style="width:56px;height:56px;background:#0f1420;border:1px solid #f59e0b44;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;">🔑</div>
+      <div style="flex:1;">
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;letter-spacing:.1em;text-transform:uppercase;color:#f59e0b;line-height:1;">Admin</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#4a6080;margin-top:5px;">Info app & functies overzicht</div>
+      </div>
+      <div style="font-size:28px;color:#f59e0b;">›</div>
+    </button>
+  </div>
+
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     INFO APP SCHERM (ADMIN)
+═══════════════════════════════════════════ -->
+
+<div class="screen" id="s-info-app">
+  <div class="topbar">
+    <button class="back-btn" onclick="go('s-home')">‹</button>
+    <div class="topbar-title">Info App</div>
+  </div>
+  <div class="content">
+
+```
+<div style="background:#f59e0b18;border:1px solid #f59e0b44;border-radius:4px;padding:16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;">
+  <div style="font-size:28px;">🔑</div>
+  <div>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#f59e0b;letter-spacing:.1em;">ADMIN OVERZICHT</div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;margin-top:2px;">Hudson Sharp 5750W · v<span id="info-versie">4.3</span></div>
+  </div>
+</div>
+
+<div class="slabel">Operators & Toegang</div>
+<div class="info-block">
+  <div class="info-row"><div class="ir-lbl">Dirk</div><div class="ir-val" style="color:#f59e0b;">007 -- ADMIN</div></div>
+  <div class="info-row"><div class="ir-lbl">Casper</div><div class="ir-val" style="color:#22d3ee;">100 -- Operator</div></div>
+  <div class="info-row"><div class="ir-lbl">Jack</div><div class="ir-val" style="color:#3b82f6;">200 -- Operator</div></div>
+  <div class="info-row"><div class="ir-lbl">Henk</div><div class="ir-val" style="color:#a78bfa;">300 -- Operator</div></div>
+  <div class="info-row"><div class="ir-lbl">Leroy</div><div class="ir-val" style="color:#22c55e;">400 -- Operator</div></div>
+  <div class="info-row"><div class="ir-lbl">Sharon</div><div class="ir-val" style="color:#f97316;">500 -- Operator</div></div>
+</div>
+
+<div class="slabel">Rechten</div>
+<div class="info-block">
+  <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">Admin</div><div class="ir-val" style="font-size:14px;">Alle recepten bewerken & verwijderen. Alle opties bewerken & verwijderen.</div></div>
+  <div class="info-row"><div class="ir-lbl" style="color:#22d3ee;">Operator</div><div class="ir-val" style="font-size:14px;">Alleen eigen recepten bewerken. Eigen opties bewerken & verwijderen.</div></div>
+</div>
+
+<div class="slabel">App Functies -- v4.3</div>
+<div class="info-block">
+  <div class="info-row"><div class="ir-lbl">Login</div><div class="ir-val" style="font-size:14px;">App wachtwoord → naam kiezen → pincode</div></div>
+  <div class="info-row"><div class="ir-lbl">Recepten</div><div class="ir-val" style="font-size:14px;">Boomstructuur per klantnummer + klantnaam. Zoeken op klant, naam, afmeting, materiaal, operator.</div></div>
+  <div class="info-row"><div class="ir-lbl">Nieuw recept</div><div class="ir-val" style="font-size:14px;">Blower calculator op basis van dikte. Waarden handmatig aanpasbaar voor opslaan.</div></div>
+  <div class="info-row"><div class="ir-lbl">Recept detail</div><div class="ir-val" style="font-size:14px;">Zak specs, blower timing, 360° diagram onderaan.</div></div>
+  <div class="info-row"><div class="ir-lbl">Probleemoplossing</div><div class="ir-val" style="font-size:14px;">5 problemen met advies per kanaal. Volledig scherm per probleem.</div></div>
+  <div class="info-row"><div class="ir-lbl">Aangepaste opties</div><div class="ir-val" style="font-size:14px;">8 opties per recept. Kiezen, bewerken, verwijderen (pin). Actieve optie zichtbaar in lijst en detail.</div></div>
+  <div class="info-row"><div class="ir-lbl">Leer Data</div><div class="ir-val" style="font-size:14px;">Gemiddelde van alle opties = werkelijke optimale parameters. Opgeslagen in Firebase.</div></div>
+  <div class="info-row"><div class="ir-lbl">Auto-update</div><div class="ir-val" style="font-size:14px;">version.json check bij opstarten. App ververst automatisch bij nieuwe versie.</div></div>
+  <div class="info-row"><div class="ir-lbl">Firebase</div><div class="ir-val" style="font-size:14px;">Realtime database. Alle recepten gedeeld tussen alle gebruikers.</div></div>
+  <div class="info-row"><div class="ir-lbl">Zoom</div><div class="ir-val" style="font-size:14px;">Pinch-to-zoom actief in hele app.</div></div>
+</div>
+
+<div class="slabel">Versie Historie</div>
+<div class="info-block">
+  <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">v4.3</div><div class="ir-val" style="font-size:13px;">Admin knop home, Info App scherm, versie historie</div></div>
+  <div class="info-row"><div class="ir-lbl">v4.3</div><div class="ir-val" style="font-size:13px;">Recept verwijderen fix (dubbele confirm weg)</div></div>
+  <div class="info-row"><div class="ir-lbl">v4.1</div><div class="ir-val" style="font-size:13px;">Optie verwijderen met eigen pincode</div></div>
+  <div class="info-row"><div class="ir-lbl">v4.0</div><div class="ir-val" style="font-size:13px;">Leer Data knop -- werkelijke optimale parameters</div></div>
+  <div class="info-row"><div class="ir-lbl">v3.9</div><div class="ir-val" style="font-size:13px;">8 opties per recept, optie banner boven instellingen</div></div>
+  <div class="info-row"><div class="ir-lbl">v3.8</div><div class="ir-val" style="font-size:13px;">Zoom aan, operators knop weg, 2 knoppen naast elkaar</div></div>
+  <div class="info-row"><div class="ir-lbl">v3.7</div><div class="ir-val" style="font-size:13px;">Alle 6 operators in loginscherm met eigen kleur en pin</div></div>
+  <div class="info-row"><div class="ir-lbl">v3.6</div><div class="ir-val" style="font-size:13px;">Knoppen naast elkaar, diagram onderaan, operators popup fix</div></div>
+  <div class="info-row"><div class="ir-lbl">v3.5</div><div class="ir-val" style="font-size:13px;">Knipperfix versie check loop</div></div>
+  <div class="info-row"><div class="ir-lbl">v3.2</div><div class="ir-val" style="font-size:13px;">Actieve optie -- badge in lijst, banner in detail, ↺ terug naar optimaal</div></div>
+  <div class="info-row"><div class="ir-lbl">v3.0</div><div class="ir-val" style="font-size:13px;">Opties systeem, probleemoplossing popup volledig scherm</div></div>
+  <div class="info-row"><div class="ir-lbl">v2.9</div><div class="ir-val" style="font-size:13px;">Probleemoplossing adviezen per kanaal</div></div>
+  <div class="info-row"><div class="ir-lbl">v2.7</div><div class="ir-val" style="font-size:13px;">Login: naam → pincode direct inline</div></div>
+  <div class="info-row"><div class="ir-lbl">v2.3</div><div class="ir-val" style="font-size:13px;">TSA stijl receptenlijst, klantnaam, datum, icoontjes</div></div>
+  <div class="info-row"><div class="ir-lbl">v2.0</div><div class="ir-val" style="font-size:13px;">Grote home knoppen, versienummer loginscherm, auto-update</div></div>
 </div>
 ```
 
@@ -1175,7 +1261,7 @@ color: #c8d8e8;
 // ═══════════════════════════════════════════════════
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
-const APP_VERSION = '4.1';
+const APP_VERSION = '4.3';
 
 const OPERATORS_CONFIG = {
   'Dirk':   { pin: '007', admin: true  },
@@ -1299,6 +1385,11 @@ function toonAdminFuncties(isAdmin) {
   document.querySelectorAll('.admin-only').forEach(el => {
     el.style.display = isAdmin ? '' : 'none';
   });
+  const adminBlok = document.getElementById('admin-knop-blok');
+  if (adminBlok) adminBlok.style.display = isAdmin ? 'flex' : 'none';
+  // Versienummer in info scherm
+  const infoVersie = document.getElementById('info-versie');
+  if (infoVersie) infoVersie.textContent = APP_VERSION;
 }
 
 function terugStap1() {
@@ -1684,9 +1775,10 @@ async function editRecipe(firebaseKey) {
 }
 
 async function delRecipe(firebaseKey) {
-  if (!confirm('Recept verwijderen?')) return;
+  toast('Verwijderen...');
   await deleteRecipeFromFirebase(firebaseKey);
   toast('Recept verwijderd');
+  go('s-recipes');
   renderRecipes();
 }
 
