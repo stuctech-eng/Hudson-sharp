@@ -745,7 +745,7 @@ color: #c8d8e8;
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
-<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v3.9</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v4.0</div>
 
 <div style="width:100%;max-width:300px;">
 
@@ -805,7 +805,7 @@ color: #c8d8e8;
     <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#22c55e;letter-spacing:.15em;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);padding:4px 10px;border-radius:2px;">
       <div class="pulse"></div>SYSTEEM GEREED
     </div>
-    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v3.9</div>
+    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v4.0</div>
   </div>
   <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
@@ -1072,6 +1072,16 @@ color: #c8d8e8;
   </div>
 </div>
 
+<!-- LEERDATA SCHERM -->
+
+<div id="leerdata-scherm" style="display:none;position:fixed;inset:0;background:#070a10;z-index:9001;flex-direction:column;">
+  <div style="background:#0f1520;border-bottom:2px solid #f59e0b;height:56px;display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0;">
+    <button onclick="sluitLeerdata()" style="background:none;border:1px solid #1a2540;border-radius:4px;color:#f59e0b;font-size:22px;cursor:pointer;padding:4px 10px;">‹</button>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.12em;text-transform:uppercase;color:#e5e7eb;flex:1;">🧠 Leer Data</div>
+  </div>
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 16px 60px;" id="leerdata-inhoud"></div>
+</div>
+
 <!-- OPERATORS POPUP -->
 
 <div id="operators-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9000;align-items:flex-start;justify-content:center;padding-top:60px;">
@@ -1153,7 +1163,7 @@ color: #c8d8e8;
 // ═══════════════════════════════════════════════════
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
-const APP_VERSION = '3.9';
+const APP_VERSION = '4.0';
 
 const OPERATORS_CONFIG = {
   'Dirk':   { pin: '007', admin: true  },
@@ -1833,8 +1843,95 @@ function sluitOptieBewerk() {
   document.getElementById('optie-bewerk-scherm').style.display = 'none';
 }
 // ═══════════════════════════════════════════════════
-// OPERATORS POPUP
+// LEER DATA
 // ═══════════════════════════════════════════════════
+async function toonLeerdata(firebaseKey) {
+  const list = _allRecipes.length ? _allRecipes : await loadRecipes();
+  const r = list.find(x => x.firebaseKey === firebaseKey);
+  if (!r) return;
+
+  const opties = r.opties || {};
+  const optieList = Object.values(opties);
+
+  if (optieList.length < 2) {
+    document.getElementById('leerdata-inhoud').innerHTML = `
+      <div style="text-align:center;padding:40px 16px;font-family:'Share Tech Mono',monospace;font-size:11px;color:#4a6080;line-height:2;border:1px dashed #1a2540;border-radius:4px;">
+        Minimaal 2 opties nodig voor leerdata.<br>Nu: ${optieList.length} optie opgeslagen.
+      </div>`;
+    document.getElementById('leerdata-scherm').style.display = 'flex';
+    return;
+  }
+
+  // Bereken gemiddelde per kanaal
+  const gemiddeld = {};
+  CHANNELS.forEach(ch => {
+    const onWaarden  = optieList.map(o => o[`${ch.key}_on`]).filter(v => v !== undefined);
+    const offWaarden = optieList.map(o => o[`${ch.key}_off`]).filter(v => v !== undefined);
+    gemiddeld[`${ch.key}_on`]  = Math.round(onWaarden.reduce((a,b) => a+b, 0) / onWaarden.length);
+    gemiddeld[`${ch.key}_off`] = Math.round(offWaarden.reduce((a,b) => a+b, 0) / offWaarden.length);
+  });
+
+  // Vergelijk met optimale settings
+  const datum = new Date().toISOString().split('T')[0];
+
+  // Sla op in Firebase onder leerdata
+  await updateRecipeInFirebase(firebaseKey, { leerdata: { ...gemiddeld, datum, aantalOpties: optieList.length } });
+
+  document.getElementById('leerdata-inhoud').innerHTML = `
+    <div style="background:#f59e0b18;border:1px solid #f59e0b44;border-radius:4px;padding:14px 16px;margin-bottom:16px;">
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#f59e0b;letter-spacing:.1em;">WERKELIJKE OPTIMALE PARAMETERS</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;margin-top:4px;">
+        Berekend uit ${optieList.length} opties · ${datum}
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+      ${CHANNELS.map(ch => {
+        const gemOn  = gemiddeld[`${ch.key}_on`];
+        const gemOff = gemiddeld[`${ch.key}_off`];
+        const baseOn  = r[`${ch.key}_on`];
+        const baseOff = r[`${ch.key}_off`];
+        const diffOn  = gemOn  - baseOn;
+        const diffOff = gemOff - baseOff;
+        const afwijkt = diffOn !== 0 || diffOff !== 0;
+        return `
+        <div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid ${afwijkt ? '#f59e0b' : ch.color};border-radius:4px;padding:14px 16px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:${ch.color};"></div>
+            <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;letter-spacing:.05em;flex:1;">${ch.label}</div>
+            ${afwijkt ? `<div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#f59e0b;letter-spacing:.1em;">AFWIJKING</div>` : ''}
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center;">
+            <div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:8px;">
+              <div style="font-family:'Share Tech Mono',monospace;font-size:8px;color:#6b7280;margin-bottom:4px;">OPTIMAAL</div>
+              <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#6b7280;">${baseOn}°→${baseOff}°</div>
+            </div>
+            <div style="background:#070a10;border:1px solid ${afwijkt ? '#f59e0b44' : '#1a2540'};border-radius:3px;padding:8px;">
+              <div style="font-family:'Share Tech Mono',monospace;font-size:8px;color:#6b7280;margin-bottom:4px;">WERKELIJK</div>
+              <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:${afwijkt ? '#f59e0b' : '#6b7280'};">${gemOn}°→${gemOff}°</div>
+            </div>
+            <div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:8px;">
+              <div style="font-family:'Share Tech Mono',monospace;font-size:8px;color:#6b7280;margin-bottom:4px;">VERSCHIL</div>
+              <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:${diffOn > 0 ? '#22c55e' : diffOn < 0 ? '#ef4444' : '#4a6080'};">
+                ${diffOn !== 0 ? (diffOn > 0 ? '+' : '') + diffOn + '°' : '--'}
+              </div>
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 16px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;line-height:1.8;letter-spacing:.08em;">
+      ℹ Leerdata wordt automatisch bijgewerkt als er meer opties worden toegevoegd.<br>
+      Hoe meer opties, hoe nauwkeuriger de werkelijke parameters.
+    </div>
+  `;
+  document.getElementById('leerdata-scherm').style.display = 'flex';
+}
+
+function sluitLeerdata() {
+  document.getElementById('leerdata-scherm').style.display = 'none';
+}
 const OPERATOR_NAMEN = ['Dirk', 'Casper', 'Jack', 'Henk', 'Leroy', 'Sharon'];
 
 async function toonOperatorsPopup(firebaseKey) {
@@ -2141,7 +2238,11 @@ function openDetailRender(r) {
         <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:#22c55e;">Opties</div>
         <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#6b7280;margin-top:3px;">${r.opties ? Object.keys(r.opties).length + ' opgeslagen' : 'leeg'}</div>
       </button>
-
+      <button onclick="toonLeerdata('${r.firebaseKey}')" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #f59e0b;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;grid-column:1/-1;">
+        <div style="font-size:22px;margin-bottom:6px;">🧠</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:#f59e0b;">Leer Data</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#6b7280;margin-top:3px;">${r.leerdata ? 'Werkelijke optimale parameters beschikbaar' : 'Nog geen leerdata -- min. 2 opties nodig'}</div>
+      </button>
     </div>
 
     <div class="slabel">Optimale Blower Timing</div>
