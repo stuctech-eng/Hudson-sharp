@@ -745,7 +745,7 @@ color: #c8d8e8;
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
-<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v3.1</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v3.2</div>
 
 <div style="width:100%;max-width:300px;">
 
@@ -805,7 +805,7 @@ color: #c8d8e8;
     <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#22c55e;letter-spacing:.15em;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);padding:4px 10px;border-radius:2px;">
       <div class="pulse"></div>SYSTEEM GEREED
     </div>
-    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v3.1</div>
+    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v3.2</div>
   </div>
   <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
@@ -1141,7 +1141,7 @@ color: #c8d8e8;
 // ═══════════════════════════════════════════════════
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
-const APP_VERSION = '3.1';
+const APP_VERSION = '3.2';
 
 const OPERATORS_CONFIG = {
   'Dirk':   { pin: '007', admin: true  },
@@ -1562,6 +1562,7 @@ function renderRecipeTree(list, query='') {
     const items = recipes.map(r => {
       const kanBewerken = magBewerken(r);
       const datum = r.id ? new Date(r.id).toISOString().split('T')[0] : '';
+      const actief = r.actieveOptie;
       return `
       <div class="tree-item" onclick="openDetailByKey('${r.firebaseKey}')">
         <div class="tree-item-inner">
@@ -1573,6 +1574,7 @@ function renderRecipeTree(list, query='') {
               ${datum ? `<span class="tag" style="font-size:9px;padding:2px 7px;">${datum}</span>` : ''}
               <span class="tag t-mat" style="font-size:9px;padding:2px 7px;">${r.material}</span>
               <span class="tag t-spd" style="font-size:9px;padding:2px 7px;">${r.speed} ZPM</span>
+              ${actief ? `<span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;padding:2px 8px;border-radius:3px;background:#22c55e22;border:1px solid #22c55e66;color:#22c55e;letter-spacing:.1em;">OPTIE ${actief}</span>` : ''}
             </div>
           </div>
           ${kanBewerken || magVerwijderen(r) ? `
@@ -1780,10 +1782,25 @@ async function slaOptieOp() {
   toonOptiesScherm(_huidigReceptKey);
 }
 
-function kiesOptie(firebaseKey, nr) {
-  toast(`Optie ${nr} geselecteerd als actieve instelling`);
-  // Sluit scherm -- operator weet nu welke waarden te gebruiken
+async function kiesOptie(firebaseKey, nr) {
+  toast('Opslaan...');
+  await updateRecipeInFirebase(firebaseKey, { actieveOptie: nr });
+  toast(`Optie ${nr} actief!`);
   sluitOptiesScherm();
+  // Herlaad detail scherm met nieuwe actieve optie
+  const list = await loadRecipes();
+  const r = list.find(x => x.firebaseKey === firebaseKey);
+  if (r) openDetailRender(r);
+}
+
+async function zegOptieAf(firebaseKey) {
+  toast('Opslaan...');
+  await updateRecipeInFirebase(firebaseKey, { actieveOptie: null });
+  toast('Terug naar optimale settings');
+  const list = await loadRecipes();
+  const r = list.find(x => x.firebaseKey === firebaseKey);
+  if (r) openDetailRender(r);
+  renderRecipes();
 }
 
 function sluitOptieBewerk() {
@@ -1882,7 +1899,15 @@ async function openDetailByKey(firebaseKey) {
 
 function openDetailRender(r) {
 
-  document.getElementById('detail-title').textContent = `${r.width}×${r.length}`;
+  // Bepaal actieve waarden -- optie of optimaal
+  const actieveOptie = r.actieveOptie;
+  const optData = actieveOptie && r.opties && r.opties[actieveOptie] ? r.opties[actieveOptie] : null;
+
+  // Gebruik optie waarden voor diagram als optie actief is
+  const getOn  = (key) => optData ? (optData[`${key}_on`]  ?? r[`${key}_on`])  : r[`${key}_on`];
+  const getOff = (key) => optData ? (optData[`${key}_off`] ?? r[`${key}_off`]) : r[`${key}_off`];
+
+  document.getElementById('detail-title').textContent = `${r.width}×${r.length}${actieveOptie ? ` · Opt.${actieveOptie}` : ''}`;
 
   // ── 360° SVG DIAGRAM ──
   const cx = 160, cy = 160, R = 110, strokeW = 18;
@@ -1900,8 +1925,8 @@ function openDetailRender(r) {
 
   const radii = [58, 72, 86, 100, 114, 128, 142];
   const channelArcs = CHANNELS.map((ch, i) => {
-    const on  = r[`${ch.key}_on`];
-    const off = r[`${ch.key}_off`];
+    const on  = getOn(ch.key);
+    const off = getOff(ch.key);
     const d = arcPath(on, off, radii[i]);
     if (!d) return '';
     return `<path d="${d}" stroke="${ch.color}" stroke-width="${strokeW - 2}" fill="none" stroke-linecap="round" opacity="0.85"/>`;
@@ -1921,38 +1946,45 @@ function openDetailRender(r) {
   }).join('');
 
   const legendHTML = CHANNELS.map((ch, i) => {
-    const on  = r[`${ch.key}_on`];
-    const off = r[`${ch.key}_off`];
+    const on  = getOn(ch.key);
+    const off = getOff(ch.key);
+    const baseOn  = r[`${ch.key}_on`];
+    const baseOff = r[`${ch.key}_off`];
     const dur = off > on ? off - on : (360 - on + off);
+    const afwijkt = optData && (on !== baseOn || off !== baseOff);
     return `<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #1a2235;">
       <div style="width:10px;height:10px;border-radius:50%;background:${ch.color};flex-shrink:0;box-shadow:0 0 5px ${ch.color}88;"></div>
       <div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;color:#8a9ab0;letter-spacing:.08em;flex:1;text-transform:uppercase;">${ch.label}</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:${ch.color};">${on}°→${off}°</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:${afwijkt ? '#22c55e' : ch.color};">${on}°→${off}°${afwijkt ? ' ✓' : ''}</div>
       <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;min-width:32px;text-align:right;">${dur}°</div>
     </div>`;
   }).join('');
 
   const blowerHTML = CHANNELS.map(ch => {
-    const on  = r[`${ch.key}_on`];
-    const off = r[`${ch.key}_off`];
+    const on  = getOn(ch.key);
+    const off = getOff(ch.key);
+    const baseOn  = r[`${ch.key}_on`];
+    const baseOff = r[`${ch.key}_off`];
     const dur = off > on ? off - on : (360 - on + off);
     const lft = (on / 360 * 100).toFixed(1);
     const wid = dur <= 0 ? 0.4 : (dur / 360 * 100).toFixed(1);
+    const afwijkt = optData && (on !== baseOn || off !== baseOff);
     return `
-      <div class="blower-block">
+      <div class="blower-block" style="${afwijkt ? 'border-left:3px solid #22c55e;' : ''}">
         <div class="blower-hdr">
           <div class="bdot" style="background:${ch.color};box-shadow:0 0 6px ${ch.color}55;"></div>
           <div class="bname">${ch.label}</div>
+          ${afwijkt ? `<div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#22c55e;margin-left:auto;letter-spacing:.1em;">OPT.${actieveOptie} · was ${baseOn}°→${baseOff}°</div>` : ''}
         </div>
         <div class="blower-cells">
           <div class="bcell">
             <span class="bcell-lbl">AAN</span>
-            <span class="bcell-val" style="color:${ch.color}">${on}</span>
+            <span class="bcell-val" style="color:${afwijkt ? '#22c55e' : ch.color}">${on}</span>
             <span class="bcell-unit">°</span>
           </div>
           <div class="bcell">
             <span class="bcell-lbl">UIT</span>
-            <span class="bcell-val" style="color:${ch.color}">${off}</span>
+            <span class="bcell-val" style="color:${afwijkt ? '#22c55e' : ch.color}">${off}</span>
             <span class="bcell-unit">°</span>
           </div>
           <div class="bcell">
@@ -1963,7 +1995,7 @@ function openDetailRender(r) {
         </div>
         <div class="bar-wrap">
           <div class="bar-track">
-            <div class="bar-fill" style="left:${lft}%;width:${wid}%;background:${ch.color};"></div>
+            <div class="bar-fill" style="left:${lft}%;width:${wid}%;background:${afwijkt ? '#22c55e' : ch.color};"></div>
           </div>
           <div class="bar-ticks">
             ${[0,90,180,270,360].map(d=>`<span class="bar-tick">${d}°</span>`).join('')}
@@ -1972,8 +2004,23 @@ function openDetailRender(r) {
       </div>`;
   }).join('');
 
-  document.getElementById('detail-content').innerHTML = `
+  // Actieve optie banner
+  const optBanner = actieveOptie ? `
+    <div style="background:#22c55e18;border:1px solid #22c55e44;border-radius:4px;padding:12px 16px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#22c55e;letter-spacing:.1em;">OPTIE ${actieveOptie} ACTIEF</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;margin-top:2px;">
+          👤 ${optData?.operator || '?'} -- ${optData?.datum || ''}
+        </div>
+      </div>
+      <button onclick="zegOptieAf('${r.firebaseKey}')"
+        style="background:#2a0000;border:1px solid #ef444466;border-radius:4px;color:#ef4444;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;padding:8px 12px;cursor:pointer;flex-shrink:0;white-space:nowrap;">
+        ↺ Optimaal
+      </button>
+    </div>` : '';
 
+  document.getElementById('detail-content').innerHTML = `
+    ${optBanner}
     <div class="slabel">360° Cyclus Diagram</div>
     <div style="background:#0a0e16;border:1px solid #1a2235;border-radius:2px;padding:16px;margin-bottom:8px;">
       <svg viewBox="0 0 320 320" width="100%" style="display:block;max-width:320px;margin:0 auto;">
