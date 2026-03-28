@@ -745,7 +745,7 @@ color: #c8d8e8;
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
-<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v4.0</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v4.1</div>
 
 <div style="width:100%;max-width:300px;">
 
@@ -805,7 +805,7 @@ color: #c8d8e8;
     <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#22c55e;letter-spacing:.15em;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);padding:4px 10px;border-radius:2px;">
       <div class="pulse"></div>SYSTEEM GEREED
     </div>
-    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v4.0</div>
+    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v4.1</div>
   </div>
   <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
@@ -1072,8 +1072,20 @@ color: #c8d8e8;
   </div>
 </div>
 
-<!-- LEERDATA SCHERM -->
+<!-- PIN MODAL OPTIE VERWIJDEREN -->
 
+<div id="pin-optie-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9500;align-items:center;justify-content:center;padding:24px;">
+  <div style="background:#0f1520;border:1px solid #1a2540;border-top:2px solid #ef4444;border-radius:4px;padding:28px 24px;width:100%;max-width:300px;">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#ef4444;letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px;">Beveiligd</div>
+    <div id="pin-optie-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;margin-bottom:20px;">Optie verwijderen</div>
+    <input id="pin-optie-input" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·"
+      onkeydown="if(event.key==='Enter')bevestigOptiePin()"
+      style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:#e5e7eb;font-family:'Share Tech Mono',monospace;font-size:28px;padding:14px;outline:none;text-align:center;letter-spacing:8px;margin-bottom:8px;-webkit-appearance:none;">
+    <div id="pin-optie-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">VERKEERDE PIN</div>
+    <button onclick="bevestigOptiePin()" style="width:100%;background:#ef4444;color:#fff;border:none;border-radius:3px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;letter-spacing:.15em;padding:14px;cursor:pointer;margin-bottom:10px;">VERWIJDEREN</button>
+    <button onclick="sluitOptiePin()" style="width:100%;background:transparent;color:#6b7280;border:1px solid #1a2540;border-radius:3px;font-family:'Rajdhani',sans-serif;font-size:15px;padding:12px;cursor:pointer;">Annuleer</button>
+  </div>
+</div>
 <div id="leerdata-scherm" style="display:none;position:fixed;inset:0;background:#070a10;z-index:9001;flex-direction:column;">
   <div style="background:#0f1520;border-bottom:2px solid #f59e0b;height:56px;display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0;">
     <button onclick="sluitLeerdata()" style="background:none;border:1px solid #1a2540;border-radius:4px;color:#f59e0b;font-size:22px;cursor:pointer;padding:4px 10px;">‹</button>
@@ -1163,7 +1175,7 @@ color: #c8d8e8;
 // ═══════════════════════════════════════════════════
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
-const APP_VERSION = '4.0';
+const APP_VERSION = '4.1';
 
 const OPERATORS_CONFIG = {
   'Dirk':   { pin: '007', admin: true  },
@@ -1726,6 +1738,10 @@ async function toonOptiesScherm(firebaseKey) {
                 style="background:${opt ? '#1a2e1a' : '#0f1520'};border:1px solid ${opt ? '#22c55e66' : '#1a2540'};border-radius:4px;color:${opt ? '#22c55e' : '#6b7280'};font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.1em;padding:10px 14px;cursor:pointer;">
                 ${opt ? '✎ Bewerk' : '＋ Nieuw'}
               </button>` : `<div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;padding:10px 8px;letter-spacing:.1em;">🔒 ${opt?.operator || ''}</div>`}
+              ${opt && magOptieBewerken ? `<button onclick="vraagPinOptieVerwijder('${firebaseKey}','${nr}')"
+                style="background:#2a0000;border:1px solid #ef444466;border-radius:4px;color:#ef4444;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;padding:10px 12px;cursor:pointer;">
+                ✕
+              </button>` : ''}
             </div>
           </div>
           ${opt ? `
@@ -1841,6 +1857,43 @@ async function zegOptieAf(firebaseKey) {
 
 function sluitOptieBewerk() {
   document.getElementById('optie-bewerk-scherm').style.display = 'none';
+}
+
+let _deleteOptieKey = null;
+let _deleteOptieNr  = null;
+
+function vraagPinOptieVerwijder(firebaseKey, nr) {
+  _deleteOptieKey = firebaseKey;
+  _deleteOptieNr  = nr;
+  document.getElementById('pin-optie-titel').textContent = `Optie ${nr} verwijderen`;
+  document.getElementById('pin-optie-input').value = '';
+  document.getElementById('pin-optie-err').style.display = 'none';
+  document.getElementById('pin-optie-overlay').style.display = 'flex';
+  setTimeout(() => document.getElementById('pin-optie-input').focus(), 100);
+}
+
+function sluitOptiePin() {
+  document.getElementById('pin-optie-overlay').style.display = 'none';
+  _deleteOptieKey = null;
+  _deleteOptieNr  = null;
+}
+
+async function bevestigOptiePin() {
+  const pin = document.getElementById('pin-optie-input').value.trim();
+  const cfg = OPERATORS_CONFIG[_huidigeOperator];
+  if (cfg && pin === cfg.pin) {
+    sluitOptiePin();
+    toast('Optie verwijderen...');
+    // Verwijder optie uit Firebase via null
+    await updateRecipeInFirebase(_deleteOptieKey, {
+      [`opties/${_deleteOptieNr}`]: null
+    });
+    toast(`Optie ${_deleteOptieNr} verwijderd!`);
+    toonOptiesScherm(_deleteOptieKey);
+  } else {
+    document.getElementById('pin-optie-err').style.display = 'block';
+    document.getElementById('pin-optie-input').value = '';
+  }
 }
 // ═══════════════════════════════════════════════════
 // LEER DATA
