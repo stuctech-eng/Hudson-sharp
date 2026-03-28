@@ -745,7 +745,7 @@ color: #c8d8e8;
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
-<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v2.1</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v2.5</div>
 
 <div style="width:100%;max-width:300px;">
 
@@ -760,25 +760,27 @@ color: #c8d8e8;
     <button onclick="checkAppPw()" style="width:100%;background:linear-gradient(135deg,#f5a623,#ff6b00);color:#000;border:none;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:.2em;text-transform:uppercase;padding:16px;cursor:pointer;">Verder →</button>
   </div>
 
-  <!-- STAP 2: Naam kiezen -->
+  <!-- STAP 2: Naam kiezen + pincode inline -->
   <div id="login-stap2" style="display:none;">
     <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;">Wie ben jij?</div>
     <div id="operator-knoppen" style="display:flex;flex-direction:column;gap:10px;"></div>
+
+    <!-- Pincode veld -- verschijnt na klikken op naam -->
+    <div id="login-pin-blok" style="display:none;margin-top:16px;">
+      <div id="login-naam-toon" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;"></div>
+      <input id="login-pin" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·"
+        onkeydown="if(event.key==='Enter')doLogin()"
+        style="width:100%;background:#0a0e16;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:26px;padding:16px;outline:none;margin-bottom:10px;-webkit-appearance:none;text-align:center;letter-spacing:.4em;transition:border-color .15s;"
+        onfocus="this.style.borderColor='#22d3ee'" onblur="this.style.borderColor='#1a2235'">
+      <div id="login-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">VERKEERDE PINCODE</div>
+      <button onclick="doLogin()" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#000;border:none;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:.2em;text-transform:uppercase;padding:16px;cursor:pointer;margin-bottom:10px;">Inloggen</button>
+    </div>
+
     <button onclick="terugStap1()" style="width:100%;background:transparent;border:1px solid #1a2235;border-radius:2px;color:#4a6080;font-family:'Rajdhani',sans-serif;font-size:15px;padding:12px;cursor:pointer;margin-top:10px;">‹ Terug</button>
   </div>
 
-  <!-- STAP 3: Pincode -->
-  <div id="login-stap3" style="display:none;">
-    <div id="login-naam-toon" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#f5a623;letter-spacing:.1em;text-align:center;margin-bottom:16px;"></div>
-    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;">Pincode</div>
-    <input id="login-pin" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·"
-      onkeydown="if(event.key==='Enter')doLogin()"
-      style="width:100%;background:#0a0e16;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:26px;padding:16px;outline:none;margin-bottom:10px;-webkit-appearance:none;text-align:center;letter-spacing:.4em;transition:border-color .15s;"
-      onfocus="this.style.borderColor='#22d3ee'" onblur="this.style.borderColor='#1a2235'">
-    <div id="login-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">VERKEERDE PINCODE</div>
-    <button onclick="doLogin()" style="width:100%;background:linear-gradient(135deg,#f5a623,#ff6b00);color:#000;border:none;border-radius:2px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:.2em;text-transform:uppercase;padding:16px;cursor:pointer;margin-bottom:10px;">Inloggen</button>
-    <button onclick="terugStap2()" style="width:100%;background:transparent;border:1px solid #1a2235;border-radius:2px;color:#4a6080;font-family:'Rajdhani',sans-serif;font-size:15px;padding:12px;cursor:pointer;">‹ Terug</button>
-  </div>
+  <!-- STAP 3 niet meer nodig -- pincode zit inline in stap 2 -->
+  <div id="login-stap3" style="display:none;"></div>
 
 </div>
 ```
@@ -803,7 +805,7 @@ color: #c8d8e8;
     <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#22c55e;letter-spacing:.15em;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);padding:4px 10px;border-radius:2px;">
       <div class="pulse"></div>SYSTEEM GEREED
     </div>
-    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v2.1</div>
+    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v2.5</div>
   </div>
   <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
@@ -859,7 +861,7 @@ color: #c8d8e8;
   </div>
   <div style="padding:10px 14px 0;background:#070a0f;position:sticky;top:56px;z-index:99;">
     <div style="position:relative;">
-      <input id="search-input" type="text" inputmode="text" placeholder="Zoek op klant, plaats of afmeting..."
+      <input id="search-input" type="text" inputmode="text" placeholder="Zoek op klant, naam, afmeting, materiaal..."
         oninput="filterRecipes()"
         style="width:100%;background:#0a0e16;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:13px;padding:11px 14px 11px 36px;outline:none;-webkit-appearance:none;">
       <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#4a6080;font-size:14px;">🔍</span>
@@ -1066,7 +1068,7 @@ color: #c8d8e8;
 // ═══════════════════════════════════════════════════
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
-const APP_VERSION = '2.1';
+const APP_VERSION = '2.5';
 
 const OPERATORS_CONFIG = {
   'Dirk':   { pin: '007', admin: true  },
@@ -1129,11 +1131,18 @@ function toonStap2() {
 
 function kiesOperatorLogin(naam) {
   _geselecteerdeOperator = naam;
-  document.getElementById('login-stap2').style.display = 'none';
-  document.getElementById('login-stap3').style.display = 'block';
-  document.getElementById('login-naam-toon').textContent = '👤 ' + naam;
+  // Highlight geselecteerde knop
+  document.querySelectorAll('#operator-knoppen button').forEach(b => {
+    b.style.opacity = b.textContent.includes(naam) ? '1' : '0.4';
+  });
+  // Toon pincode veld inline
+  const blok = document.getElementById('login-pin-blok');
+  const kleuren = { 'Dirk': '#f5a623', 'Casper': '#22d3ee' };
+  document.getElementById('login-naam-toon').innerHTML =
+    `PINCODE <span style="color:${kleuren[naam]||'#f5a623'};font-weight:700;">${naam.toUpperCase()}</span>`;
   document.getElementById('login-pin').value = '';
   document.getElementById('login-err').style.display = 'none';
+  blok.style.display = 'block';
   setTimeout(() => document.getElementById('login-pin').focus(), 100);
 }
 
@@ -1301,13 +1310,11 @@ function kiesKlant(nr, naam) {
 // BLOWER CHANNEL DEFINITIONS
 // ═══════════════════════════════════════════════════
 const CHANNELS = [
-  { key:'lower_pipe', label:'Lower Pipe',        color:'#f97316' },
-  { key:'lower',      label:'Lower Blowers',     color:'#a78bfa' },
-  { key:'upper_pipe', label:'Upper Pipe',        color:'#3b82f6' },
-  { key:'upper',      label:'Upper Blowers',     color:'#22d3ee' },
-  { key:'out6',       label:'Output 6',          color:'#f5a623' },
-  { key:'out7',       label:'Output 7',          color:'#64748b' },
-  { key:'out8',       label:'Output 8',          color:'#94a3b8' },
+  { key:'lower',      label:'Lower Blowers',  color:'#a78bfa' },
+  { key:'upper',      label:'Upper Blowers',  color:'#22d3ee' },
+  { key:'lower_pipe', label:'Lower Pipe',     color:'#f97316' },
+  { key:'upper_pipe', label:'Upper Pipe',     color:'#3b82f6' },
+  { key:'out6',       label:'Output 6',       color:'#f5a623' },
 ];
 
 // ═══════════════════════════════════════════════════
@@ -1317,32 +1324,23 @@ function calculateBlowers(t) {
   if (t <= 0.02) return {
     upper_on:90,upper_off:300,
     upper_pipe_on:30,upper_pipe_off:200,
-    
     lower_on:50,lower_off:270,
     lower_pipe_on:27,lower_pipe_off:220,
     out6_on:60,out6_off:250,
-    out7_on:10,out7_off:10,
-    out8_on:10,out8_off:10,
   };
   if (t <= 0.03) return {
     upper_on:120,upper_off:320,
     upper_pipe_on:20,upper_pipe_off:190,
-    
     lower_on:60,lower_off:280,
     lower_pipe_on:30,lower_pipe_off:210,
     out6_on:80,out6_off:300,
-    out7_on:10,out7_off:10,
-    out8_on:10,out8_off:10,
   };
   return {
     upper_on:90,upper_off:300,
     upper_pipe_on:30,upper_pipe_off:200,
-    
     lower_on:50,lower_off:270,
     lower_pipe_on:27,lower_pipe_off:220,
     out6_on:135,out6_off:358,
-    out7_on:10,out7_off:10,
-    out8_on:10,out8_off:10,
   };
 }
 
@@ -1447,11 +1445,15 @@ function renderRecipeTree(list, query='') {
   // Filter
   const filtered = q ? list.filter(r =>
     (r.klant||'').toLowerCase().includes(q) ||
+    (r.klantnaam||'').toLowerCase().includes(q) ||
     (r.plaats||'').toLowerCase().includes(q) ||
     (r.operator||'').toLowerCase().includes(q) ||
+    (r.material||'').toLowerCase().includes(q) ||
     `${r.width}`.includes(q) ||
     `${r.length}`.includes(q) ||
-    (r.material||'').toLowerCase().includes(q)
+    `${r.width}x${r.length}`.includes(q.replace(/\s/g,'')) ||
+    `${r.width}×${r.length}`.includes(q) ||
+    `${r.thickness}`.includes(q)
   ) : list;
 
   if (!filtered.length) {
@@ -1478,24 +1480,27 @@ function renderRecipeTree(list, query='') {
 
     const items = recipes.map(r => {
       const kanBewerken = magBewerken(r);
+      const datum = r.id ? new Date(r.id).toISOString().split('T')[0] : '';
       return `
       <div class="tree-item" onclick="openDetailByKey('${r.firebaseKey}')">
         <div class="tree-item-inner">
           <div class="tree-connector"></div>
           <div class="tree-content">
-            <div class="tree-name">${r.width} × ${r.length} cm</div>
-            <div class="tree-meta">
-              ${r.plaats ? `<span class="tree-place">📍 ${r.plaats}</span>` : ''}
-              ${r.operator ? `<span class="tree-place" style="color:#a78bfa;">👤 ${r.operator}</span>` : ''}
-              <span class="tag t-mat" style="font-size:9px;padding:2px 6px;">${r.material}</span>
-              <span class="tag" style="font-size:9px;padding:2px 6px;">${r.thickness} mm</span>
-              <span class="tag t-spd" style="font-size:9px;padding:2px 6px;">${r.speed} ZPM</span>
+            <div class="tree-name">${r.width} × ${r.length} cm / ${r.thickness} mm</div>
+            <div class="tree-meta" style="margin-top:6px;">
+              ${r.operator ? `<span class="tag" style="font-size:9px;padding:2px 7px;border-color:#a78bfa44;color:#a78bfa;">${r.operator}</span>` : ''}
+              ${datum ? `<span class="tag" style="font-size:9px;padding:2px 7px;">${datum}</span>` : ''}
+              <span class="tag t-mat" style="font-size:9px;padding:2px 7px;">${r.material}</span>
+              <span class="tag t-spd" style="font-size:9px;padding:2px 7px;">${r.speed} ZPM</span>
             </div>
           </div>
-          <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0;">
-            ${kanBewerken ? `<button class="rc-edit" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();editRecipe('${r.firebaseKey}')">✎</button>` : ''}
-            ${kanBewerken ? `<button class="rc-del" style="font-size:11px;padding:4px 8px;" onclick="event.stopPropagation();vraagPinVerwijder('${r.firebaseKey}')">🗑</button>` : ''}
-          </div>
+          ${kanBewerken ? `
+          <div style="display:flex;gap:6px;flex-shrink:0;">
+            <button onclick="event.stopPropagation();editRecipe('${r.firebaseKey}')"
+              style="width:38px;height:38px;background:#2a1f00;border:1px solid #f5a62366;border-radius:3px;color:#f5a623;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✎</button>
+            <button onclick="event.stopPropagation();vraagPinVerwijder('${r.firebaseKey}')"
+              style="width:38px;height:38px;background:#2a0000;border:1px solid #ef444466;border-radius:3px;color:#ef4444;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+          </div>` : ''}
         </div>
       </div>`;
     }).join('');
@@ -1506,9 +1511,9 @@ function renderRecipeTree(list, query='') {
           <span class="tree-icon">📁</span>
           <div style="flex:1;">
             <span class="tree-klant">${klant.padStart(4,'0')}</span>
-            ${klantnaam ? `<span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;margin-left:8px;">${klantnaam}</span>` : ''}
+            ${klantnaam ? `<span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;margin-left:8px;">-- ${klantnaam.toUpperCase()}</span>` : ''}
           </div>
-          <span class="tree-count">${recipes.length} zak${recipes.length !== 1 ? 'ken' : ''}</span>
+          <span class="tree-count">${recipes.length} rec.</span>
           <span class="tree-chevron">›</span>
         </div>
         <div class="tree-items ${isOpen ? 'open' : ''}" id="${gid}-items">
