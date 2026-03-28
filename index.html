@@ -745,7 +745,7 @@ color: #c8d8e8;
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
-<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v2.8</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v2.9</div>
 
 <div style="width:100%;max-width:300px;">
 
@@ -805,7 +805,7 @@ color: #c8d8e8;
     <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#22c55e;letter-spacing:.15em;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);padding:4px 10px;border-radius:2px;">
       <div class="pulse"></div>SYSTEEM GEREED
     </div>
-    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v2.8</div>
+    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v2.9</div>
   </div>
   <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
@@ -1049,14 +1049,52 @@ color: #c8d8e8;
 
 <!-- PIN MODAL -->
 
-<!-- PROBLEEM ADVIES POPUP -->
+<!-- PROBLEEM KEUZE POPUP -->
 
-<div id="probleem-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;align-items:flex-end;justify-content:center;padding:0;">
-  <div style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #f59e0b;border-radius:12px 12px 0 0;padding:24px 20px 40px;width:100%;max-width:500px;max-height:80vh;overflow-y:auto;">
+<div id="probleem-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9000;align-items:flex-end;justify-content:center;">
+  <div style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #ef4444;border-radius:12px 12px 0 0;padding:24px 20px 40px;width:100%;max-width:500px;">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-      <div id="probleem-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;letter-spacing:.1em;text-transform:uppercase;color:#f59e0b;"></div>
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:.1em;text-transform:uppercase;color:#ef4444;">Welk probleem?</div>
       <button onclick="sluitProbleemAdvies()" style="background:none;border:1px solid #1a2540;border-radius:4px;color:#9ca3af;font-size:20px;padding:4px 10px;cursor:pointer;">✕</button>
     </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <button onclick="toonProbleemAdvies('krult')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #22d3ee;border-radius:4px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;width:100%;">
+        <span style="font-size:22px;">🌀</span>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Zak krult op</span>
+        <span style="margin-left:auto;color:#6b7280;font-size:20px;">›</span>
+      </button>
+      <button onclick="toonProbleemAdvies('hoeken')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #a78bfa;border-radius:4px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;width:100%;">
+        <span style="font-size:22px;">📐</span>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Hoeken vouwen om</span>
+        <span style="margin-left:auto;color:#6b7280;font-size:20px;">›</span>
+      </button>
+      <button onclick="toonProbleemAdvies('lucht')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #3b82f6;border-radius:4px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;width:100%;">
+        <span style="font-size:22px;">💨</span>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Lucht in de zak</span>
+        <span style="margin-left:auto;color:#6b7280;font-size:20px;">›</span>
+      </button>
+      <button onclick="toonProbleemAdvies('stapeling')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #f59e0b;border-radius:4px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;width:100%;">
+        <span style="font-size:22px;">📦</span>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Slechte stapeling</span>
+        <span style="margin-left:auto;color:#6b7280;font-size:20px;">›</span>
+      </button>
+      <button onclick="toonProbleemAdvies('opent')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #22c55e;border-radius:4px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;width:100%;">
+        <span style="font-size:22px;">🫧</span>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Zak opent niet</span>
+        <span style="margin-left:auto;color:#6b7280;font-size:20px;">›</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEEM ADVIES VOLLEDIG SCHERM -->
+
+<div id="probleem-advies-scherm" style="display:none;position:fixed;inset:0;background:#070a10;z-index:9001;flex-direction:column;">
+  <div style="background:#0f1520;border-bottom:2px solid #ef4444;height:56px;display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0;">
+    <button onclick="sluitProbleemAdviesScherm()" style="background:none;border:1px solid #1a2540;border-radius:4px;color:#f59e0b;font-size:22px;cursor:pointer;padding:4px 10px;">‹</button>
+    <div id="probleem-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.12em;text-transform:uppercase;color:#e5e7eb;flex:1;"></div>
+  </div>
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 16px 60px;">
     <div id="probleem-inhoud"></div>
   </div>
 </div>
@@ -1080,7 +1118,7 @@ color: #c8d8e8;
 // ═══════════════════════════════════════════════════
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
-const APP_VERSION = '2.8';
+const APP_VERSION = '2.9';
 
 const OPERATORS_CONFIG = {
   'Dirk':   { pin: '007', admin: true  },
@@ -1634,30 +1672,41 @@ const PROBLEEM_ADVIEZEN = {
   }
 };
 
+function toonProbleemKeuze() {
+  document.getElementById('probleem-overlay').style.display = 'flex';
+}
+
 function toonProbleemAdvies(type) {
   const p = PROBLEEM_ADVIEZEN[type];
   if (!p) return;
+  document.getElementById('probleem-overlay').style.display = 'none';
   document.getElementById('probleem-titel').textContent = p.titel;
   document.getElementById('probleem-inhoud').innerHTML = `
-    <div style="display:flex;flex-direction:column;gap:10px;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
       ${p.acties.map(a => `
-        <div style="background:#070a10;border:1px solid #1a2540;border-left:4px solid ${p.kleur};border-radius:4px;padding:14px 16px;display:flex;align-items:center;gap:14px;">
-          <div style="width:36px;height:36px;background:${p.kleur}22;border:1px solid ${p.kleur}66;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:${p.kleur};flex-shrink:0;">${a.richting}</div>
+        <div style="background:#0f1520;border:1px solid #1a2540;border-left:5px solid ${p.kleur};border-radius:4px;padding:18px 16px;display:flex;align-items:center;gap:16px;">
+          <div style="width:44px;height:44px;background:${p.kleur}22;border:1px solid ${p.kleur}66;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:26px;color:${p.kleur};flex-shrink:0;">${a.richting}</div>
           <div style="flex:1;">
-            <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;letter-spacing:.05em;">${a.kanaal}</div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:${p.kleur};margin-top:3px;">${a.actie}</div>
+            <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;color:#e5e7eb;letter-spacing:.05em;">${a.kanaal}</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:12px;color:${p.kleur};margin-top:4px;">${a.actie}</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#6b7280;margin-top:2px;">${a.detail}</div>
           </div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:12px;color:#6b7280;text-align:right;">${a.detail}</div>
         </div>
       `).join('')}
     </div>
-    <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;text-align:center;margin-top:16px;letter-spacing:.1em;">Pas één instelling tegelijk aan -- wacht 10–15 zakken voor beoordeling</div>
+    <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 16px;margin-top:16px;font-family:'Share Tech Mono',monospace;font-size:11px;color:#6b7280;text-align:center;line-height:1.8;letter-spacing:.08em;">
+      ⚠ Pas één instelling tegelijk aan<br>Wacht 10–15 zakken voor beoordeling
+    </div>
   `;
-  document.getElementById('probleem-overlay').style.display = 'flex';
+  document.getElementById('probleem-advies-scherm').style.display = 'flex';
 }
 
 function sluitProbleemAdvies() {
   document.getElementById('probleem-overlay').style.display = 'none';
+}
+
+function sluitProbleemAdviesScherm() {
+  document.getElementById('probleem-advies-scherm').style.display = 'none';
 }
 async function openDetailByKey(firebaseKey) {
   const list = await loadRecipes();
@@ -1794,28 +1843,14 @@ function openDetailRender(r) {
       <div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">${Math.round(60000/r.speed)}<span class="u"> ms</span></div></div>
     </div>
     <div class="slabel">Probleemoplossing</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
-      <button onclick="toonProbleemAdvies('krult')" style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 10px;cursor:pointer;text-align:center;">
-        <div style="font-size:22px;margin-bottom:6px;">🌀</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Zak krult op</div>
-      </button>
-      <button onclick="toonProbleemAdvies('hoeken')" style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 10px;cursor:pointer;text-align:center;">
-        <div style="font-size:22px;margin-bottom:6px;">📐</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Hoeken vouwen</div>
-      </button>
-      <button onclick="toonProbleemAdvies('lucht')" style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 10px;cursor:pointer;text-align:center;">
-        <div style="font-size:22px;margin-bottom:6px;">💨</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Lucht in zak</div>
-      </button>
-      <button onclick="toonProbleemAdvies('stapeling')" style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 10px;cursor:pointer;text-align:center;">
-        <div style="font-size:22px;margin-bottom:6px;">📦</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Slechte stapeling</div>
-      </button>
-      <button onclick="toonProbleemAdvies('opent')" style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 10px;cursor:pointer;text-align:center;grid-column:1/-1;">
-        <div style="font-size:22px;margin-bottom:6px;">🫧</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:#e5e7eb;">Zak opent niet</div>
-      </button>
-    </div>
+    <button onclick="toonProbleemKeuze()" style="width:100%;background:#0f1520;border:1px solid #1a2540;border-left:5px solid #ef4444;border-radius:4px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:14px;margin-bottom:8px;">
+      <span style="font-size:24px;">🔧</span>
+      <div style="flex:1;text-align:left;">
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;color:#e5e7eb;">Probleem oplossen</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;margin-top:3px;">Tik voor advies per probleem</div>
+      </div>
+      <span style="font-size:22px;color:#ef4444;">›</span>
+    </button>
 
     <div class="slabel">Blower Timing</div>
     ${blowerHTML}
