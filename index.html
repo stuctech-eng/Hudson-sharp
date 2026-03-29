@@ -416,6 +416,13 @@ border-radius: 3px;
 }
 
 /* ═══════════════════════════════════════════
+VELD STATEN
+═══════════════════════════════════════════ */
+.veld-leeg      { background:rgba(245,158,11,.06)!important; border-color:rgba(245,158,11,.5)!important; color:#fcd34d!important; }
+.veld-benadering{ background:rgba(96,165,250,.06)!important; border-color:rgba(96,165,250,.4)!important; color:#93c5fd!important; }
+.veld-definitief{ background:rgba(34,197,94,.06)!important;  border-color:rgba(34,197,94,.5)!important;  color:#6ee7b7!important; }
+
+/* ═══════════════════════════════════════════
 FORM
 ═══════════════════════════════════════════ */
 .form-card {
@@ -745,7 +752,7 @@ color: #c8d8e8;
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
-<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v4.6</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v5.0</div>
 
 <div style="width:100%;max-width:300px;">
 
@@ -805,7 +812,7 @@ color: #c8d8e8;
     <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#22c55e;letter-spacing:.15em;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);padding:4px 10px;border-radius:2px;">
       <div class="pulse"></div>SYSTEEM GEREED
     </div>
-    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v4.6</div>
+    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v5.0</div>
   </div>
   <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
@@ -914,8 +921,8 @@ color: #c8d8e8;
 
 <div class="slabel">Versie Historie</div>
 <div class="info-block">
-  <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">v4.6</div><div class="ir-val" style="font-size:13px;">Admin knop home, Info App scherm, versie historie</div></div>
-  <div class="info-row"><div class="ir-lbl">v4.6</div><div class="ir-val" style="font-size:13px;">Recept verwijderen fix (dubbele confirm weg)</div></div>
+  <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">v5.0</div><div class="ir-val" style="font-size:13px;">Admin knop home, Info App scherm, versie historie</div></div>
+  <div class="info-row"><div class="ir-lbl">v5.0</div><div class="ir-val" style="font-size:13px;">Recept verwijderen fix (dubbele confirm weg)</div></div>
   <div class="info-row"><div class="ir-lbl">v4.1</div><div class="ir-val" style="font-size:13px;">Optie verwijderen met eigen pincode</div></div>
   <div class="info-row"><div class="ir-lbl">v4.0</div><div class="ir-val" style="font-size:13px;">Leer Data knop -- werkelijke optimale parameters</div></div>
   <div class="info-row"><div class="ir-lbl">v3.9</div><div class="ir-val" style="font-size:13px;">8 opties per recept, optie banner boven instellingen</div></div>
@@ -1022,17 +1029,17 @@ color: #c8d8e8;
   <div class="grid2">
     <div class="field">
       <label>Breedte (cm)</label>
-      <input id="f-w" type="number" inputmode="decimal" placeholder="bv. 34.7">
+      <input id="f-w" type="number" inputmode="decimal" placeholder="bv. 34.7" class="veld-leeg" oninput="veldIngevuld(this)">
     </div>
     <div class="field">
       <label>Lengte (cm)</label>
-      <input id="f-l" type="number" inputmode="decimal" placeholder="bv. 44">
+      <input id="f-l" type="number" inputmode="decimal" placeholder="bv. 44" class="veld-leeg" oninput="veldIngevuld(this)">
     </div>
   </div>
 
   <div class="field">
     <label>Dikte (mm)</label>
-    <input id="f-t" type="number" inputmode="decimal" step="0.001" placeholder="bv. 0.028">
+    <input id="f-t" type="number" inputmode="decimal" step="0.001" placeholder="bv. 0.028" class="veld-leeg" oninput="veldIngevuld(this)">
   </div>
 
   <div class="field">
@@ -1046,7 +1053,7 @@ color: #c8d8e8;
 
   <div class="field">
     <label>Snelheid (ZPM)</label>
-    <input id="f-s" type="number" inputmode="numeric" placeholder="bv. 250">
+    <input id="f-s" type="number" inputmode="numeric" value="220" class="veld-definitief" oninput="veldIngevuld(this)">
   </div>
 </div>
 
@@ -1261,7 +1268,7 @@ color: #c8d8e8;
 // ═══════════════════════════════════════════════════
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
-const APP_VERSION = '4.6';
+const APP_VERSION = '5.0';
 
 const OPERATORS_CONFIG = {
   'Dirk':   { pin: '007', admin: true  },
@@ -1572,6 +1579,13 @@ function go(id) {
   el.querySelector('.content')?.scrollTo(0,0);
   if (id === 's-recipes') renderRecipes();
   if (id === 's-trouble') renderTrouble();
+  if (id === 's-add') {
+    // Auto-invullen operator als nieuw recept (niet bewerken)
+    if (!document.getElementById('s-add').dataset.editKey) {
+      const opEl = document.getElementById('f-operator');
+      if (opEl && _huidigeOperator) opEl.value = _huidigeOperator;
+    }
+  }
 }
 
 // ═══════════════════════════════════════════════════
@@ -1994,10 +2008,118 @@ async function toonLeerdata(firebaseKey) {
   document.getElementById('leerdata-inhoud').innerHTML = '<div style="text-align:center;padding:40px;font-family:\'Share Tech Mono\',monospace;font-size:11px;color:#4a6080;">Laden...</div>';
   document.getElementById('leerdata-scherm').style.display = 'flex';
 
-  const list = await loadRecipes();
-  if (_allRecipes.length === 0) _allRecipes = list;
-  const r = list.find(function(x){ return x.firebaseKey === firebaseKey; });
-  if (!r) return;
+  try {
+    const list = await loadRecipes();
+    _allRecipes = list;
+    const r = list.find(function(x){ return x.firebaseKey === firebaseKey; });
+    if (!r) { document.getElementById('leerdata-inhoud').innerHTML = '<div style="color:#ef4444;padding:20px;">Recept niet gevonden.</div>'; return; }
+
+    // ── SPECIFIEK: opties van dit recept die AFWIJKEN van optimaal ──
+    const opties = r.opties || {};
+    const optieList = Object.values(opties).filter(function(o){ return o && typeof o === 'object' && !o.datum || o.datum; });
+
+    // Filter alleen opties met echte blower waarden
+    const geldigeOpties = optieList.filter(function(o){
+      return CHANNELS.some(function(ch){ return o[ch.key+'_on'] !== undefined; });
+    });
+
+    const specGem = {};
+    if (geldigeOpties.length >= 1) {
+      CHANNELS.forEach(function(ch) {
+        const onW  = geldigeOpties.map(function(o){ return Number(o[ch.key+'_on']);  }).filter(function(v){ return !isNaN(v); });
+        const offW = geldigeOpties.map(function(o){ return Number(o[ch.key+'_off']); }).filter(function(v){ return !isNaN(v); });
+        if (onW.length)  specGem[ch.key+'_on']  = Math.round(onW.reduce(function(a,b){return a+b;},0)  / onW.length);
+        if (offW.length) specGem[ch.key+'_off'] = Math.round(offW.reduce(function(a,b){return a+b;},0) / offW.length);
+      });
+      // Sla leerdata op in Firebase
+      var leerdataObj = {};
+      CHANNELS.forEach(function(ch){
+        leerdataObj[ch.key+'_on']  = specGem[ch.key+'_on'];
+        leerdataObj[ch.key+'_off'] = specGem[ch.key+'_off'];
+      });
+      leerdataObj.datum = new Date().toISOString().split('T')[0];
+      leerdataObj.aantalOpties = geldigeOpties.length;
+      fetch(FIREBASE_URL+'/recepten/'+firebaseKey+'/leerdata.json', {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(leerdataObj)
+      }).catch(function(){});
+    }
+
+    // ── ALGEMEEN: alle recepten zelfde materiaal + dikte ──
+    const zelfde = list.filter(function(rec){
+      return rec.material === r.material &&
+        Math.abs(parseFloat(rec.thickness) - parseFloat(r.thickness)) < 0.001 &&
+        rec.opties && Object.keys(rec.opties).length > 0;
+    });
+    const alleOpties = [];
+    zelfde.forEach(function(rec){
+      Object.values(rec.opties||{}).forEach(function(o){
+        if (o && CHANNELS.some(function(ch){ return o[ch.key+'_on'] !== undefined; })) alleOpties.push(o);
+      });
+    });
+
+    const algGem = {};
+    if (alleOpties.length >= 1) {
+      CHANNELS.forEach(function(ch) {
+        const onW  = alleOpties.map(function(o){ return Number(o[ch.key+'_on']);  }).filter(function(v){ return !isNaN(v); });
+        const offW = alleOpties.map(function(o){ return Number(o[ch.key+'_off']); }).filter(function(v){ return !isNaN(v); });
+        if (onW.length)  algGem[ch.key+'_on']  = Math.round(onW.reduce(function(a,b){return a+b;},0)  / onW.length);
+        if (offW.length) algGem[ch.key+'_off'] = Math.round(offW.reduce(function(a,b){return a+b;},0) / offW.length);
+      });
+    }
+
+    function kanaalRij(ch, gemOn, gemOff, baseOn, baseOff, kleur) {
+      if (gemOn === undefined || gemOff === undefined) return '';
+      const diffOn = gemOn - baseOn;
+      const afwijkt = (gemOn !== baseOn || gemOff !== baseOff);
+      const diffKleur = diffOn > 0 ? '#22c55e' : diffOn < 0 ? '#ef4444' : '#4a6080';
+      return '<div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid '+(afwijkt?kleur:ch.color)+';border-radius:4px;padding:12px 14px;margin-bottom:6px;">'
+        +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">'
+        +'<div style="width:8px;height:8px;border-radius:50%;background:'+ch.color+';"></div>'
+        +'<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:16px;color:#e5e7eb;flex:1;">'+ch.label+'</div>'
+        +(afwijkt?'<div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:'+kleur+';">AFWIJKING</div>':'')
+        +'</div>'
+        +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center;">'
+        +'<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:7px;"><div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:#6b7280;margin-bottom:3px;">OPTIMAAL</div><div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:14px;color:#6b7280;">'+baseOn+'\u00b0\u2192'+baseOff+'\u00b0</div></div>'
+        +'<div style="background:#070a10;border:1px solid '+(afwijkt?kleur+'44':'#1a2540')+';border-radius:3px;padding:7px;"><div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:#6b7280;margin-bottom:3px;">WERKELIJK</div><div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:14px;color:'+(afwijkt?kleur:'#6b7280')+';">'+gemOn+'\u00b0\u2192'+gemOff+'\u00b0</div></div>'
+        +'<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:7px;"><div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:#6b7280;margin-bottom:3px;">VERSCHIL</div><div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:13px;color:'+diffKleur+';">'+(diffOn!==0?(diffOn>0?'+':'')+diffOn+'\u00b0':'\u2014')+'</div></div>'
+        +'</div></div>';
+    }
+
+    var html = '';
+
+    // ALGEMEEN
+    html += '<div style="background:#22d3ee18;border:1px solid #22d3ee44;border-radius:4px;padding:14px 16px;margin-bottom:12px;">'
+      +'<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:16px;color:#22d3ee;">\uD83C\uDF10 WERKELIJKE PARAMETERS ALGEMEEN</div>'
+      +'<div style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:#6b7280;margin-top:4px;">'+r.material+' \u00b7 '+r.thickness+'mm \u00b7 '+alleOpties.length+' opties uit '+zelfde.length+' recepten</div>'
+      +'</div>';
+    if (alleOpties.length >= 1) {
+      CHANNELS.forEach(function(ch){ html += kanaalRij(ch, algGem[ch.key+'_on'], algGem[ch.key+'_off'], r[ch.key+'_on'], r[ch.key+'_off'], '#22d3ee'); });
+    } else {
+      html += '<div style="text-align:center;padding:16px;font-family:\'Share Tech Mono\',monospace;font-size:10px;color:#4a6080;border:1px dashed #1a2540;border-radius:4px;margin-bottom:12px;">Nog geen opties van recepten met '+r.material+' '+r.thickness+'mm</div>';
+    }
+
+    // SPECIFIEK
+    html += '<div style="background:#f59e0b18;border:1px solid #f59e0b44;border-radius:4px;padding:14px 16px;margin:16px 0 12px;">'
+      +'<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:16px;color:#f59e0b;">\uD83D\uDCCC WERKELIJKE PARAMETERS DIT RECEPT</div>'
+      +'<div style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:#6b7280;margin-top:4px;">'+r.width+'\u00d7'+r.length+'cm \u00b7 '+geldigeOpties.length+' opties opgeslagen</div>'
+      +'</div>';
+    if (geldigeOpties.length >= 1) {
+      CHANNELS.forEach(function(ch){ html += kanaalRij(ch, specGem[ch.key+'_on'], specGem[ch.key+'_off'], r[ch.key+'_on'], r[ch.key+'_off'], '#f59e0b'); });
+    } else {
+      html += '<div style="text-align:center;padding:16px;font-family:\'Share Tech Mono\',monospace;font-size:10px;color:#4a6080;border:1px dashed #1a2540;border-radius:4px;">Nog geen opties opgeslagen voor dit recept.</div>';
+    }
+
+    html += '<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px;font-family:\'Share Tech Mono\',monospace;font-size:10px;color:#6b7280;line-height:1.8;margin-top:16px;">'
+      +'\u2139 Hoe meer opties, hoe nauwkeuriger de werkelijke parameters.</div>';
+
+    document.getElementById('leerdata-inhoud').innerHTML = html;
+
+  } catch(e) {
+    document.getElementById('leerdata-inhoud').innerHTML = '<div style="color:#ef4444;padding:20px;font-family:\'Share Tech Mono\',monospace;font-size:11px;">Fout: '+e.message+'</div>';
+  }
+}
 
   // Algemeen: zelfde materiaal + dikte
   const zelfde = list.filter(function(rec){
@@ -2424,8 +2546,17 @@ function openDetailRender(r) {
 }
 
 // ═══════════════════════════════════════════════════
-// ADD RECIPE FORM
+// VELD STATEN
 // ═══════════════════════════════════════════════════
+function veldIngevuld(el) {
+  if (el.value && el.value.trim() !== '') {
+    el.classList.remove('veld-leeg', 'veld-benadering');
+    el.classList.add('veld-definitief');
+  } else {
+    el.classList.remove('veld-definitief', 'veld-benadering');
+    el.classList.add('veld-leeg');
+  }
+}
 let selectedMat = 'LDPE';
 let currentTiming = null;
 
@@ -2573,12 +2704,18 @@ async function saveRecipe() {
 }
 
 function resetForm() {
-  ['f-klant','f-klantnaam','f-plaats','f-operator','f-w','f-l','f-t','f-s'].forEach(id => document.getElementById(id).value = '');
+  ['f-klant','f-klantnaam','f-plaats','f-operator','f-w','f-l','f-t'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.value = ''; el.classList.remove('veld-definitief','veld-benadering'); el.classList.add('veld-leeg'); }
+  });
+  // Snelheid terug naar 220 groen
+  const sEl = document.getElementById('f-s');
+  if (sEl) { sEl.value = '220'; sEl.classList.remove('veld-leeg','veld-benadering'); sEl.classList.add('veld-definitief'); }
   selectMat('LDPE');
   currentTiming = null;
   document.getElementById('results-box').classList.remove('show');
   document.getElementById('blower-results').innerHTML = '';
-  document.querySelector('.content')?.scrollTo(0,0);
+  document.querySelector('#s-add .content')?.scrollTo(0,0);
 }
 
 // ═══════════════════════════════════════════════════
