@@ -418,9 +418,9 @@ border-radius: 3px;
 /* ═══════════════════════════════════════════
 VELD STATEN
 ═══════════════════════════════════════════ */
-.field input.veld-leeg,       .field select.veld-leeg       { background:rgba(245,158,11,.06)!important; border-color:rgba(245,158,11,.5)!important; color:#fcd34d!important; }
-.field input.veld-benadering,  .field select.veld-benadering  { background:rgba(96,165,250,.06)!important;  border-color:rgba(96,165,250,.4)!important;  color:#93c5fd!important; }
-.field input.veld-definitief,  .field select.veld-definitief  { background:rgba(34,197,94,.06)!important;   border-color:rgba(34,197,94,.5)!important;   color:#6ee7b7!important; }
+.veld-leeg      { background:rgba(245,158,11,.06)!important; border-color:rgba(245,158,11,.5)!important; color:#fcd34d!important; }
+.veld-benadering{ background:rgba(96,165,250,.06)!important; border-color:rgba(96,165,250,.4)!important; color:#93c5fd!important; }
+.veld-definitief{ background:rgba(34,197,94,.06)!important;  border-color:rgba(34,197,94,.5)!important;  color:#6ee7b7!important; }
 
 /* ═══════════════════════════════════════════
 FORM
@@ -720,20 +720,6 @@ white-space: nowrap;
 /* ═══════════════════════════════════════════
 UTILITY
 ═══════════════════════════════════════════ */
-.np-btn {
-background: #141d2e;
-border: 1px solid #1a2540;
-border-radius: 6px;
-color: #e5e7eb;
-font-family: ‘Rajdhani’, sans-serif;
-font-weight: 700;
-font-size: 24px;
-padding: 16px 0;
-cursor: pointer;
-text-align: center;
-}
-.np-btn:active { background: #f59e0b; color: #000; border-color: #f59e0b; }
-
 .naam-dropdown-item {
 padding: 13px 14px;
 cursor: pointer;
@@ -766,7 +752,7 @@ color: #c8d8e8;
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
-<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v6.5</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v5.0</div>
 
 <div style="width:100%;max-width:300px;">
 
@@ -789,7 +775,7 @@ color: #c8d8e8;
     <!-- Pincode veld -- verschijnt na klikken op naam -->
     <div id="login-pin-blok" style="display:none;margin-top:16px;">
       <div id="login-naam-toon" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;"></div>
-      <input id="login-pin" type="tel" maxlength="6" placeholder="· · · · · ·"
+      <input id="login-pin" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·"
         onkeydown="if(event.key==='Enter')doLogin()"
         style="width:100%;background:#0a0e16;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:26px;padding:16px;outline:none;margin-bottom:10px;-webkit-appearance:none;text-align:center;letter-spacing:.4em;transition:border-color .15s;"
         onfocus="this.style.borderColor='#22d3ee'" onblur="this.style.borderColor='#1a2235'">
@@ -826,7 +812,7 @@ color: #c8d8e8;
     <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#22c55e;letter-spacing:.15em;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);padding:4px 10px;border-radius:2px;">
       <div class="pulse"></div>SYSTEEM GEREED
     </div>
-    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v6.5</div>
+    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v5.0</div>
   </div>
   <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
@@ -935,8 +921,8 @@ color: #c8d8e8;
 
 <div class="slabel">Versie Historie</div>
 <div class="info-block">
-  <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">v6.5</div><div class="ir-val" style="font-size:13px;">Admin knop home, Info App scherm, versie historie</div></div>
-  <div class="info-row"><div class="ir-lbl">v6.5</div><div class="ir-val" style="font-size:13px;">Recept verwijderen fix (dubbele confirm weg)</div></div>
+  <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">v5.0</div><div class="ir-val" style="font-size:13px;">Admin knop home, Info App scherm, versie historie</div></div>
+  <div class="info-row"><div class="ir-lbl">v5.0</div><div class="ir-val" style="font-size:13px;">Recept verwijderen fix (dubbele confirm weg)</div></div>
   <div class="info-row"><div class="ir-lbl">v4.1</div><div class="ir-val" style="font-size:13px;">Optie verwijderen met eigen pincode</div></div>
   <div class="info-row"><div class="ir-lbl">v4.0</div><div class="ir-val" style="font-size:13px;">Leer Data knop -- werkelijke optimale parameters</div></div>
   <div class="info-row"><div class="ir-lbl">v3.9</div><div class="ir-val" style="font-size:13px;">8 opties per recept, optie banner boven instellingen</div></div>
@@ -1007,13 +993,13 @@ color: #c8d8e8;
   <div class="form-card-title">Klant & Locatie</div>
 
   <div class="grid2">
-    <div class="field" style="position:relative;">
+    <div class="field">
       <label>Klantnummer</label>
       <input id="f-klant" type="text" inputmode="text" placeholder="bv. 0042"
         autocomplete="off"
         oninput="toonKlantDropdown()"
         onblur="setTimeout(sluitKlantDropdown,200)">
-      <div id="klant-dropdown" style="display:none;position:absolute;background:#0f1420;border:1px solid #f5a623;border-top:none;border-radius:0 0 2px 2px;z-index:200;left:0;right:0;max-height:180px;overflow-y:auto;"></div>
+      <div id="klant-dropdown" style="display:none;position:absolute;background:#0f1420;border:1px solid #f5a623;border-top:none;border-radius:0 0 2px 2px;z-index:200;width:calc(100% - 28px);max-height:180px;overflow-y:auto;"></div>
     </div>
     <div class="field">
       <label>Klantnaam</label>
@@ -1026,10 +1012,15 @@ color: #c8d8e8;
   </div>
   <div class="field">
     <label>Operator</label>
-    <input id="f-operator" type="text" readonly
-      style="background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.5);color:#6ee7b7;cursor:default;">
+    <div style="position:relative;">
+      <input id="f-operator" type="text" inputmode="text" placeholder="Kies of typ naam"
+        autocomplete="off"
+        onclick="toonOperatorDropdown()"
+        oninput="toonOperatorDropdown()"
+        onblur="setTimeout(sluitOperatorDropdown, 200)">
+      <div id="operator-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:#0f1420;border:1px solid #f5a623;border-top:none;border-radius:0 0 2px 2px;z-index:200;max-height:160px;overflow-y:auto;"></div>
+    </div>
   </div>
-</div>
 </div>
 
 <div class="form-card">
@@ -1038,20 +1029,17 @@ color: #c8d8e8;
   <div class="grid2">
     <div class="field">
       <label>Breedte (cm)</label>
-      <input id="f-w" type="text" readonly placeholder="bv. 34.7" class="veld-leeg"
-        style="cursor:pointer;" onclick="toonNumpad('f-w','decimal')">
+      <input id="f-w" type="number" inputmode="decimal" placeholder="bv. 34.7" class="veld-leeg" oninput="veldIngevuld(this)">
     </div>
     <div class="field">
       <label>Lengte (cm)</label>
-      <input id="f-l" type="text" readonly placeholder="bv. 44" class="veld-leeg"
-        style="cursor:pointer;" onclick="toonNumpad('f-l','decimal')">
+      <input id="f-l" type="number" inputmode="decimal" placeholder="bv. 44" class="veld-leeg" oninput="veldIngevuld(this)">
     </div>
   </div>
 
   <div class="field">
     <label>Dikte (mm)</label>
-    <input id="f-t" type="text" readonly placeholder="bv. 0.028" class="veld-leeg"
-      style="cursor:pointer;" onclick="toonNumpad('f-t','decimal')">
+    <input id="f-t" type="number" inputmode="decimal" step="0.001" placeholder="bv. 0.028" class="veld-leeg" oninput="veldIngevuld(this)">
   </div>
 
   <div class="field">
@@ -1065,20 +1053,18 @@ color: #c8d8e8;
 
   <div class="field">
     <label>Snelheid (ZPM)</label>
-    <input id="f-s" type="text" readonly value="220" class="veld-definitief"
-      style="cursor:pointer;" onclick="toonNumpad('f-s','integer')">
+    <input id="f-s" type="number" inputmode="numeric" value="220" class="veld-definitief" oninput="veldIngevuld(this)">
   </div>
 </div>
 
-<button id="btn-bereken-opslaan" class="btn btn-amber" style="margin-top:8px;" onclick="berekenEnSla()">⚙  Berekenen & Opslaan</button>
-<button class="btn btn-ghost" onclick="resetForm()">Annuleren</button>
+<button class="btn btn-amber" onclick="calcAndShow()">⚙  Berekenen</button>
 
 <!-- RESULTS -->
 <div id="results-box">
   <div class="slabel" style="margin-top:22px;">Blower Timing -- Berekend</div>
   <div id="blower-results"></div>
-  <button id="btn-naar-recept" class="btn btn-amber" style="margin-top:4px;display:none;" onclick="naarHuidigRecept()">→ Recept bekijken</button>
-  <button class="btn btn-ghost" onclick="resetForm()">Nieuw recept</button>
+  <button class="btn btn-amber" style="margin-top:4px;" onclick="saveRecipe()">✓  Recept Opslaan</button>
+  <button class="btn btn-ghost" onclick="resetForm()">Annuleren</button>
 </div>
 ```
 
@@ -1179,40 +1165,13 @@ color: #c8d8e8;
   </div>
 </div>
 
-<!-- CUSTOM NUMPAD -->
-
-<div id="numpad-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9500;align-items:flex-end;justify-content:center;">
-  <div style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #f59e0b;border-radius:12px 12px 0 0;padding:20px 16px 40px;width:100%;max-width:500px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-      <div id="numpad-label" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#6b7280;letter-spacing:.2em;text-transform:uppercase;"></div>
-      <button onclick="sluitNumpad()" style="background:none;border:none;color:#6b7280;font-size:20px;cursor:pointer;">✕</button>
-    </div>
-    <div id="numpad-display" style="background:#070a10;border:2px solid #f59e0b;border-radius:4px;padding:16px;text-align:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:36px;color:#f59e0b;margin-bottom:16px;min-height:64px;letter-spacing:.05em;">0</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-      <button onclick="numpadInput('7')" class="np-btn">7</button>
-      <button onclick="numpadInput('8')" class="np-btn">8</button>
-      <button onclick="numpadInput('9')" class="np-btn">9</button>
-      <button onclick="numpadInput('4')" class="np-btn">4</button>
-      <button onclick="numpadInput('5')" class="np-btn">5</button>
-      <button onclick="numpadInput('6')" class="np-btn">6</button>
-      <button onclick="numpadInput('1')" class="np-btn">1</button>
-      <button onclick="numpadInput('2')" class="np-btn">2</button>
-      <button onclick="numpadInput('3')" class="np-btn">3</button>
-      <button onclick="numpadInput('.')" id="np-dot" class="np-btn" style="color:#9ca3af;">.</button>
-      <button onclick="numpadInput('0')" class="np-btn">0</button>
-      <button onclick="numpadDelete()" class="np-btn" style="color:#ef4444;">⌫</button>
-    </div>
-    <button onclick="bevestigNumpad()" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#000;border:none;border-radius:4px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:.15em;padding:16px;cursor:pointer;margin-top:12px;">OK ✓</button>
-  </div>
-</div>
-
 <!-- PIN MODAL OPTIE VERWIJDEREN -->
 
 <div id="pin-optie-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9500;align-items:center;justify-content:center;padding:24px;">
   <div style="background:#0f1520;border:1px solid #1a2540;border-top:2px solid #ef4444;border-radius:4px;padding:28px 24px;width:100%;max-width:300px;">
     <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#ef4444;letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px;">Beveiligd</div>
     <div id="pin-optie-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;margin-bottom:20px;">Optie verwijderen</div>
-    <input id="pin-optie-input" type="tel" maxlength="6" placeholder="· · · · · ·"
+    <input id="pin-optie-input" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·"
       onkeydown="if(event.key==='Enter')bevestigOptiePin()"
       style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:#e5e7eb;font-family:'Share Tech Mono',monospace;font-size:28px;padding:14px;outline:none;text-align:center;letter-spacing:8px;margin-bottom:8px;-webkit-appearance:none;">
     <div id="pin-optie-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">VERKEERDE PIN</div>
@@ -1294,7 +1253,7 @@ color: #c8d8e8;
   <div style="background:#0f1420;border:1px solid #1a2235;border-top:2px solid #ef4444;border-radius:4px;padding:28px 24px;width:100%;max-width:300px;">
     <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#ef4444;letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px;">Beveiligd</div>
     <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;color:#c8d8e8;margin-bottom:20px;">PIN vereist om te verwijderen</div>
-    <input id="pin-input" type="tel" maxlength="6" placeholder="· · · · · ·"
+    <input id="pin-input" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·"
       onkeydown="if(event.key==='Enter')bevestigPin()"
       style="width:100%;background:#070a0f;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:28px;padding:14px;outline:none;text-align:center;letter-spacing:8px;margin-bottom:8px;-webkit-appearance:none;">
     <div id="pin-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">VERKEERDE PIN</div>
@@ -1309,7 +1268,7 @@ color: #c8d8e8;
 // ═══════════════════════════════════════════════════
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
-const APP_VERSION = '6.5';
+const APP_VERSION = '5.0';
 
 const OPERATORS_CONFIG = {
   'Dirk':   { pin: '007', admin: true  },
@@ -1499,10 +1458,9 @@ function sluitPin() {
   window._deleteKey = null;
 }
 function bevestigPin() {
-  const pin = document.getElementById('pin-input').value.toString().trim();
+  const pin = document.getElementById('pin-input').value.trim();
   const cfg = OPERATORS_CONFIG[_huidigeOperator];
-  if (!cfg) { toast('Niet ingelogd', true); return; }
-  if (pin === cfg.pin.toString()) {
+  if (cfg && pin === cfg.pin) {
     sluitPin();
     delRecipe(window._deleteKey);
   } else {
@@ -1569,9 +1527,6 @@ function sluitKlantDropdown() {
 function kiesKlant(nr, naam) {
   document.getElementById('f-klant').value = nr;
   if (naam) document.getElementById('f-klantnaam').value = naam;
-  // Plaatsnaam ook meenemen van meest recente recept van deze klant
-  const recept = _allRecipes.find(r => r.klant === nr && r.plaats);
-  if (recept && recept.plaats) document.getElementById('f-plaats').value = recept.plaats;
   sluitKlantDropdown();
 }
 
@@ -1625,8 +1580,11 @@ function go(id) {
   if (id === 's-recipes') renderRecipes();
   if (id === 's-trouble') renderTrouble();
   if (id === 's-add') {
-    const opEl = document.getElementById('f-operator');
-    if (opEl && _huidigeOperator) opEl.value = _huidigeOperator;
+    // Auto-invullen operator als nieuw recept (niet bewerken)
+    if (!document.getElementById('s-add').dataset.editKey) {
+      const opEl = document.getElementById('f-operator');
+      if (opEl && _huidigeOperator) opEl.value = _huidigeOperator;
+    }
   }
 }
 
@@ -1771,9 +1729,9 @@ function renderRecipeTree(list, query='') {
           </div>
           ${kanBewerken || magVerwijderen(r) ? `
           <div style="display:flex;gap:6px;flex-shrink:0;">
-            ${kanBewerken ? `<button data-key="${r.firebaseKey}" onclick="event.stopPropagation();editRecipe(this.dataset.key)"
+            ${kanBewerken ? `<button onclick="event.stopPropagation();editRecipe('${r.firebaseKey}')"
               style="width:38px;height:38px;background:#2a1f00;border:1px solid #f5a62366;border-radius:3px;color:#f5a623;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✎</button>` : ''}
-            ${magVerwijderen(r) ? `<button data-key="${r.firebaseKey}" onclick="event.stopPropagation();vraagPinVerwijder(this.dataset.key)"
+            ${magVerwijderen(r) ? `<button onclick="event.stopPropagation();vraagPinVerwijder('${r.firebaseKey}')"
               style="width:38px;height:38px;background:#2a0000;border:1px solid #ef444466;border-radius:3px;color:#ef4444;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>` : ''}
           </div>` : ''}
         </div>
@@ -1833,11 +1791,9 @@ async function editRecipe(firebaseKey) {
 async function delRecipe(firebaseKey) {
   toast('Verwijderen...');
   await deleteRecipeFromFirebase(firebaseKey);
-  _allRecipes = await loadRecipes();
   toast('Recept verwijderd');
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('s-recipes').classList.add('active');
-  renderRecipeTree(_allRecipes, '');
+  go('s-recipes');
+  renderRecipes();
 }
 
 function thicknessLabel(t) {
@@ -2029,9 +1985,9 @@ function sluitOptiePin() {
 }
 
 async function bevestigOptiePin() {
-  const pin = document.getElementById('pin-optie-input').value.toString().trim();
+  const pin = document.getElementById('pin-optie-input').value.trim();
   const cfg = OPERATORS_CONFIG[_huidigeOperator];
-  if (cfg && pin === cfg.pin.toString()) {
+  if (cfg && pin === cfg.pin) {
     sluitOptiePin();
     toast('Optie verwijderen...');
     // Verwijder optie uit Firebase via null
@@ -2060,7 +2016,7 @@ async function toonLeerdata(firebaseKey) {
 
     // ── SPECIFIEK: opties van dit recept die AFWIJKEN van optimaal ──
     const opties = r.opties || {};
-    const optieList = Object.values(opties).filter(function(o){ return o !== null && o !== undefined && typeof o === 'object'; });
+    const optieList = Object.values(opties).filter(function(o){ return o && typeof o === 'object' && !o.datum || o.datum; });
 
     // Filter alleen opties met echte blower waarden
     const geldigeOpties = optieList.filter(function(o){
@@ -2099,10 +2055,7 @@ async function toonLeerdata(firebaseKey) {
     const alleOpties = [];
     zelfde.forEach(function(rec){
       Object.values(rec.opties||{}).forEach(function(o){
-        if (o !== null && o !== undefined && typeof o === 'object' &&
-            CHANNELS.some(function(ch){ return o[ch.key+'_on'] !== undefined; })) {
-          alleOpties.push(o);
-        }
+        if (o && CHANNELS.some(function(ch){ return o[ch.key+'_on'] !== undefined; })) alleOpties.push(o);
       });
     });
 
@@ -2168,6 +2121,86 @@ async function toonLeerdata(firebaseKey) {
   }
 }
 
+  // Algemeen: zelfde materiaal + dikte
+  const zelfde = list.filter(function(rec){
+    return rec.material === r.material &&
+      parseFloat(rec.thickness) === parseFloat(r.thickness) &&
+      rec.opties && Object.keys(rec.opties).length > 0;
+  });
+  const alleOptiesAlgemeen = [];
+  zelfde.forEach(function(rec){ Object.values(rec.opties||{}).forEach(function(o){ alleOptiesAlgemeen.push(o); }); });
+
+  const algGem = {};
+  if (alleOptiesAlgemeen.length >= 2) {
+    CHANNELS.forEach(function(ch) {
+      const onW  = alleOptiesAlgemeen.map(function(o){ return o[ch.key+'_on'];  }).filter(function(v){ return v !== undefined; });
+      const offW = alleOptiesAlgemeen.map(function(o){ return o[ch.key+'_off']; }).filter(function(v){ return v !== undefined; });
+      algGem[ch.key+'_on']  = Math.round(onW.reduce(function(a,b){return a+b;},0) / onW.length);
+      algGem[ch.key+'_off'] = Math.round(offW.reduce(function(a,b){return a+b;},0) / offW.length);
+    });
+  }
+
+  // Specifiek: dit recept
+  const opties = r.opties || {};
+  const optieList = Object.values(opties);
+  const specGem = {};
+  if (optieList.length >= 2) {
+    CHANNELS.forEach(function(ch) {
+      const onW  = optieList.map(function(o){ return o[ch.key+'_on'];  }).filter(function(v){ return v !== undefined; });
+      const offW = optieList.map(function(o){ return o[ch.key+'_off']; }).filter(function(v){ return v !== undefined; });
+      specGem[ch.key+'_on']  = Math.round(onW.reduce(function(a,b){return a+b;},0) / onW.length);
+      specGem[ch.key+'_off'] = Math.round(offW.reduce(function(a,b){return a+b;},0) / offW.length);
+    });
+    const datum = new Date().toISOString().split('T')[0];
+    await updateRecipeInFirebase(firebaseKey, { leerdata: Object.assign({}, specGem, { datum: datum, aantalOpties: optieList.length }) });
+  }
+
+  function kanaalRij(ch, gemOn, gemOff, baseOn, baseOff, kleur) {
+    const diffOn = gemOn - baseOn;
+    const afwijkt = (gemOn !== baseOn || gemOff !== baseOff);
+    const diffKleur = diffOn > 0 ? '#22c55e' : diffOn < 0 ? '#ef4444' : '#4a6080';
+    return '<div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid '+(afwijkt?kleur:ch.color)+';border-radius:4px;padding:12px 14px;margin-bottom:6px;">'
+      + '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">'
+      + '<div style="width:8px;height:8px;border-radius:50%;background:'+ch.color+';"></div>'
+      + '<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:16px;color:#e5e7eb;flex:1;">'+ch.label+'</div>'
+      + (afwijkt ? '<div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:'+kleur+';">AFWIJKING</div>' : '')
+      + '</div>'
+      + '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center;">'
+      + '<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:7px;"><div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:#6b7280;margin-bottom:3px;">OPTIMAAL</div><div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:14px;color:#6b7280;">'+baseOn+'\u00b0\u2192'+baseOff+'\u00b0</div></div>'
+      + '<div style="background:#070a10;border:1px solid '+(afwijkt?kleur+'44':'#1a2540')+';border-radius:3px;padding:7px;"><div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:#6b7280;margin-bottom:3px;">WERKELIJK</div><div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:14px;color:'+(afwijkt?kleur:'#6b7280')+';">'+gemOn+'\u00b0\u2192'+gemOff+'\u00b0</div></div>'
+      + '<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:7px;"><div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:#6b7280;margin-bottom:3px;">VERSCHIL</div><div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:13px;color:'+diffKleur+';">'+(diffOn !== 0 ? (diffOn > 0 ? '+' : '')+diffOn+'\u00b0' : '\u2014')+'</div></div>'
+      + '</div></div>';
+  }
+
+  let html = '';
+
+  // ALGEMEEN
+  html += '<div style="background:#22d3ee18;border:1px solid #22d3ee44;border-radius:4px;padding:14px 16px;margin-bottom:12px;">'
+    + '<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:16px;color:#22d3ee;letter-spacing:.1em;">\uD83C\uDF10 WERKELIJKE PARAMETERS ALGEMEEN</div>'
+    + '<div style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:#6b7280;margin-top:4px;">'+r.material+' \u00b7 '+r.thickness+'mm \u00b7 '+alleOptiesAlgemeen.length+' opties uit '+zelfde.length+' recepten</div>'
+    + '</div>';
+  if (alleOptiesAlgemeen.length >= 2) {
+    CHANNELS.forEach(function(ch){ html += kanaalRij(ch, algGem[ch.key+'_on'], algGem[ch.key+'_off'], r[ch.key+'_on'], r[ch.key+'_off'], '#22d3ee'); });
+  } else {
+    html += '<div style="text-align:center;padding:20px;font-family:\'Share Tech Mono\',monospace;font-size:10px;color:#4a6080;border:1px dashed #1a2540;border-radius:4px;margin-bottom:12px;">Minimaal 2 opties nodig van recepten met '+r.material+' '+r.thickness+'mm</div>';
+  }
+
+  // SPECIFIEK
+  html += '<div style="background:#f59e0b18;border:1px solid #f59e0b44;border-radius:4px;padding:14px 16px;margin:16px 0 12px;">'
+    + '<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:16px;color:#f59e0b;letter-spacing:.1em;">\uD83D\uDCCC WERKELIJKE PARAMETERS DIT RECEPT</div>'
+    + '<div style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:#6b7280;margin-top:4px;">'+r.width+'\u00d7'+r.length+'cm \u00b7 '+optieList.length+' opties</div>'
+    + '</div>';
+  if (optieList.length >= 2) {
+    CHANNELS.forEach(function(ch){ html += kanaalRij(ch, specGem[ch.key+'_on'], specGem[ch.key+'_off'], r[ch.key+'_on'], r[ch.key+'_off'], '#f59e0b'); });
+  } else {
+    html += '<div style="text-align:center;padding:20px;font-family:\'Share Tech Mono\',monospace;font-size:10px;color:#4a6080;border:1px dashed #1a2540;border-radius:4px;">Minimaal 2 opties nodig. Nu: '+optieList.length+'.</div>';
+  }
+
+  html += '<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px;font-family:\'Share Tech Mono\',monospace;font-size:10px;color:#6b7280;line-height:1.8;margin-top:16px;">'
+    + '\u2139 Hoe meer opties en recepten, hoe nauwkeuriger de parameters.</div>';
+
+  document.getElementById('leerdata-inhoud').innerHTML = html;
+}
 
 function sluitLeerdata() {
   document.getElementById('leerdata-scherm').style.display = 'none';
@@ -2340,9 +2373,7 @@ function openDetailRender(r) {
   const getOn  = (key) => optData ? (optData[`${key}_on`]  ?? r[`${key}_on`])  : r[`${key}_on`];
   const getOff = (key) => optData ? (optData[`${key}_off`] ?? r[`${key}_off`]) : r[`${key}_off`];
 
-  const klanttitel = r.klantnaam ? `${r.width}×${r.length} · ${r.klantnaam}` : `${r.width}×${r.length}`;
-  document.getElementById('detail-title').textContent = klanttitel;
-  document.getElementById('detail-title').style.fontSize = r.klantnaam ? '14px' : '20px';
+  document.getElementById('detail-title').textContent = `${r.width}×${r.length}${actieveOptie ? ` · Opt.${actieveOptie}` : ''}`;
 
   // ── 360° SVG DIAGRAM ──
   const cx = 160, cy = 160, R = 110, strokeW = 18;
@@ -2515,119 +2546,8 @@ function openDetailRender(r) {
 }
 
 // ═══════════════════════════════════════════════════
-// CUSTOM NUMPAD
+// VELD STATEN
 // ═══════════════════════════════════════════════════
-let _numpadVeld = null;
-let _numpadType = 'decimal';
-let _numpadWaarde = '';
-
-function toonNumpad(veldId, type) {
-  _numpadVeld  = veldId;
-  _numpadType  = type || 'decimal';
-  _numpadWaarde = document.getElementById(veldId)?.value || '';
-  if (_numpadWaarde === '0') _numpadWaarde = '';
-
-  const labels = { 'f-w':'Breedte (cm)', 'f-l':'Lengte (cm)', 'f-t':'Dikte (mm)', 'f-s':'Snelheid (ZPM)', 'f-plaats':'Plaatsnaam' };
-  document.getElementById('numpad-label').textContent = labels[veldId] || veldId;
-  document.getElementById('numpad-display').textContent = _numpadWaarde || '0';
-  document.getElementById('np-dot').style.display = (type === 'integer') ? 'none' : '';
-  document.getElementById('numpad-overlay').style.display = 'flex';
-}
-
-function numpadInput(char) {
-  if (char === '.' && (_numpadWaarde.includes('.') || _numpadType === 'integer')) return;
-  if (_numpadWaarde === '0' && char !== '.') _numpadWaarde = '';
-  _numpadWaarde += char;
-  document.getElementById('numpad-display').textContent = _numpadWaarde || '0';
-}
-
-function numpadDelete() {
-  _numpadWaarde = _numpadWaarde.slice(0, -1);
-  document.getElementById('numpad-display').textContent = _numpadWaarde || '0';
-}
-
-function bevestigNumpad() {
-  const el = document.getElementById(_numpadVeld);
-  if (!el) { sluitNumpad(); return; }
-  el.value = _numpadWaarde;
-  veldIngevuld(el);
-  sluitNumpad();
-}
-
-function sluitNumpad() {
-  document.getElementById('numpad-overlay').style.display = 'none';
-  _numpadVeld = null;
-}
-
-let _huidigOpgeslaanKey = null;
-
-async function berekenEnSla() {
-  const w = parseFloat(document.getElementById('f-w').value);
-  const l = parseFloat(document.getElementById('f-l').value);
-  const t = parseFloat(document.getElementById('f-t').value);
-  const s = parseInt(document.getElementById('f-s').value);
-  if (!w||!l||!t||!s||w<=0||l<=0||t<=0||s<=0) {
-    toast('Vul breedte, lengte, dikte en snelheid in', true);
-    return;
-  }
-
-  // Stap 1: Bereken en toon
-  calcAndShow();
-
-  // Stap 2: Verberg berekenen knop
-  const btnBer = document.getElementById('btn-bereken-opslaan');
-  if (btnBer) btnBer.style.display = 'none';
-
-  // Stap 3: Opslaan
-  toast('Berekend! Opslaan...');
-  _huidigOpgeslaanKey = await saveRecipeReturnKey();
-
-  // Stap 4: Toon "Recept bekijken" knop
-  if (_huidigOpgeslaanKey) {
-    toast('Recept opgeslagen!');
-    const btnRecept = document.getElementById('btn-naar-recept');
-    if (btnRecept) btnRecept.style.display = 'block';
-  }
-}
-
-async function saveRecipeReturnKey() {
-  const w = parseFloat(document.getElementById('f-w').value);
-  const l = parseFloat(document.getElementById('f-l').value);
-  const t = parseFloat(document.getElementById('f-t').value);
-  const s = parseInt(document.getElementById('f-s').value);
-  const klant     = document.getElementById('f-klant').value.trim();
-  const klantnaam = document.getElementById('f-klantnaam').value.trim();
-  const plaats    = document.getElementById('f-plaats').value.trim();
-  const operator  = _huidigeOperator || document.getElementById('f-operator')?.value?.trim() || '';
-
-  if (!currentTiming) return null;
-
-  const timing = {};
-  CHANNELS.forEach(ch => {
-    const onEl  = document.getElementById(`bi-${ch.key}-on`);
-    const offEl = document.getElementById(`bi-${ch.key}-off`);
-    timing[`${ch.key}_on`]  = onEl  ? (parseInt(onEl.value)  || 0) : currentTiming[`${ch.key}_on`];
-    timing[`${ch.key}_off`] = offEl ? (parseInt(offEl.value) || 0) : currentTiming[`${ch.key}_off`];
-  });
-
-  const recipe = { id: Date.now(), klant, klantnaam, plaats, operator, width: w, length: l, thickness: t, material: selectedMat, speed: s, ...timing };
-  const editKey = document.getElementById('s-add').dataset.editKey;
-
-  if (editKey) {
-    await updateRecipeInFirebase(editKey, recipe);
-    return editKey;
-  } else {
-    const result = await addRecipeToFirebase(recipe);
-    return result?.name || null;
-  }
-}
-
-function naarHuidigRecept() {
-  if (_huidigOpgeslaanKey) {
-    openDetailByKey(_huidigOpgeslaanKey);
-    resetForm();
-  }
-}
 function veldIngevuld(el) {
   if (el.value && el.value.trim() !== '') {
     el.classList.remove('veld-leeg', 'veld-benadering');
@@ -2708,9 +2628,6 @@ function calcAndShow() {
   const box = document.getElementById('results-box');
   box.classList.add('show');
   box.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  // Verberg directe opslaan knop -- zit nu in results box
-  const direct = document.getElementById('btn-opslaan-direct');
-  if (direct) direct.style.display = 'none';
 }
 
 function updateBlowerTiming(key) {
@@ -2787,27 +2704,18 @@ async function saveRecipe() {
 }
 
 function resetForm() {
-  ['f-klant','f-klantnaam','f-plaats','f-w','f-l','f-t'].forEach(id => {
+  ['f-klant','f-klantnaam','f-plaats','f-operator','f-w','f-l','f-t'].forEach(id => {
     const el = document.getElementById(id);
     if (el) { el.value = ''; el.classList.remove('veld-definitief','veld-benadering'); el.classList.add('veld-leeg'); }
   });
+  // Snelheid terug naar 220 groen
   const sEl = document.getElementById('f-s');
   if (sEl) { sEl.value = '220'; sEl.classList.remove('veld-leeg','veld-benadering'); sEl.classList.add('veld-definitief'); }
-  // Operator altijd ingelogde gebruiker
-  const opEl = document.getElementById('f-operator');
-  if (opEl && _huidigeOperator) opEl.value = _huidigeOperator;
   selectMat('LDPE');
   currentTiming = null;
-  _huidigOpgeslaanKey = null;
   document.getElementById('results-box').classList.remove('show');
   document.getElementById('blower-results').innerHTML = '';
-  const btnBer = document.getElementById('btn-bereken-opslaan');
-  if (btnBer) btnBer.style.display = '';
-  const btnRecept = document.getElementById('btn-naar-recept');
-  if (btnRecept) btnRecept.style.display = 'none';
   document.querySelector('#s-add .content')?.scrollTo(0,0);
-  delete document.getElementById('s-add').dataset.editKey;
-  document.querySelector('#s-add .topbar-title').textContent = 'Nieuw Recept';
 }
 
 // ═══════════════════════════════════════════════════
