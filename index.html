@@ -467,28 +467,18 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <!-- ═══════════════ PIN OVERLAY (VERWIJDEREN) ═══════════════ -->
 
-<div class="overlay" id="pin-overlay">
-  <div class="overlay-box" style="border-top:2px solid #ef4444;padding:24px;max-width:320px;">
-    <div style="font-size:9px;color:#ef4444;letter-spacing:.3em;margin-bottom:6px;">BEVEILIGD</div>
-    <div id="pin-overlay-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;margin-bottom:16px;">Verwijderen</div>
-    <div id="pin-del-display" style="background:#070a10;border:2px solid #ef4444;border-radius:4px;padding:14px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:32px;color:#ef4444;letter-spacing:8px;margin-bottom:8px;min-height:58px;">·  ·  ·</div>
-    <div id="pin-del-err" style="display:none;color:#ef4444;font-size:10px;text-align:center;margin-bottom:8px;">VERKEERDE PIN</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
-      <button class="np-btn" onclick="pinDelInput('1')">1</button>
-      <button class="np-btn" onclick="pinDelInput('2')">2</button>
-      <button class="np-btn" onclick="pinDelInput('3')">3</button>
-      <button class="np-btn" onclick="pinDelInput('4')">4</button>
-      <button class="np-btn" onclick="pinDelInput('5')">5</button>
-      <button class="np-btn" onclick="pinDelInput('6')">6</button>
-      <button class="np-btn" onclick="pinDelInput('7')">7</button>
-      <button class="np-btn" onclick="pinDelInput('8')">8</button>
-      <button class="np-btn" onclick="pinDelInput('9')">9</button>
-      <button class="np-btn" style="color:#ef4444;font-size:20px;" onclick="pinDelDel()">⌫</button>
-      <button class="np-btn" onclick="pinDelInput('0')">0</button>
-      <button class="np-btn" style="background:#7f1d1d;color:#fca5a5;font-size:16px;" onclick="bevestigDel()">✓</button>
-    </div>
-    <button class="btn btn-red" onclick="bevestigDel()" style="margin-bottom:8px;">Verwijderen</button>
-    <button class="btn btn-ghost" style="margin-bottom:0;" onclick="sluitPinDel()">Annuleer</button>
+<div id="pin-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;align-items:center;justify-content:center;padding:24px;">
+  <div style="background:#0f1520;border:1px solid #1a2540;border-top:2px solid #ef4444;border-radius:6px;padding:28px 24px;width:100%;max-width:300px;">
+    <div style="font-size:9px;color:#ef4444;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;">Beveiligd</div>
+    <div id="pin-overlay-titel" style="font-weight:700;font-size:18px;color:#e5e7eb;margin-bottom:4px;">Pincode vereist</div>
+    <div style="font-size:12px;color:#6b7280;margin-bottom:20px;">Voer je pincode in om te verwijderen</div>
+    <input id="pin-input" type="password" inputmode="numeric" maxlength="6"
+      placeholder="· · · · · ·"
+      onkeydown="if(event.key==='Enter')bevestigPin()"
+      style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:4px;color:#e5e7eb;font-family:'Courier New',monospace;font-size:28px;padding:14px;outline:none;text-align:center;letter-spacing:8px;margin-bottom:8px;">
+    <div id="pin-err" style="display:none;color:#ef4444;font-size:11px;letter-spacing:1px;text-align:center;margin-bottom:10px;">VERKEERDE PINCODE</div>
+    <button onclick="bevestigPin()" style="width:100%;background:#ef4444;color:#fff;border:none;border-radius:4px;font-weight:700;font-size:15px;letter-spacing:2px;padding:14px;cursor:pointer;margin-bottom:10px;">VERWIJDEREN</button>
+    <button onclick="sluitPinModal()" style="width:100%;background:transparent;color:#6b7280;border:1px solid #1a2540;border-radius:4px;font-size:13px;padding:12px;cursor:pointer;">Annuleer</button>
   </div>
 </div>
 
@@ -512,7 +502,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '1.3';
+const APP_VERSION = '1.4';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 
@@ -792,60 +782,51 @@ function toggleGroep(gid) {
 }
 
 // ═══════ DELETE RECEPT ═══════
-let _pinDelWaarde = '';
-
-function pinDelInput(c) {
-  if (_pinDelWaarde.length >= 6) return;
-  _pinDelWaarde += c;
-  document.getElementById('pin-del-display').textContent = '•'.repeat(_pinDelWaarde.length);
+// ── PIN MODAL ─────────────────────────────────────────────────────────
+function toonPinModal(titel, onSuccess) {
+  document.getElementById('pin-overlay').style.display = 'flex';
+  document.getElementById('pin-overlay-titel').textContent = titel;
+  document.getElementById('pin-input').value = '';
+  document.getElementById('pin-err').style.display = 'none';
+  document.getElementById('pin-input').focus();
+  window._pinCallback = onSuccess;
 }
 
-function pinDelDel() {
-  _pinDelWaarde = _pinDelWaarde.slice(0, -1);
-  document.getElementById('pin-del-display').textContent = _pinDelWaarde.length ? '•'.repeat(_pinDelWaarde.length) : '·  ·  ·';
+function sluitPinModal() {
+  document.getElementById('pin-overlay').style.display = 'none';
+  window._pinCallback = null;
+}
+
+function bevestigPin() {
+  var pin = document.getElementById('pin-input').value.trim();
+  var cfg = OPS[_operator];
+  if (cfg && (pin === cfg.pin || pin === String(parseInt(cfg.pin)))) {
+    var cb = window._pinCallback;
+    sluitPinModal();
+    if (cb) cb();
+  } else {
+    document.getElementById('pin-err').style.display = 'block';
+    document.getElementById('pin-input').value = '';
+    document.getElementById('pin-input').focus();
+  }
 }
 
 function vraagVerwijderRecept(key) {
-  _delKey = key;
-  _delType = 'recept';
-  _pinDelWaarde = '';
-  document.getElementById('pin-overlay-titel').textContent = 'Recept verwijderen';
-  document.getElementById('pin-del-display').textContent = '·  ·  ·';
-  document.getElementById('pin-del-err').style.display = 'none';
-  document.getElementById('pin-overlay').classList.add('active');
+  toonPinModal('Recept verwijderen', function() {
+    verwijderRecept(key);
+  });
 }
 
-function sluitPinDel() {
-  document.getElementById('pin-overlay').classList.remove('active');
-  _pinDelWaarde = '';
-  _delKey = null;
-  _delType = null;
-  _delOptieNr = null;
-}
-
-async function bevestigDel() {
-  const cfg = OPS[_operator];
-  if (!cfg) { toast('Niet ingelogd', true); return; }
-  const pinMatch = _pinDelWaarde === cfg.pin || _pinDelWaarde === String(parseInt(cfg.pin));
-  if (!pinMatch) {
-    document.getElementById('pin-del-err').style.display = 'block';
-    _pinDelWaarde = '';
-    document.getElementById('pin-del-display').textContent = '·  ·  ·';
-    return;
-  }
-  sluitPinDel();
-  if (_delType === 'recept') {
-    await verwijderRecept(_delKey);
-  } else if (_delType === 'optie') {
-    await verwijderOptie(_delKey, _delOptieNr);
-  }
+function vraagVerwijderOptie(nr) {
+  toonPinModal('Optie ' + nr + ' verwijderen', function() {
+    verwijderOptie(_huidigReceptKey, nr);
+  });
 }
 
 async function verwijderRecept(key) {
   toast('Verwijderen...');
   await fbDel('recepten/' + key);
   _recepten = _recepten.filter(r => r._key !== key);
-  // Navigeer naar recepten scherm
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('s-recepten').classList.add('active');
   const q = document.getElementById('zoek-input').value.toLowerCase();
@@ -1331,22 +1312,11 @@ async function slaOptieOp() {
   renderOpties(r);
 }
 
-function vraagVerwijderOptie(nr) {
-  _delKey = _huidigReceptKey;
-  _delType = 'optie';
-  _delOptieNr = nr;
-  _pinDelWaarde = '';
-  document.getElementById('pin-overlay-titel').textContent = `Optie ${nr} verwijderen`;
-  document.getElementById('pin-del-display').textContent = '·  ·  ·';
-  document.getElementById('pin-del-err').style.display = 'none';
-  document.getElementById('pin-overlay').classList.add('active');
-}
-
 async function verwijderOptie(key, nr) {
   await fbSet('recepten/' + key + '/opties/' + nr, null);
   const r = _recepten.find(x => x._key === key);
   if (r && r.opties) { r.opties[nr] = null; renderOpties(r); }
-  toast(`Optie ${nr} verwijderd`);
+  toast('Optie ' + nr + ' verwijderd');
 }
 
 // ═══════ LEERDATA ═══════
