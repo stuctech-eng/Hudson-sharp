@@ -614,9 +614,10 @@ function kiesOperator(naam) {
 }
 
 function checkPin() {
-  const pin = document.getElementById('inp-pin').value.trim();
+  const pin = document.getElementById('inp-pin').value.toString().trim();
   const cfg = OPS[_gekozenOperator];
-  if (cfg && pin === cfg.pin) {
+  const pinMatch = cfg && (pin === cfg.pin || pin === String(parseInt(cfg.pin)));
+  if (pinMatch) {
     _operator = _gekozenOperator;
     _isAdmin = cfg.admin;
     document.getElementById('pin-err').style.display = 'none';
@@ -796,9 +797,12 @@ function sluitPinDel() {
 }
 
 async function bevestigDel() {
-  const pin = document.getElementById('inp-pin-del').value.trim();
+  const pin = document.getElementById('inp-pin-del').value.toString().trim();
   const cfg = OPS[_operator];
-  if (!cfg || pin !== cfg.pin) {
+  if (!cfg) { toast('Niet ingelogd', true); return; }
+  // Vergelijk ook zonder leading zeros
+  const pinMatch = pin === cfg.pin || pin === String(parseInt(cfg.pin));
+  if (!pinMatch) {
     document.getElementById('pin-del-err').style.display = 'block';
     document.getElementById('inp-pin-del').value = '';
     return;
