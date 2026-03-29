@@ -766,7 +766,7 @@ color: #c8d8e8;
 <div style="background:#f5a623;color:#000;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.3em;padding:6px 18px;text-transform:uppercase;margin-bottom:16px;">Hudson Sharp</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:42px;letter-spacing:.12em;text-transform:uppercase;color:#c8d8e8;text-align:center;line-height:1;">5750W</div>
 <div style="font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#4a6080;margin-bottom:16px;">SETUP APP</div>
-<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v5.4</div>
+<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#f5a623;letter-spacing:.2em;margin-bottom:28px;border:1px solid rgba(245,166,35,.3);padding:5px 16px;border-radius:2px;" id="login-versie">v5.6</div>
 
 <div style="width:100%;max-width:300px;">
 
@@ -789,7 +789,7 @@ color: #c8d8e8;
     <!-- Pincode veld -- verschijnt na klikken op naam -->
     <div id="login-pin-blok" style="display:none;margin-top:16px;">
       <div id="login-naam-toon" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;"></div>
-      <input id="login-pin" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·"
+      <input id="login-pin" type="tel" maxlength="6" placeholder="· · · · · ·"
         onkeydown="if(event.key==='Enter')doLogin()"
         style="width:100%;background:#0a0e16;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:26px;padding:16px;outline:none;margin-bottom:10px;-webkit-appearance:none;text-align:center;letter-spacing:.4em;transition:border-color .15s;"
         onfocus="this.style.borderColor='#22d3ee'" onblur="this.style.borderColor='#1a2235'">
@@ -826,7 +826,7 @@ color: #c8d8e8;
     <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#22c55e;letter-spacing:.15em;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);padding:4px 10px;border-radius:2px;">
       <div class="pulse"></div>SYSTEEM GEREED
     </div>
-    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v5.4</div>
+    <div id="home-versie" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;">v5.6</div>
   </div>
   <div id="home-gebruiker" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#4a6080;letter-spacing:.1em;margin-top:8px;"></div>
 </div>
@@ -935,8 +935,8 @@ color: #c8d8e8;
 
 <div class="slabel">Versie Historie</div>
 <div class="info-block">
-  <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">v5.4</div><div class="ir-val" style="font-size:13px;">Admin knop home, Info App scherm, versie historie</div></div>
-  <div class="info-row"><div class="ir-lbl">v5.4</div><div class="ir-val" style="font-size:13px;">Recept verwijderen fix (dubbele confirm weg)</div></div>
+  <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">v5.6</div><div class="ir-val" style="font-size:13px;">Admin knop home, Info App scherm, versie historie</div></div>
+  <div class="info-row"><div class="ir-lbl">v5.6</div><div class="ir-val" style="font-size:13px;">Recept verwijderen fix (dubbele confirm weg)</div></div>
   <div class="info-row"><div class="ir-lbl">v4.1</div><div class="ir-val" style="font-size:13px;">Optie verwijderen met eigen pincode</div></div>
   <div class="info-row"><div class="ir-lbl">v4.0</div><div class="ir-val" style="font-size:13px;">Leer Data knop -- werkelijke optimale parameters</div></div>
   <div class="info-row"><div class="ir-lbl">v3.9</div><div class="ir-val" style="font-size:13px;">8 opties per recept, optie banner boven instellingen</div></div>
@@ -1070,15 +1070,15 @@ color: #c8d8e8;
   </div>
 </div>
 
-<button class="btn btn-amber" style="margin-top:8px;" onclick="berekenEnSla()">✓  Berekenen & Opslaan</button>
+<button id="btn-bereken-opslaan" class="btn btn-amber" style="margin-top:8px;" onclick="berekenEnSla()">⚙  Berekenen & Opslaan</button>
 <button class="btn btn-ghost" onclick="resetForm()">Annuleren</button>
 
 <!-- RESULTS -->
 <div id="results-box">
   <div class="slabel" style="margin-top:22px;">Blower Timing -- Berekend</div>
   <div id="blower-results"></div>
-  <button class="btn btn-amber" style="margin-top:4px;" onclick="saveRecipe()">✓  Opslaan</button>
-  <button class="btn btn-ghost" onclick="resetForm()">Annuleren</button>
+  <button id="btn-naar-recept" class="btn btn-amber" style="margin-top:4px;display:none;" onclick="naarHuidigRecept()">→ Recept bekijken</button>
+  <button class="btn btn-ghost" onclick="resetForm()">Nieuw recept</button>
 </div>
 ```
 
@@ -1212,7 +1212,7 @@ color: #c8d8e8;
   <div style="background:#0f1520;border:1px solid #1a2540;border-top:2px solid #ef4444;border-radius:4px;padding:28px 24px;width:100%;max-width:300px;">
     <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#ef4444;letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px;">Beveiligd</div>
     <div id="pin-optie-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;margin-bottom:20px;">Optie verwijderen</div>
-    <input id="pin-optie-input" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·"
+    <input id="pin-optie-input" type="tel" maxlength="6" placeholder="· · · · · ·"
       onkeydown="if(event.key==='Enter')bevestigOptiePin()"
       style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:#e5e7eb;font-family:'Share Tech Mono',monospace;font-size:28px;padding:14px;outline:none;text-align:center;letter-spacing:8px;margin-bottom:8px;-webkit-appearance:none;">
     <div id="pin-optie-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">VERKEERDE PIN</div>
@@ -1294,7 +1294,7 @@ color: #c8d8e8;
   <div style="background:#0f1420;border:1px solid #1a2235;border-top:2px solid #ef4444;border-radius:4px;padding:28px 24px;width:100%;max-width:300px;">
     <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#ef4444;letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px;">Beveiligd</div>
     <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;color:#c8d8e8;margin-bottom:20px;">PIN vereist om te verwijderen</div>
-    <input id="pin-input" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·"
+    <input id="pin-input" type="tel" maxlength="6" placeholder="· · · · · ·"
       onkeydown="if(event.key==='Enter')bevestigPin()"
       style="width:100%;background:#070a0f;border:1px solid #1a2235;border-radius:2px;color:#c8d8e8;font-family:'Share Tech Mono',monospace;font-size:28px;padding:14px;outline:none;text-align:center;letter-spacing:8px;margin-bottom:8px;-webkit-appearance:none;">
     <div id="pin-err" style="display:none;color:#ef4444;font-family:'Share Tech Mono',monospace;font-size:10px;text-align:center;margin-bottom:10px;letter-spacing:.15em;">VERKEERDE PIN</div>
@@ -1309,7 +1309,7 @@ color: #c8d8e8;
 // ═══════════════════════════════════════════════════
 // INSTELLINGEN
 // ═══════════════════════════════════════════════════
-const APP_VERSION = '5.4';
+const APP_VERSION = '5.6';
 
 const OPERATORS_CONFIG = {
   'Dirk':   { pin: '007', admin: true  },
@@ -2337,7 +2337,9 @@ function openDetailRender(r) {
   const getOn  = (key) => optData ? (optData[`${key}_on`]  ?? r[`${key}_on`])  : r[`${key}_on`];
   const getOff = (key) => optData ? (optData[`${key}_off`] ?? r[`${key}_off`]) : r[`${key}_off`];
 
-  document.getElementById('detail-title').textContent = `${r.width}×${r.length}${actieveOptie ? ` · Opt.${actieveOptie}` : ''}`;
+  const klanttitel = r.klantnaam ? `${r.width}×${r.length} · ${r.klantnaam}` : `${r.width}×${r.length}`;
+  document.getElementById('detail-title').textContent = klanttitel;
+  document.getElementById('detail-title').style.fontSize = r.klantnaam ? '14px' : '20px';
 
   // ── 360° SVG DIAGRAM ──
   const cx = 160, cy = 160, R = 110, strokeW = 18;
@@ -2554,10 +2556,74 @@ function sluitNumpad() {
   _numpadVeld = null;
 }
 
-function berekenEnSla() {
+let _huidigOpgeslaanKey = null;
+
+async function berekenEnSla() {
+  const w = parseFloat(document.getElementById('f-w').value);
+  const l = parseFloat(document.getElementById('f-l').value);
+  const t = parseFloat(document.getElementById('f-t').value);
+  const s = parseInt(document.getElementById('f-s').value);
+  if (!w||!l||!t||!s||w<=0||l<=0||t<=0||s<=0) {
+    toast('Vul breedte, lengte, dikte en snelheid in', true);
+    return;
+  }
+
+  // Stap 1: Bereken en toon
   calcAndShow();
-  // Kleine vertraging zodat blower waarden zichtbaar zijn voor opslaan
-  setTimeout(saveRecipe, 300);
+
+  // Stap 2: Verberg berekenen knop
+  const btnBer = document.getElementById('btn-bereken-opslaan');
+  if (btnBer) btnBer.style.display = 'none';
+
+  // Stap 3: Opslaan
+  toast('Berekend! Opslaan...');
+  _huidigOpgeslaanKey = await saveRecipeReturnKey();
+
+  // Stap 4: Toon "Recept bekijken" knop
+  if (_huidigOpgeslaanKey) {
+    toast('Recept opgeslagen!');
+    const btnRecept = document.getElementById('btn-naar-recept');
+    if (btnRecept) btnRecept.style.display = 'block';
+  }
+}
+
+async function saveRecipeReturnKey() {
+  const w = parseFloat(document.getElementById('f-w').value);
+  const l = parseFloat(document.getElementById('f-l').value);
+  const t = parseFloat(document.getElementById('f-t').value);
+  const s = parseInt(document.getElementById('f-s').value);
+  const klant     = document.getElementById('f-klant').value.trim();
+  const klantnaam = document.getElementById('f-klantnaam').value.trim();
+  const plaats    = document.getElementById('f-plaats').value.trim();
+  const operator  = _huidigeOperator || document.getElementById('f-operator')?.value?.trim() || '';
+
+  if (!currentTiming) return null;
+
+  const timing = {};
+  CHANNELS.forEach(ch => {
+    const onEl  = document.getElementById(`bi-${ch.key}-on`);
+    const offEl = document.getElementById(`bi-${ch.key}-off`);
+    timing[`${ch.key}_on`]  = onEl  ? (parseInt(onEl.value)  || 0) : currentTiming[`${ch.key}_on`];
+    timing[`${ch.key}_off`] = offEl ? (parseInt(offEl.value) || 0) : currentTiming[`${ch.key}_off`];
+  });
+
+  const recipe = { id: Date.now(), klant, klantnaam, plaats, operator, width: w, length: l, thickness: t, material: selectedMat, speed: s, ...timing };
+  const editKey = document.getElementById('s-add').dataset.editKey;
+
+  if (editKey) {
+    await updateRecipeInFirebase(editKey, recipe);
+    return editKey;
+  } else {
+    const result = await addRecipeToFirebase(recipe);
+    return result?.name || null;
+  }
+}
+
+function naarHuidigRecept() {
+  if (_huidigOpgeslaanKey) {
+    openDetailByKey(_huidigOpgeslaanKey);
+    resetForm();
+  }
 }
 function veldIngevuld(el) {
   if (el.value && el.value.trim() !== '') {
@@ -2729,8 +2795,13 @@ function resetForm() {
   if (opEl && _huidigeOperator) opEl.value = _huidigeOperator;
   selectMat('LDPE');
   currentTiming = null;
+  _huidigOpgeslaanKey = null;
   document.getElementById('results-box').classList.remove('show');
   document.getElementById('blower-results').innerHTML = '';
+  const btnBer = document.getElementById('btn-bereken-opslaan');
+  if (btnBer) btnBer.style.display = '';
+  const btnRecept = document.getElementById('btn-naar-recept');
+  if (btnRecept) btnRecept.style.display = 'none';
   document.querySelector('#s-add .content')?.scrollTo(0,0);
   delete document.getElementById('s-add').dataset.editKey;
   document.querySelector('#s-add .topbar-title').textContent = 'Nieuw Recept';
