@@ -500,7 +500,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '1.0';
+const APP_VERSION = '1.2';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 
@@ -610,7 +610,8 @@ function kiesOperator(naam) {
   document.getElementById('inp-pin').value = '';
   document.getElementById('pin-err').style.display = 'none';
   document.getElementById('pin-blok').style.display = 'block';
-  setTimeout(() => document.getElementById('inp-pin').focus(), 100);
+  // Direct focus op pincode veld
+  document.getElementById('inp-pin').focus();
 }
 
 function checkPin() {
@@ -817,11 +818,11 @@ async function bevestigDel() {
 
 async function verwijderRecept(key) {
   toast('Verwijderen...');
-  // 1. Verwijder uit Firebase
   await fbDel('recepten/' + key);
-  // 2. Verwijder direct uit lokale array
   _recepten = _recepten.filter(r => r._key !== key);
-  // 3. Render boom opnieuw met bijgewerkte lokale data
+  // Navigeer naar recepten scherm
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('s-recepten').classList.add('active');
   const q = document.getElementById('zoek-input').value.toLowerCase();
   renderReceptenBoom(_recepten, q);
   toast('Recept verwijderd');
