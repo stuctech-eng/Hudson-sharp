@@ -682,7 +682,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '1.5';
+const APP_VERSION = '1.6';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 
@@ -1683,41 +1683,54 @@ function sluitUitgebreidProbleem() {
 }
 const PROBLEMEN = {
   krult: {
+    titel: '🌀 Zak krult op', kleur: '#22d3ee',
     acties: [
-      { kanaal: 'Lower Blowers', actie: 'Meer lucht', detail: '+10° tot +20°' },
-      { kanaal: 'Upper Blowers', actie: 'Minder lucht', detail: '-10° tot -15°' },
-      { kanaal: 'Sealtemperatuur', actie: 'Verlagen', detail: '2–5°C omlaag' },
+      { kanaal: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht.', timing: 'UIT-moment 10–15° eerder' },
+      { kanaal: 'Onderste Blazer', actie: '↑ Meer lucht', detail: 'Draaikraan iets open.', timing: 'AAN-moment 10–20° eerder' },
+      { kanaal: 'Las Tijd', actie: '↓ Korter', detail: 'Kortere verblijftijd sealbalk = minder warmte = minder kans op kromtrekken.', timing: null },
+      { kanaal: 'Snelheid', actie: '↓ Verlagen', detail: 'Meer tijd per cyclus voor de blazers.', timing: null },
     ]
   },
   hoeken: {
     titel: '📐 Hoeken vouwen om', kleur: '#a78bfa',
     acties: [
-      { kanaal: 'Upper Blowers', actie: 'Minder lucht', detail: '-10° tot -15°' },
-      { kanaal: 'Lower Blowers', actie: 'Meer lucht', detail: '+15° tot +20°' },
-      { kanaal: 'Output 6', actie: 'Later aanzetten', detail: '+10°' },
+      { kanaal: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht -- minder turbulentie bovenin.', timing: 'UIT-moment 10–15° eerder' },
+      { kanaal: 'Onderste Blazer', actie: '↑ Meer lucht', detail: 'Draaikraan iets open.', timing: 'AAN-moment 15–20° eerder' },
+      { kanaal: 'Uitgang 6', actie: '↑ Later aanzetten', detail: 'Geeft zak meer tijd om te settelen.', timing: 'AAN +10°' },
+      { kanaal: 'Afneem Moment', actie: '↑ Later', detail: 'Zak heeft meer tijd om recht te hangen.', timing: '+10° tot +15°' },
+      { kanaal: 'Snelheid', actie: '↓ Verlagen', detail: 'Meer tijd zodat zak correct valt.', timing: null },
     ]
   },
   lucht: {
     titel: '💨 Lucht in de zak', kleur: '#3b82f6',
     acties: [
-      { kanaal: 'Upper Blowers', actie: 'Minder lucht', detail: '-15° tot -20°' },
-      { kanaal: 'Output 6', actie: 'Later aan / eerder uit', detail: 'AAN +15° / UIT -15°' },
-      { kanaal: 'Lower Pipe', actie: 'Korter open', detail: '-10°' },
+      { kanaal: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht.', timing: 'UIT-moment 15–20° eerder' },
+      { kanaal: 'Bovenste Blaaspijp', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht.', timing: 'UIT-moment 10° eerder' },
+      { kanaal: 'Uitgang 6', actie: 'Later AAN / eerder UIT', detail: 'Geeft lucht kans te ontsnappen voor afnemen.', timing: 'AAN +15° / UIT -15°' },
+      { kanaal: 'Onderste Blaaspijp', actie: '↓ Korter open', detail: 'Minder lucht ophoping onderin.', timing: 'UIT -10°' },
+      { kanaal: 'Afneem Moment', actie: '↑ Later', detail: 'Meer tijd om lucht te verliezen.', timing: '+10°' },
     ]
   },
   stapeling: {
     titel: '📦 Slechte stapeling', kleur: '#f59e0b',
     acties: [
-      { kanaal: 'Output 6', actie: 'Langer aan', detail: '+15° tot +20°' },
-      { kanaal: 'Lower Blowers', actie: 'Minder lucht', detail: '-10°' },
+      { kanaal: 'Uitgang 6', actie: '↑ Meer lucht / langer', detail: 'Draaikraan iets open -- meer afneemkracht.', timing: 'UIT +15–20°' },
+      { kanaal: 'Afneem Moment', actie: '↑ Later', detail: 'Zak volledig open voor goede stapeling.', timing: '+10° tot +15°' },
+      { kanaal: 'Onderste Blazer', actie: '↓ Minder lucht', detail: 'Teveel onderlucht blaast zak scheef.', timing: 'UIT -10°' },
+      { kanaal: 'Stop Doorvoer', actie: 'Controleer', detail: 'Foliemaat moet kloppen voor nette stapel.', timing: null },
+      { kanaal: 'Snelheid', actie: '↓ Verlagen', detail: 'Meer tijd verbetert positionering.', timing: null },
     ]
   },
   opent: {
     titel: '🫧 Zak opent niet', kleur: '#22c55e',
     acties: [
-      { kanaal: 'Upper Blowers', actie: 'Meer lucht', detail: '+15° tot +20°' },
-      { kanaal: 'Lower Blowers', actie: 'Meer lucht', detail: '+10° tot +15°' },
-      { kanaal: 'Upper Pipe', actie: 'Eerder aanzetten', detail: '-10°' },
+      { kanaal: 'Bovenste Blazer', actie: '↑ Meer lucht', detail: 'Draaikraan verder open.', timing: 'AAN 15–20° eerder' },
+      { kanaal: 'Onderste Blazer', actie: '↑ Meer lucht', detail: 'Draaikraan verder open.', timing: 'AAN 10–15° eerder' },
+      { kanaal: 'Bovenste Blaaspijp', actie: '↑ Eerder aanzetten', detail: 'Gerichte lucht helpt bovenlaag openen.', timing: 'AAN -10°' },
+      { kanaal: 'Onderste Blaaspijp', actie: '↑ Meer lucht', detail: 'Onderlaag heeft extra druk nodig.', timing: 'AAN -5°' },
+      { kanaal: 'Afneem Moment', actie: '↑ Later', detail: 'Meer tijd om volledig te openen.', timing: '+15° tot +20°' },
+      { kanaal: 'Las Tijd', actie: '↓ Controleer', detail: 'Te lange verblijftijd sealbalk kan folie samenplakken.', timing: null },
+      { kanaal: 'Snelheid', actie: '↓ Verlagen', detail: 'Meer tijd per cyclus voor blazers.', timing: null },
     ]
   },
 };
@@ -1731,27 +1744,31 @@ function sluitProbleemKeuze() {
 }
 
 function toonProbleem(type) {
-  sluitProbleemKeuze();
+  // Sluit keuze maar laat overlay open op de achtergrond
+  document.getElementById('probleem-keuze-overlay').classList.remove('active');
   const p = PROBLEMEN[type];
   document.getElementById('probleem-titel').textContent = p.titel;
   document.getElementById('probleem-inhoud').innerHTML = `
     <div style="background:${p.kleur}18;border:1px solid ${p.kleur}44;border-radius:4px;padding:14px;margin-bottom:16px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:${p.kleur};">Aanbevolen aanpassingen</div>
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:${p.kleur};">Directe aanpassingen</div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:4px;">Pas één parameter tegelijk aan, test 10–15 zakken.</div>
     </div>
     ${p.acties.map(a => `
-      <div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid ${p.kleur};border-radius:4px;padding:14px 16px;margin-bottom:8px;">
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#e5e7eb;">${a.kanaal}</div>
-        <div style="font-size:12px;color:${p.kleur};margin-top:4px;">${a.actie}</div>
-        <div style="font-size:11px;color:#6b7280;margin-top:2px;">${a.detail}</div>
-      </div>`).join('')}
-    <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px;margin-top:8px;font-size:10px;color:#6b7280;line-height:1.8;">
-      💡 Pas de waarden stap voor stap aan en test na elke aanpassing.
-    </div>`;
+      <div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid ${p.kleur};border-radius:4px;padding:12px 14px;margin-bottom:8px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#e5e7eb;">${a.kanaal}</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:${p.kleur};">${a.actie}</div>
+        </div>
+        <div style="font-size:11px;color:#9ca3af;margin-bottom:${a.timing ? '6px' : '0'};">${a.detail}</div>
+        ${a.timing ? `<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:5px 10px;font-size:10px;color:#f59e0b;font-family:'Share Tech Mono',monospace;">⏱ ${a.timing}</div>` : ''}
+      </div>`).join('')}`;
   document.getElementById('s-probleem').classList.add('active');
 }
 
 function sluitProbleem() {
+  // Terug naar keuze scherm, niet naar recept
   document.getElementById('s-probleem').classList.remove('active');
+  document.getElementById('probleem-keuze-overlay').classList.add('active');
 }
 
 // ═══════ SYNTAX CHECK GUARD ═══════
