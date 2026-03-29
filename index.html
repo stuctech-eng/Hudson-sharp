@@ -198,6 +198,14 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
         </div>
         <div style="font-size:24px;color:#f59e0b;">›</div>
       </button>
+      <button onclick="ga('s-probleemoplossing')" style="background:#0a0e16;border:none;border-left:5px solid #ef4444;display:flex;align-items:center;gap:16px;padding:18px 20px;cursor:pointer;text-align:left;border-radius:2px;">
+        <div style="font-size:28px;">🔧</div>
+        <div style="flex:1;">
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;color:#c8d8e8;">Probleemoplossing</div>
+          <div style="font-size:10px;color:#4a6080;margin-top:3px;">Uitgebreide uitleg per probleem</div>
+        </div>
+        <div style="font-size:24px;color:#ef4444;">›</div>
+      </button>
       <button onclick="ga('s-machine')" style="background:#0a0e16;border:none;border-left:5px solid #3b82f6;display:flex;align-items:center;gap:16px;padding:18px 20px;cursor:pointer;text-align:left;border-radius:2px;">
         <div style="font-size:28px;">⚙️</div>
         <div style="flex:1;">
@@ -334,6 +342,178 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     <div class="topbar-title" id="detail-titel">Recept</div>
   </div>
   <div class="content" id="detail-inhoud"></div>
+</div>
+
+<!-- ═══════════════ PROBLEEMOPLOSSING UITGEBREID ═══════════════ -->
+
+<div class="screen" id="s-probleemoplossing">
+  <div class="topbar">
+    <button class="back-btn" onclick="ga('s-home')">‹</button>
+    <div class="topbar-title">Probleemoplossing</div>
+  </div>
+  <div class="content">
+
+```
+<!-- Keuze knoppen -->
+<div class="slabel">Kies een probleem</div>
+<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+  <button onclick="toonUitgebreidProbleem('krult')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #22d3ee;border-radius:4px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;">
+    <span style="font-size:22px;">🌀</span><span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;flex:1;text-align:left;">Zak krult op</span><span style="color:#6b7280;">›</span>
+  </button>
+  <button onclick="toonUitgebreidProbleem('hoeken')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #a78bfa;border-radius:4px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;">
+    <span style="font-size:22px;">📐</span><span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;flex:1;text-align:left;">Hoeken vouwen om</span><span style="color:#6b7280;">›</span>
+  </button>
+  <button onclick="toonUitgebreidProbleem('lucht')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #3b82f6;border-radius:4px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;">
+    <span style="font-size:22px;">💨</span><span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;flex:1;text-align:left;">Lucht in de zak</span><span style="color:#6b7280;">›</span>
+  </button>
+  <button onclick="toonUitgebreidProbleem('stapeling')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #f59e0b;border-radius:4px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;">
+    <span style="font-size:22px;">📦</span><span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;flex:1;text-align:left;">Slechte stapeling</span><span style="color:#6b7280;">›</span>
+  </button>
+  <button onclick="toonUitgebreidProbleem('opent')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #22c55e;border-radius:4px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;">
+    <span style="font-size:22px;">🫧</span><span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;flex:1;text-align:left;">Zak opent niet</span><span style="color:#6b7280;">›</span>
+  </button>
+</div>
+
+<!-- Parameters uitleg -->
+<div class="slabel">Parameters -- Wat Doen Ze?</div>
+
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#22d3ee;">🌬 Bovenste Blazer</div>
+  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
+    <div style="margin-bottom:6px;"><strong style="color:#22d3ee;">Wat:</strong> Blaast lucht van bovenaf in de zak om hem te openen bij het afnemen.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#22d3ee;">Timing:</strong> AAN-moment = wanneer blazer start · UIT-moment = wanneer hij stopt.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#22d3ee;">Lucht:</strong> Draaikraan bepaalt hoeveel lucht.</div>
+    <div style="background:#22d3ee11;border:1px solid #22d3ee33;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
+      <span style="color:#22d3ee;">↑ Meer lucht / later AAN:</span> zak opent verder maar kan omkrullen<br>
+      <span style="color:#ef4444;">↓ Minder lucht / eerder UIT:</span> minder kans op omkrullen, zak opent minder
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#a78bfa;">🌬 Onderste Blazer</div>
+  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
+    <div style="margin-bottom:6px;"><strong style="color:#a78bfa;">Wat:</strong> Blaast lucht van onderaf in de zak, werkt samen met bovenste blazer.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#a78bfa;">Timing:</strong> AAN/UIT in graden van de cyclus.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#a78bfa;">Lucht:</strong> Draaikraan bepaalt hoeveel lucht.</div>
+    <div style="background:#a78bfa11;border:1px solid #a78bfa33;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
+      <span style="color:#22c55e;">↑ Meer lucht:</span> zak opent beter aan onderkant<br>
+      <span style="color:#ef4444;">↓ Minder lucht:</span> minder kans dat zak blijft hangen
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#3b82f6;">💨 Bovenste Blaaspijp</div>
+  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
+    <div style="margin-bottom:6px;"><strong style="color:#3b82f6;">Wat:</strong> Smalle pijp die gerichte lucht bovenin de zak blaast voor fijnere controle.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#3b82f6;">Timing:</strong> AAN/UIT in graden.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#3b82f6;">Lucht:</strong> Draaikraan -- voorzichtig instellen, kleine aanpassing = groot effect.</div>
+    <div style="background:#3b82f611;border:1px solid #3b82f633;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
+      <span style="color:#22c55e;">↑ Meer:</span> bovenste deel zak opent verder<br>
+      <span style="color:#ef4444;">↓ Minder:</span> voorkomt luchtbellen bovenin zak
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#f97316;">💨 Onderste Blaaspijp</div>
+  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
+    <div style="margin-bottom:6px;"><strong style="color:#f97316;">Wat:</strong> Smalle pijp die gerichte lucht onderin de zak blaast.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#f97316;">Timing:</strong> AAN/UIT in graden.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#f97316;">Lucht:</strong> Draaikraan -- voorzichtig instellen.</div>
+    <div style="background:#f9731611;border:1px solid #f9731633;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
+      <span style="color:#22c55e;">↑ Meer:</span> onderste deel zak opent beter<br>
+      <span style="color:#ef4444;">↓ Minder:</span> minder lucht onderin, zak platter
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#f59e0b;">⬡ Uitgang 6</div>
+  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
+    <div style="margin-bottom:6px;"><strong style="color:#f59e0b;">Wat:</strong> Afneemlucht -- blaast de zak van de wicket pins af richting de stapel.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#f59e0b;">Timing:</strong> AAN = wanneer zak losgeblazen wordt · UIT = zak is vrij.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#f59e0b;">Lucht:</strong> Draaikraan bepaalt kracht van afnemen.</div>
+    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
+      <span style="color:#22c55e;">↑ Meer / langer AAN:</span> zak wordt harder afgevoerd, betere stapeling<br>
+      <span style="color:#ef4444;">↓ Minder / eerder UIT:</span> minder kracht, zak blijft soms hangen
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#e5e7eb;">⚡ Las Tijd</div>
+  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
+    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Wat:</strong> Hoe lang de lasbalken contact maken met het folie.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Waarom:</strong> Te kort = slechte las, te lang = folie verbrandt of plakt.</div>
+    <div style="background:#ffffff11;border:1px solid #ffffff22;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
+      <span style="color:#22c55e;">↑ Langer:</span> sterkere las, meer hitte overdracht<br>
+      <span style="color:#ef4444;">↓ Korter:</span> sneller produceren, minder warmte -- risico zwakke las
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#e5e7eb;">⚡ Snelheid</div>
+  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
+    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Wat:</strong> Aantal zakken per minuut (ZPM) -- bepaalt de cyclustijd.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Waarom:</strong> Hogere snelheid = kortere cyclus = minder tijd voor elke actie.</div>
+    <div style="background:#ffffff11;border:1px solid #ffffff22;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
+      <span style="color:#22c55e;">↑ Sneller:</span> meer productie maar minder tijd voor blazers<br>
+      <span style="color:#ef4444;">↓ Langzamer:</span> blazers hebben meer tijd, betere kwaliteit
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#e5e7eb;">📥 Start Doorvoer</div>
+  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
+    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Wat:</strong> Het moment waarop het folie begint door te voeren naar de lasbalk.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Waarom:</strong> Bepaalt de positie van de las op de zak.</div>
+    <div style="background:#ffffff11;border:1px solid #ffffff22;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
+      <span style="color:#22c55e;">↑ Later starten:</span> folie korter invoeren<br>
+      <span style="color:#ef4444;">↓ Eerder starten:</span> meer folie doorvoeren, zak groter
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#e5e7eb;">📤 Stop Doorvoer</div>
+  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
+    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Wat:</strong> Het moment waarop het folie stopt met doorvoeren.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Waarom:</strong> Samen met start doorvoer bepaalt dit de zaklengte.</div>
+    <div style="background:#ffffff11;border:1px solid #ffffff22;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
+      <span style="color:#22c55e;">↑ Later stoppen:</span> meer folie = langere zak<br>
+      <span style="color:#ef4444;">↓ Eerder stoppen:</span> minder folie = kortere zak
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#e5e7eb;">📦 Afneem Moment</div>
+  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
+    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Wat:</strong> Het moment in de cyclus waarop de zak van de pins afgevoerd wordt.</div>
+    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Waarom:</strong> Te vroeg = zak nog niet open, te laat = volgend zakje interfereert.</div>
+    <div style="background:#ffffff11;border:1px solid #ffffff22;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
+      <span style="color:#22c55e;">↑ Later afnemen:</span> zak heeft meer tijd om te openen<br>
+      <span style="color:#ef4444;">↓ Eerder afnemen:</span> snellere cyclus maar risico gesloten zak
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══════════════ PROBLEEM DETAIL UITGEBREID ═══════════════ -->
+
+<div class="fullscreen" id="s-probleem-uitgebreid">
+  <div class="fullscreen-bar" style="border-bottom-color:#ef4444;">
+    <button class="back-btn" onclick="sluitUitgebreidProbleem()">‹</button>
+    <div id="prob-uitg-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;flex:1;"></div>
+  </div>
+  <div class="content" id="prob-uitg-inhoud"></div>
 </div>
 
 <!-- ═══════════════ MACHINE ═══════════════ -->
@@ -502,7 +682,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '1.4';
+const APP_VERSION = '1.5';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 
@@ -1415,10 +1595,94 @@ function sluitLeerdata() {
   document.getElementById('s-leerdata').classList.remove('active');
 }
 
-// ═══════ PROBLEEMOPLOSSING ═══════
+// ═══════ PROBLEEMOPLOSSING UITGEBREID ═══════
+const PROBLEMEN_UITGEBREID = {
+  krult: {
+    titel: '🌀 Zak krult op',
+    kleur: '#22d3ee',
+    oorzaak: 'De zak wordt ongelijkmatig afgekoeld of de luchtbalans tussen boven en onder klopt niet. Te veel lucht bovenin duwt de zak naar één kant waardoor hij krult.',
+    stappen: [
+      { naam: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht -- minder lucht van boven vermindert de neerwaartse druk op de zak.', timing: 'UIT-moment 10–15° eerder' },
+      { naam: 'Onderste Blazer', actie: '↑ Meer lucht', detail: 'Draaikraan iets open -- meer lucht van onder compenseert en houdt de zak recht.', timing: 'AAN-moment 10–20° eerder' },
+      { naam: 'Snelheid', actie: '↓ Iets verlagen', detail: 'Meer tijd per cyclus geeft blazers meer tijd om de zak goed te vormen.', timing: '--' },
+      { naam: 'Las Tijd', actie: '↓ Controleer temperatuur', detail: 'Te hoge lastemperatuur kan kromtrekken veroorzaken.', timing: '--' },
+    ]
+  },
+  hoeken: {
+    titel: '📐 Hoeken vouwen om',
+    kleur: '#a78bfa',
+    oorzaak: 'Te veel lucht aan één kant of het afneemmoment klopt niet. De hoeken krijgen te veel lucht en vouwen dubbel voordat de zak goed gepositioneerd is.',
+    stappen: [
+      { naam: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht -- minder turbulentie bovenin voorkomt dat hoeken omvouwen.', timing: 'UIT-moment 10–15° eerder' },
+      { naam: 'Onderste Blazer', actie: '↑ Meer lucht', detail: 'Draaikraan iets open -- ondersteunt de zak beter zodat hoeken recht blijven.', timing: 'AAN-moment 15–20° eerder' },
+      { naam: 'Uitgang 6', actie: '↑ Later aanzetten', detail: 'Geef de zak meer tijd om te settelen voor het afnemen.', timing: 'AAN-moment +10°' },
+      { naam: 'Afneem Moment', actie: '↑ Later afnemen', detail: 'Zak heeft meer tijd nodig om volledig open en recht te hangen.', timing: '+10° tot +15°' },
+    ]
+  },
+  lucht: {
+    titel: '💨 Lucht in de zak',
+    kleur: '#3b82f6',
+    oorzaak: 'De blazers blazen te lang of te hard waardoor er lucht in de gevulde zak blijft. Dit verstoort de stapeling en het pakken.',
+    stappen: [
+      { naam: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht -- minder lucht die in de zak blijft hangen.', timing: 'UIT-moment 15–20° eerder' },
+      { naam: 'Bovenste Blaaspijp', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht -- blaaspijp kan lucht vasthouden in de zak.', timing: 'UIT-moment 10° eerder' },
+      { naam: 'Uitgang 6', actie: '↑ Later AAN / eerder UIT', detail: 'Geeft de lucht kans te ontsnappen voor afnemen.', timing: 'AAN +15° / UIT -15°' },
+      { naam: 'Onderste Blaaspijp', actie: '↓ Korter open', detail: 'Minder lucht onderin vermindert luchtophoping.', timing: 'UIT-moment -10°' },
+    ]
+  },
+  stapeling: {
+    titel: '📦 Slechte stapeling',
+    kleur: '#f59e0b',
+    oorzaak: 'De zak komt niet op de juiste positie in de stapel terecht. Dit komt door verkeerd afneemmoment, te weinig of te veel afneemlucht.',
+    stappen: [
+      { naam: 'Uitgang 6', actie: '↑ Meer lucht / langer AAN', detail: 'Draaikraan iets open -- meer kracht om de zak goed op de stapel te plaatsen.', timing: 'UIT-moment +15–20°' },
+      { naam: 'Afneem Moment', actie: '↑ Later afnemen', detail: 'Zak moet volledig open zijn voor een goede stapeling.', timing: '+10° tot +15°' },
+      { naam: 'Onderste Blazer', actie: '↓ Minder lucht', detail: 'Te veel onderlucht kan de zak scheef blazen bij afnemen.', timing: 'UIT-moment -10°' },
+      { naam: 'Snelheid', actie: '↓ Iets verlagen', detail: 'Meer tijd per cyclus verbetert de stapeling.', timing: '--' },
+    ]
+  },
+  opent: {
+    titel: '🫧 Zak opent niet',
+    kleur: '#22c55e',
+    oorzaak: 'Onvoldoende lucht om de zak te openen, of de timing klopt niet. De lagen folie zitten te strak tegen elkaar door statisch of onvoldoende luchtdruk.',
+    stappen: [
+      { naam: 'Bovenste Blazer', actie: '↑ Meer lucht', detail: 'Draaikraan verder open -- meer lucht van boven helpt de bovenlaag los te blazen.', timing: 'AAN-moment 15–20° eerder' },
+      { naam: 'Onderste Blazer', actie: '↑ Meer lucht', detail: 'Draaikraan verder open -- ook onderlaag heeft meer luchtdruk nodig.', timing: 'AAN-moment 10–15° eerder' },
+      { naam: 'Bovenste Blaaspijp', actie: '↑ Eerder aanzetten', detail: 'Gerichte lucht bovenin helpt de zak eerder te openen.', timing: 'AAN-moment -10°' },
+      { naam: 'Afneem Moment', actie: '↑ Later afnemen', detail: 'Geef de zak meer tijd om volledig te openen voor afnemen.', timing: '+15° tot +20°' },
+    ]
+  },
+};
+
+function toonUitgebreidProbleem(type) {
+  const p = PROBLEMEN_UITGEBREID[type];
+  document.getElementById('prob-uitg-titel').textContent = p.titel;
+  document.getElementById('prob-uitg-inhoud').innerHTML = `
+    <div style="background:${p.kleur}18;border:1px solid ${p.kleur}44;border-radius:4px;padding:14px 16px;margin-bottom:16px;">
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:${p.kleur};margin-bottom:6px;">OORZAAK</div>
+      <div style="font-size:13px;color:#c8d8e8;line-height:1.7;">${p.oorzaak}</div>
+    </div>
+    <div class="slabel">Wat aanpassen</div>
+    ${p.stappen.map(s => `
+      <div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid ${p.kleur};border-radius:4px;padding:14px 16px;margin-bottom:8px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;">${s.naam}</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:${p.kleur};">${s.actie}</div>
+        </div>
+        <div style="font-size:12px;color:#9ca3af;line-height:1.6;margin-bottom:6px;">${s.detail}</div>
+        ${s.timing !== '--' ? `<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:6px 10px;font-size:11px;color:#f59e0b;font-family:'Share Tech Mono',monospace;">⏱ Timing: ${s.timing}</div>` : ''}
+      </div>`).join('')}
+    <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px;margin-top:8px;font-size:12px;color:#6b7280;line-height:1.8;">
+      💡 Pas één parameter tegelijk aan. Test na elke aanpassing 10–15 zakken voor je verder gaat.
+    </div>`;
+  document.getElementById('s-probleem-uitgebreid').classList.add('active');
+}
+
+function sluitUitgebreidProbleem() {
+  document.getElementById('s-probleem-uitgebreid').classList.remove('active');
+}
 const PROBLEMEN = {
   krult: {
-    titel: '🌀 Zak krult op', kleur: '#22d3ee',
     acties: [
       { kanaal: 'Lower Blowers', actie: 'Meer lucht', detail: '+10° tot +20°' },
       { kanaal: 'Upper Blowers', actie: 'Minder lucht', detail: '-10° tot -15°' },
