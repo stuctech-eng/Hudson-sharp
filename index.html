@@ -468,14 +468,26 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 <!-- ═══════════════ PIN OVERLAY (VERWIJDEREN) ═══════════════ -->
 
 <div class="overlay" id="pin-overlay">
-  <div class="overlay-box" style="border-top:2px solid #ef4444;padding:24px;max-width:300px;">
+  <div class="overlay-box" style="border-top:2px solid #ef4444;padding:24px;max-width:320px;">
     <div style="font-size:9px;color:#ef4444;letter-spacing:.3em;margin-bottom:6px;">BEVEILIGD</div>
-    <div id="pin-overlay-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;margin-bottom:18px;">Verwijderen</div>
-    <input id="inp-pin-del" type="tel" maxlength="6" placeholder="· · · · · ·"
-      style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:#e5e7eb;font-family:'Share Tech Mono',monospace;font-size:28px;padding:14px;outline:none;text-align:center;letter-spacing:8px;margin-bottom:8px;"
-      onkeydown="if(event.key==='Enter')bevestigDel()">
+    <div id="pin-overlay-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;margin-bottom:16px;">Verwijderen</div>
+    <div id="pin-del-display" style="background:#070a10;border:2px solid #ef4444;border-radius:4px;padding:14px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:32px;color:#ef4444;letter-spacing:8px;margin-bottom:8px;min-height:58px;">·  ·  ·</div>
     <div id="pin-del-err" style="display:none;color:#ef4444;font-size:10px;text-align:center;margin-bottom:8px;">VERKEERDE PIN</div>
-    <button class="btn btn-red" onclick="bevestigDel()">Verwijderen</button>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+      <button class="np-btn" onclick="pinDelInput('1')">1</button>
+      <button class="np-btn" onclick="pinDelInput('2')">2</button>
+      <button class="np-btn" onclick="pinDelInput('3')">3</button>
+      <button class="np-btn" onclick="pinDelInput('4')">4</button>
+      <button class="np-btn" onclick="pinDelInput('5')">5</button>
+      <button class="np-btn" onclick="pinDelInput('6')">6</button>
+      <button class="np-btn" onclick="pinDelInput('7')">7</button>
+      <button class="np-btn" onclick="pinDelInput('8')">8</button>
+      <button class="np-btn" onclick="pinDelInput('9')">9</button>
+      <button class="np-btn" style="color:#ef4444;font-size:20px;" onclick="pinDelDel()">⌫</button>
+      <button class="np-btn" onclick="pinDelInput('0')">0</button>
+      <button class="np-btn" style="background:#7f1d1d;color:#fca5a5;font-size:16px;" onclick="bevestigDel()">✓</button>
+    </div>
+    <button class="btn btn-red" onclick="bevestigDel()" style="margin-bottom:8px;">Verwijderen</button>
     <button class="btn btn-ghost" style="margin-bottom:0;" onclick="sluitPinDel()">Annuleer</button>
   </div>
 </div>
@@ -500,7 +512,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '1.2';
+const APP_VERSION = '1.3';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 
@@ -780,32 +792,45 @@ function toggleGroep(gid) {
 }
 
 // ═══════ DELETE RECEPT ═══════
+let _pinDelWaarde = '';
+
+function pinDelInput(c) {
+  if (_pinDelWaarde.length >= 6) return;
+  _pinDelWaarde += c;
+  document.getElementById('pin-del-display').textContent = '•'.repeat(_pinDelWaarde.length);
+}
+
+function pinDelDel() {
+  _pinDelWaarde = _pinDelWaarde.slice(0, -1);
+  document.getElementById('pin-del-display').textContent = _pinDelWaarde.length ? '•'.repeat(_pinDelWaarde.length) : '·  ·  ·';
+}
+
 function vraagVerwijderRecept(key) {
   _delKey = key;
   _delType = 'recept';
+  _pinDelWaarde = '';
   document.getElementById('pin-overlay-titel').textContent = 'Recept verwijderen';
-  document.getElementById('inp-pin-del').value = '';
+  document.getElementById('pin-del-display').textContent = '·  ·  ·';
   document.getElementById('pin-del-err').style.display = 'none';
   document.getElementById('pin-overlay').classList.add('active');
-  setTimeout(() => document.getElementById('inp-pin-del').focus(), 100);
 }
 
 function sluitPinDel() {
   document.getElementById('pin-overlay').classList.remove('active');
+  _pinDelWaarde = '';
   _delKey = null;
   _delType = null;
   _delOptieNr = null;
 }
 
 async function bevestigDel() {
-  const pin = document.getElementById('inp-pin-del').value.toString().trim();
   const cfg = OPS[_operator];
   if (!cfg) { toast('Niet ingelogd', true); return; }
-  // Vergelijk ook zonder leading zeros
-  const pinMatch = pin === cfg.pin || pin === String(parseInt(cfg.pin));
+  const pinMatch = _pinDelWaarde === cfg.pin || _pinDelWaarde === String(parseInt(cfg.pin));
   if (!pinMatch) {
     document.getElementById('pin-del-err').style.display = 'block';
-    document.getElementById('inp-pin-del').value = '';
+    _pinDelWaarde = '';
+    document.getElementById('pin-del-display').textContent = '·  ·  ·';
     return;
   }
   sluitPinDel();
@@ -1310,11 +1335,11 @@ function vraagVerwijderOptie(nr) {
   _delKey = _huidigReceptKey;
   _delType = 'optie';
   _delOptieNr = nr;
+  _pinDelWaarde = '';
   document.getElementById('pin-overlay-titel').textContent = `Optie ${nr} verwijderen`;
-  document.getElementById('inp-pin-del').value = '';
+  document.getElementById('pin-del-display').textContent = '·  ·  ·';
   document.getElementById('pin-del-err').style.display = 'none';
   document.getElementById('pin-overlay').classList.add('active');
-  setTimeout(() => document.getElementById('inp-pin-del').focus(), 100);
 }
 
 async function verwijderOptie(key, nr) {
