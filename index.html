@@ -973,7 +973,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.2';
+const APP_VERSION = '2.3';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
@@ -1379,20 +1379,25 @@ function renderDetail(r) {
       </button>
     </div>`;
 
-  // Foto's
+  // Foto's -- onderaan
   const fotosHTML = aantalFotos > 0 ? `
-    <div class="slabel">Foto's</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
-      ${Object.entries(r.fotos).filter(([k,f]) => f && f.url).map(([fKey, f]) => `
+    <div class="slabel" style="margin-top:16px;">📷 Foto's</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
+      ${Object.entries(r.fotos).filter(([k,f]) => f && f.url).map(([fKey, f]) => {
+        const isEigen = f.operator === _operator;
+        const magVerw = _isAdmin || isEigen;
+        return `
         <div style="position:relative;border-radius:6px;overflow:hidden;border:1px solid #1a2540;">
           <img src="${f.url}" style="width:100%;height:140px;object-fit:cover;display:block;" loading="lazy">
-          <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.7);padding:6px 8px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.75);padding:6px 8px;display:flex;align-items:center;justify-content:space-between;">
             <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#e5e7eb;">${f.label}</span>
-            <button data-rkey="${r._key}" data-fkey="${fKey}" onclick="verwijderFoto(this.dataset.rkey,this.dataset.fkey)"
-              style="background:none;border:none;color:#ef4444;font-size:16px;cursor:pointer;padding:0;">✕</button>
+            ${magVerw ? `<button data-rkey="${r._key}" data-fkey="${fKey}" onclick="vraagVerwijderFoto(this.dataset.rkey,this.dataset.fkey)"
+              style="background:none;border:none;color:#ef4444;font-size:16px;cursor:pointer;padding:0 4px;">✕</button>` : ''}
           </div>
-          <div style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.6);padding:2px 6px;border-radius:3px;font-size:9px;color:#9ca3af;">${f.datum||''}</div>
-        </div>`).join('')}
+          <div style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,.65);padding:2px 7px;border-radius:3px;font-size:9px;color:#9ca3af;">${f.datum||''}</div>
+          ${f.operator ? `<div style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.65);padding:2px 7px;border-radius:3px;font-size:9px;color:#a78bfa;">👤 ${f.operator}</div>` : ''}
+        </div>`;
+      }).join('')}
     </div>` : '';
 
   // Blower timing
@@ -1457,10 +1462,18 @@ function renderDetail(r) {
       </svg>
     </div>`;
 
+  // Attentie banner als er fotos zijn
+  const fotoAttentie = aantalFotos > 0 ? `
+    <div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:10px;">
+      <span style="font-size:18px;">📷</span>
+      <div style="font-size:12px;color:#93c5fd;font-family:'Share Tech Mono',monospace;">${aantalFotos} foto${aantalFotos > 1 ? "'s" : ''} opgeslagen -- scroll naar beneden</div>
+    </div>` : '';
+
   document.getElementById('detail-inhoud').innerHTML =
-    specs + optBanner + knoppen + fotosHTML +
+    specs + optBanner + fotoAttentie + knoppen +
     '<div class="slabel">Optimale Blower Timing</div>' + blowerHTML +
-    '<div class="slabel">360° Cyclus Diagram</div>' + svg;
+    '<div class="slabel">360° Cyclus Diagram</div>' + svg +
+    fotosHTML;
 }
 
 async function zegOptieAf(key) {
@@ -2217,14 +2230,18 @@ function verkleinfoto(file, maxBreedte, kwaliteit) {
   });
 }
 
-async function verwijderFoto(receptKey, fotoKey, storageUrl) {
-  // Verwijder uit database
+async function verwijderFoto(receptKey, fotoKey) {
   await fbDel('recepten/' + receptKey + '/fotos/' + fotoKey);
-  // Update lokale data
   const r = _recepten.find(x => x._key === receptKey);
   if (r && r.fotos) delete r.fotos[fotoKey];
-  toast("Foto verwijderd");
+  toast('Foto verwijderd');
   if (_huidigReceptKey === receptKey) renderDetail(_recepten.find(x => x._key === receptKey));
+}
+
+function vraagVerwijderFoto(receptKey, fotoKey) {
+  toonPinModal('Foto verwijderen', function() {
+    verwijderFoto(receptKey, fotoKey);
+  });
 }
 console.log('Hudson Sharp 5750W v' + APP_VERSION + ' geladen');
 </script>
