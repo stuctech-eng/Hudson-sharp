@@ -115,6 +115,8 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 /* NUMPAD */
 .np-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px;}
+.foto-label-btn{background:#141d2e;border:1px solid #1a2540;border-radius:6px;color:#e5e7eb;font-family:‘Rajdhani’,sans-serif;font-weight:700;font-size:16px;padding:14px 8px;cursor:pointer;text-align:center;}
+.foto-label-btn:active,.foto-label-btn.actief{background:#22c55e22;border-color:#22c55e;color:#22c55e;}
 .np-btn{background:#141d2e;border:1px solid #1a2540;border-radius:6px;color:#e5e7eb;font-family:‘Rajdhani’,sans-serif;font-weight:700;font-size:26px;padding:18px 0;cursor:pointer;text-align:center;}
 .np-btn:active{background:#f59e0b;color:#000;}
 
@@ -213,6 +215,14 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
           <div style="font-size:11px;color:#4a6080;margin-top:5px;">5750W specificaties</div>
         </div>
         <div style="font-size:28px;color:#3b82f6;">›</div>
+      </button>
+      <button onclick="ga('s-help')" style="background:#0a0e16;border:none;border-left:5px solid #22c55e;display:flex;align-items:center;gap:20px;padding:26px 22px;cursor:pointer;text-align:left;border-radius:4px;">
+        <div style="font-size:36px;">❓</div>
+        <div style="flex:1;">
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:28px;color:#c8d8e8;line-height:1;">Hoe werkt de app?</div>
+          <div style="font-size:11px;color:#4a6080;margin-top:5px;">Uitleg voor nieuwe operators</div>
+        </div>
+        <div style="font-size:28px;color:#22c55e;">›</div>
       </button>
       <div id="admin-blok" style="display:none;">
         <button onclick="ga('s-admin')" style="background:#0a0e16;border:none;border-left:5px solid #f59e0b;border-top:1px solid #1a2540;display:flex;align-items:center;gap:16px;padding:18px 20px;cursor:pointer;text-align:left;border-radius:2px;width:100%;">
@@ -548,6 +558,143 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
   <div class="content" id="prob-uitg-inhoud"></div>
 </div>
 
+<!-- ═══════════════ HELP ═══════════════ -->
+
+<div class="screen" id="s-help">
+  <div class="topbar">
+    <button class="back-btn" onclick="ga('s-home')">‹</button>
+    <div class="topbar-title">Hoe werkt de app?</div>
+  </div>
+  <div class="content">
+
+```
+<div style="background:#22c55e18;border:1px solid #22c55e44;border-radius:4px;padding:14px 16px;margin-bottom:16px;">
+  <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#22c55e;margin-bottom:4px;">Welkom bij de Hudson Sharp 5750W app</div>
+  <div style="font-size:13px;color:#c8d8e8;line-height:1.7;">Deze app helpt je bij het instellen van de machine. Alles wat je nodig hebt staat hier -- recepten, instellingen, probleemoplossing en meer.</div>
+</div>
+
+<!-- STAP 1 -->
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#f59e0b;">Stap 1 -- Inloggen</div>
+  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
+    <div style="margin-bottom:8px;">1. Voer het <strong style="color:#f59e0b;">app wachtwoord</strong> in op het startscherm.</div>
+    <div style="margin-bottom:8px;">2. Tik op <strong style="color:#f59e0b;">jouw naam</strong> in de lijst.</div>
+    <div style="margin-bottom:8px;">3. Voer je <strong style="color:#f59e0b;">persoonlijke pincode</strong> in.</div>
+    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;font-size:12px;">
+      💡 Elke operator heeft een eigen pincode. Geef deze nooit aan iemand anders.
+    </div>
+  </div>
+</div>
+
+<!-- STAP 2 -->
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#f59e0b;">Stap 2 -- Recept opzoeken</div>
+  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
+    <div style="margin-bottom:8px;">1. Tik op <strong style="color:#f59e0b;">Recepten</strong> op het home scherm.</div>
+    <div style="margin-bottom:8px;">2. Zoek op <strong style="color:#f59e0b;">klantnummer, naam of afmeting</strong> via de zoekbalk.</div>
+    <div style="margin-bottom:8px;">3. Tik op een <strong style="color:#f59e0b;">klantnummer map</strong> om de recepten te zien.</div>
+    <div style="margin-bottom:8px;">4. Tik op een <strong style="color:#f59e0b;">recept</strong> om de details te openen.</div>
+    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;font-size:12px;">
+      💡 Recepten zijn gesorteerd op klantnummer. Groene badge = er is een actieve optie ingesteld.
+    </div>
+  </div>
+</div>
+
+<!-- STAP 3 -->
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#f59e0b;">Stap 3 -- Instellingen lezen</div>
+  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
+    <div style="margin-bottom:8px;">In het recept detail zie je:</div>
+    <div style="margin-bottom:6px;">• <strong style="color:#22d3ee;">Zak specificaties</strong> -- afmeting, materiaal, snelheid</div>
+    <div style="margin-bottom:6px;">• <strong style="color:#22c55e;">Optimale blower timing</strong> -- AAN/UIT tijden per kanaal in graden</div>
+    <div style="margin-bottom:6px;">• <strong style="color:#f59e0b;">360° diagram</strong> -- visueel overzicht van de cyclus</div>
+    <div style="margin-bottom:8px;">• <strong style="color:#3b82f6;">Foto's</strong> -- hoe de zak er uit moet zien</div>
+    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;font-size:12px;">
+      💡 De blower timing staat in graden (0°–360°). De hele cyclus duurt 360°. AAN = blazer start, UIT = blazer stopt.
+    </div>
+  </div>
+</div>
+
+<!-- STAP 4 -->
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#f59e0b;">Stap 4 -- Nieuw recept aanmaken</div>
+  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
+    <div style="margin-bottom:8px;">1. Tik op <strong style="color:#f59e0b;">＋ Nieuw</strong> rechtsboven in het recepten scherm.</div>
+    <div style="margin-bottom:8px;">2. Vul het <strong style="color:#f59e0b;">klantnummer</strong> in -- bekende klanten worden automatisch ingevuld.</div>
+    <div style="margin-bottom:8px;">3. Vul <strong style="color:#f59e0b;">breedte, lengte en dikte</strong> in via het eigen numpad (tik op het veld).</div>
+    <div style="margin-bottom:8px;">4. Kies het <strong style="color:#f59e0b;">materiaal</strong> (LDPE / HDPE / Recyclaat).</div>
+    <div style="margin-bottom:8px;">5. Snelheid staat standaard op <strong style="color:#22c55e;">220 ZPM</strong> -- aanpassen als nodig.</div>
+    <div style="margin-bottom:8px;">6. Tik <strong style="color:#f59e0b;">Berekenen & Opslaan</strong> -- blower timing wordt automatisch berekend.</div>
+    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;font-size:12px;">
+      💡 De blower timing wordt berekend op basis van de dikte. Dun folie = andere timing dan dik folie.
+    </div>
+  </div>
+</div>
+
+<!-- STAP 5 -->
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#f59e0b;">Stap 5 -- Eigen instellingen opslaan (Opties)</div>
+  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
+    <div style="margin-bottom:8px;">Heb je een betere instelling gevonden? Sla het op als optie!</div>
+    <div style="margin-bottom:8px;">1. Open het recept en tik op <strong style="color:#22c55e;">💾 Opties</strong>.</div>
+    <div style="margin-bottom:8px;">2. Tik op <strong style="color:#22c55e;">＋ Nieuw</strong> bij een lege optie (1 t/m 8).</div>
+    <div style="margin-bottom:8px;">3. Pas de AAN/UIT tijden aan per kanaal.</div>
+    <div style="margin-bottom:8px;">4. Tik <strong style="color:#22c55e;">✓ Opslaan</strong>.</div>
+    <div style="margin-bottom:8px;">5. Tik <strong style="color:#22d3ee;">✓ Kiezen</strong> om de optie actief te zetten.</div>
+    <div style="background:#22c55e11;border:1px solid #22c55e33;border-radius:3px;padding:8px;font-size:12px;">
+      💡 Je kunt alleen je eigen opties bewerken en verwijderen. De optimale settings zijn altijd veilig bewaard.
+    </div>
+  </div>
+</div>
+
+<!-- STAP 6 -->
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#f59e0b;">Stap 6 -- Probleem oplossen</div>
+  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
+    <div style="margin-bottom:8px;"><strong style="color:#ef4444;">Vanuit een recept:</strong> Tik op 🔧 Probleem → kies het probleem → directe aanpassing per parameter.</div>
+    <div style="margin-bottom:8px;"><strong style="color:#ef4444;">Vanuit home scherm:</strong> Tik op 🔧 Probleemoplossing → uitgebreide uitleg met oorzaak en achtergrond.</div>
+    <div style="background:#ef444411;border:1px solid #ef444433;border-radius:3px;padding:8px;font-size:12px;color:#fca5a5;">
+      ⚠ Pas altijd maar één parameter tegelijk aan. Test 10–15 zakken voor je verder gaat. Check spanning eerst!
+    </div>
+  </div>
+</div>
+
+<!-- STAP 7 -->
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#f59e0b;">Stap 7 -- Foto's toevoegen</div>
+  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
+    <div style="margin-bottom:8px;">1. Open een recept en tik op <strong style="color:#3b82f6;">📷 Foto's</strong>.</div>
+    <div style="margin-bottom:8px;">2. Kies wat je fotografeert (Klep, Bodem, Perforatie, etc.).</div>
+    <div style="margin-bottom:8px;">3. Maak een foto of kies uit je galerij.</div>
+    <div style="margin-bottom:8px;">4. Tik <strong style="color:#3b82f6;">✓ Opslaan</strong> -- foto wordt zichtbaar bij het recept.</div>
+    <div style="background:#3b82f611;border:1px solid #3b82f633;border-radius:3px;padding:8px;font-size:12px;">
+      💡 Foto's zijn voor iedereen zichtbaar. Zo weet elke operator hoe de zak er uit moet zien.
+    </div>
+  </div>
+</div>
+
+<!-- STAP 8 -->
+<div class="card" style="margin-bottom:8px;">
+  <div class="card-title" style="color:#f59e0b;">Stap 8 -- Leer Data</div>
+  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
+    <div style="margin-bottom:8px;">De app leert van alle opgeslagen opties van alle operators.</div>
+    <div style="margin-bottom:8px;">Tik op <strong style="color:#f59e0b;">🧠 Leer Data</strong> in een recept om te zien:</div>
+    <div style="margin-bottom:6px;">• <strong style="color:#22d3ee;">Algemeen</strong> -- gemiddelde van alle recepten met zelfde materiaal + dikte</div>
+    <div style="margin-bottom:8px;">• <strong style="color:#f59e0b;">Dit recept</strong> -- gemiddelde van alle opties voor dit specifieke recept</div>
+    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;font-size:12px;">
+      💡 Hoe meer operators hun opties opslaan, hoe nauwkeuriger de leer data wordt.
+    </div>
+  </div>
+</div>
+
+<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px;margin-top:4px;font-size:12px;color:#6b7280;line-height:1.8;text-align:center;">
+  Vragen? Vraag Dirk (admin) of kijk bij Machine Info voor technische uitleg.
+</div>
+```
+
+  </div>
+</div>
+
 <!-- ═══════════════ MACHINE ═══════════════ -->
 
 <div class="screen" id="s-machine">
@@ -773,13 +920,63 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
   </div>
 </div>
 
+<!-- ═══════════════ FOTO OVERLAY ═══════════════ -->
+
+<div class="overlay" id="foto-overlay" style="align-items:flex-end;padding:0;">
+  <div style="background:#0f1520;border-top:3px solid #22c55e;border-radius:12px 12px 0 0;padding:24px 20px 40px;width:100%;max-width:500px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#22c55e;">📷 Foto toevoegen</div>
+      <button onclick="sluitFotoOverlay()" style="background:none;border:none;color:#6b7280;font-size:22px;cursor:pointer;">✕</button>
+    </div>
+    <div id="foto-label-keuze" style="margin-bottom:16px;">
+      <div style="font-size:10px;color:#6b7280;letter-spacing:.2em;margin-bottom:10px;">WAT FOTOGRAFEER JE?</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <button onclick="kiesFotoLabel('Klep')" class="foto-label-btn">Klep</button>
+        <button onclick="kiesFotoLabel('Bodem')" class="foto-label-btn">Bodem</button>
+        <button onclick="kiesFotoLabel('Perforatie')" class="foto-label-btn">Perforatie</button>
+        <button onclick="kiesFotoLabel('Pengaten')" class="foto-label-btn">Pengaten</button>
+        <button onclick="kiesFotoLabel('Zijkant')" class="foto-label-btn">Zijkant</button>
+        <button onclick="kiesFotoLabel('Overzicht')" class="foto-label-btn">Overzicht</button>
+      </div>
+    </div>
+    <div id="foto-upload-sectie" style="display:none;">
+      <div id="foto-gekozen-label" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#22c55e;margin-bottom:12px;"></div>
+      <input type="file" id="foto-input" accept="image/*" capture="environment" style="display:none;" onchange="fotoGekozen(event)">
+      <div style="display:flex;gap:8px;margin-bottom:12px;">
+        <button onclick="document.getElementById('foto-input').removeAttribute('capture');document.getElementById('foto-input').click()" 
+          style="flex:1;background:#141d2e;border:1px solid #1a2540;border-radius:6px;color:#e5e7eb;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;padding:14px;cursor:pointer;">
+          🖼 Galerij
+        </button>
+        <button onclick="document.getElementById('foto-input').setAttribute('capture','environment');document.getElementById('foto-input').click()"
+          style="flex:1;background:#141d2e;border:1px solid #1a2540;border-radius:6px;color:#e5e7eb;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;padding:14px;cursor:pointer;">
+          📷 Camera
+        </button>
+      </div>
+      <div id="foto-preview-wrap" style="display:none;margin-bottom:12px;">
+        <img id="foto-preview" style="width:100%;border-radius:6px;max-height:200px;object-fit:cover;">
+        <div style="font-size:10px;color:#6b7280;margin-top:6px;text-align:center;" id="foto-bestandsinfo"></div>
+      </div>
+      <div id="foto-upload-voortgang" style="display:none;background:#0a0e16;border:1px solid #1a2540;border-radius:4px;padding:12px;margin-bottom:12px;text-align:center;font-size:12px;color:#6b7280;">
+        Uploaden... <span id="foto-pct">0</span>%
+      </div>
+      <button onclick="uploadFoto()" id="btn-foto-upload" style="display:none;width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#000;border:none;border-radius:4px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;padding:16px;cursor:pointer;">
+        ✓ Opslaan
+      </button>
+      <button onclick="terugnaarLabels()" style="width:100%;background:transparent;color:#6b7280;border:1px solid #1a2540;border-radius:4px;font-family:'Rajdhani',sans-serif;font-size:15px;padding:12px;cursor:pointer;margin-top:8px;">
+        ← Ander label
+      </button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.0';
+const APP_VERSION = '2.2';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
+const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
 
 const OPS = {
   'Dirk':   { pin: '007', admin: true,  kleur: '#f59e0b' },
@@ -1159,6 +1356,7 @@ function renderDetail(r) {
 
   // Knoppen
   const aantalOpties = r.opties ? Object.values(r.opties).filter(o => o && typeof o === 'object' && o.operator).length : 0;
+  const aantalFotos = r.fotos ? Object.keys(r.fotos).length : 0;
   const knoppen = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
       <button onclick="toonProbleemKeuze()" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #ef4444;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
@@ -1170,11 +1368,32 @@ function renderDetail(r) {
         <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#22c55e;">Opties</div>
         <div style="font-size:9px;color:#6b7280;margin-top:3px;">${aantalOpties} opgeslagen</div>
       </button>
-      <button data-key="${r._key}" onclick="openLeerdata(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #f59e0b;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;grid-column:1/-1;">
+      <button data-key="${r._key}" onclick="openLeerdata(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #f59e0b;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
         <div style="font-size:22px;margin-bottom:6px;">🧠</div>
         <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#f59e0b;">Leer Data</div>
       </button>
+      <button data-key="${r._key}" onclick="openFotoOverlay(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #3b82f6;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">📷</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#3b82f6;">Foto's</div>
+        <div style="font-size:9px;color:#6b7280;margin-top:3px;">${aantalFotos} opgeslagen</div>
+      </button>
     </div>`;
+
+  // Foto's
+  const fotosHTML = aantalFotos > 0 ? `
+    <div class="slabel">Foto's</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+      ${Object.entries(r.fotos).filter(([k,f]) => f && f.url).map(([fKey, f]) => `
+        <div style="position:relative;border-radius:6px;overflow:hidden;border:1px solid #1a2540;">
+          <img src="${f.url}" style="width:100%;height:140px;object-fit:cover;display:block;" loading="lazy">
+          <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.7);padding:6px 8px;display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#e5e7eb;">${f.label}</span>
+            <button data-rkey="${r._key}" data-fkey="${fKey}" onclick="verwijderFoto(this.dataset.rkey,this.dataset.fkey)"
+              style="background:none;border:none;color:#ef4444;font-size:16px;cursor:pointer;padding:0;">✕</button>
+          </div>
+          <div style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.6);padding:2px 6px;border-radius:3px;font-size:9px;color:#9ca3af;">${f.datum||''}</div>
+        </div>`).join('')}
+    </div>` : '';
 
   // Blower timing
   const blowerHTML = CHANNELS.map(ch => {
@@ -1239,7 +1458,7 @@ function renderDetail(r) {
     </div>`;
 
   document.getElementById('detail-inhoud').innerHTML =
-    specs + optBanner + knoppen +
+    specs + optBanner + knoppen + fotosHTML +
     '<div class="slabel">Optimale Blower Timing</div>' + blowerHTML +
     '<div class="slabel">360° Cyclus Diagram</div>' + svg;
 }
@@ -1873,7 +2092,140 @@ function sluitProbleem() {
   document.getElementById('probleem-keuze-overlay').classList.add('active');
 }
 
-// ═══════ SYNTAX CHECK GUARD ═══════
+// ═══════ FOTO UPLOAD ═══════
+let _fotoLabel = '';
+let _fotoFile = null;
+let _fotoReceptKey = null;
+
+function openFotoOverlay(receptKey) {
+  _fotoReceptKey = receptKey;
+  _fotoLabel = '';
+  _fotoFile = null;
+  document.getElementById('foto-label-keuze').style.display = 'block';
+  document.getElementById('foto-upload-sectie').style.display = 'none';
+  document.getElementById('foto-preview-wrap').style.display = 'none';
+  document.getElementById('btn-foto-upload').style.display = 'none';
+  document.getElementById('foto-upload-voortgang').style.display = 'none';
+  document.getElementById('foto-overlay').classList.add('active');
+}
+
+function sluitFotoOverlay() {
+  document.getElementById('foto-overlay').classList.remove('active');
+}
+
+function kiesFotoLabel(label) {
+  _fotoLabel = label;
+  document.getElementById('foto-gekozen-label').textContent = '📷 ' + label;
+  document.getElementById('foto-label-keuze').style.display = 'none';
+  document.getElementById('foto-upload-sectie').style.display = 'block';
+}
+
+function terugnaarLabels() {
+  document.getElementById('foto-label-keuze').style.display = 'block';
+  document.getElementById('foto-upload-sectie').style.display = 'none';
+  document.getElementById('foto-preview-wrap').style.display = 'none';
+  document.getElementById('btn-foto-upload').style.display = 'none';
+}
+
+function fotoGekozen(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  _fotoFile = file;
+  // Toon preview
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('foto-preview').src = e.target.result;
+    document.getElementById('foto-preview-wrap').style.display = 'block';
+    document.getElementById('foto-bestandsinfo').textContent = (file.size / 1024).toFixed(0) + ' KB -- wordt verkleind voor upload';
+    document.getElementById('btn-foto-upload').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+async function uploadFoto() {
+  if (!_fotoFile || !_fotoReceptKey) return;
+  document.getElementById('btn-foto-upload').style.display = 'none';
+  document.getElementById('foto-upload-voortgang').style.display = 'block';
+
+  // Verkleinen via canvas (max 1200px breed, kwaliteit 0.8)
+  const verkleindBlob = await verkleinfoto(_fotoFile, 1200, 0.8);
+  document.getElementById('foto-pct').textContent = '30';
+
+  // Upload naar Firebase Storage
+  const bestandsnaam = 'recepten/' + _fotoReceptKey + '/' + _fotoLabel + '_' + Date.now() + '.jpg';
+  const uploadUrl = FB_STORAGE + '/' + encodeURIComponent(bestandsnaam) + '?uploadType=media';
+
+  try {
+    document.getElementById('foto-pct').textContent = '60';
+    const res = await fetch(uploadUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'image/jpeg' },
+      body: verkleindBlob
+    });
+    const data = await res.json();
+    document.getElementById('foto-pct').textContent = '90';
+
+    // Bouw download URL
+    const downloadUrl = FB_STORAGE + '/' + encodeURIComponent(bestandsnaam) + '?alt=media';
+
+    // Sla URL op in Firebase database
+    const fotoObj = { label: _fotoLabel, url: downloadUrl, datum: new Date().toISOString().split('T')[0], operator: _operator || '' };
+    await fbPost('recepten/' + _fotoReceptKey + '/fotos', fotoObj);
+
+    // Update lokale data
+    const r = _recepten.find(x => x._key === _fotoReceptKey);
+    if (r) {
+      if (!r.fotos) r.fotos = {};
+      r.fotos[Date.now()] = fotoObj;
+    }
+
+    document.getElementById('foto-pct').textContent = '100';
+    toast("Foto opgeslagen!");
+    sluitFotoOverlay();
+
+    // Herlaad detail als we er zijn
+    if (_huidigReceptKey === _fotoReceptKey && _huidigRecept) {
+      _huidigRecept = _recepten.find(x => x._key === _fotoReceptKey);
+      renderDetail(_huidigRecept);
+    }
+  } catch(e) {
+    toast('Upload mislukt: ' + e.message, true);
+    document.getElementById('foto-upload-voortgang').style.display = 'none';
+    document.getElementById('btn-foto-upload').style.display = 'block';
+  }
+}
+
+function verkleinfoto(file, maxBreedte, kwaliteit) {
+  return new Promise(function(resolve) {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = function() {
+      let breedte = img.width;
+      let hoogte = img.height;
+      if (breedte > maxBreedte) {
+        hoogte = Math.round(hoogte * maxBreedte / breedte);
+        breedte = maxBreedte;
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = breedte;
+      canvas.height = hoogte;
+      canvas.getContext('2d').drawImage(img, 0, 0, breedte, hoogte);
+      URL.revokeObjectURL(url);
+      canvas.toBlob(resolve, 'image/jpeg', kwaliteit);
+    };
+    img.src = url;
+  });
+}
+
+async function verwijderFoto(receptKey, fotoKey, storageUrl) {
+  // Verwijder uit database
+  await fbDel('recepten/' + receptKey + '/fotos/' + fotoKey);
+  // Update lokale data
+  const r = _recepten.find(x => x._key === receptKey);
+  if (r && r.fotos) delete r.fotos[fotoKey];
+  toast("Foto verwijderd");
+  if (_huidigReceptKey === receptKey) renderDetail(_recepten.find(x => x._key === receptKey));
+}
 console.log('Hudson Sharp 5750W v' + APP_VERSION + ' geladen');
 </script>
 
