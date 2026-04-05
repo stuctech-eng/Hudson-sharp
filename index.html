@@ -1029,7 +1029,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.3.4';
+const APP_VERSION = '2.3.6';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
@@ -1411,20 +1411,70 @@ function renderDetail(r) {
   const aantalOpties = r.opties ? Object.values(r.opties).filter(o => o && typeof o === 'object' && o.operator).length : 0;
   const aantalFotos = r.fotos ? Object.keys(r.fotos).length : 0;
   var kanBewerken = _isAdmin || r.operator === _operator;
+
+  // Doorvoer vak
+  var dvStart = r.start_doorvoer || '';
+  var dvStop  = r.stop_doorvoer  || '';
+  var dvAfneem = r.afneem_moment || '';
+  var dvKleur = function(val) { return val ? '#6ee7b7' : '#93c5fd'; };
+  var dvStyle = function(val) {
+    return val
+      ? 'border-color:#22c55e88;background:rgba(34,197,94,.04);color:#6ee7b7;'
+      : 'border-color:#3b82f688;background:rgba(59,130,246,.04);color:#93c5fd;';
+  };
+  var doorvoerHTML = '';
+  if (kanBewerken) {
+    doorvoerHTML = '<div class="slabel">Doorvoer &amp; Afneem Moment</div>'
+      + '<div class="card" style="margin-bottom:12px;">'
+      + '<div style="padding:14px;">'
+      + '<div class="grid2" style="margin-bottom:10px;">'
+      + '<div class="field"><label>Start Doorvoer</label>'
+      + '<input id="dv-start" type="text" readonly value="' + dvStart + '"'
+      + ' style="cursor:pointer;' + dvStyle(dvStart) + 'font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;padding:12px;border-radius:3px;border-width:1px;border-style:solid;width:100%;outline:none;"'
+      + ' onclick="openNumpad(\'dv-start\',\'decimal\',\'Start Doorvoer\')"></div>'
+      + '<div class="field"><label>Stop Doorvoer</label>'
+      + '<input id="dv-stop" type="text" readonly value="' + dvStop + '"'
+      + ' style="cursor:pointer;' + dvStyle(dvStop) + 'font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;padding:12px;border-radius:3px;border-width:1px;border-style:solid;width:100%;outline:none;"'
+      + ' onclick="openNumpad(\'dv-stop\',\'decimal\',\'Stop Doorvoer\')"></div>'
+      + '</div>'
+      + '<div class="field"><label>Afneem Moment</label>'
+      + '<input id="dv-afneem" type="text" readonly value="' + dvAfneem + '"'
+      + ' style="cursor:pointer;' + dvStyle(dvAfneem) + 'font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;padding:12px;border-radius:3px;border-width:1px;border-style:solid;width:100%;outline:none;"'
+      + ' onclick="openNumpad(\'dv-afneem\',\'decimal\',\'Afneem Moment\')"></div>'
+      + '<button data-key="' + r._key + '" onclick="slaDoorvoerOp(this.dataset.key)"'
+      + ' class="btn btn-green" style="margin-top:4px;margin-bottom:0;font-size:15px;padding:12px;">'
+      + '&#10003; Opslaan</button>'
+      + '</div></div>';
+  } else if (dvStart || dvStop || dvAfneem) {
+    doorvoerHTML = '<div class="slabel">Doorvoer &amp; Afneem Moment</div>'
+      + '<div class="card" style="margin-bottom:12px;">'
+      + '<div class="info-row"><div class="ir-lbl">Start</div><div class="ir-val">' + (dvStart||'--') + '</div></div>'
+      + '<div class="info-row"><div class="ir-lbl">Stop</div><div class="ir-val">' + (dvStop||'--') + '</div></div>'
+      + '<div class="info-row"><div class="ir-lbl">Afneem</div><div class="ir-val">' + (dvAfneem||'--') + '</div></div>'
+      + '</div>';
+  }
   var opmerkingTekst = r.opmerking || '';
   var opmerkingHTML = '';
   if (kanBewerken) {
     opmerkingHTML = '<div class="slabel">Opmerking</div>'
       + '<div class="card" style="margin-bottom:12px;">'
       + '<div style="padding:14px;">'
+      + '<div id="opmerking-tekst" style="font-size:13px;color:' + (opmerkingTekst ? '#c8d8e8' : '#4a6080') + ';line-height:1.7;min-height:24px;">'
+      + (opmerkingTekst || 'Geen opmerking')
+      + '</div>'
+      + '<div id="opmerking-edit" style="display:none;">'
       + '<div id="opmerking-input" contenteditable="true"'
       + ' style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;'
-      + 'color:#e5e7eb;font-size:13px;padding:10px;outline:none;min-height:72px;line-height:1.6;-webkit-user-select:text;user-select:text;">'
+      + 'color:#e5e7eb;font-size:13px;padding:10px;outline:none;min-height:72px;line-height:1.6;-webkit-user-select:text;user-select:text;margin-bottom:8px;">'
       + opmerkingTekst
       + '</div>'
       + '<button data-key="' + r._key + '" onclick="slaOpmerkingOp(this.dataset.key)"'
-      + ' class="btn btn-green" style="margin-top:8px;margin-bottom:0;font-size:15px;padding:12px;">'
+      + ' class="btn btn-green" style="margin-bottom:0;font-size:15px;padding:12px;">'
       + '&#10003; Opslaan</button>'
+      + '</div>'
+      + '<button onclick="bewerkOpmerking()" id="opmerking-bewerk-btn"'
+      + ' style="margin-top:10px;background:none;border:1px solid #1a2540;border-radius:4px;color:#6b7280;font-family:Rajdhani,sans-serif;font-weight:700;font-size:14px;padding:8px 14px;cursor:pointer;">'
+      + '&#9998; Bewerken</button>'
       + '</div></div>';
   } else if (opmerkingTekst) {
     opmerkingHTML = '<div class="slabel">Opmerking</div>'
@@ -1543,6 +1593,7 @@ function renderDetail(r) {
     specs + optBanner + fotoAttentie + knoppen +
     opmerkingHTML +
     '<div class="slabel">Optimale Blower Timing</div>' + blowerHTML +
+    doorvoerHTML +
     '<div class="slabel">360° Cyclus Diagram</div>' + svg +
     fotosHTML;
 }
@@ -1729,6 +1780,31 @@ async function berekenEnSla() {
     _recepten.push({...recept, _key: _nieuwOpgeslaanKey});
   }
   toast('Recept opgeslagen!');
+
+  // Doorvoer benadering op basis van leerdata
+  var dvVergelijk = _recepten.filter(function(rec) {
+    return rec._key !== _nieuwOpgeslaanKey
+      && rec.material === _gekozenMat
+      && Math.abs(parseFloat(rec.thickness) - parseFloat(document.getElementById('f-t').value)) < 0.001
+      && (rec.start_doorvoer || rec.stop_doorvoer || rec.afneem_moment);
+  });
+  if (dvVergelijk.length) {
+    function dvGemNieuw(veld) {
+      var vals = dvVergelijk.map(function(r) { return parseFloat(r[veld]); }).filter(function(v) { return !isNaN(v); });
+      return vals.length ? (vals.reduce(function(a,b){return a+b;},0)/vals.length).toFixed(1) : '';
+    }
+    var hint = '<div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:12px 14px;margin-top:12px;">'
+      +'<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:13px;color:#3b82f6;margin-bottom:6px;">&#9881; Doorvoer benadering (leer data)</div>'
+      +'<div style="font-size:12px;color:#93c5fd;line-height:1.8;">'
+      +'Start: <strong>'+( dvGemNieuw('start_doorvoer')||'?')+'</strong> &nbsp;'
+      +'Stop: <strong>'+(dvGemNieuw('stop_doorvoer')||'?')+'</strong> &nbsp;'
+      +'Afneem: <strong>'+(dvGemNieuw('afneem_moment')||'?')+'</strong>'
+      +'</div>'
+      +'<div style="font-size:10px;color:#6b7280;margin-top:4px;">Invullen via recept detail</div>'
+      +'</div>';
+    document.getElementById('berekend-inhoud').insertAdjacentHTML('beforeend', hint);
+  }
+
   document.getElementById('btn-detail-wrap').style.display = 'block';
 }
 
@@ -1998,6 +2074,30 @@ async function openLeerdata(key) {
       html += '<div style="text-align:center;padding:16px;font-size:10px;color:#4a6080;border:1px dashed #1a2540;border-radius:4px;">Nog geen opties voor dit recept.</div>';
     }
 
+    // Doorvoer leerdata
+    var dvRecepten = alleRecepten.filter(function(rec) {
+      return rec.material === r.material && Math.abs(parseFloat(rec.thickness) - parseFloat(r.thickness)) < 0.001
+        && (rec.start_doorvoer || rec.stop_doorvoer || rec.afneem_moment);
+    });
+    if (dvRecepten.length) {
+      function dvGem(veld) {
+        var vals = dvRecepten.map(function(rec) { return parseFloat(rec[veld]); }).filter(function(v) { return !isNaN(v); });
+        return vals.length ? (vals.reduce(function(a,b){return a+b;},0) / vals.length).toFixed(1) : null;
+      }
+      var gemStart  = dvGem('start_doorvoer');
+      var gemStop   = dvGem('stop_doorvoer');
+      var gemAfneem = dvGem('afneem_moment');
+      html += '<div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:12px 16px;margin:14px 0 10px;">'
+        +'<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:15px;color:#3b82f6;">&#9881; DOORVOER GEMIDDELDE</div>'
+        +'<div style="font-size:10px;color:#6b7280;margin-top:3px;">'+r.material+' · '+r.thickness+'mm · '+dvRecepten.length+' recepten</div>'
+        +'</div>'
+        +'<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;overflow:hidden;margin-bottom:6px;">'
+        +'<div class="info-row"><div class="ir-lbl">Start</div><div class="ir-val" style="color:#3b82f6;">'+(gemStart||'--')+'</div></div>'
+        +'<div class="info-row"><div class="ir-lbl">Stop</div><div class="ir-val" style="color:#3b82f6;">'+(gemStop||'--')+'</div></div>'
+        +'<div class="info-row"><div class="ir-lbl">Afneem</div><div class="ir-val" style="color:#3b82f6;">'+(gemAfneem||'--')+'</div></div>'
+        +'</div>';
+    }
+
     document.getElementById('leerdata-inhoud').innerHTML = html;
   } catch(e) {
     document.getElementById('leerdata-inhoud').innerHTML = '<div style="color:#ef4444;padding:20px;font-size:11px;">Fout: '+e.message+'</div>';
@@ -2192,9 +2292,30 @@ function sluitProbleem() {
 }
 
 
+// ═══════ DOORVOER ═══════
+async function slaDoorvoerOp(key) {
+  var start  = document.getElementById('dv-start').value.trim();
+  var stop   = document.getElementById('dv-stop').value.trim();
+  var afneem = document.getElementById('dv-afneem').value.trim();
+  var data = { start_doorvoer: start, stop_doorvoer: stop, afneem_moment: afneem };
+  await fbPatch('recepten/' + key, data);
+  var r = _recepten.find(function(x) { return x._key === key; });
+  if (r) { r.start_doorvoer = start; r.stop_doorvoer = stop; r.afneem_moment = afneem; }
+  toast('Doorvoer opgeslagen');
+  renderDetail(r);
+}
+
 // ═══════ OPMERKING ═══════
+function bewerkOpmerking() {
+  document.getElementById('opmerking-tekst').style.display = 'none';
+  document.getElementById('opmerking-bewerk-btn').style.display = 'none';
+  document.getElementById('opmerking-edit').style.display = 'block';
+  document.getElementById('opmerking-input').focus();
+}
+
 async function slaOpmerkingOp(key) {
-  var el = document.getElementById('opmerking-input'); var tekst = (el.value !== undefined ? el.value : el.innerText).trim();
+  var el = document.getElementById('opmerking-input');
+  var tekst = (el.value !== undefined ? el.value : el.innerText).trim();
   await fbPatch('recepten/' + key, { opmerking: tekst });
   var r = _recepten.find(function(x) { return x._key === key; });
   if (r) r.opmerking = tekst;
