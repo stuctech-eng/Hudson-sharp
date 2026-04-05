@@ -1029,7 +1029,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.3.2';
+const APP_VERSION = '2.3.3';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
@@ -1410,911 +1410,855 @@ function renderDetail(r) {
 
   const aantalOpties = r.opties ? Object.values(r.opties).filter(o => o && typeof o === 'object' && o.operator).length : 0;
   const aantalFotos = r.fotos ? Object.keys(r.fotos).length : 0;
+  var kanBewerken = _isAdmin || r.operator === _operator;
+  var opmerkingTekst = r.opmerking || '';
+  var opmerkingHTML = '';
+  if (kanBewerken) {
+    opmerkingHTML = '<div class="slabel">Opmerking</div>'
+      + '<div class="card" style="margin-bottom:12px;">'
+      + '<div style="padding:14px;">'
+      + '<textarea id="opmerking-input" rows="3" placeholder="Vrij tekstveld..."'
+      + ' style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;'
+      + 'color:#e5e7eb;font-size:13px;padding:10px;outline:none;resize:none;line-height:1.6;">'
+      + opmerkingTekst
+      + '</textarea>'
 
-  const knoppen = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
-      <button onclick="toonProbleemKeuze()" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #ef4444;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
-        <div style="font-size:22px;margin-bottom:6px;">🔧</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#ef4444;">Probleem</div>
-      </button>
-      <button data-key="${r._key}" onclick="openOpties(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #22c55e;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
-        <div style="font-size:22px;margin-bottom:6px;">💾</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#22c55e;">Opties</div>
-        <div style="font-size:9px;color:#6b7280;margin-top:3px;">${aantalOpties} opgeslagen</div>
-      </button>
-      <button data-key="${r._key}" onclick="openLeerdata(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #f59e0b;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
-        <div style="font-size:22px;margin-bottom:6px;">🧠</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#f59e0b;">Leer Data</div>
-      </button>
-      <button data-key="${r._key}" onclick="openFotoOverlay(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #3b82f6;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
-        <div style="font-size:22px;margin-bottom:6px;">📷</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#3b82f6;">Foto's</div>
-        <div style="font-size:9px;color:#6b7280;margin-top:3px;">${aantalFotos} opgeslagen</div>
-      </button>
-    </div>`;
+```
+  + '<button data-key="' + r._key + '" onclick="slaOpmerkingOp(this.dataset.key)"'
+  + ' class="btn btn-green" style="margin-top:8px;margin-bottom:0;font-size:15px;padding:12px;">'
+  + '&#10003; Opslaan</button>'
+  + '</div></div>';
+```
 
-  const fotosHTML = aantalFotos > 0 ? `
-    <div class="slabel" style="margin-top:16px;">📷 Foto's</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
-      ${Object.entries(r.fotos).filter(function(e){return e[1] && e[1].url;}).map(function(e){
-        var fKey=e[0], f=e[1];
-        var isEigen = f.operator === _operator;
-        var magVerw = _isAdmin || isEigen;
-        return '<div style="position:relative;border-radius:6px;overflow:hidden;border:1px solid #1a2540;">'
-          +'<img src="'+f.url+'" style="width:100%;height:140px;object-fit:cover;display:block;" loading="lazy">'
-          +'<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.75);padding:6px 8px;display:flex;align-items:center;justify-content:space-between;">'
-          +"<span style='font-family:Rajdhani,sans-serif;font-weight:700;font-size:13px;color:#e5e7eb;'>"+f.label+"</span>"
-          +(magVerw ? '<button data-rkey="'+r._key+'" data-fkey="'+fKey+'" onclick="vraagVerwijderFoto(this.dataset.rkey,this.dataset.fkey)" style="background:none;border:none;color:#ef4444;font-size:16px;cursor:pointer;padding:0 4px;">✕</button>' : '')
-          +'</div>'
-          +(f.datum ? '<div style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,.65);padding:2px 7px;border-radius:3px;font-size:9px;color:#9ca3af;">'+f.datum+'</div>' : '')
-          +(f.operator ? '<div style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.65);padding:2px 7px;border-radius:3px;font-size:9px;color:#a78bfa;">👤 '+f.operator+'</div>' : '')
-          +'</div>';
-      }).join('')}
-    </div>` : '';
+} else if (opmerkingTekst) {
+opmerkingHTML = ‘<div class="slabel">Opmerking</div>’
++ ‘<div class="card" style="margin-bottom:12px;">’
++ ‘<div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.7;">’
++ opmerkingTekst
++ ‘</div></div>’;
+}
 
-  const fotoAttentie = aantalFotos > 0 ? `
-    <div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:10px;">
-      <span style="font-size:18px;">📷</span>
-      <div style="font-size:12px;color:#93c5fd;font-family:'Share Tech Mono',monospace;">${aantalFotos} foto${aantalFotos > 1 ? "'s" : ''} opgeslagen -- scroll naar beneden</div>
-    </div>` : '';
+const knoppen = ` <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;"> <button onclick="toonProbleemKeuze()" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #ef4444;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;"> <div style="font-size:22px;margin-bottom:6px;">🔧</div> <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#ef4444;">Probleem</div> </button> <button data-key="${r._key}" onclick="openOpties(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #22c55e;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;"> <div style="font-size:22px;margin-bottom:6px;">💾</div> <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#22c55e;">Opties</div> <div style="font-size:9px;color:#6b7280;margin-top:3px;">${aantalOpties} opgeslagen</div> </button> <button data-key="${r._key}" onclick="openLeerdata(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #f59e0b;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;"> <div style="font-size:22px;margin-bottom:6px;">🧠</div> <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#f59e0b;">Leer Data</div> </button> <button data-key="${r._key}" onclick="openFotoOverlay(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #3b82f6;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;"> <div style="font-size:22px;margin-bottom:6px;">📷</div> <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#3b82f6;">Foto's</div> <div style="font-size:9px;color:#6b7280;margin-top:3px;">${aantalFotos} opgeslagen</div> </button> </div>`;
 
-  const blowerHTML = CHANNELS.map(function(ch) {
-    var on = getOn(ch.key);
-    var off = getOff(ch.key);
-    var baseOn = r[ch.key+'_on'];
-    var baseOff = r[ch.key+'_off'];
-    var dur = off > on ? off - on : (360 - on + off);
-    var lft = (on / 360 * 100).toFixed(1);
-    var wid = Math.max(0.4, dur / 360 * 100).toFixed(1);
-    var afwijkt = optData && (on !== baseOn || off !== baseOff);
-    return '<div class="blower-block" style="'+(afwijkt?'border-left:3px solid #22c55e;':'')+'">'
-      +'<div class="blower-hdr">'
-      +'<div class="bdot" style="background:'+ch.color+';box-shadow:0 0 6px '+ch.color+'55;"></div>'
-      +'<div class="bname">'+ch.label+'</div>'
-      +(afwijkt?'<div style="font-size:9px;color:#22c55e;">OPT.'+actief+' · was '+baseOn+'°→'+baseOff+'°</div>':'')
-      +'</div>'
-      +'<div class="blower-cells">'
-      +'<div class="bcell"><span class="bcell-lbl">AAN</span><span class="bcell-val" style="color:'+(afwijkt?'#22c55e':ch.color)+'">'+on+'</span><span class="bcell-unit">°</span></div>'
-      +'<div class="bcell"><span class="bcell-lbl">UIT</span><span class="bcell-val" style="color:'+(afwijkt?'#22c55e':ch.color)+'">'+off+'</span><span class="bcell-unit">°</span></div>'
-      +'<div class="bcell"><span class="bcell-lbl">DUUR</span><span class="bcell-val" style="color:#4a6080;font-size:22px;">'+dur+'</span><span class="bcell-unit">°</span></div>'
-      +'</div>'
-      +'<div class="bar-wrap">'
-      +'<div class="bar-track"><div class="bar-fill" style="left:'+lft+'%;width:'+wid+'%;background:'+(afwijkt?'#22c55e':ch.color)+';"></div></div>'
-      +'<div class="bar-ticks">'+[0,90,180,270,360].map(function(d){return '<span class="bar-tick">'+d+'°</span>';}).join('')+'</div>'
-      +'</div>'
-      +'</div>';
-  }).join('');
+const fotosHTML = aantalFotos > 0 ? ` <div class="slabel" style="margin-top:16px;">📷 Foto's</div> <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;"> ${Object.entries(r.fotos).filter(function(e){return e[1] && e[1].url;}).map(function(e){ var fKey=e[0], f=e[1]; var isEigen = f.operator === _operator; var magVerw = _isAdmin || isEigen; return '<div style="position:relative;border-radius:6px;overflow:hidden;border:1px solid #1a2540;">' +'<img src="'+f.url+'" style="width:100%;height:140px;object-fit:cover;display:block;" loading="lazy">' +'<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.75);padding:6px 8px;display:flex;align-items:center;justify-content:space-between;">' +"<span style='font-family:Rajdhani,sans-serif;font-weight:700;font-size:13px;color:#e5e7eb;'>"+f.label+"</span>" +(magVerw ? '<button data-rkey="'+r._key+'" data-fkey="'+fKey+'" onclick="vraagVerwijderFoto(this.dataset.rkey,this.dataset.fkey)" style="background:none;border:none;color:#ef4444;font-size:16px;cursor:pointer;padding:0 4px;">✕</button>' : '') +'</div>' +(f.datum ? '<div style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,.65);padding:2px 7px;border-radius:3px;font-size:9px;color:#9ca3af;">'+f.datum+'</div>' : '') +(f.operator ? '<div style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.65);padding:2px 7px;border-radius:3px;font-size:9px;color:#a78bfa;">👤 '+f.operator+'</div>' : '') +'</div>'; }).join('')} </div>` : ‘’;
 
-  var cx=160,cy=160;
-  function toRad(d){return (d-90)*Math.PI/180;}
-  var radii=[58,72,86,100,114];
-  var arcs = CHANNELS.map(function(ch,i){
-    var on=getOn(ch.key), off=getOff(ch.key);
-    var dur=off>on?off-on:(360-on+off);
-    if(dur<=0)return '';
-    var large=dur>180?1:0;
-    var x1=cx+radii[i]*Math.cos(toRad(on)),y1=cy+radii[i]*Math.sin(toRad(on));
-    var x2=cx+radii[i]*Math.cos(toRad(off)),y2=cy+radii[i]*Math.sin(toRad(off));
-    return '<path d="M '+x1+' '+y1+' A '+radii[i]+' '+radii[i]+' 0 '+large+' 1 '+x2+' '+y2+'" stroke="'+ch.color+'" stroke-width="10" fill="none" stroke-linecap="round" opacity=".85"/>';
-  }).join('');
-  var ticks=[0,90,180,270].map(function(deg){
-    var a=toRad(deg);
-    var x1=cx+148*Math.cos(a),y1=cy+148*Math.sin(a);
-    var x2=cx+158*Math.cos(a),y2=cy+158*Math.sin(a);
-    var lx=cx+170*Math.cos(a),ly=cy+170*Math.sin(a);
-    return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#f5a623" stroke-width="2"/>'
-      +'<text x="'+lx+'" y="'+ly+'" fill="#f5a623" font-size="11" font-family="Share Tech Mono" text-anchor="middle" dominant-baseline="middle">'+deg+'°</text>';
-  }).join('');
-  var svg = '<div style="background:#0a0e16;border:1px solid #1a2235;border-radius:4px;padding:16px;margin-bottom:12px;">'
-    +'<svg viewBox="0 0 320 320" width="100%" style="display:block;max-width:320px;margin:0 auto;">'
-    +radii.map(function(r){return '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#1a2235" stroke-width="1"/>';}).join('')
-    +'<circle cx="'+cx+'" cy="'+cy+'" r="152" fill="none" stroke="#1a2235" stroke-width="1.5"/>'
-    +arcs+ticks
-    +'<circle cx="'+cx+'" cy="'+cy+'" r="36" fill="#0f1420" stroke="#1a2235" stroke-width="1.5"/>'
-    +'<text x="'+cx+'" y="'+(cy-8)+'" fill="#f5a623" font-size="18" font-family="Rajdhani" font-weight="700" text-anchor="middle">360°</text>'
-    +'<text x="'+cx+'" y="'+(cy+10)+'" fill="#4a6080" font-size="8" font-family="Share Tech Mono" text-anchor="middle">CYCLUS</text>'
-    +'<text x="'+cx+'" y="308" fill="#4a6080" font-size="9" font-family="Share Tech Mono" text-anchor="middle">'+r.speed+' ZPM · '+r.material+'</text>'
-    +'</svg></div>';
+const fotoAttentie = aantalFotos > 0 ? ` <div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:10px;"> <span style="font-size:18px;">📷</span> <div style="font-size:12px;color:#93c5fd;font-family:'Share Tech Mono',monospace;">${aantalFotos} foto${aantalFotos > 1 ? "'s" : ''} opgeslagen -- scroll naar beneden</div> </div>` : ‘’;
 
-  document.getElementById('detail-inhoud').innerHTML =
-    specs + optBanner + fotoAttentie + knoppen +
-    '<div class="slabel">Optimale Blower Timing</div>' + blowerHTML +
-    '<div class="slabel">360° Cyclus Diagram</div>' + svg +
-    fotosHTML;
+const blowerHTML = CHANNELS.map(function(ch) {
+var on = getOn(ch.key);
+var off = getOff(ch.key);
+var baseOn = r[ch.key+’_on’];
+var baseOff = r[ch.key+’_off’];
+var dur = off > on ? off - on : (360 - on + off);
+var lft = (on / 360 * 100).toFixed(1);
+var wid = Math.max(0.4, dur / 360 * 100).toFixed(1);
+var afwijkt = optData && (on !== baseOn || off !== baseOff);
+return ‘<div class="blower-block" style="'+(afwijkt?'border-left:3px solid #22c55e;':'')+'">’
++’<div class="blower-hdr">’
++’<div class="bdot" style="background:'+ch.color+';box-shadow:0 0 6px '+ch.color+'55;"></div>’
++’<div class="bname">’+ch.label+’</div>’
++(afwijkt?’<div style="font-size:9px;color:#22c55e;">OPT.’+actief+’ · was ‘+baseOn+‘°→’+baseOff+‘°</div>’:’’)
++’</div>’
++’<div class="blower-cells">’
++’<div class="bcell"><span class="bcell-lbl">AAN</span><span class="bcell-val" style="color:'+(afwijkt?'#22c55e':ch.color)+'">’+on+’</span><span class="bcell-unit">°</span></div>’
++’<div class="bcell"><span class="bcell-lbl">UIT</span><span class="bcell-val" style="color:'+(afwijkt?'#22c55e':ch.color)+'">’+off+’</span><span class="bcell-unit">°</span></div>’
++’<div class="bcell"><span class="bcell-lbl">DUUR</span><span class="bcell-val" style="color:#4a6080;font-size:22px;">’+dur+’</span><span class="bcell-unit">°</span></div>’
++’</div>’
++’<div class="bar-wrap">’
++’<div class="bar-track"><div class="bar-fill" style="left:'+lft+'%;width:'+wid+'%;background:'+(afwijkt?'#22c55e':ch.color)+';"></div></div>’
++’<div class="bar-ticks">’+[0,90,180,270,360].map(function(d){return ‘<span class="bar-tick">’+d+‘°</span>’;}).join(’’)+’</div>’
++’</div>’
++’</div>’;
+}).join(’’);
+
+var cx=160,cy=160;
+function toRad(d){return (d-90)*Math.PI/180;}
+var radii=[58,72,86,100,114];
+var arcs = CHANNELS.map(function(ch,i){
+var on=getOn(ch.key), off=getOff(ch.key);
+var dur=off>on?off-on:(360-on+off);
+if(dur<=0)return ‘’;
+var large=dur>180?1:0;
+var x1=cx+radii[i]*Math.cos(toRad(on)),y1=cy+radii[i]*Math.sin(toRad(on));
+var x2=cx+radii[i]*Math.cos(toRad(off)),y2=cy+radii[i]*Math.sin(toRad(off));
+return ‘<path d="M '+x1+' '+y1+' A '+radii[i]+' '+radii[i]+' 0 '+large+' 1 '+x2+' '+y2+'" stroke="'+ch.color+'" stroke-width="10" fill="none" stroke-linecap="round" opacity=".85"/>’;
+}).join(’’);
+var ticks=[0,90,180,270].map(function(deg){
+var a=toRad(deg);
+var x1=cx+148*Math.cos(a),y1=cy+148*Math.sin(a);
+var x2=cx+158*Math.cos(a),y2=cy+158*Math.sin(a);
+var lx=cx+170*Math.cos(a),ly=cy+170*Math.sin(a);
+return ‘<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#f5a623" stroke-width="2"/>’
++’<text x="'+lx+'" y="'+ly+'" fill="#f5a623" font-size="11" font-family="Share Tech Mono" text-anchor="middle" dominant-baseline="middle">’+deg+‘°</text>’;
+}).join(’’);
+var svg = ‘<div style="background:#0a0e16;border:1px solid #1a2235;border-radius:4px;padding:16px;margin-bottom:12px;">’
++’<svg viewBox="0 0 320 320" width="100%" style="display:block;max-width:320px;margin:0 auto;">’
++radii.map(function(r){return ‘<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#1a2235" stroke-width="1"/>’;}).join(’’)
++’<circle cx="'+cx+'" cy="'+cy+'" r="152" fill="none" stroke="#1a2235" stroke-width="1.5"/>’
++arcs+ticks
++’<circle cx="'+cx+'" cy="'+cy+'" r="36" fill="#0f1420" stroke="#1a2235" stroke-width="1.5"/>’
++’<text x="'+cx+'" y="'+(cy-8)+'" fill="#f5a623" font-size="18" font-family="Rajdhani" font-weight="700" text-anchor="middle">360°</text>’
++’<text x="'+cx+'" y="'+(cy+10)+'" fill="#4a6080" font-size="8" font-family="Share Tech Mono" text-anchor="middle">CYCLUS</text>’
++’<text x="'+cx+'" y="308" fill="#4a6080" font-size="9" font-family="Share Tech Mono" text-anchor="middle">’+r.speed+’ ZPM · ‘+r.material+’</text>’
++’</svg></div>’;
+
+document.getElementById(‘detail-inhoud’).innerHTML =
+specs + optBanner + fotoAttentie + knoppen +
+opmerkingHTML +
+‘<div class="slabel">Optimale Blower Timing</div>’ + blowerHTML +
+‘<div class="slabel">360° Cyclus Diagram</div>’ + svg +
+fotosHTML;
 }
 
 async function zegOptieAf(key) {
-  await fbPatch('recepten/' + key, { actieveOptie: null });
-  // Update lokale data
-  const r = _recepten.find(x => x._key === key);
-  if (r) { r.actieveOptie = null; _huidigRecept = r; renderDetail(r); }
+await fbPatch(‘recepten/’ + key, { actieveOptie: null });
+// Update lokale data
+const r = _recepten.find(x => x._key === key);
+if (r) { r.actieveOptie = null; _huidigRecept = r; renderDetail(r); }
 }
 
 // ═══════ NIEUW / BEWERK RECEPT ═══════
 function nieuwRecept() {
-  document.getElementById('nieuw-titel').textContent = 'Nieuw Recept';
-  document.getElementById('s-nieuw').dataset.editKey = '';
-  resetNieuwForm();
-  ga('s-nieuw');
+document.getElementById(‘nieuw-titel’).textContent = ‘Nieuw Recept’;
+document.getElementById(‘s-nieuw’).dataset.editKey = ‘’;
+resetNieuwForm();
+ga(‘s-nieuw’);
 }
 
 function bewerkRecept(key) {
-  const r = _recepten.find(x => x._key === key);
-  if (!r) return;
-  document.getElementById('nieuw-titel').textContent = 'Recept Bewerken';
-  document.getElementById('s-nieuw').dataset.editKey = key;
-  document.getElementById('f-klant').value = r.klant || '';
-  document.getElementById('f-naam').value = r.klantnaam || '';
-  document.getElementById('f-plaats').value = r.plaats || '';
-  document.getElementById('f-operator').value = r.operator || '';
-  zetVeldGroen('f-w', r.width || '');
-  zetVeldGroen('f-l', r.length || '');
-  zetVeldGroen('f-t', r.thickness || '');
-  zetVeldGroen('f-s', r.speed || '220');
-  kiesMat(r.material || 'LDPE');
-  document.getElementById('berekend-box').style.display = 'none';
-  document.getElementById('btn-detail-wrap').style.display = 'none';
-  document.getElementById('btn-opslaan').style.display = 'block';
-  ga('s-nieuw');
+const r = _recepten.find(x => x._key === key);
+if (!r) return;
+document.getElementById(‘nieuw-titel’).textContent = ‘Recept Bewerken’;
+document.getElementById(‘s-nieuw’).dataset.editKey = key;
+document.getElementById(‘f-klant’).value = r.klant || ‘’;
+document.getElementById(‘f-naam’).value = r.klantnaam || ‘’;
+document.getElementById(‘f-plaats’).value = r.plaats || ‘’;
+document.getElementById(‘f-operator’).value = r.operator || ‘’;
+zetVeldGroen(‘f-w’, r.width || ‘’);
+zetVeldGroen(‘f-l’, r.length || ‘’);
+zetVeldGroen(‘f-t’, r.thickness || ‘’);
+zetVeldGroen(‘f-s’, r.speed || ‘220’);
+kiesMat(r.material || ‘LDPE’);
+document.getElementById(‘berekend-box’).style.display = ‘none’;
+document.getElementById(‘btn-detail-wrap’).style.display = ‘none’;
+document.getElementById(‘btn-opslaan’).style.display = ‘block’;
+ga(‘s-nieuw’);
 }
 
 function resetNieuwForm() {
-  ['f-klant','f-naam','f-plaats'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) { el.value = ''; el.classList.remove('groen'); }
-  });
-  const fOp = document.getElementById('f-operator');
-  if (fOp) fOp.value = _operator || '';
-  setLeeg('f-w'); setLeeg('f-l'); setLeeg('f-t');
-  zetVeldGroen('f-s', '220');
-  kiesMat('LDPE');
-  _huidigTiming = null;
-  _nieuwOpgeslaanKey = null;
-  document.getElementById('berekend-box').style.display = 'none';
-  document.getElementById('btn-detail-wrap').style.display = 'none';
-  document.getElementById('btn-opslaan').style.display = 'block';
+[‘f-klant’,‘f-naam’,‘f-plaats’].forEach(id => {
+const el = document.getElementById(id);
+if (el) { el.value = ‘’; el.classList.remove(‘groen’); }
+});
+const fOp = document.getElementById(‘f-operator’);
+if (fOp) fOp.value = _operator || ‘’;
+setLeeg(‘f-w’); setLeeg(‘f-l’); setLeeg(‘f-t’);
+zetVeldGroen(‘f-s’, ‘220’);
+kiesMat(‘LDPE’);
+_huidigTiming = null;
+_nieuwOpgeslaanKey = null;
+document.getElementById(‘berekend-box’).style.display = ‘none’;
+document.getElementById(‘btn-detail-wrap’).style.display = ‘none’;
+document.getElementById(‘btn-opslaan’).style.display = ‘block’;
 }
 
 function setLeeg(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.value = '';
-  el.className = 'leeg';
-  el.placeholder = 'tik om in te vullen';
+const el = document.getElementById(id);
+if (!el) return;
+el.value = ‘’;
+el.className = ‘leeg’;
+el.placeholder = ‘tik om in te vullen’;
 }
 
 function zetVeldGroen(id, val) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.value = val;
-  el.className = val ? 'groen' : 'leeg';
+const el = document.getElementById(id);
+if (!el) return;
+el.value = val;
+el.className = val ? ‘groen’ : ‘leeg’;
 }
 
 function kiesMat(mat) {
-  _gekozenMat = mat;
-  ['LDPE','HDPE','Recyclaat'].forEach(m => {
-    document.getElementById('mat-'+m)?.classList.toggle('active', m === mat);
-  });
+_gekozenMat = mat;
+[‘LDPE’,‘HDPE’,‘Recyclaat’].forEach(m => {
+document.getElementById(‘mat-’+m)?.classList.toggle(‘active’, m === mat);
+});
 }
 
 // Klant dropdown
 function klantDropdown() {
-  const val = document.getElementById('f-klant').value.toLowerCase();
-  const dd = document.getElementById('klant-dd');
-  if (!val) { dd.style.display = 'none'; return; }
-  const matches = [...new Map(_recepten.filter(r => r.klant?.toLowerCase().includes(val)).map(r => [r.klant, r])).values()];
-  if (!matches.length) { dd.style.display = 'none'; return; }
-  dd.innerHTML = matches.slice(0,5).map(r =>
-    `<div data-klant="${r.klant}" data-naam="${r.klantnaam||''}" data-plaats="${r.plaats||''}"
-      onclick="kiesKlant(this.dataset.klant,this.dataset.naam,this.dataset.plaats)"
-      onmousedown="event.preventDefault()"
-      style="padding:10px 14px;cursor:pointer;border-bottom:1px solid #1a2235;font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:#f59e0b;">
-      ${r.klant} ${r.klantnaam ? '-- '+r.klantnaam : ''}
-    </div>`
-  ).join('');
-  dd.style.display = 'block';
+const val = document.getElementById(‘f-klant’).value.toLowerCase();
+const dd = document.getElementById(‘klant-dd’);
+if (!val) { dd.style.display = ‘none’; return; }
+const matches = […new Map(_recepten.filter(r => r.klant?.toLowerCase().includes(val)).map(r => [r.klant, r])).values()];
+if (!matches.length) { dd.style.display = ‘none’; return; }
+dd.innerHTML = matches.slice(0,5).map(r =>
+`<div data-klant="${r.klant}" data-naam="${r.klantnaam||''}" data-plaats="${r.plaats||''}" onclick="kiesKlant(this.dataset.klant,this.dataset.naam,this.dataset.plaats)" onmousedown="event.preventDefault()" style="padding:10px 14px;cursor:pointer;border-bottom:1px solid #1a2235;font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:#f59e0b;"> ${r.klant} ${r.klantnaam ? '-- '+r.klantnaam : ''} </div>`
+).join(’’);
+dd.style.display = ‘block’;
 }
 
 function kiesKlant(klant, naam, plaats) {
-  document.getElementById('f-klant').value = klant;
-  document.getElementById('f-naam').value = naam;
-  document.getElementById('f-plaats').value = plaats;
-  sluitKlantDD();
+document.getElementById(‘f-klant’).value = klant;
+document.getElementById(‘f-naam’).value = naam;
+document.getElementById(‘f-plaats’).value = plaats;
+sluitKlantDD();
 }
 
 function sluitKlantDD() {
-  document.getElementById('klant-dd').style.display = 'none';
+document.getElementById(‘klant-dd’).style.display = ‘none’;
 }
 
 // ═══════ BEREKENEN ═══════
 function berekenTiming(t) {
-  if (t <= 0.020) return TIMING.dun;
-  if (t <= 0.030) return TIMING.middel;
-  return TIMING.dik;
+if (t <= 0.020) return TIMING.dun;
+if (t <= 0.030) return TIMING.middel;
+return TIMING.dik;
 }
 
 async function berekenEnSla() {
-  const w = parseFloat(document.getElementById('f-w').value);
-  const l = parseFloat(document.getElementById('f-l').value);
-  const t = parseFloat(document.getElementById('f-t').value);
-  const s = parseInt(document.getElementById('f-s').value);
-  if (!w||!l||!t||!s) { toast('Vul alle velden in', true); return; }
+const w = parseFloat(document.getElementById(‘f-w’).value);
+const l = parseFloat(document.getElementById(‘f-l’).value);
+const t = parseFloat(document.getElementById(‘f-t’).value);
+const s = parseInt(document.getElementById(‘f-s’).value);
+if (!w||!l||!t||!s) { toast(‘Vul alle velden in’, true); return; }
 
-  const basis = berekenTiming(t);
-  _huidigTiming = {};
-  CHANNELS.forEach(ch => {
-    _huidigTiming[ch.key+'_on']  = basis[ch.key][0];
-    _huidigTiming[ch.key+'_off'] = basis[ch.key][1];
-  });
+const basis = berekenTiming(t);
+_huidigTiming = {};
+CHANNELS.forEach(ch => {
+_huidigTiming[ch.key+’_on’]  = basis[ch.key][0];
+_huidigTiming[ch.key+’_off’] = basis[ch.key][1];
+});
 
-  // Toon berekend
-  const html = CHANNELS.map(ch => {
-    const on = _huidigTiming[ch.key+'_on'];
-    const off = _huidigTiming[ch.key+'_off'];
-    const dur = off - on;
-    return `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0a0d14;border:1px solid #1a2540;border-radius:3px;margin-bottom:6px;">
-      <div style="width:8px;height:8px;border-radius:50%;background:${ch.color};flex-shrink:0;"></div>
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:#e5e7eb;flex:1;">${ch.label}</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:12px;color:${ch.color};">${on}°→${off}°</div>
-      <div style="font-size:10px;color:#4a6080;">${dur}°</div>
-    </div>`;
-  }).join('');
+// Toon berekend
+const html = CHANNELS.map(ch => {
+const on = _huidigTiming[ch.key+’_on’];
+const off = _huidigTiming[ch.key+’_off’];
+const dur = off - on;
+return `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0a0d14;border:1px solid #1a2540;border-radius:3px;margin-bottom:6px;"> <div style="width:8px;height:8px;border-radius:50%;background:${ch.color};flex-shrink:0;"></div> <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:#e5e7eb;flex:1;">${ch.label}</div> <div style="font-family:'Share Tech Mono',monospace;font-size:12px;color:${ch.color};">${on}°→${off}°</div> <div style="font-size:10px;color:#4a6080;">${dur}°</div> </div>`;
+}).join(’’);
 
-  document.getElementById('berekend-inhoud').innerHTML = html;
-  document.getElementById('berekend-box').style.display = 'block';
-  document.getElementById('btn-opslaan').style.display = 'none';
+document.getElementById(‘berekend-inhoud’).innerHTML = html;
+document.getElementById(‘berekend-box’).style.display = ‘block’;
+document.getElementById(‘btn-opslaan’).style.display = ‘none’;
 
-  // Opslaan
-  toast('Opslaan...');
-  var tb = {};
-  var st = document.getElementById('f-starttijd').value.trim();
-  var lt = document.getElementById('f-lastijd').value.trim();
-  var lb = document.getElementById('f-mes-lb').value.trim();
-  var rb = document.getElementById('f-mes-rb').value.trim();
-  var lo = document.getElementById('f-mes-lo').value.trim();
-  var ro = document.getElementById('f-mes-ro').value.trim();
-  if (st) tb.starttijd = st;
-  if (lt) tb.lastijd = lt;
-  if (lb) tb.mes_lb = lb;
-  if (rb) tb.mes_rb = rb;
-  if (lo) tb.mes_lo = lo;
-  if (ro) tb.mes_ro = ro;
+// Opslaan
+toast(‘Opslaan…’);
+var tb = {};
+var st = document.getElementById(‘f-starttijd’).value.trim();
+var lt = document.getElementById(‘f-lastijd’).value.trim();
+var lb = document.getElementById(‘f-mes-lb’).value.trim();
+var rb = document.getElementById(‘f-mes-rb’).value.trim();
+var lo = document.getElementById(‘f-mes-lo’).value.trim();
+var ro = document.getElementById(‘f-mes-ro’).value.trim();
+if (st) tb.starttijd = st;
+if (lt) tb.lastijd = lt;
+if (lb) tb.mes_lb = lb;
+if (rb) tb.mes_rb = rb;
+if (lo) tb.mes_lo = lo;
+if (ro) tb.mes_ro = ro;
 
-  const recept = {
-    id: Date.now(),
-    klant: document.getElementById('f-klant').value.trim(),
-    klantnaam: document.getElementById('f-naam').value.trim(),
-    plaats: document.getElementById('f-plaats').value.trim(),
-    operator: _operator || '',
-    width: w, length: l, thickness: t,
-    material: _gekozenMat, speed: s,
-    ..._huidigTiming
-  };
-  if (Object.keys(tb).length) recept.toebehoren = tb;
+const recept = {
+id: Date.now(),
+klant: document.getElementById(‘f-klant’).value.trim(),
+klantnaam: document.getElementById(‘f-naam’).value.trim(),
+plaats: document.getElementById(‘f-plaats’).value.trim(),
+operator: _operator || ‘’,
+width: w, length: l, thickness: t,
+material: _gekozenMat, speed: s,
+…_huidigTiming
+};
+if (Object.keys(tb).length) recept.toebehoren = tb;
 
-  const editKey = document.getElementById('s-nieuw').dataset.editKey;
-  if (editKey) {
-    await fbPatch('recepten/' + editKey, recept);
-    _nieuwOpgeslaanKey = editKey;
-    // Update lokale array
-    const idx = _recepten.findIndex(x => x._key === editKey);
-    if (idx >= 0) _recepten[idx] = {...recept, _key: editKey};
-  } else {
-    const res = await fbPost('recepten', recept);
-    _nieuwOpgeslaanKey = res.name;
-    _recepten.push({...recept, _key: _nieuwOpgeslaanKey});
-  }
-  toast('Recept opgeslagen!');
-  document.getElementById('btn-detail-wrap').style.display = 'block';
+const editKey = document.getElementById(‘s-nieuw’).dataset.editKey;
+if (editKey) {
+await fbPatch(‘recepten/’ + editKey, recept);
+_nieuwOpgeslaanKey = editKey;
+// Update lokale array
+const idx = _recepten.findIndex(x => x._key === editKey);
+if (idx >= 0) _recepten[idx] = {…recept, _key: editKey};
+} else {
+const res = await fbPost(‘recepten’, recept);
+_nieuwOpgeslaanKey = res.name;
+_recepten.push({…recept, _key: _nieuwOpgeslaanKey});
+}
+toast(‘Recept opgeslagen!’);
+document.getElementById(‘btn-detail-wrap’).style.display = ‘block’;
 }
 
 function naarDetail() {
-  if (!_nieuwOpgeslaanKey) return;
-  const r = _recepten.find(x => x._key === _nieuwOpgeslaanKey);
-  if (r) {
-    _huidigRecept = r;
-    _huidigReceptKey = _nieuwOpgeslaanKey;
-    renderDetail(r);
-    ga('s-detail');
-  }
+if (!_nieuwOpgeslaanKey) return;
+const r = _recepten.find(x => x._key === _nieuwOpgeslaanKey);
+if (r) {
+_huidigRecept = r;
+_huidigReceptKey = _nieuwOpgeslaanKey;
+renderDetail(r);
+ga(‘s-detail’);
+}
 }
 
 // ═══════ NUMPAD ═══════
 function openNumpad(veldId, type, label) {
-  _npVeld = veldId;
-  _npType = type;
-  _npWaarde = document.getElementById(veldId)?.value || '';
-  if (_npWaarde === '0') _npWaarde = '';
-  document.getElementById('numpad-label').textContent = label;
-  document.getElementById('numpad-display').textContent = _npWaarde || '0';
-  document.getElementById('np-dot').style.display = type === 'integer' ? 'none' : '';
-  document.getElementById('numpad-overlay').classList.add('active');
+_npVeld = veldId;
+_npType = type;
+_npWaarde = document.getElementById(veldId)?.value || ‘’;
+if (_npWaarde === ‘0’) _npWaarde = ‘’;
+document.getElementById(‘numpad-label’).textContent = label;
+document.getElementById(‘numpad-display’).textContent = _npWaarde || ‘0’;
+document.getElementById(‘np-dot’).style.display = type === ‘integer’ ? ‘none’ : ‘’;
+document.getElementById(‘numpad-overlay’).classList.add(‘active’);
 }
 
 function npInput(c) {
-  if (c === '.' && (_npWaarde.includes('.') || _npType === 'integer')) return;
-  if (!_npWaarde && c === '0') { _npWaarde = '0'; }
-  else if (_npWaarde === '0' && c !== '.') { _npWaarde = c; }
-  else { _npWaarde += c; }
-  document.getElementById('numpad-display').textContent = _npWaarde || '0';
+if (c === ‘.’ && (_npWaarde.includes(’.’) || _npType === ‘integer’)) return;
+if (!_npWaarde && c === ‘0’) { _npWaarde = ‘0’; }
+else if (_npWaarde === ‘0’ && c !== ‘.’) { _npWaarde = c; }
+else { _npWaarde += c; }
+document.getElementById(‘numpad-display’).textContent = _npWaarde || ‘0’;
 }
 
 function npDel() {
-  _npWaarde = _npWaarde.slice(0, -1);
-  document.getElementById('numpad-display').textContent = _npWaarde || '0';
+_npWaarde = _npWaarde.slice(0, -1);
+document.getElementById(‘numpad-display’).textContent = _npWaarde || ‘0’;
 }
 
 function npBevestig() {
-  const el = document.getElementById(_npVeld);
-  if (el) {
-    el.value = _npWaarde;
-    el.className = _npWaarde ? 'groen' : 'leeg';
-    el.style.cursor = 'pointer';
-  }
-  sluitNumpad();
+const el = document.getElementById(_npVeld);
+if (el) {
+el.value = _npWaarde;
+el.className = _npWaarde ? ‘groen’ : ‘leeg’;
+el.style.cursor = ‘pointer’;
+}
+sluitNumpad();
 }
 
 function sluitNumpad() {
-  document.getElementById('numpad-overlay').classList.remove('active');
+document.getElementById(‘numpad-overlay’).classList.remove(‘active’);
 }
 
 // ═══════ OPTIES ═══════
 function openOpties(key) {
-  const r = _recepten.find(x => x._key === key);
-  if (!r) return;
-  _huidigReceptKey = key;
-  renderOpties(r);
-  document.getElementById('s-opties').classList.add('active');
+const r = _recepten.find(x => x._key === key);
+if (!r) return;
+_huidigReceptKey = key;
+renderOpties(r);
+document.getElementById(‘s-opties’).classList.add(‘active’);
 }
 
 function sluitOpties() {
-  document.getElementById('s-opties').classList.remove('active');
-  // Herlaad detail met verse data
-  const r = _recepten.find(x => x._key === _huidigReceptKey);
-  if (r) { _huidigRecept = r; renderDetail(r); }
+document.getElementById(‘s-opties’).classList.remove(‘active’);
+// Herlaad detail met verse data
+const r = _recepten.find(x => x._key === _huidigReceptKey);
+if (r) { _huidigRecept = r; renderDetail(r); }
 }
 
 function renderOpties(r) {
-  const opties = r.opties || {};
-  const nummers = ['1','2','3','4','5','6','7','8'];
-  document.getElementById('opties-inhoud').innerHTML = `
-    <div style="font-size:10px;color:#6b7280;margin-bottom:14px;">Optimale settings zijn beveiligd. Sla aanpassingen op als optie.</div>
-    ${nummers.map(nr => {
-      const opt = opties[nr];
-      if (opt === null || opt === undefined) {
-        // Lege optie
-        return `<div class="opt-card">
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div>
-              <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#6b7280;">Optie ${nr}</div>
-              <div style="font-size:10px;color:#4a6080;margin-top:2px;">Nog leeg</div>
-            </div>
-            <button data-nr="${nr}" onclick="bewerkOptie(this.dataset.nr)"
-              style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;color:#6b7280;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;padding:10px 14px;cursor:pointer;">＋ Nieuw</button>
-          </div>
-        </div>`;
-      }
-      const isEigen = opt.operator === _operator;
-      const magBewerk = _isAdmin || isEigen;
-      const afwijkingen = CHANNELS.filter(ch => opt[ch.key+'_on'] !== r[ch.key+'_on'] || opt[ch.key+'_off'] !== r[ch.key+'_off']);
-      return `<div class="opt-card filled">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${afwijkingen.length?'10px':'0'};">
-          <div>
-            <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#22c55e;">Optie ${nr}</div>
-            <div style="font-size:10px;color:#6b7280;margin-top:2px;">👤 ${opt.operator||'?'} -- ${opt.datum||''}</div>
-          </div>
-          <div style="display:flex;gap:6px;">
-            <button data-nr="${nr}" onclick="kiesOptie(this.dataset.nr)"
-              style="background:#1a2e3a;border:1px solid #22d3ee66;border-radius:4px;color:#22d3ee;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;padding:8px 12px;cursor:pointer;">✓ Kiezen</button>
-            ${magBewerk ? `<button data-nr="${nr}" onclick="bewerkOptie(this.dataset.nr)"
-              style="background:#1a2e1a;border:1px solid #22c55e66;border-radius:4px;color:#22c55e;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;padding:8px 12px;cursor:pointer;">✎</button>` : ''}
-            ${magBewerk ? `<button data-nr="${nr}" onclick="vraagVerwijderOptie(this.dataset.nr)"
-              style="background:#2a0000;border:1px solid #ef444466;border-radius:4px;color:#ef4444;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;padding:8px 12px;cursor:pointer;">✕</button>` : `<div style="font-size:9px;color:#4a6080;padding:8px;">🔒</div>`}
-          </div>
-        </div>
-        ${afwijkingen.length ? `<div style="display:flex;flex-wrap:wrap;gap:5px;">
-          ${afwijkingen.map(ch => `<span style="font-size:9px;padding:3px 7px;border-radius:3px;background:#22c55e22;border:1px solid #22c55e44;color:#22c55e;font-family:'Share Tech Mono',monospace;">${ch.label}: ${opt[ch.key+'_on']}°→${opt[ch.key+'_off']}°</span>`).join('')}
-        </div>` : ''}
-      </div>`;
-    }).join('')}`;
+const opties = r.opties || {};
+const nummers = [‘1’,‘2’,‘3’,‘4’,‘5’,‘6’,‘7’,‘8’];
+document.getElementById(‘opties-inhoud’).innerHTML = `<div style="font-size:10px;color:#6b7280;margin-bottom:14px;">Optimale settings zijn beveiligd. Sla aanpassingen op als optie.</div> ${nummers.map(nr => { const opt = opties[nr]; if (opt === null || opt === undefined) { // Lege optie return`<div class="opt-card">
+<div style="display:flex;align-items:center;justify-content:space-between;">
+<div>
+<div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#6b7280;">Optie ${nr}</div>
+<div style="font-size:10px;color:#4a6080;margin-top:2px;">Nog leeg</div>
+</div>
+<button data-nr="${nr}" onclick="bewerkOptie(this.dataset.nr)"
+style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;color:#6b7280;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;padding:10px 14px;cursor:pointer;">＋ Nieuw</button>
+</div>
+</div>`; } const isEigen = opt.operator === _operator; const magBewerk = _isAdmin || isEigen; const afwijkingen = CHANNELS.filter(ch => opt[ch.key+'_on'] !== r[ch.key+'_on'] || opt[ch.key+'_off'] !== r[ch.key+'_off']); return `<div class="opt-card filled">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${afwijkingen.length?'10px':'0'};">
+<div>
+<div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#22c55e;">Optie ${nr}</div>
+<div style="font-size:10px;color:#6b7280;margin-top:2px;">👤 ${opt.operator||’?’} -- ${opt.datum||’’}</div>
+</div>
+<div style="display:flex;gap:6px;">
+<button data-nr="${nr}" onclick="kiesOptie(this.dataset.nr)"
+style="background:#1a2e3a;border:1px solid #22d3ee66;border-radius:4px;color:#22d3ee;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;padding:8px 12px;cursor:pointer;">✓ Kiezen</button>
+${magBewerk ? `<button data-nr="${nr}" onclick="bewerkOptie(this.dataset.nr)" style="background:#1a2e1a;border:1px solid #22c55e66;border-radius:4px;color:#22c55e;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;padding:8px 12px;cursor:pointer;">✎</button>` : ‘’}
+${magBewerk ? `<button data-nr="${nr}" onclick="vraagVerwijderOptie(this.dataset.nr)" style="background:#2a0000;border:1px solid #ef444466;border-radius:4px;color:#ef4444;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;padding:8px 12px;cursor:pointer;">✕</button>` : `<div style="font-size:9px;color:#4a6080;padding:8px;">🔒</div>`}
+</div>
+</div>
+${afwijkingen.length ? `<div style="display:flex;flex-wrap:wrap;gap:5px;"> ${afwijkingen.map(ch => `<span style="font-size:9px;padding:3px 7px;border-radius:3px;background:#22c55e22;border:1px solid #22c55e44;color:#22c55e;font-family:'Share Tech Mono',monospace;">${ch.label}: ${opt[ch.key+’_on’]}°→${opt[ch.key+’_off’]}°</span>`).join('')} </div>` : ‘’}
+</div>`; }).join('')}`;
 }
 
 async function kiesOptie(nr) {
-  await fbPatch('recepten/' + _huidigReceptKey, { actieveOptie: nr });
-  const r = _recepten.find(x => x._key === _huidigReceptKey);
-  if (r) { r.actieveOptie = nr; renderOpties(r); }
-  toast(`Optie ${nr} actief!`);
+await fbPatch(‘recepten/’ + _huidigReceptKey, { actieveOptie: nr });
+const r = _recepten.find(x => x._key === _huidigReceptKey);
+if (r) { r.actieveOptie = nr; renderOpties(r); }
+toast(`Optie ${nr} actief!`);
 }
 
 function bewerkOptie(nr) {
-  _huidigOptieNr = nr;
-  const r = _recepten.find(x => x._key === _huidigReceptKey);
-  if (!r) return;
-  const opt = (r.opties && r.opties[nr] && r.opties[nr] !== null) ? r.opties[nr] : r;
-  document.getElementById('optie-bewerk-titel').textContent = `Optie ${nr} bewerken`;
-  document.getElementById('optie-bewerk-inhoud').innerHTML = CHANNELS.map(ch => {
-    const baseOn  = r[ch.key+'_on'];
-    const baseOff = r[ch.key+'_off'];
-    const optOn   = opt[ch.key+'_on'] ?? baseOn;
-    const optOff  = opt[ch.key+'_off'] ?? baseOff;
-    return `<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;margin-bottom:8px;overflow:hidden;">
-      <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:#141d2e;border-bottom:1px solid #1a2540;">
-        <div style="width:8px;height:8px;border-radius:50%;background:${ch.color};"></div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#9ca3af;flex:1;">${ch.label}</div>
-        <div style="font-size:10px;color:#4a6080;">Optimaal: ${baseOn}°→${baseOff}°</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#1a2540;">
-        <div style="background:#0f1520;padding:10px;text-align:center;">
-          <div style="font-size:8px;color:#6b7280;margin-bottom:4px;">AAN °</div>
-          <input id="opt-${ch.key}-on" type="number" inputmode="numeric" value="${optOn}"
-            style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:${ch.color};font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;text-align:center;padding:8px;outline:none;">
-        </div>
-        <div style="background:#0f1520;padding:10px;text-align:center;">
-          <div style="font-size:8px;color:#6b7280;margin-bottom:4px;">UIT °</div>
-          <input id="opt-${ch.key}-off" type="number" inputmode="numeric" value="${optOff}"
-            style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:${ch.color};font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;text-align:center;padding:8px;outline:none;">
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-  document.getElementById('s-optie-bewerk').classList.add('active');
+_huidigOptieNr = nr;
+const r = _recepten.find(x => x._key === _huidigReceptKey);
+if (!r) return;
+const opt = (r.opties && r.opties[nr] && r.opties[nr] !== null) ? r.opties[nr] : r;
+document.getElementById(‘optie-bewerk-titel’).textContent = `Optie ${nr} bewerken`;
+document.getElementById(‘optie-bewerk-inhoud’).innerHTML = CHANNELS.map(ch => {
+const baseOn  = r[ch.key+’_on’];
+const baseOff = r[ch.key+’_off’];
+const optOn   = opt[ch.key+’_on’] ?? baseOn;
+const optOff  = opt[ch.key+’_off’] ?? baseOff;
+return `<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;margin-bottom:8px;overflow:hidden;"> <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:#141d2e;border-bottom:1px solid #1a2540;"> <div style="width:8px;height:8px;border-radius:50%;background:${ch.color};"></div> <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#9ca3af;flex:1;">${ch.label}</div> <div style="font-size:10px;color:#4a6080;">Optimaal: ${baseOn}°→${baseOff}°</div> </div> <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#1a2540;"> <div style="background:#0f1520;padding:10px;text-align:center;"> <div style="font-size:8px;color:#6b7280;margin-bottom:4px;">AAN °</div> <input id="opt-${ch.key}-on" type="number" inputmode="numeric" value="${optOn}" style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:${ch.color};font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;text-align:center;padding:8px;outline:none;"> </div> <div style="background:#0f1520;padding:10px;text-align:center;"> <div style="font-size:8px;color:#6b7280;margin-bottom:4px;">UIT °</div> <input id="opt-${ch.key}-off" type="number" inputmode="numeric" value="${optOff}" style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:${ch.color};font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;text-align:center;padding:8px;outline:none;"> </div> </div> </div>`;
+}).join(’’);
+document.getElementById(‘s-optie-bewerk’).classList.add(‘active’);
 }
 
 function sluitOptieBewerk() {
-  document.getElementById('s-optie-bewerk').classList.remove('active');
+document.getElementById(‘s-optie-bewerk’).classList.remove(‘active’);
 }
 
 async function slaOptieOp() {
-  const r = _recepten.find(x => x._key === _huidigReceptKey);
-  if (!r) return;
-  const timing = {};
-  CHANNELS.forEach(ch => {
-    timing[ch.key+'_on']  = parseInt(document.getElementById(`opt-${ch.key}-on`).value) || 0;
-    timing[ch.key+'_off'] = parseInt(document.getElementById(`opt-${ch.key}-off`).value) || 0;
-  });
-  const optie = { ...timing, operator: _operator, datum: new Date().toISOString().split('T')[0] };
-  await fbPatch('recepten/' + _huidigReceptKey, { [`opties/${_huidigOptieNr}`]: optie });
-  if (!r.opties) r.opties = {};
-  r.opties[_huidigOptieNr] = optie;
-  toast(`Optie ${_huidigOptieNr} opgeslagen!`);
-  sluitOptieBewerk();
-  renderOpties(r);
+const r = _recepten.find(x => x._key === _huidigReceptKey);
+if (!r) return;
+const timing = {};
+CHANNELS.forEach(ch => {
+timing[ch.key+’_on’]  = parseInt(document.getElementById(`opt-${ch.key}-on`).value) || 0;
+timing[ch.key+’_off’] = parseInt(document.getElementById(`opt-${ch.key}-off`).value) || 0;
+});
+const optie = { …timing, operator: _operator, datum: new Date().toISOString().split(‘T’)[0] };
+await fbPatch(‘recepten/’ + _huidigReceptKey, { [`opties/${_huidigOptieNr}`]: optie });
+if (!r.opties) r.opties = {};
+r.opties[_huidigOptieNr] = optie;
+toast(`Optie ${_huidigOptieNr} opgeslagen!`);
+sluitOptieBewerk();
+renderOpties(r);
 }
 
 async function verwijderOptie(key, nr) {
-  await fbSet('recepten/' + key + '/opties/' + nr, null);
-  const r = _recepten.find(x => x._key === key);
-  if (r && r.opties) { r.opties[nr] = null; renderOpties(r); }
-  toast('Optie ' + nr + ' verwijderd');
+await fbSet(‘recepten/’ + key + ‘/opties/’ + nr, null);
+const r = _recepten.find(x => x._key === key);
+if (r && r.opties) { r.opties[nr] = null; renderOpties(r); }
+toast(‘Optie ’ + nr + ’ verwijderd’);
 }
 
 // ═══════ LEERDATA ═══════
 async function openLeerdata(key) {
-  document.getElementById('leerdata-inhoud').innerHTML = '<div style="text-align:center;padding:40px;color:#4a6080;font-size:11px;">Laden...</div>';
-  document.getElementById('s-leerdata').classList.add('active');
+document.getElementById(‘leerdata-inhoud’).innerHTML = ‘<div style="text-align:center;padding:40px;color:#4a6080;font-size:11px;">Laden…</div>’;
+document.getElementById(‘s-leerdata’).classList.add(‘active’);
 
-  try {
-    // Laad verse data
-    const data = await fbGet('recepten');
-    const alleRecepten = data ? Object.entries(data).map(([k,v])=>({...v,_key:k})) : [];
-    const r = alleRecepten.find(x => x._key === key);
-    if (!r) return;
+try {
+// Laad verse data
+const data = await fbGet(‘recepten’);
+const alleRecepten = data ? Object.entries(data).map(([k,v])=>({…v,_key:k})) : [];
+const r = alleRecepten.find(x => x._key === key);
+if (!r) return;
 
-    // Geldige opties = object met blower waarden, niet null
-    function geldigeOpties(recept) {
-      if (!recept.opties) return [];
-      return Object.values(recept.opties).filter(o => o && typeof o === 'object' && CHANNELS.some(ch => o[ch.key+'_on'] !== undefined));
-    }
+```
+// Geldige opties = object met blower waarden, niet null
+function geldigeOpties(recept) {
+  if (!recept.opties) return [];
+  return Object.values(recept.opties).filter(o => o && typeof o === 'object' && CHANNELS.some(ch => o[ch.key+'_on'] !== undefined));
+}
 
-    // Bereken gemiddelde
-    function gemiddelde(optiesList, r) {
-      if (!optiesList.length) return null;
-      const gem = {};
-      CHANNELS.forEach(ch => {
-        const onW  = optiesList.map(o => Number(o[ch.key+'_on'])).filter(v => !isNaN(v));
-        const offW = optiesList.map(o => Number(o[ch.key+'_off'])).filter(v => !isNaN(v));
-        gem[ch.key+'_on']  = onW.length  ? Math.round(onW.reduce((a,b)=>a+b,0)/onW.length)  : r[ch.key+'_on'];
-        gem[ch.key+'_off'] = offW.length ? Math.round(offW.reduce((a,b)=>a+b,0)/offW.length) : r[ch.key+'_off'];
-      });
-      return gem;
-    }
+// Bereken gemiddelde
+function gemiddelde(optiesList, r) {
+  if (!optiesList.length) return null;
+  const gem = {};
+  CHANNELS.forEach(ch => {
+    const onW  = optiesList.map(o => Number(o[ch.key+'_on'])).filter(v => !isNaN(v));
+    const offW = optiesList.map(o => Number(o[ch.key+'_off'])).filter(v => !isNaN(v));
+    gem[ch.key+'_on']  = onW.length  ? Math.round(onW.reduce((a,b)=>a+b,0)/onW.length)  : r[ch.key+'_on'];
+    gem[ch.key+'_off'] = offW.length ? Math.round(offW.reduce((a,b)=>a+b,0)/offW.length) : r[ch.key+'_off'];
+  });
+  return gem;
+}
 
-    function kanaalRij(ch, gemOn, gemOff, baseOn, baseOff, kleur) {
-      if (gemOn === undefined) return '';
-      const diffOn = gemOn - baseOn;
-      const afwijkt = gemOn !== baseOn || gemOff !== baseOff;
-      const dc = diffOn > 0 ? '#22c55e' : diffOn < 0 ? '#ef4444' : '#4a6080';
-      return '<div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid '+(afwijkt?kleur:ch.color)+';border-radius:4px;padding:10px 14px;margin-bottom:6px;">'
-        +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">'
-        +'<div style="width:8px;height:8px;border-radius:50%;background:'+ch.color+';"></div>'
-        +'<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:15px;color:#e5e7eb;flex:1;">'+ch.label+'</div>'
-        +(afwijkt?'<div style="font-size:9px;color:'+kleur+';">AFWIJKING</div>':'')
-        +'</div>'
-        +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center;">'
-        +'<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:6px;"><div style="font-size:8px;color:#6b7280;margin-bottom:2px;">OPTIMAAL</div><div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:13px;color:#6b7280;">'+baseOn+'°→'+baseOff+'°</div></div>'
-        +'<div style="background:#070a10;border:1px solid '+(afwijkt?kleur+'44':'#1a2540')+';border-radius:3px;padding:6px;"><div style="font-size:8px;color:#6b7280;margin-bottom:2px;">WERKELIJK</div><div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:13px;color:'+(afwijkt?kleur:'#6b7280')+';">'+gemOn+'°→'+gemOff+'°</div></div>'
-        +'<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:6px;"><div style="font-size:8px;color:#6b7280;margin-bottom:2px;">VERSCHIL</div><div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:13px;color:'+dc+';">'+(diffOn!==0?(diffOn>0?'+':'')+diffOn+'°':'--')+'</div></div>'
-        +'</div></div>';
-    }
+function kanaalRij(ch, gemOn, gemOff, baseOn, baseOff, kleur) {
+  if (gemOn === undefined) return '';
+  const diffOn = gemOn - baseOn;
+  const afwijkt = gemOn !== baseOn || gemOff !== baseOff;
+  const dc = diffOn > 0 ? '#22c55e' : diffOn < 0 ? '#ef4444' : '#4a6080';
+  return '<div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid '+(afwijkt?kleur:ch.color)+';border-radius:4px;padding:10px 14px;margin-bottom:6px;">'
+    +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">'
+    +'<div style="width:8px;height:8px;border-radius:50%;background:'+ch.color+';"></div>'
+    +'<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:15px;color:#e5e7eb;flex:1;">'+ch.label+'</div>'
+    +(afwijkt?'<div style="font-size:9px;color:'+kleur+';">AFWIJKING</div>':'')
+    +'</div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center;">'
+    +'<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:6px;"><div style="font-size:8px;color:#6b7280;margin-bottom:2px;">OPTIMAAL</div><div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:13px;color:#6b7280;">'+baseOn+'°→'+baseOff+'°</div></div>'
+    +'<div style="background:#070a10;border:1px solid '+(afwijkt?kleur+'44':'#1a2540')+';border-radius:3px;padding:6px;"><div style="font-size:8px;color:#6b7280;margin-bottom:2px;">WERKELIJK</div><div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:13px;color:'+(afwijkt?kleur:'#6b7280')+';">'+gemOn+'°→'+gemOff+'°</div></div>'
+    +'<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:6px;"><div style="font-size:8px;color:#6b7280;margin-bottom:2px;">VERSCHIL</div><div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:13px;color:'+dc+';">'+(diffOn!==0?(diffOn>0?'+':'')+diffOn+'°':'--')+'</div></div>'
+    +'</div></div>';
+}
 
-    // Specifiek
-    const specOpties = geldigeOpties(r);
-    const specGem = gemiddelde(specOpties, r);
+// Specifiek
+const specOpties = geldigeOpties(r);
+const specGem = gemiddelde(specOpties, r);
 
-    // Algemeen: zelfde materiaal + dikte
-    const zelfdeRecepten = alleRecepten.filter(rec =>
-      rec.material === r.material &&
-      Math.abs(parseFloat(rec.thickness) - parseFloat(r.thickness)) < 0.001
-    );
-    const algOpties = [];
-    zelfdeRecepten.forEach(rec => geldigeOpties(rec).forEach(o => algOpties.push({...o, _baseR: rec})));
-    const algGem = gemiddelde(algOpties, r);
+// Algemeen: zelfde materiaal + dikte
+const zelfdeRecepten = alleRecepten.filter(rec =>
+  rec.material === r.material &&
+  Math.abs(parseFloat(rec.thickness) - parseFloat(r.thickness)) < 0.001
+);
+const algOpties = [];
+zelfdeRecepten.forEach(rec => geldigeOpties(rec).forEach(o => algOpties.push({...o, _baseR: rec})));
+const algGem = gemiddelde(algOpties, r);
 
-    let html = '';
+let html = '';
 
-    // Algemeen
-    html += '<div style="background:#22d3ee18;border:1px solid #22d3ee44;border-radius:4px;padding:12px 16px;margin-bottom:10px;">'
-      +'<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:15px;color:#22d3ee;">🌐 WERKELIJKE PARAMETERS ALGEMEEN</div>'
-      +'<div style="font-size:10px;color:#6b7280;margin-top:3px;">'+r.material+' · '+r.thickness+'mm · '+algOpties.length+' opties uit '+zelfdeRecepten.length+' recepten</div>'
-      +'</div>';
-    if (algGem) {
-      CHANNELS.forEach(ch => { html += kanaalRij(ch, algGem[ch.key+'_on'], algGem[ch.key+'_off'], r[ch.key+'_on'], r[ch.key+'_off'], '#22d3ee'); });
-    } else {
-      html += '<div style="text-align:center;padding:16px;font-size:10px;color:#4a6080;border:1px dashed #1a2540;border-radius:4px;margin-bottom:12px;">Nog geen opties voor '+r.material+' '+r.thickness+'mm</div>';
-    }
+// Algemeen
+html += '<div style="background:#22d3ee18;border:1px solid #22d3ee44;border-radius:4px;padding:12px 16px;margin-bottom:10px;">'
+  +'<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:15px;color:#22d3ee;">🌐 WERKELIJKE PARAMETERS ALGEMEEN</div>'
+  +'<div style="font-size:10px;color:#6b7280;margin-top:3px;">'+r.material+' · '+r.thickness+'mm · '+algOpties.length+' opties uit '+zelfdeRecepten.length+' recepten</div>'
+  +'</div>';
+if (algGem) {
+  CHANNELS.forEach(ch => { html += kanaalRij(ch, algGem[ch.key+'_on'], algGem[ch.key+'_off'], r[ch.key+'_on'], r[ch.key+'_off'], '#22d3ee'); });
+} else {
+  html += '<div style="text-align:center;padding:16px;font-size:10px;color:#4a6080;border:1px dashed #1a2540;border-radius:4px;margin-bottom:12px;">Nog geen opties voor '+r.material+' '+r.thickness+'mm</div>';
+}
 
-    // Specifiek
-    html += '<div style="background:#f59e0b18;border:1px solid #f59e0b44;border-radius:4px;padding:12px 16px;margin:14px 0 10px;">'
-      +'<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:15px;color:#f59e0b;">📌 WERKELIJKE PARAMETERS DIT RECEPT</div>'
-      +'<div style="font-size:10px;color:#6b7280;margin-top:3px;">'+r.width+'×'+r.length+'cm · '+specOpties.length+' opties</div>'
-      +'</div>';
-    if (specGem) {
-      CHANNELS.forEach(ch => { html += kanaalRij(ch, specGem[ch.key+'_on'], specGem[ch.key+'_off'], r[ch.key+'_on'], r[ch.key+'_off'], '#f59e0b'); });
-    } else {
-      html += '<div style="text-align:center;padding:16px;font-size:10px;color:#4a6080;border:1px dashed #1a2540;border-radius:4px;">Nog geen opties voor dit recept.</div>';
-    }
+// Specifiek
+html += '<div style="background:#f59e0b18;border:1px solid #f59e0b44;border-radius:4px;padding:12px 16px;margin:14px 0 10px;">'
+  +'<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:15px;color:#f59e0b;">📌 WERKELIJKE PARAMETERS DIT RECEPT</div>'
+  +'<div style="font-size:10px;color:#6b7280;margin-top:3px;">'+r.width+'×'+r.length+'cm · '+specOpties.length+' opties</div>'
+  +'</div>';
+if (specGem) {
+  CHANNELS.forEach(ch => { html += kanaalRij(ch, specGem[ch.key+'_on'], specGem[ch.key+'_off'], r[ch.key+'_on'], r[ch.key+'_off'], '#f59e0b'); });
+} else {
+  html += '<div style="text-align:center;padding:16px;font-size:10px;color:#4a6080;border:1px dashed #1a2540;border-radius:4px;">Nog geen opties voor dit recept.</div>';
+}
 
-    document.getElementById('leerdata-inhoud').innerHTML = html;
-  } catch(e) {
-    document.getElementById('leerdata-inhoud').innerHTML = '<div style="color:#ef4444;padding:20px;font-size:11px;">Fout: '+e.message+'</div>';
-  }
+document.getElementById('leerdata-inhoud').innerHTML = html;
+```
+
+} catch(e) {
+document.getElementById(‘leerdata-inhoud’).innerHTML = ‘<div style="color:#ef4444;padding:20px;font-size:11px;">Fout: ‘+e.message+’</div>’;
+}
 }
 
 function sluitLeerdata() {
-  document.getElementById('s-leerdata').classList.remove('active');
+document.getElementById(‘s-leerdata’).classList.remove(‘active’);
 }
 
 // ═══════ PROBLEEMOPLOSSING UITGEBREID ═══════
 const PROBLEMEN_UITGEBREID = {
-  krult: {
-    titel: '🌀 Zak krult op',
-    kleur: '#22d3ee',
-    oorzaak: 'De zak wordt ongelijkmatig afgekoeld of de luchtbalans tussen boven en onder klopt niet. Te veel lucht bovenin duwt de zak naar één kant waardoor hij krult.',
-    stappen: [
-      { naam: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht -- minder lucht van boven vermindert de neerwaartse druk op de zak.', timing: 'UIT-moment 10–15° eerder' },
-      { naam: 'Onderste Blazer', actie: '↑ Meer lucht', detail: 'Draaikraan iets open -- meer lucht van onder compenseert en houdt de zak recht.', timing: 'AAN-moment 10–20° eerder' },
-      { naam: 'Snelheid', actie: '↓ Iets verlagen', detail: 'Meer tijd per cyclus geeft blazers meer tijd om de zak goed te vormen.', timing: '--' },
-      { naam: 'Las Tijd', actie: '↓ Controleer temperatuur', detail: 'Te hoge lastemperatuur kan kromtrekken veroorzaken.', timing: '--' },
-    ]
-  },
-  hoeken: {
-    titel: '📐 Hoeken vouwen om',
-    kleur: '#a78bfa',
-    oorzaak: 'Te veel lucht aan één kant of het afneemmoment klopt niet. De hoeken krijgen te veel lucht en vouwen dubbel voordat de zak goed gepositioneerd is.',
-    stappen: [
-      { naam: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht -- minder turbulentie bovenin voorkomt dat hoeken omvouwen.', timing: 'UIT-moment 10–15° eerder' },
-      { naam: 'Onderste Blazer', actie: '↑ Meer lucht', detail: 'Draaikraan iets open -- ondersteunt de zak beter zodat hoeken recht blijven.', timing: 'AAN-moment 15–20° eerder' },
-      { naam: 'Uitgang 6', actie: '↑ Later aanzetten', detail: 'Geef de zak meer tijd om te settelen voor het afnemen.', timing: 'AAN-moment +10°' },
-      { naam: 'Afneem Moment', actie: '↑ Later afnemen', detail: 'Zak heeft meer tijd nodig om volledig open en recht te hangen.', timing: '+10° tot +15°' },
-    ]
-  },
-  lucht: {
-    titel: '💨 Lucht in de zak',
-    kleur: '#3b82f6',
-    oorzaak: 'De blazers blazen te lang of te hard waardoor er lucht in de gevulde zak blijft. Dit verstoort de stapeling en het pakken.',
-    stappen: [
-      { naam: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht -- minder lucht die in de zak blijft hangen.', timing: 'UIT-moment 15–20° eerder' },
-      { naam: 'Bovenste Blaaspijp', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht -- blaaspijp kan lucht vasthouden in de zak.', timing: 'UIT-moment 10° eerder' },
-      { naam: 'Uitgang 6', actie: '↑ Later AAN / eerder UIT', detail: 'Geeft de lucht kans te ontsnappen voor afnemen.', timing: 'AAN +15° / UIT -15°' },
-      { naam: 'Onderste Blaaspijp', actie: '↓ Korter open', detail: 'Minder lucht onderin vermindert luchtophoping.', timing: 'UIT-moment -10°' },
-    ]
-  },
-  stapeling: {
-    titel: '📦 Slechte stapeling',
-    kleur: '#f59e0b',
-    oorzaak: 'De zak komt niet op de juiste positie in de stapel terecht. Dit komt door verkeerd afneemmoment, te weinig of te veel afneemlucht.',
-    stappen: [
-      { naam: 'Uitgang 6', actie: '↑ Meer lucht / langer AAN', detail: 'Draaikraan iets open -- meer kracht om de zak goed op de stapel te plaatsen.', timing: 'UIT-moment +15–20°' },
-      { naam: 'Afneem Moment', actie: '↑ Later afnemen', detail: 'Zak moet volledig open zijn voor een goede stapeling.', timing: '+10° tot +15°' },
-      { naam: 'Onderste Blazer', actie: '↓ Minder lucht', detail: 'Te veel onderlucht kan de zak scheef blazen bij afnemen.', timing: 'UIT-moment -10°' },
-      { naam: 'Snelheid', actie: '↓ Iets verlagen', detail: 'Meer tijd per cyclus verbetert de stapeling.', timing: '--' },
-    ]
-  },
-  statisch: {
-    titel: '⚡ Statische Elektriciteit',
-    kleur: '#f59e0b',
-    oorzaak: 'Statische elektriciteit is een balans. Te weinig = zakken stapelen slecht en schuiven weg. Te veel op de klep = zak plakt dicht en klant krijgt hem niet open voor het brood. Bodem mag meer statisch hebben dan de klep.',
-    stappen: [
-      { naam: 'Statisch bodem', actie: '↑ Meer', detail: 'Meer statisch op de bodem zorgt dat zakken beter op elkaar blijven liggen in de stapel.', timing: null },
-      { naam: 'Statisch bodem', actie: '↓ Minder', detail: 'Als zakken scheef trekken bij stapelen, statisch op bodem verlagen.', timing: null },
-      { naam: 'Statisch klep', actie: '⚠ Voorzichtig', detail: 'Te veel statisch op klep zorgt dat zak dichtplakt -- klant krijgt hem niet open voor het brood.', timing: null },
-      { naam: 'Statisch klep', actie: '↓ Altijd matig', detail: 'Klep mag licht statisch zijn voor nette stapeling maar nooit zoveel dat hij vastplakt.', timing: null },
-      { naam: 'Balans', actie: '⚖ Afstemmen', detail: 'Pas bodem en klep apart aan. Test altijd of klant de zak nog goed kan openen na aanpassing.', timing: null },
-    ]
-  },
+krult: {
+titel: ‘🌀 Zak krult op’,
+kleur: ‘#22d3ee’,
+oorzaak: ‘De zak wordt ongelijkmatig afgekoeld of de luchtbalans tussen boven en onder klopt niet. Te veel lucht bovenin duwt de zak naar één kant waardoor hij krult.’,
+stappen: [
+{ naam: ‘Bovenste Blazer’, actie: ‘↓ Minder lucht’, detail: ‘Draaikraan iets dicht -- minder lucht van boven vermindert de neerwaartse druk op de zak.’, timing: ‘UIT-moment 10–15° eerder’ },
+{ naam: ‘Onderste Blazer’, actie: ‘↑ Meer lucht’, detail: ‘Draaikraan iets open -- meer lucht van onder compenseert en houdt de zak recht.’, timing: ‘AAN-moment 10–20° eerder’ },
+{ naam: ‘Snelheid’, actie: ‘↓ Iets verlagen’, detail: ‘Meer tijd per cyclus geeft blazers meer tijd om de zak goed te vormen.’, timing: ‘--’ },
+{ naam: ‘Las Tijd’, actie: ‘↓ Controleer temperatuur’, detail: ‘Te hoge lastemperatuur kan kromtrekken veroorzaken.’, timing: ‘--’ },
+]
+},
+hoeken: {
+titel: ‘📐 Hoeken vouwen om’,
+kleur: ‘#a78bfa’,
+oorzaak: ‘Te veel lucht aan één kant of het afneemmoment klopt niet. De hoeken krijgen te veel lucht en vouwen dubbel voordat de zak goed gepositioneerd is.’,
+stappen: [
+{ naam: ‘Bovenste Blazer’, actie: ‘↓ Minder lucht’, detail: ‘Draaikraan iets dicht -- minder turbulentie bovenin voorkomt dat hoeken omvouwen.’, timing: ‘UIT-moment 10–15° eerder’ },
+{ naam: ‘Onderste Blazer’, actie: ‘↑ Meer lucht’, detail: ‘Draaikraan iets open -- ondersteunt de zak beter zodat hoeken recht blijven.’, timing: ‘AAN-moment 15–20° eerder’ },
+{ naam: ‘Uitgang 6’, actie: ‘↑ Later aanzetten’, detail: ‘Geef de zak meer tijd om te settelen voor het afnemen.’, timing: ‘AAN-moment +10°’ },
+{ naam: ‘Afneem Moment’, actie: ‘↑ Later afnemen’, detail: ‘Zak heeft meer tijd nodig om volledig open en recht te hangen.’, timing: ‘+10° tot +15°’ },
+]
+},
+lucht: {
+titel: ‘💨 Lucht in de zak’,
+kleur: ‘#3b82f6’,
+oorzaak: ‘De blazers blazen te lang of te hard waardoor er lucht in de gevulde zak blijft. Dit verstoort de stapeling en het pakken.’,
+stappen: [
+{ naam: ‘Bovenste Blazer’, actie: ‘↓ Minder lucht’, detail: ‘Draaikraan iets dicht -- minder lucht die in de zak blijft hangen.’, timing: ‘UIT-moment 15–20° eerder’ },
+{ naam: ‘Bovenste Blaaspijp’, actie: ‘↓ Minder lucht’, detail: ‘Draaikraan iets dicht -- blaaspijp kan lucht vasthouden in de zak.’, timing: ‘UIT-moment 10° eerder’ },
+{ naam: ‘Uitgang 6’, actie: ‘↑ Later AAN / eerder UIT’, detail: ‘Geeft de lucht kans te ontsnappen voor afnemen.’, timing: ‘AAN +15° / UIT -15°’ },
+{ naam: ‘Onderste Blaaspijp’, actie: ‘↓ Korter open’, detail: ‘Minder lucht onderin vermindert luchtophoping.’, timing: ‘UIT-moment -10°’ },
+]
+},
+stapeling: {
+titel: ‘📦 Slechte stapeling’,
+kleur: ‘#f59e0b’,
+oorzaak: ‘De zak komt niet op de juiste positie in de stapel terecht. Dit komt door verkeerd afneemmoment, te weinig of te veel afneemlucht.’,
+stappen: [
+{ naam: ‘Uitgang 6’, actie: ‘↑ Meer lucht / langer AAN’, detail: ‘Draaikraan iets open -- meer kracht om de zak goed op de stapel te plaatsen.’, timing: ‘UIT-moment +15–20°’ },
+{ naam: ‘Afneem Moment’, actie: ‘↑ Later afnemen’, detail: ‘Zak moet volledig open zijn voor een goede stapeling.’, timing: ‘+10° tot +15°’ },
+{ naam: ‘Onderste Blazer’, actie: ‘↓ Minder lucht’, detail: ‘Te veel onderlucht kan de zak scheef blazen bij afnemen.’, timing: ‘UIT-moment -10°’ },
+{ naam: ‘Snelheid’, actie: ‘↓ Iets verlagen’, detail: ‘Meer tijd per cyclus verbetert de stapeling.’, timing: ‘--’ },
+]
+},
+statisch: {
+titel: ‘⚡ Statische Elektriciteit’,
+kleur: ‘#f59e0b’,
+oorzaak: ‘Statische elektriciteit is een balans. Te weinig = zakken stapelen slecht en schuiven weg. Te veel op de klep = zak plakt dicht en klant krijgt hem niet open voor het brood. Bodem mag meer statisch hebben dan de klep.’,
+stappen: [
+{ naam: ‘Statisch bodem’, actie: ‘↑ Meer’, detail: ‘Meer statisch op de bodem zorgt dat zakken beter op elkaar blijven liggen in de stapel.’, timing: null },
+{ naam: ‘Statisch bodem’, actie: ‘↓ Minder’, detail: ‘Als zakken scheef trekken bij stapelen, statisch op bodem verlagen.’, timing: null },
+{ naam: ‘Statisch klep’, actie: ‘⚠ Voorzichtig’, detail: ‘Te veel statisch op klep zorgt dat zak dichtplakt -- klant krijgt hem niet open voor het brood.’, timing: null },
+{ naam: ‘Statisch klep’, actie: ‘↓ Altijd matig’, detail: ‘Klep mag licht statisch zijn voor nette stapeling maar nooit zoveel dat hij vastplakt.’, timing: null },
+{ naam: ‘Balans’, actie: ‘⚖ Afstemmen’, detail: ‘Pas bodem en klep apart aan. Test altijd of klant de zak nog goed kan openen na aanpassing.’, timing: null },
+]
+},
 };
 
 function toonUitgebreidProbleem(type) {
-  const p = PROBLEMEN_UITGEBREID[type];
-  document.getElementById('prob-uitg-titel').textContent = p.titel;
-  document.getElementById('prob-uitg-inhoud').innerHTML = `
-    <div style="background:${p.kleur}18;border:1px solid ${p.kleur}44;border-radius:4px;padding:14px 16px;margin-bottom:16px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:${p.kleur};margin-bottom:6px;">OORZAAK</div>
-      <div style="font-size:13px;color:#c8d8e8;line-height:1.7;">${p.oorzaak}</div>
-    </div>
-    <div class="slabel">Wat aanpassen</div>
-    ${p.stappen.map(s => `
-      <div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid ${p.kleur};border-radius:4px;padding:14px 16px;margin-bottom:8px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;">${s.naam}</div>
-          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:${p.kleur};">${s.actie}</div>
-        </div>
-        <div style="font-size:12px;color:#9ca3af;line-height:1.6;margin-bottom:6px;">${s.detail}</div>
-        ${s.timing !== '--' ? `<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:6px 10px;font-size:11px;color:#f59e0b;font-family:'Share Tech Mono',monospace;">⏱ Timing: ${s.timing}</div>` : ''}
-      </div>`).join('')}
-    <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px;margin-top:8px;font-size:12px;color:#6b7280;line-height:1.8;">
-      💡 Pas één parameter tegelijk aan. Test na elke aanpassing 10–15 zakken voor je verder gaat.
-    </div>`;
-  document.getElementById('s-probleem-uitgebreid').classList.add('active');
+const p = PROBLEMEN_UITGEBREID[type];
+document.getElementById(‘prob-uitg-titel’).textContent = p.titel;
+document.getElementById(‘prob-uitg-inhoud’).innerHTML = `<div style="background:${p.kleur}18;border:1px solid ${p.kleur}44;border-radius:4px;padding:14px 16px;margin-bottom:16px;"> <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:${p.kleur};margin-bottom:6px;">OORZAAK</div> <div style="font-size:13px;color:#c8d8e8;line-height:1.7;">${p.oorzaak}</div> </div> <div class="slabel">Wat aanpassen</div> ${p.stappen.map(s =>`
+<div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid ${p.kleur};border-radius:4px;padding:14px 16px;margin-bottom:8px;">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+<div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;">${s.naam}</div>
+<div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:${p.kleur};">${s.actie}</div>
+</div>
+<div style="font-size:12px;color:#9ca3af;line-height:1.6;margin-bottom:6px;">${s.detail}</div>
+${s.timing !== ‘--’ ? `<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:6px 10px;font-size:11px;color:#f59e0b;font-family:'Share Tech Mono',monospace;">⏱ Timing: ${s.timing}</div>` : ‘’}
+</div>`).join('')} <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px;margin-top:8px;font-size:12px;color:#6b7280;line-height:1.8;"> 💡 Pas één parameter tegelijk aan. Test na elke aanpassing 10–15 zakken voor je verder gaat. </div>`;
+document.getElementById(‘s-probleem-uitgebreid’).classList.add(‘active’);
 }
 
 function sluitUitgebreidProbleem() {
-  document.getElementById('s-probleem-uitgebreid').classList.remove('active');
+document.getElementById(‘s-probleem-uitgebreid’).classList.remove(‘active’);
 }
 const PROBLEMEN = {
-  lucht: {
-    titel: '💨 Lucht in de zak', kleur: '#3b82f6',
-    acties: [
-      { kanaal: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht -- minder lucht wordt ingesloten bij stapelen.', timing: 'UIT-moment 15–20° eerder' },
-      { kanaal: 'Onderste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht.', timing: 'UIT-moment 10–15° eerder' },
-      { kanaal: 'Bovenste Blaaspijp', actie: '↓ Minder / korter', detail: 'Draaikraan iets dicht.', timing: 'UIT-moment 10° eerder' },
-      { kanaal: 'Onderste Blaaspijp', actie: '↓ Korter open', detail: 'Minder lucht ophoping onderin zak.', timing: 'UIT -10°' },
-      { kanaal: 'Uitgang 6', actie: 'Later AAN / eerder UIT', detail: 'Geeft lucht kans te ontsnappen voor afleggen op stapel.', timing: 'AAN +15° / UIT -15°' },
-      { kanaal: 'Afneem Moment', actie: '↑ Later', detail: 'Meer tijd zodat lucht kan ontsnappen voor stapelen.', timing: '+10°' },
-      { kanaal: 'Snelheid', actie: '↓ Verlagen', detail: 'Meer tijd per cyclus = minder lucht ingesloten.', timing: null },
-    ]
-  },
-  krult: {
-    titel: '🌀 Zak krult op', kleur: '#22d3ee',
-    acties: [
-      { kanaal: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht -- minder neerwaartse druk op zak.', timing: 'UIT-moment 10–15° eerder' },
-      { kanaal: 'Onderste Blazer', actie: '↑ Meer lucht', detail: 'Draaikraan iets open -- compenseert van onder zodat zak recht valt.', timing: 'AAN-moment 10–20° eerder' },
-      { kanaal: 'Uitgang 6', actie: '↓ Minder kracht', detail: 'Te veel afneemkracht kan zak doen krullen.', timing: 'UIT -10°' },
-      { kanaal: 'Afneem Moment', actie: '↑ Later', detail: 'Zak meer tijd geven om recht te vallen.', timing: '+10°' },
-      { kanaal: 'Folie Spanning', actie: '↓ Verlagen', detail: 'Te strakke spanning trekt zak krom. Dancer iets losser -- check spanning eerst!', timing: null },
-      { kanaal: 'Las Tijd', actie: '↓ Korter', detail: 'Kortere verblijftijd sealbalk = minder warmte = minder kans op kromtrekken.', timing: null },
-      { kanaal: 'Snelheid', actie: '↓ Verlagen', detail: 'Meer tijd per cyclus voor correcte aflegging.', timing: null },
-    ]
-  },
-  hoeken: {
-    titel: '📐 Hoeken vouwen om', kleur: '#a78bfa',
-    acties: [
-      { kanaal: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Draaikraan iets dicht -- minder turbulentie waardoor hoeken omvouwen.', timing: 'UIT-moment 10–15° eerder' },
-      { kanaal: 'Onderste Blazer', actie: '↑ Meer lucht', detail: 'Draaikraan iets open -- ondersteunt zak zodat hoeken recht blijven.', timing: 'AAN-moment 15–20° eerder' },
-      { kanaal: 'Uitgang 6', actie: '↑ Later aanzetten', detail: 'Geeft zak meer tijd om recht te hangen voor afnemen.', timing: 'AAN +10°' },
-      { kanaal: 'Afneem Moment', actie: '↑ Later', detail: 'Zak heeft meer tijd nodig om volledig recht te hangen.', timing: '+10° tot +15°' },
-      { kanaal: 'Start Doorvoer', actie: 'Controleer', detail: 'Folie moet goed gespannen zijn anders vouwen hoeken makkelijker om.', timing: null },
-      { kanaal: 'Snelheid', actie: '↓ Verlagen', detail: 'Meer tijd zodat zak correct en strak valt.', timing: null },
-    ]
-  },
-  stapeling: {
-    titel: '📦 Slechte stapeling', kleur: '#f59e0b',
-    acties: [
-      { kanaal: 'Uitgang 6', actie: '↑ Meer lucht / langer', detail: 'Draaikraan iets open -- meer kracht om zak goed op pennen te plaatsen.', timing: 'UIT +15–20°' },
-      { kanaal: 'Afneem Moment', actie: 'Controleer timing', detail: 'Te vroeg of te laat afnemen geeft slechte positionering op pennen.', timing: '±10°' },
-      { kanaal: 'Bovenste Blazer', actie: '↓ Minder lucht', detail: 'Te veel lucht blaast zak voorbij de pennen.', timing: 'UIT -10°' },
-      { kanaal: 'Onderste Blazer', actie: '↓ Minder lucht', detail: 'Te veel onderlucht blaast zak scheef langs de pennen.', timing: 'UIT -10°' },
-      { kanaal: 'Folie Spanning', actie: '↑ Iets strakker', detail: 'Te slappe spanning geeft onrustige baan en slechte positionering op pennen.', timing: null },
-      { kanaal: 'Stop Doorvoer', actie: 'Controleer', detail: 'Zaklengte moet kloppen voor goede positionering op pennen.', timing: null },
-      { kanaal: 'Snelheid', actie: '↓ Verlagen', detail: 'Meer tijd verbetert nauwkeurigheid van stapeling.', timing: null },
-    ]
-  },
-  statisch: {
-    titel: '⚡ Statische Elektriciteit', kleur: '#f59e0b',
-    acties: [
-      { kanaal: 'Statisch op bodem', actie: '↑ Meer', detail: 'Meer statisch op de bodem zorgt dat zakken beter op elkaar blijven liggen in de stapel.', timing: null },
-      { kanaal: 'Statisch op bodem', actie: '↓ Minder', detail: 'Te veel statisch op bodem kan zakken scheef trekken bij stapelen.', timing: null },
-      { kanaal: 'Statisch op klep', actie: '⚠ Voorzichtig', detail: 'Te veel statisch op klep zorgt dat zak dichtplakt -- klant krijgt hem niet open voor het brood.', timing: null },
-      { kanaal: 'Statisch op klep', actie: '↓ Altijd matig houden', detail: 'Klep mag licht statisch zijn voor nette stapeling maar nooit zoveel dat hij vastplakt.', timing: null },
-      { kanaal: 'Balans bodem/klep', actie: '⚖ Afstemmen', detail: 'Bodem mag meer statisch hebben dan de klep. Test altijd of klant de zak nog goed kan openen.', timing: null },
-    ]
-  },
+lucht: {
+titel: ‘💨 Lucht in de zak’, kleur: ‘#3b82f6’,
+acties: [
+{ kanaal: ‘Bovenste Blazer’, actie: ‘↓ Minder lucht’, detail: ‘Draaikraan iets dicht -- minder lucht wordt ingesloten bij stapelen.’, timing: ‘UIT-moment 15–20° eerder’ },
+{ kanaal: ‘Onderste Blazer’, actie: ‘↓ Minder lucht’, detail: ‘Draaikraan iets dicht.’, timing: ‘UIT-moment 10–15° eerder’ },
+{ kanaal: ‘Bovenste Blaaspijp’, actie: ‘↓ Minder / korter’, detail: ‘Draaikraan iets dicht.’, timing: ‘UIT-moment 10° eerder’ },
+{ kanaal: ‘Onderste Blaaspijp’, actie: ‘↓ Korter open’, detail: ‘Minder lucht ophoping onderin zak.’, timing: ‘UIT -10°’ },
+{ kanaal: ‘Uitgang 6’, actie: ‘Later AAN / eerder UIT’, detail: ‘Geeft lucht kans te ontsnappen voor afleggen op stapel.’, timing: ‘AAN +15° / UIT -15°’ },
+{ kanaal: ‘Afneem Moment’, actie: ‘↑ Later’, detail: ‘Meer tijd zodat lucht kan ontsnappen voor stapelen.’, timing: ‘+10°’ },
+{ kanaal: ‘Snelheid’, actie: ‘↓ Verlagen’, detail: ‘Meer tijd per cyclus = minder lucht ingesloten.’, timing: null },
+]
+},
+krult: {
+titel: ‘🌀 Zak krult op’, kleur: ‘#22d3ee’,
+acties: [
+{ kanaal: ‘Bovenste Blazer’, actie: ‘↓ Minder lucht’, detail: ‘Draaikraan iets dicht -- minder neerwaartse druk op zak.’, timing: ‘UIT-moment 10–15° eerder’ },
+{ kanaal: ‘Onderste Blazer’, actie: ‘↑ Meer lucht’, detail: ‘Draaikraan iets open -- compenseert van onder zodat zak recht valt.’, timing: ‘AAN-moment 10–20° eerder’ },
+{ kanaal: ‘Uitgang 6’, actie: ‘↓ Minder kracht’, detail: ‘Te veel afneemkracht kan zak doen krullen.’, timing: ‘UIT -10°’ },
+{ kanaal: ‘Afneem Moment’, actie: ‘↑ Later’, detail: ‘Zak meer tijd geven om recht te vallen.’, timing: ‘+10°’ },
+{ kanaal: ‘Folie Spanning’, actie: ‘↓ Verlagen’, detail: ‘Te strakke spanning trekt zak krom. Dancer iets losser -- check spanning eerst!’, timing: null },
+{ kanaal: ‘Las Tijd’, actie: ‘↓ Korter’, detail: ‘Kortere verblijftijd sealbalk = minder warmte = minder kans op kromtrekken.’, timing: null },
+{ kanaal: ‘Snelheid’, actie: ‘↓ Verlagen’, detail: ‘Meer tijd per cyclus voor correcte aflegging.’, timing: null },
+]
+},
+hoeken: {
+titel: ‘📐 Hoeken vouwen om’, kleur: ‘#a78bfa’,
+acties: [
+{ kanaal: ‘Bovenste Blazer’, actie: ‘↓ Minder lucht’, detail: ‘Draaikraan iets dicht -- minder turbulentie waardoor hoeken omvouwen.’, timing: ‘UIT-moment 10–15° eerder’ },
+{ kanaal: ‘Onderste Blazer’, actie: ‘↑ Meer lucht’, detail: ‘Draaikraan iets open -- ondersteunt zak zodat hoeken recht blijven.’, timing: ‘AAN-moment 15–20° eerder’ },
+{ kanaal: ‘Uitgang 6’, actie: ‘↑ Later aanzetten’, detail: ‘Geeft zak meer tijd om recht te hangen voor afnemen.’, timing: ‘AAN +10°’ },
+{ kanaal: ‘Afneem Moment’, actie: ‘↑ Later’, detail: ‘Zak heeft meer tijd nodig om volledig recht te hangen.’, timing: ‘+10° tot +15°’ },
+{ kanaal: ‘Start Doorvoer’, actie: ‘Controleer’, detail: ‘Folie moet goed gespannen zijn anders vouwen hoeken makkelijker om.’, timing: null },
+{ kanaal: ‘Snelheid’, actie: ‘↓ Verlagen’, detail: ‘Meer tijd zodat zak correct en strak valt.’, timing: null },
+]
+},
+stapeling: {
+titel: ‘📦 Slechte stapeling’, kleur: ‘#f59e0b’,
+acties: [
+{ kanaal: ‘Uitgang 6’, actie: ‘↑ Meer lucht / langer’, detail: ‘Draaikraan iets open -- meer kracht om zak goed op pennen te plaatsen.’, timing: ‘UIT +15–20°’ },
+{ kanaal: ‘Afneem Moment’, actie: ‘Controleer timing’, detail: ‘Te vroeg of te laat afnemen geeft slechte positionering op pennen.’, timing: ‘±10°’ },
+{ kanaal: ‘Bovenste Blazer’, actie: ‘↓ Minder lucht’, detail: ‘Te veel lucht blaast zak voorbij de pennen.’, timing: ‘UIT -10°’ },
+{ kanaal: ‘Onderste Blazer’, actie: ‘↓ Minder lucht’, detail: ‘Te veel onderlucht blaast zak scheef langs de pennen.’, timing: ‘UIT -10°’ },
+{ kanaal: ‘Folie Spanning’, actie: ‘↑ Iets strakker’, detail: ‘Te slappe spanning geeft onrustige baan en slechte positionering op pennen.’, timing: null },
+{ kanaal: ‘Stop Doorvoer’, actie: ‘Controleer’, detail: ‘Zaklengte moet kloppen voor goede positionering op pennen.’, timing: null },
+{ kanaal: ‘Snelheid’, actie: ‘↓ Verlagen’, detail: ‘Meer tijd verbetert nauwkeurigheid van stapeling.’, timing: null },
+]
+},
+statisch: {
+titel: ‘⚡ Statische Elektriciteit’, kleur: ‘#f59e0b’,
+acties: [
+{ kanaal: ‘Statisch op bodem’, actie: ‘↑ Meer’, detail: ‘Meer statisch op de bodem zorgt dat zakken beter op elkaar blijven liggen in de stapel.’, timing: null },
+{ kanaal: ‘Statisch op bodem’, actie: ‘↓ Minder’, detail: ‘Te veel statisch op bodem kan zakken scheef trekken bij stapelen.’, timing: null },
+{ kanaal: ‘Statisch op klep’, actie: ‘⚠ Voorzichtig’, detail: ‘Te veel statisch op klep zorgt dat zak dichtplakt -- klant krijgt hem niet open voor het brood.’, timing: null },
+{ kanaal: ‘Statisch op klep’, actie: ‘↓ Altijd matig houden’, detail: ‘Klep mag licht statisch zijn voor nette stapeling maar nooit zoveel dat hij vastplakt.’, timing: null },
+{ kanaal: ‘Balans bodem/klep’, actie: ‘⚖ Afstemmen’, detail: ‘Bodem mag meer statisch hebben dan de klep. Test altijd of klant de zak nog goed kan openen.’, timing: null },
+]
+},
 };
 
 function toonProbleemKeuze() {
-  document.getElementById('probleem-keuze-overlay').classList.add('active');
+document.getElementById(‘probleem-keuze-overlay’).classList.add(‘active’);
 }
 
 function sluitProbleemKeuze() {
-  document.getElementById('probleem-keuze-overlay').classList.remove('active');
+document.getElementById(‘probleem-keuze-overlay’).classList.remove(‘active’);
 }
 
 function toonProbleem(type) {
-  // Sluit keuze maar laat overlay open op de achtergrond
-  document.getElementById('probleem-keuze-overlay').classList.remove('active');
-  const p = PROBLEMEN[type];
-  document.getElementById('probleem-titel').textContent = p.titel;
-  document.getElementById('probleem-inhoud').innerHTML = `
-    <div style="background:${p.kleur}18;border:1px solid ${p.kleur}44;border-radius:4px;padding:14px;margin-bottom:16px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:${p.kleur};">Directe aanpassingen</div>
-      <div style="font-size:12px;color:#9ca3af;margin-top:4px;">Pas één parameter tegelijk aan, test 10–15 zakken.</div>
-    </div>
-    ${p.acties.map(a => `
-      <div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid ${p.kleur};border-radius:4px;padding:12px 14px;margin-bottom:8px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
-          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#e5e7eb;">${a.kanaal}</div>
-          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:${p.kleur};">${a.actie}</div>
-        </div>
-        <div style="font-size:11px;color:#9ca3af;margin-bottom:${a.timing ? '6px' : '0'};">${a.detail}</div>
-        ${a.timing ? `<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:5px 10px;font-size:10px;color:#f59e0b;font-family:'Share Tech Mono',monospace;">⏱ ${a.timing}</div>` : ''}
-      </div>`).join('')}`;
-  document.getElementById('s-probleem').classList.add('active');
+// Sluit keuze maar laat overlay open op de achtergrond
+document.getElementById(‘probleem-keuze-overlay’).classList.remove(‘active’);
+const p = PROBLEMEN[type];
+document.getElementById(‘probleem-titel’).textContent = p.titel;
+document.getElementById(‘probleem-inhoud’).innerHTML = `<div style="background:${p.kleur}18;border:1px solid ${p.kleur}44;border-radius:4px;padding:14px;margin-bottom:16px;"> <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:${p.kleur};">Directe aanpassingen</div> <div style="font-size:12px;color:#9ca3af;margin-top:4px;">Pas één parameter tegelijk aan, test 10–15 zakken.</div> </div> ${p.acties.map(a =>`
+<div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid ${p.kleur};border-radius:4px;padding:12px 14px;margin-bottom:8px;">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+<div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#e5e7eb;">${a.kanaal}</div>
+<div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:${p.kleur};">${a.actie}</div>
+</div>
+<div style="font-size:11px;color:#9ca3af;margin-bottom:${a.timing ? '6px' : '0'};">${a.detail}</div>
+${a.timing ? `<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:5px 10px;font-size:10px;color:#f59e0b;font-family:'Share Tech Mono',monospace;">⏱ ${a.timing}</div>` : ‘’}
+</div>`).join('')}`;
+document.getElementById(‘s-probleem’).classList.add(‘active’);
 }
 
 function sluitProbleem() {
-  // Terug naar keuze scherm, niet naar recept
-  document.getElementById('s-probleem').classList.remove('active');
-  document.getElementById('probleem-keuze-overlay').classList.add('active');
+// Terug naar keuze scherm, niet naar recept
+document.getElementById(‘s-probleem’).classList.remove(‘active’);
+document.getElementById(‘probleem-keuze-overlay’).classList.add(‘active’);
 }
 
+// ═══════ OPMERKING ═══════
+async function slaOpmerkingOp(key) {
+var tekst = document.getElementById(‘opmerking-input’).value.trim();
+await fbPatch(‘recepten/’ + key, { opmerking: tekst });
+var r = _recepten.find(function(x) { return x._key === key; });
+if (r) r.opmerking = tekst;
+toast(‘Opmerking opgeslagen’);
+renderDetail(r);
+}
 
 // ═══════ TOEBEHOREN ═══════
 function toggleToebehoren() {
-  var inhoud = document.getElementById('toebehoren-inhoud');
-  var chevron = document.getElementById('toebehoren-chevron');
-  var isOpen = inhoud.style.display !== 'none';
-  inhoud.style.display = isOpen ? 'none' : 'block';
-  chevron.style.transform = isOpen ? '' : 'rotate(90deg)';
+var inhoud = document.getElementById(‘toebehoren-inhoud’);
+var chevron = document.getElementById(‘toebehoren-chevron’);
+var isOpen = inhoud.style.display !== ‘none’;
+inhoud.style.display = isOpen ? ‘none’ : ‘block’;
+chevron.style.transform = isOpen ? ‘’ : ‘rotate(90deg)’;
 }
 
-let _fotoLabel = '';
+let _fotoLabel = ‘’;
 let _fotoFile = null;
 let _fotoReceptKey = null;
 
 function openFotoOverlay(receptKey) {
-  _fotoReceptKey = receptKey;
-  _fotoLabel = '';
-  _fotoFile = null;
-  document.getElementById('foto-label-keuze').style.display = 'block';
-  document.getElementById('foto-upload-sectie').style.display = 'none';
-  document.getElementById('foto-preview-wrap').style.display = 'none';
-  document.getElementById('btn-foto-upload').style.display = 'none';
-  document.getElementById('foto-upload-voortgang').style.display = 'none';
-  document.getElementById('foto-overlay').classList.add('active');
+_fotoReceptKey = receptKey;
+_fotoLabel = ‘’;
+_fotoFile = null;
+document.getElementById(‘foto-label-keuze’).style.display = ‘block’;
+document.getElementById(‘foto-upload-sectie’).style.display = ‘none’;
+document.getElementById(‘foto-preview-wrap’).style.display = ‘none’;
+document.getElementById(‘btn-foto-upload’).style.display = ‘none’;
+document.getElementById(‘foto-upload-voortgang’).style.display = ‘none’;
+document.getElementById(‘foto-overlay’).classList.add(‘active’);
 }
 
 function sluitFotoOverlay() {
-  document.getElementById('foto-overlay').classList.remove('active');
+document.getElementById(‘foto-overlay’).classList.remove(‘active’);
 }
 
 function kiesFotoLabel(label) {
-  _fotoLabel = label;
-  document.getElementById('foto-gekozen-label').textContent = '📷 ' + label;
-  document.getElementById('foto-label-keuze').style.display = 'none';
-  document.getElementById('foto-upload-sectie').style.display = 'block';
+_fotoLabel = label;
+document.getElementById(‘foto-gekozen-label’).textContent = ’📷 ’ + label;
+document.getElementById(‘foto-label-keuze’).style.display = ‘none’;
+document.getElementById(‘foto-upload-sectie’).style.display = ‘block’;
 }
 
 function terugnaarLabels() {
-  document.getElementById('foto-label-keuze').style.display = 'block';
-  document.getElementById('foto-upload-sectie').style.display = 'none';
-  document.getElementById('foto-preview-wrap').style.display = 'none';
-  document.getElementById('btn-foto-upload').style.display = 'none';
+document.getElementById(‘foto-label-keuze’).style.display = ‘block’;
+document.getElementById(‘foto-upload-sectie’).style.display = ‘none’;
+document.getElementById(‘foto-preview-wrap’).style.display = ‘none’;
+document.getElementById(‘btn-foto-upload’).style.display = ‘none’;
 }
 
 function fotoGekozen(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  _fotoFile = file;
-  // Toon preview
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    document.getElementById('foto-preview').src = e.target.result;
-    document.getElementById('foto-preview-wrap').style.display = 'block';
-    document.getElementById('foto-bestandsinfo').textContent = (file.size / 1024).toFixed(0) + ' KB -- wordt verkleind voor upload';
-    document.getElementById('btn-foto-upload').style.display = 'block';
-  };
-  reader.readAsDataURL(file);
+const file = event.target.files[0];
+if (!file) return;
+_fotoFile = file;
+// Toon preview
+const reader = new FileReader();
+reader.onload = function(e) {
+document.getElementById(‘foto-preview’).src = e.target.result;
+document.getElementById(‘foto-preview-wrap’).style.display = ‘block’;
+document.getElementById(‘foto-bestandsinfo’).textContent = (file.size / 1024).toFixed(0) + ’ KB -- wordt verkleind voor upload’;
+document.getElementById(‘btn-foto-upload’).style.display = ‘block’;
+};
+reader.readAsDataURL(file);
 }
 
 async function uploadFoto() {
-  if (!_fotoFile || !_fotoReceptKey) return;
-  document.getElementById('btn-foto-upload').style.display = 'none';
-  document.getElementById('foto-upload-voortgang').style.display = 'block';
+if (!_fotoFile || !_fotoReceptKey) return;
+document.getElementById(‘btn-foto-upload’).style.display = ‘none’;
+document.getElementById(‘foto-upload-voortgang’).style.display = ‘block’;
 
-  // Verkleinen via canvas (max 1200px breed, kwaliteit 0.8)
-  const verkleindBlob = await verkleinfoto(_fotoFile, 1200, 0.8);
-  document.getElementById('foto-pct').textContent = '30';
+// Verkleinen via canvas (max 1200px breed, kwaliteit 0.8)
+const verkleindBlob = await verkleinfoto(_fotoFile, 1200, 0.8);
+document.getElementById(‘foto-pct’).textContent = ‘30’;
 
-  // Upload naar Firebase Storage
-  const bestandsnaam = 'recepten/' + _fotoReceptKey + '/' + _fotoLabel + '_' + Date.now() + '.jpg';
-  const uploadUrl = FB_STORAGE + '/' + encodeURIComponent(bestandsnaam) + '?uploadType=media';
+// Upload naar Firebase Storage
+const bestandsnaam = ‘recepten/’ + _fotoReceptKey + ‘/’ + *fotoLabel + ’*’ + Date.now() + ‘.jpg’;
+const uploadUrl = FB_STORAGE + ‘/’ + encodeURIComponent(bestandsnaam) + ‘?uploadType=media’;
 
-  try {
-    document.getElementById('foto-pct').textContent = '60';
-    const res = await fetch(uploadUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'image/jpeg' },
-      body: verkleindBlob
-    });
-    const data = await res.json();
-    document.getElementById('foto-pct').textContent = '90';
+try {
+document.getElementById(‘foto-pct’).textContent = ‘60’;
+const res = await fetch(uploadUrl, {
+method: ‘POST’,
+headers: { ‘Content-Type’: ‘image/jpeg’ },
+body: verkleindBlob
+});
+const data = await res.json();
+document.getElementById(‘foto-pct’).textContent = ‘90’;
 
-    // Bouw download URL
-    const downloadUrl = FB_STORAGE + '/' + encodeURIComponent(bestandsnaam) + '?alt=media';
+```
+// Bouw download URL
+const downloadUrl = FB_STORAGE + '/' + encodeURIComponent(bestandsnaam) + '?alt=media';
 
-    // Sla URL op in Firebase database
-    const fotoObj = { label: _fotoLabel, url: downloadUrl, datum: new Date().toISOString().split('T')[0], operator: _operator || '' };
-    await fbPost('recepten/' + _fotoReceptKey + '/fotos', fotoObj);
+// Sla URL op in Firebase database
+const fotoObj = { label: _fotoLabel, url: downloadUrl, datum: new Date().toISOString().split('T')[0], operator: _operator || '' };
+await fbPost('recepten/' + _fotoReceptKey + '/fotos', fotoObj);
 
-    // Update lokale data
-    const r = _recepten.find(x => x._key === _fotoReceptKey);
-    if (r) {
-      if (!r.fotos) r.fotos = {};
-      r.fotos[Date.now()] = fotoObj;
-    }
+// Update lokale data
+const r = _recepten.find(x => x._key === _fotoReceptKey);
+if (r) {
+  if (!r.fotos) r.fotos = {};
+  r.fotos[Date.now()] = fotoObj;
+}
 
-    document.getElementById('foto-pct').textContent = '100';
-    toast("Foto opgeslagen!");
-    sluitFotoOverlay();
+document.getElementById('foto-pct').textContent = '100';
+toast("Foto opgeslagen!");
+sluitFotoOverlay();
 
-    // Herlaad detail als we er zijn
-    if (_huidigReceptKey === _fotoReceptKey && _huidigRecept) {
-      _huidigRecept = _recepten.find(x => x._key === _fotoReceptKey);
-      renderDetail(_huidigRecept);
-    }
-  } catch(e) {
-    toast('Upload mislukt: ' + e.message, true);
-    document.getElementById('foto-upload-voortgang').style.display = 'none';
-    document.getElementById('btn-foto-upload').style.display = 'block';
-  }
+// Herlaad detail als we er zijn
+if (_huidigReceptKey === _fotoReceptKey && _huidigRecept) {
+  _huidigRecept = _recepten.find(x => x._key === _fotoReceptKey);
+  renderDetail(_huidigRecept);
+}
+```
+
+} catch(e) {
+toast(’Upload mislukt: ’ + e.message, true);
+document.getElementById(‘foto-upload-voortgang’).style.display = ‘none’;
+document.getElementById(‘btn-foto-upload’).style.display = ‘block’;
+}
 }
 
 function verkleinfoto(file, maxBreedte, kwaliteit) {
-  return new Promise(function(resolve) {
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    img.onload = function() {
-      let breedte = img.width;
-      let hoogte = img.height;
-      if (breedte > maxBreedte) {
-        hoogte = Math.round(hoogte * maxBreedte / breedte);
-        breedte = maxBreedte;
-      }
-      const canvas = document.createElement('canvas');
-      canvas.width = breedte;
-      canvas.height = hoogte;
-      canvas.getContext('2d').drawImage(img, 0, 0, breedte, hoogte);
-      URL.revokeObjectURL(url);
-      canvas.toBlob(resolve, 'image/jpeg', kwaliteit);
-    };
-    img.src = url;
-  });
+return new Promise(function(resolve) {
+const img = new Image();
+const url = URL.createObjectURL(file);
+img.onload = function() {
+let breedte = img.width;
+let hoogte = img.height;
+if (breedte > maxBreedte) {
+hoogte = Math.round(hoogte * maxBreedte / breedte);
+breedte = maxBreedte;
+}
+const canvas = document.createElement(‘canvas’);
+canvas.width = breedte;
+canvas.height = hoogte;
+canvas.getContext(‘2d’).drawImage(img, 0, 0, breedte, hoogte);
+URL.revokeObjectURL(url);
+canvas.toBlob(resolve, ‘image/jpeg’, kwaliteit);
+};
+img.src = url;
+});
 }
 
 async function verwijderFoto(receptKey, fotoKey) {
-  await fbDel('recepten/' + receptKey + '/fotos/' + fotoKey);
-  const r = _recepten.find(x => x._key === receptKey);
-  if (r && r.fotos) delete r.fotos[fotoKey];
-  toast('Foto verwijderd');
-  if (_huidigReceptKey === receptKey) renderDetail(_recepten.find(x => x._key === receptKey));
+await fbDel(‘recepten/’ + receptKey + ‘/fotos/’ + fotoKey);
+const r = _recepten.find(x => x._key === receptKey);
+if (r && r.fotos) delete r.fotos[fotoKey];
+toast(‘Foto verwijderd’);
+if (_huidigReceptKey === receptKey) renderDetail(_recepten.find(x => x._key === receptKey));
 }
 
 function vraagVerwijderFoto(receptKey, fotoKey) {
-  toonPinModal('Foto verwijderen', function() {
-    verwijderFoto(receptKey, fotoKey);
-  });
+toonPinModal(‘Foto verwijderen’, function() {
+verwijderFoto(receptKey, fotoKey);
+});
 }
-console.log('Hudson Sharp 5750W v' + APP_VERSION + ' geladen');
+console.log(‘Hudson Sharp 5750W v’ + APP_VERSION + ’ geladen’);
 </script>
 
 </body>
