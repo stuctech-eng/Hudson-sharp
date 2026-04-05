@@ -1037,7 +1037,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.4.2';
+const APP_VERSION = '2.4.3';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
@@ -2510,7 +2510,7 @@ function fotoGekozen(event) {
   reader.onload = function(e) {
     document.getElementById('foto-preview').src = e.target.result;
     document.getElementById('foto-preview-wrap').style.display = 'block';
-    document.getElementById('foto-bestandsinfo').textContent = (file.size / 1024).toFixed(0) + ' KB -- wordt verkleind naar max 1920px';
+    document.getElementById('foto-bestandsinfo').textContent = (file.size / 1024 / 1024).toFixed(1) + ' MB -- originele kwaliteit';
     document.getElementById('btn-foto-upload').style.display = 'block';
   };
   reader.readAsDataURL(file);
@@ -2521,8 +2521,8 @@ async function uploadFoto() {
   document.getElementById('btn-foto-upload').style.display = 'none';
   document.getElementById('foto-upload-voortgang').style.display = 'block';
 
-  // Verkleinen via canvas (max 1200px breed, kwaliteit 0.8)
-  const verkleindBlob = await verkleinfoto(_fotoFile, 1920, 0.9);
+  // Direct uploaden zonder verkleinen
+  const verkleindBlob = file;
   document.getElementById('foto-pct').textContent = '30';
 
   // Upload naar Firebase Storage
