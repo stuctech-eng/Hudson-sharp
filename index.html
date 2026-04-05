@@ -859,7 +859,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     </div>
     <div class="card">
       <div class="card-title">Versie Historie</div>
-      <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">v2.4</div><div class="ir-val" style="font-size:13px;">Toebehoren (messen/tijden), opmerking, doorvoer/afneem, foto lightbox, blower volgorde</div></div>
+      <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">v2.4</div><div class="ir-val" style="font-size:13px;">Blower volgorde NL, toebehoren, opmerking, doorvoer leerdata, foto lightbox, specs inklapbaar</div></div>
       <div class="info-row"><div class="ir-lbl">v2.3</div><div class="ir-val" style="font-size:13px;">Foto's onderaan + attentie banner + pincode beveiliging foto verwijderen</div></div>
       <div class="info-row"><div class="ir-lbl">v2.2</div><div class="ir-val" style="font-size:13px;">Help scherm toegevoegd -- 8 stappen voor nieuwe operators</div></div>
       <div class="info-row"><div class="ir-lbl">v2.1</div><div class="ir-val" style="font-size:13px;">Foto upload naar Firebase Storage -- camera + galerij</div></div>
@@ -899,7 +899,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 <div class="fullscreen" id="s-leerdata">
   <div class="fullscreen-bar" style="border-bottom-color:#f59e0b;">
     <button class="back-btn" onclick="sluitLeerdata()">‹</button>
-    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;flex:1;">🧠 Leer Data</div>
+    <div id="leerdata-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;flex:1;">🧠 Leer Data</div>
   </div>
   <div class="content" id="leerdata-inhoud"></div>
 </div>
@@ -1025,11 +1025,19 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <!-- ═══════════════ FOTO LIGHTBOX ═══════════════ -->
 
+<div id="foto-lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:9999;flex-direction:column;align-items:center;justify-content:center;" onclick="sluitLightbox()">
+  <div style="position:absolute;top:0;left:0;right:0;padding:16px;display:flex;align-items:center;justify-content:space-between;">
+    <div id="lightbox-label" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#e5e7eb;"></div>
+    <button style="background:none;border:none;color:#e5e7eb;font-size:28px;cursor:pointer;padding:4px 10px;">&#10005;</button>
+  </div>
+  <img id="lightbox-img" style="max-width:100%;max-height:85vh;object-fit:contain;border-radius:4px;">
+  <div id="lightbox-info" style="position:absolute;bottom:20px;font-size:10px;color:#6b7280;font-family:'Share Tech Mono',monospace;text-align:center;"></div>
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.3.8';
+const APP_VERSION = '2.4.1';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
@@ -1553,7 +1561,7 @@ function renderDetail(r) {
         var isEigen = f.operator === _operator;
         var magVerw = _isAdmin || isEigen;
         return '<div style="position:relative;border-radius:6px;overflow:hidden;border:1px solid #1a2540;">'
-          +'<img src="'+f.url+'" style="width:100%;height:140px;object-fit:cover;display:block;" loading="lazy">'
+          +'<img src="'+f.url+'" style="width:100%;height:140px;object-fit:cover;display:block;cursor:pointer;" loading="lazy" data-url="'+f.url+'" data-label="'+f.label+'" data-datum="'+(f.datum||'')+'" data-operator="'+(f.operator||'')+'" onclick="openLightbox(this.dataset.url,this.dataset.label,this.dataset.datum,this.dataset.operator)">'
           +'<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.75);padding:6px 8px;display:flex;align-items:center;justify-content:space-between;">'
           +"<span style='font-family:Rajdhani,sans-serif;font-weight:700;font-size:13px;color:#e5e7eb;'>"+f.label+"</span>"
           +(magVerw ? '<button data-rkey="'+r._key+'" data-fkey="'+fKey+'" onclick="vraagVerwijderFoto(this.dataset.rkey,this.dataset.fkey)" style="background:none;border:none;color:#ef4444;font-size:16px;cursor:pointer;padding:0 4px;">✕</button>' : '')
@@ -2029,6 +2037,7 @@ async function verwijderOptie(key, nr) {
 
 // ═══════ LEERDATA ═══════
 async function openLeerdata(key) {
+  document.getElementById('leerdata-titel').textContent = '🧠 Leer Data -- Blower';
   document.getElementById('leerdata-inhoud').innerHTML = '<div style="text-align:center;padding:40px;color:#4a6080;font-size:11px;">Laden...</div>';
   document.getElementById('s-leerdata').classList.add('active');
 
@@ -2333,6 +2342,7 @@ function sluitProbleem() {
 
 // ═══════ DOORVOER LEERDATA ═══════
 async function openDoorvoerLeerdata(key) {
+  document.getElementById('leerdata-titel').textContent = '⚙ Leer Data -- Doorvoer';
   document.getElementById('leerdata-inhoud').innerHTML = '<div style="text-align:center;padding:40px;color:#4a6080;font-size:11px;">Laden...</div>';
   document.getElementById('s-leerdata').classList.add('active');
 
@@ -2431,6 +2441,23 @@ async function slaOpmerkingOp(key) {
   renderDetail(r);
 }
 
+// ═══════ FOTO LIGHTBOX ═══════
+function openLightbox(url, label, datum, operator) {
+  var lb = document.getElementById('foto-lightbox');
+  document.getElementById('lightbox-img').src = url;
+  document.getElementById('lightbox-label').textContent = label;
+  var info = [];
+  if (datum) info.push(datum);
+  if (operator) info.push('👤 ' + operator);
+  document.getElementById('lightbox-info').textContent = info.join('  ·  ');
+  lb.style.display = 'flex';
+}
+
+function sluitLightbox() {
+  document.getElementById('foto-lightbox').style.display = 'none';
+  document.getElementById('lightbox-img').src = '';
+}
+
 // ═══════ TOEBEHOREN ═══════
 function toggleToebehoren() {
   var inhoud = document.getElementById('toebehoren-inhoud');
@@ -2483,7 +2510,7 @@ function fotoGekozen(event) {
   reader.onload = function(e) {
     document.getElementById('foto-preview').src = e.target.result;
     document.getElementById('foto-preview-wrap').style.display = 'block';
-    document.getElementById('foto-bestandsinfo').textContent = (file.size / 1024).toFixed(0) + ' KB -- wordt verkleind voor upload';
+    document.getElementById('foto-bestandsinfo').textContent = (file.size / 1024).toFixed(0) + ' KB -- wordt verkleind naar max 1920px';
     document.getElementById('btn-foto-upload').style.display = 'block';
   };
   reader.readAsDataURL(file);
@@ -2495,7 +2522,7 @@ async function uploadFoto() {
   document.getElementById('foto-upload-voortgang').style.display = 'block';
 
   // Verkleinen via canvas (max 1200px breed, kwaliteit 0.8)
-  const verkleindBlob = await verkleinfoto(_fotoFile, 1200, 0.8);
+  const verkleindBlob = await verkleinfoto(_fotoFile, 1920, 0.9);
   document.getElementById('foto-pct').textContent = '30';
 
   // Upload naar Firebase Storage
