@@ -1029,7 +1029,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.3.7';
+const APP_VERSION = '2.3.8';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
@@ -1416,15 +1416,43 @@ function renderDetail(r) {
   var kanBewerken = _isAdmin || r.operator === _operator;
 
   // Doorvoer vak
-  var dvStart = r.start_doorvoer || '';
-  var dvStop  = r.stop_doorvoer  || '';
-  var dvAfneem = r.afneem_moment || '';
-  var dvKleur = function(val) { return val ? '#6ee7b7' : '#93c5fd'; };
-  var dvStyle = function(val) {
-    return val
-      ? 'border-color:#22c55e88;background:rgba(34,197,94,.04);color:#6ee7b7;'
-      : 'border-color:#3b82f688;background:rgba(59,130,246,.04);color:#93c5fd;';
-  };
+  // Bereken doorvoer leerdata gemiddelden
+  function dvGemAlg(veld) {
+    var vals = _recepten.filter(function(rec) {
+      return rec._key !== r._key
+        && rec.material === r.material
+        && Math.abs(parseFloat(rec.thickness) - parseFloat(r.thickness)) < 0.001
+        && rec[veld];
+    }).map(function(rec) { return parseFloat(rec[veld]); }).filter(function(v) { return !isNaN(v); });
+    return vals.length ? (vals.reduce(function(a,b){return a+b;},0)/vals.length).toFixed(1) : '';
+  }
+  function dvGemSpec(veld) {
+    var vals = _recepten.filter(function(rec) {
+      return rec._key !== r._key
+        && rec.klant === r.klant
+        && String(rec.width) === String(r.width)
+        && String(rec.length) === String(r.length)
+        && rec[veld];
+    }).map(function(rec) { return parseFloat(rec[veld]); }).filter(function(v) { return !isNaN(v); });
+    return vals.length ? (vals.reduce(function(a,b){return a+b;},0)/vals.length).toFixed(1) : '';
+  }
+
+  var dvStart  = r.start_doorvoer || '';
+  var dvStop   = r.stop_doorvoer  || '';
+  var dvAfneem = r.afneem_moment  || '';
+
+  // Als leeg: gebruik leerdata als blauw startpunt
+  var dvStartVal  = dvStart  || dvGemSpec('start_doorvoer')  || dvGemAlg('start_doorvoer');
+  var dvStopVal   = dvStop   || dvGemSpec('stop_doorvoer')   || dvGemAlg('stop_doorvoer');
+  var dvAfneemVal = dvAfneem || dvGemSpec('afneem_moment')   || dvGemAlg('afneem_moment');
+
+  // Kleur: groen = eigen waarde, blauw = leerdata benadering, leeg = blauw leeg
+  function dvStyle(eigen, val) {
+    if (eigen) return 'border-color:#22c55e88;background:rgba(34,197,94,.04);color:#6ee7b7;';
+    if (val)   return 'border-color:#3b82f688;background:rgba(59,130,246,.04);color:#93c5fd;';
+    return 'border-color:#3b82f688;background:rgba(59,130,246,.04);color:#93c5fd;';
+  }
+
   var doorvoerHTML = '';
   if (kanBewerken) {
     doorvoerHTML = '<div class="slabel">Doorvoer &amp; Afneem Moment</div>'
@@ -1432,18 +1460,20 @@ function renderDetail(r) {
       + '<div style="padding:14px;">'
       + '<div class="grid2" style="margin-bottom:10px;">'
       + '<div class="field"><label>Start Doorvoer</label>'
-      + '<input id="dv-start" type="text" readonly value="' + dvStart + '"'
-      + ' style="cursor:pointer;' + dvStyle(dvStart) + 'font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;padding:12px;border-radius:3px;border-width:1px;border-style:solid;width:100%;outline:none;"'
+      + '<input id="dv-start" type="text" readonly value="' + dvStartVal + '"'
+      + ' style="cursor:pointer;' + dvStyle(dvStart, dvStartVal) + 'font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;padding:12px;border-radius:3px;border-width:1px;border-style:solid;width:100%;outline:none;"'
       + ' onclick="openNumpad(\'dv-start\',\'decimal\',\'Start Doorvoer\')"></div>'
       + '<div class="field"><label>Stop Doorvoer</label>'
-      + '<input id="dv-stop" type="text" readonly value="' + dvStop + '"'
-      + ' style="cursor:pointer;' + dvStyle(dvStop) + 'font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;padding:12px;border-radius:3px;border-width:1px;border-style:solid;width:100%;outline:none;"'
+      + '<input id="dv-stop" type="text" readonly value="' + dvStopVal + '"'
+      + ' style="cursor:pointer;' + dvStyle(dvStop, dvStopVal) + 'font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;padding:12px;border-radius:3px;border-width:1px;border-style:solid;width:100%;outline:none;"'
       + ' onclick="openNumpad(\'dv-stop\',\'decimal\',\'Stop Doorvoer\')"></div>'
       + '</div>'
       + '<div class="field"><label>Afneem Moment</label>'
-      + '<input id="dv-afneem" type="text" readonly value="' + dvAfneem + '"'
-      + ' style="cursor:pointer;' + dvStyle(dvAfneem) + 'font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;padding:12px;border-radius:3px;border-width:1px;border-style:solid;width:100%;outline:none;"'
+      + '<input id="dv-afneem" type="text" readonly value="' + dvAfneemVal + '"'
+      + ' style="cursor:pointer;' + dvStyle(dvAfneem, dvAfneemVal) + 'font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;padding:12px;border-radius:3px;border-width:1px;border-style:solid;width:100%;outline:none;"'
       + ' onclick="openNumpad(\'dv-afneem\',\'decimal\',\'Afneem Moment\')"></div>'
+      + ((!dvStart || !dvStop || !dvAfneem) && (dvStartVal || dvStopVal || dvAfneemVal)
+        ? '<div style="font-size:10px;color:#93c5fd;margin-bottom:8px;">&#9675; Blauw = leerdata benadering</div>' : '')
       + '<button data-key="' + r._key + '" onclick="slaDoorvoerOp(this.dataset.key)"'
       + ' class="btn btn-green" style="margin-top:4px;margin-bottom:0;font-size:15px;padding:12px;">'
       + '&#10003; Opslaan</button>'
@@ -1501,10 +1531,16 @@ function renderDetail(r) {
       <button data-key="${r._key}" onclick="openLeerdata(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #f59e0b;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
         <div style="font-size:22px;margin-bottom:6px;">🧠</div>
         <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#f59e0b;">Leer Data</div>
+        <div style="font-size:9px;color:#6b7280;margin-top:3px;">Blower timing</div>
       </button>
-      <button data-key="${r._key}" onclick="openFotoOverlay(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #3b82f6;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
+      <button data-key="${r._key}" onclick="openDoorvoerLeerdata(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #3b82f6;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">&#9881;</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#3b82f6;">Leer Data</div>
+        <div style="font-size:9px;color:#6b7280;margin-top:3px;">Doorvoer</div>
+      </button>
+      <button data-key="${r._key}" onclick="openFotoOverlay(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #22d3ee;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;grid-column:span 2;">
         <div style="font-size:22px;margin-bottom:6px;">📷</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#3b82f6;">Foto's</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#22d3ee;">Foto's</div>
         <div style="font-size:9px;color:#6b7280;margin-top:3px;">${aantalFotos} opgeslagen</div>
       </button>
     </div>`;
@@ -2294,6 +2330,66 @@ function sluitProbleem() {
   document.getElementById('probleem-keuze-overlay').classList.add('active');
 }
 
+
+// ═══════ DOORVOER LEERDATA ═══════
+async function openDoorvoerLeerdata(key) {
+  document.getElementById('leerdata-inhoud').innerHTML = '<div style="text-align:center;padding:40px;color:#4a6080;font-size:11px;">Laden...</div>';
+  document.getElementById('s-leerdata').classList.add('active');
+
+  try {
+    var data = await fbGet('recepten');
+    var alle = data ? Object.entries(data).map(function(e){return Object.assign({},e[1],{_key:e[0]});}) : [];
+    var r = alle.find(function(x){return x._key===key;});
+    if (!r) return;
+
+    function dvRij(label, veld, kleur) {
+      var algVals = alle.filter(function(rec){
+        return rec._key!==key && rec.material===r.material
+          && Math.abs(parseFloat(rec.thickness)-parseFloat(r.thickness))<0.001 && rec[veld];
+      }).map(function(rec){return parseFloat(rec[veld]);}).filter(function(v){return !isNaN(v);});
+
+      var specVals = alle.filter(function(rec){
+        return rec._key!==key && rec.klant===r.klant
+          && String(rec.width)===String(r.width) && String(rec.length)===String(r.length) && rec[veld];
+      }).map(function(rec){return parseFloat(rec[veld]);}).filter(function(v){return !isNaN(v);});
+
+      var algGem  = algVals.length  ? (algVals.reduce(function(a,b){return a+b;},0)/algVals.length).toFixed(1)   : '--';
+      var specGem = specVals.length ? (specVals.reduce(function(a,b){return a+b;},0)/specVals.length).toFixed(1) : '--';
+      var eigen   = r[veld] || '--';
+
+      return '<div style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid '+kleur+';border-radius:4px;padding:12px 14px;margin-bottom:8px;">'
+        +'<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:16px;color:#e5e7eb;margin-bottom:10px;">'+label+'</div>'
+        +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center;">'
+        +'<div style="background:#070a10;border:1px solid #1a2540;border-radius:3px;padding:8px;">'
+        +'<div style="font-size:8px;color:#6b7280;margin-bottom:4px;">DIT RECEPT</div>'
+        +'<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;color:#22c55e;">'+eigen+'</div></div>'
+        +'<div style="background:#070a10;border:1px solid #f59e0b44;border-radius:3px;padding:8px;">'
+        +'<div style="font-size:8px;color:#6b7280;margin-bottom:4px;">ZELFDE ZAK</div>'
+        +'<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;color:#f59e0b;">'+specGem+'</div>'
+        +'<div style="font-size:8px;color:#4a6080;">'+specVals.length+' rec.</div></div>'
+        +'<div style="background:#070a10;border:1px solid #22d3ee44;border-radius:3px;padding:8px;">'
+        +'<div style="font-size:8px;color:#6b7280;margin-bottom:4px;">ZELFDE MAT.</div>'
+        +'<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;color:#22d3ee;">'+algGem+'</div>'
+        +'<div style="font-size:8px;color:#4a6080;">'+algVals.length+' rec.</div></div>'
+        +'</div></div>';
+    }
+
+    var html = '<div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:12px 16px;margin-bottom:14px;">'
+      +'<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:15px;color:#3b82f6;">&#9881; DOORVOER LEER DATA</div>'
+      +'<div style="font-size:10px;color:#6b7280;margin-top:3px;">'+r.material+' · '+r.thickness+'mm · '+r.width+'×'+r.length+'cm</div>'
+      +'</div>';
+    html += dvRij('Start Doorvoer',  'start_doorvoer', '#22d3ee');
+    html += dvRij('Stop Doorvoer',   'stop_doorvoer',  '#a78bfa');
+    html += dvRij('Afneem Moment',   'afneem_moment',  '#f59e0b');
+    html += '<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:12px;margin-top:4px;font-size:11px;color:#6b7280;line-height:1.8;">'
+      +'Groen = ingevuld op dit recept &nbsp;·&nbsp; Oranje = gemiddelde zelfde zak &nbsp;·&nbsp; Blauw = gemiddelde zelfde materiaal/dikte'
+      +'</div>';
+
+    document.getElementById('leerdata-inhoud').innerHTML = html;
+  } catch(e) {
+    document.getElementById('leerdata-inhoud').innerHTML = '<div style="color:#ef4444;padding:20px;font-size:11px;">Fout: '+e.message+'</div>';
+  }
+}
 
 // ═══════ SPECS INKLAPBAAR ═══════
 function toggleSpecs() {
