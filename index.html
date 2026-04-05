@@ -329,11 +329,62 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
   </div>
 </div>
 
-<div id="berekend-box" style="display:none;">
-  <div class="slabel">Blower Timing -- Berekend</div>
-  <div id="berekend-inhoud"></div>
+<!-- TOEBEHOREN -->
+```
+
+<div class="card" style="margin-bottom:12px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;" onclick="toggleToebehoren()">
+    <div>
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#e5e7eb;letter-spacing:.1em;">&#9881; Toebehoren</div>
+      <div style="font-size:10px;color:#6b7280;margin-top:2px;">Schuine kant bodem -- optioneel</div>
+    </div>
+    <span id="toebehoren-chevron" style="font-size:20px;color:#6b7280;transition:transform .2s;">&#8250;</span>
+  </div>
+  <div id="toebehoren-inhoud" style="display:none;border-top:1px solid #1a2540;padding:14px;">
+    <div class="grid2" style="margin-bottom:10px;">
+      <div class="field">
+        <label>Starttijd (mm)</label>
+        <input id="f-starttijd" type="text" readonly placeholder="bv. 12" class="leeg"
+          style="cursor:pointer;" onclick="openNumpad('f-starttijd','decimal','Starttijd (mm)')">
+      </div>
+      <div class="field">
+        <label>Lastijd (ms)</label>
+        <input id="f-lastijd" type="text" readonly placeholder="bv. 350" class="leeg"
+          style="cursor:pointer;" onclick="openNumpad('f-lastijd','integer','Lastijd (ms)')">
+      </div>
+    </div>
+    <div class="slabel" style="margin-top:4px;">Verwarmd Mes (&#176;C)</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Linksboven</label>
+        <input id="f-mes-lb" type="text" readonly placeholder="bv. 180" class="leeg"
+          style="cursor:pointer;" onclick="openNumpad('f-mes-lb','integer','Mes Linksboven')">
+      </div>
+      <div class="field">
+        <label>Rechtsboven</label>
+        <input id="f-mes-rb" type="text" readonly placeholder="bv. 180" class="leeg"
+          style="cursor:pointer;" onclick="openNumpad('f-mes-rb','integer','Mes Rechtsboven')">
+      </div>
+      <div class="field">
+        <label>Linksonder</label>
+        <input id="f-mes-lo" type="text" readonly placeholder="bv. 180" class="leeg"
+          style="cursor:pointer;" onclick="openNumpad('f-mes-lo','integer','Mes Linksonder')">
+      </div>
+      <div class="field">
+        <label>Rechtsonder</label>
+        <input id="f-mes-ro" type="text" readonly placeholder="bv. 180" class="leeg"
+          style="cursor:pointer;" onclick="openNumpad('f-mes-ro','integer','Mes Rechtsonder')">
+      </div>
+    </div>
+  </div>
 </div>
 
+<div id="berekend-box" style="display:none;">
+      <div class="slabel">Blower Timing -- Berekend</div>
+      <div id="berekend-inhoud"></div>
+    </div>
+
+```
 <button id="btn-opslaan" class="btn btn-amber" onclick="berekenEnSla()">⚙ Berekenen & Opslaan</button>
 <div id="btn-detail-wrap" style="display:none;">
   <button class="btn btn-green" onclick="naarDetail()">→ Recept bekijken</button>
@@ -977,7 +1028,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.3.1';
+const APP_VERSION = '2.3.2';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
@@ -1614,6 +1665,20 @@ async function berekenEnSla() {
 
   // Opslaan
   toast('Opslaan...');
+  var tb = {};
+  var st = document.getElementById('f-starttijd').value.trim();
+  var lt = document.getElementById('f-lastijd').value.trim();
+  var lb = document.getElementById('f-mes-lb').value.trim();
+  var rb = document.getElementById('f-mes-rb').value.trim();
+  var lo = document.getElementById('f-mes-lo').value.trim();
+  var ro = document.getElementById('f-mes-ro').value.trim();
+  if (st) tb.starttijd = st;
+  if (lt) tb.lastijd = lt;
+  if (lb) tb.mes_lb = lb;
+  if (rb) tb.mes_rb = rb;
+  if (lo) tb.mes_lo = lo;
+  if (ro) tb.mes_ro = ro;
+
   const recept = {
     id: Date.now(),
     klant: document.getElementById('f-klant').value.trim(),
@@ -1624,6 +1689,7 @@ async function berekenEnSla() {
     material: _gekozenMat, speed: s,
     ..._huidigTiming
   };
+  if (Object.keys(tb).length) recept.toebehoren = tb;
 
   const editKey = document.getElementById('s-nieuw').dataset.editKey;
   if (editKey) {
@@ -2100,6 +2166,15 @@ function sluitProbleem() {
   document.getElementById('probleem-keuze-overlay').classList.add('active');
 }
 
+
+// ═══════ TOEBEHOREN ═══════
+function toggleToebehoren() {
+  var inhoud = document.getElementById('toebehoren-inhoud');
+  var chevron = document.getElementById('toebehoren-chevron');
+  var isOpen = inhoud.style.display !== 'none';
+  inhoud.style.display = isOpen ? 'none' : 'block';
+  chevron.style.transform = isOpen ? '' : 'rotate(90deg)';
+}
 
 let _fotoLabel = '';
 let _fotoFile = null;
