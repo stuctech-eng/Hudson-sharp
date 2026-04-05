@@ -1029,7 +1029,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.3.6';
+const APP_VERSION = '2.3.7';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
@@ -1393,20 +1393,23 @@ function renderDetail(r) {
         style="background:#2a0000;border:1px solid #ef444466;border-radius:4px;color:#ef4444;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;padding:8px 12px;cursor:pointer;">↺ Optimaal</button>
     </div>` : '';
 
-  const specs = `
-    <div class="card">
-      <div class="card-title">Zak Specificaties</div>
-      ${r.klant ? '<div class="info-row"><div class="ir-lbl">Klantnr.</div><div class="ir-val" style="color:#f59e0b;">'+r.klant+'</div></div>' : ''}
-      ${r.klantnaam ? '<div class="info-row"><div class="ir-lbl">Klantnaam</div><div class="ir-val">'+r.klantnaam+'</div></div>' : ''}
-      ${r.plaats ? '<div class="info-row"><div class="ir-lbl">Plaats</div><div class="ir-val" style="color:#22d3ee;">📍 '+r.plaats+'</div></div>' : ''}
-      ${r.operator ? '<div class="info-row"><div class="ir-lbl">Operator</div><div class="ir-val" style="color:#a78bfa;">👤 '+r.operator+'</div></div>' : ''}
-      <div class="info-row"><div class="ir-lbl">Breedte</div><div class="ir-val">${r.width}<span class="u">cm</span></div></div>
-      <div class="info-row"><div class="ir-lbl">Lengte</div><div class="ir-val">${r.length}<span class="u">cm</span></div></div>
-      <div class="info-row"><div class="ir-lbl">Dikte</div><div class="ir-val">${r.thickness}<span class="u">mm</span></div></div>
-      <div class="info-row"><div class="ir-lbl">Materiaal</div><div class="ir-val">${r.material}</div></div>
-      <div class="info-row"><div class="ir-lbl">Snelheid</div><div class="ir-val">${r.speed}<span class="u">ZPM</span></div></div>
-      <div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">${Math.round(60000/r.speed)}<span class="u">ms</span></div></div>
-    </div>`;
+  const specs = '<div class="card">'
+    + '<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #1a2540;cursor:pointer;" onclick="toggleSpecs()">'
+    + '<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#f59e0b;">Zak Specificaties</div>'
+    + '<span id="specs-chevron" style="font-size:18px;color:#6b7280;transition:transform .2s;">&#8250;</span>'
+    + '</div>'
+    + '<div id="specs-inhoud" style="display:none;">'
+    + (r.klant ? '<div class="info-row"><div class="ir-lbl">Klantnr.</div><div class="ir-val" style="color:#f59e0b;">'+r.klant+'</div></div>' : '')
+    + (r.klantnaam ? '<div class="info-row"><div class="ir-lbl">Klantnaam</div><div class="ir-val">'+r.klantnaam+'</div></div>' : '')
+    + (r.plaats ? '<div class="info-row"><div class="ir-lbl">Plaats</div><div class="ir-val" style="color:#22d3ee;">&#128205; '+r.plaats+'</div></div>' : '')
+    + (r.operator ? '<div class="info-row"><div class="ir-lbl">Operator</div><div class="ir-val" style="color:#a78bfa;">&#128100; '+r.operator+'</div></div>' : '')
+    + '<div class="info-row"><div class="ir-lbl">Breedte</div><div class="ir-val">'+r.width+'<span class="u">cm</span></div></div>'
+    + '<div class="info-row"><div class="ir-lbl">Lengte</div><div class="ir-val">'+r.length+'<span class="u">cm</span></div></div>'
+    + '<div class="info-row"><div class="ir-lbl">Dikte</div><div class="ir-val">'+r.thickness+'<span class="u">mm</span></div></div>'
+    + '<div class="info-row"><div class="ir-lbl">Materiaal</div><div class="ir-val">'+r.material+'</div></div>'
+    + '<div class="info-row"><div class="ir-lbl">Snelheid</div><div class="ir-val">'+r.speed+'<span class="u">ZPM</span></div></div>'
+    + '<div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">'+Math.round(60000/r.speed)+'<span class="u">ms</span></div></div>'
+    + '</div></div>';
 
   const aantalOpties = r.opties ? Object.values(r.opties).filter(o => o && typeof o === 'object' && o.operator).length : 0;
   const aantalFotos = r.fotos ? Object.keys(r.fotos).length : 0;
@@ -2291,6 +2294,15 @@ function sluitProbleem() {
   document.getElementById('probleem-keuze-overlay').classList.add('active');
 }
 
+
+// ═══════ SPECS INKLAPBAAR ═══════
+function toggleSpecs() {
+  var inhoud = document.getElementById('specs-inhoud');
+  var chevron = document.getElementById('specs-chevron');
+  var isOpen = inhoud.style.display !== 'none';
+  inhoud.style.display = isOpen ? 'none' : 'block';
+  chevron.style.transform = isOpen ? '' : 'rotate(90deg)';
+}
 
 // ═══════ DOORVOER ═══════
 async function slaDoorvoerOp(key) {
