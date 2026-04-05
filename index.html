@@ -807,12 +807,14 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     </div>
     <div class="card">
       <div class="card-title">Versie Historie</div>
-      <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">v1.7</div><div class="ir-val" style="font-size:13px;">Probleemoplossing herschreven op basis van echte praktijk + statisch elektriciteit</div></div>
-      <div class="info-row"><div class="ir-lbl">v1.6</div><div class="ir-val" style="font-size:13px;">Probleemoplossing uitgebreid scherm + terug naar keuze navigatie</div></div>
-      <div class="info-row"><div class="ir-lbl">v1.5</div><div class="ir-val" style="font-size:13px;">Probleemoplossing knop op home scherm</div></div>
-      <div class="info-row"><div class="ir-lbl">v1.4</div><div class="ir-val" style="font-size:13px;">Pin overlay eigen numpad -- delete werkt nu stabiel</div></div>
-      <div class="info-row"><div class="ir-lbl">v1.3</div><div class="ir-val" style="font-size:13px;">Verse start -- stabiele codebase</div></div>
-      <div class="info-row"><div class="ir-lbl">v1.0</div><div class="ir-val" style="font-size:13px;">Verse start na oude versie problemen</div></div>
+      <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">v2.4</div><div class="ir-val" style="font-size:13px;">Toebehoren (messen/tijden), opmerking, doorvoer/afneem, foto lightbox, blower volgorde</div></div>
+      <div class="info-row"><div class="ir-lbl">v2.3</div><div class="ir-val" style="font-size:13px;">Foto's onderaan + attentie banner + pincode beveiliging foto verwijderen</div></div>
+      <div class="info-row"><div class="ir-lbl">v2.2</div><div class="ir-val" style="font-size:13px;">Help scherm toegevoegd -- 8 stappen voor nieuwe operators</div></div>
+      <div class="info-row"><div class="ir-lbl">v2.1</div><div class="ir-val" style="font-size:13px;">Foto upload naar Firebase Storage -- camera + galerij</div></div>
+      <div class="info-row"><div class="ir-lbl">v2.0</div><div class="ir-val" style="font-size:13px;">Blaaspijpen correct beschreven (lift/zuiging), home knoppen groter</div></div>
+      <div class="info-row"><div class="ir-lbl">v1.9</div><div class="ir-val" style="font-size:13px;">Parameters volledig herschreven met cyclus volgorde</div></div>
+      <div class="info-row"><div class="ir-lbl">v1.8</div><div class="ir-val" style="font-size:13px;">Machine Info uitgebreid, folie spanning in probleemoplossing</div></div>
+      <div class="info-row"><div class="ir-lbl">v1.7</div><div class="ir-val" style="font-size:13px;">Probleemoplossing herschreven op basis van echte praktijk</div></div>
     </div>
   </div>
 </div>
@@ -968,6 +970,8 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     </div>
   </div>
 </div>
+
+<!-- ═══════════════ FOTO LIGHTBOX ═══════════════ -->
 
 <div class="toast" id="toast"></div>
 
@@ -1327,25 +1331,23 @@ function renderDetail(r) {
     : `${r.width}×${r.length}`;
   document.getElementById('detail-titel').style.fontSize = r.klantnaam ? '14px' : '18px';
 
-  // Optie banner
   const optBanner = actief ? `
     <div style="background:#22c55e18;border:1px solid #22c55e44;border-radius:4px;padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;">
       <div>
         <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:#22c55e;">OPTIE ${actief} ACTIEF</div>
-        <div style="font-size:10px;color:#6b7280;margin-top:2px;">👤 ${optData?.operator || '?'} -- ${optData?.datum || ''}</div>
+        <div style="font-size:10px;color:#6b7280;margin-top:2px;">👤 ${optData ? optData.operator : '?'} -- ${optData ? optData.datum : ''}</div>
       </div>
       <button data-key="${r._key}" onclick="zegOptieAf(this.dataset.key)"
         style="background:#2a0000;border:1px solid #ef444466;border-radius:4px;color:#ef4444;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;padding:8px 12px;cursor:pointer;">↺ Optimaal</button>
     </div>` : '';
 
-  // Specs
   const specs = `
     <div class="card">
       <div class="card-title">Zak Specificaties</div>
-      ${r.klant ? `<div class="info-row"><div class="ir-lbl">Klantnr.</div><div class="ir-val" style="color:#f59e0b;">${r.klant}</div></div>` : ''}
-      ${r.klantnaam ? `<div class="info-row"><div class="ir-lbl">Klantnaam</div><div class="ir-val">${r.klantnaam}</div></div>` : ''}
-      ${r.plaats ? `<div class="info-row"><div class="ir-lbl">Plaats</div><div class="ir-val" style="color:#22d3ee;">📍 ${r.plaats}</div></div>` : ''}
-      ${r.operator ? `<div class="info-row"><div class="ir-lbl">Operator</div><div class="ir-val" style="color:#a78bfa;">👤 ${r.operator}</div></div>` : ''}
+      ${r.klant ? '<div class="info-row"><div class="ir-lbl">Klantnr.</div><div class="ir-val" style="color:#f59e0b;">'+r.klant+'</div></div>' : ''}
+      ${r.klantnaam ? '<div class="info-row"><div class="ir-lbl">Klantnaam</div><div class="ir-val">'+r.klantnaam+'</div></div>' : ''}
+      ${r.plaats ? '<div class="info-row"><div class="ir-lbl">Plaats</div><div class="ir-val" style="color:#22d3ee;">📍 '+r.plaats+'</div></div>' : ''}
+      ${r.operator ? '<div class="info-row"><div class="ir-lbl">Operator</div><div class="ir-val" style="color:#a78bfa;">👤 '+r.operator+'</div></div>' : ''}
       <div class="info-row"><div class="ir-lbl">Breedte</div><div class="ir-val">${r.width}<span class="u">cm</span></div></div>
       <div class="info-row"><div class="ir-lbl">Lengte</div><div class="ir-val">${r.length}<span class="u">cm</span></div></div>
       <div class="info-row"><div class="ir-lbl">Dikte</div><div class="ir-val">${r.thickness}<span class="u">mm</span></div></div>
@@ -1354,9 +1356,9 @@ function renderDetail(r) {
       <div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">${Math.round(60000/r.speed)}<span class="u">ms</span></div></div>
     </div>`;
 
-  // Knoppen
   const aantalOpties = r.opties ? Object.values(r.opties).filter(o => o && typeof o === 'object' && o.operator).length : 0;
   const aantalFotos = r.fotos ? Object.keys(r.fotos).length : 0;
+
   const knoppen = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
       <button onclick="toonProbleemKeuze()" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #ef4444;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
@@ -1379,95 +1381,88 @@ function renderDetail(r) {
       </button>
     </div>`;
 
-  // Foto's -- onderaan
   const fotosHTML = aantalFotos > 0 ? `
     <div class="slabel" style="margin-top:16px;">📷 Foto's</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
-      ${Object.entries(r.fotos).filter(([k,f]) => f && f.url).map(([fKey, f]) => {
-        const isEigen = f.operator === _operator;
-        const magVerw = _isAdmin || isEigen;
-        return `
-        <div style="position:relative;border-radius:6px;overflow:hidden;border:1px solid #1a2540;">
-          <img src="${f.url}" style="width:100%;height:140px;object-fit:cover;display:block;" loading="lazy">
-          <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.75);padding:6px 8px;display:flex;align-items:center;justify-content:space-between;">
-            <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#e5e7eb;">${f.label}</span>
-            ${magVerw ? `<button data-rkey="${r._key}" data-fkey="${fKey}" onclick="vraagVerwijderFoto(this.dataset.rkey,this.dataset.fkey)"
-              style="background:none;border:none;color:#ef4444;font-size:16px;cursor:pointer;padding:0 4px;">✕</button>` : ''}
-          </div>
-          <div style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,.65);padding:2px 7px;border-radius:3px;font-size:9px;color:#9ca3af;">${f.datum||''}</div>
-          ${f.operator ? `<div style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.65);padding:2px 7px;border-radius:3px;font-size:9px;color:#a78bfa;">👤 ${f.operator}</div>` : ''}
-        </div>`;
+      ${Object.entries(r.fotos).filter(function(e){return e[1] && e[1].url;}).map(function(e){
+        var fKey=e[0], f=e[1];
+        var isEigen = f.operator === _operator;
+        var magVerw = _isAdmin || isEigen;
+        return '<div style="position:relative;border-radius:6px;overflow:hidden;border:1px solid #1a2540;">'
+          +'<img src="'+f.url+'" style="width:100%;height:140px;object-fit:cover;display:block;" loading="lazy">'
+          +'<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.75);padding:6px 8px;display:flex;align-items:center;justify-content:space-between;">'
+          +"<span style='font-family:Rajdhani,sans-serif;font-weight:700;font-size:13px;color:#e5e7eb;'>"+f.label+"</span>"
+          +(magVerw ? '<button data-rkey="'+r._key+'" data-fkey="'+fKey+'" onclick="vraagVerwijderFoto(this.dataset.rkey,this.dataset.fkey)" style="background:none;border:none;color:#ef4444;font-size:16px;cursor:pointer;padding:0 4px;">✕</button>' : '')
+          +'</div>'
+          +(f.datum ? '<div style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,.65);padding:2px 7px;border-radius:3px;font-size:9px;color:#9ca3af;">'+f.datum+'</div>' : '')
+          +(f.operator ? '<div style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.65);padding:2px 7px;border-radius:3px;font-size:9px;color:#a78bfa;">👤 '+f.operator+'</div>' : '')
+          +'</div>';
       }).join('')}
     </div>` : '';
 
-  // Blower timing
-  const blowerHTML = CHANNELS.map(ch => {
-    const on = getOn(ch.key);
-    const off = getOff(ch.key);
-    const baseOn = r[ch.key+'_on'];
-    const baseOff = r[ch.key+'_off'];
-    const dur = off > on ? off - on : (360 - on + off);
-    const lft = (on / 360 * 100).toFixed(1);
-    const wid = Math.max(0.4, dur / 360 * 100).toFixed(1);
-    const afwijkt = optData && (on !== baseOn || off !== baseOff);
-    return `
-      <div class="blower-block" style="${afwijkt ? 'border-left:3px solid #22c55e;' : ''}">
-        <div class="blower-hdr">
-          <div class="bdot" style="background:${ch.color};box-shadow:0 0 6px ${ch.color}55;"></div>
-          <div class="bname">${ch.label}</div>
-          ${afwijkt ? `<div style="font-size:9px;color:#22c55e;">OPT.${actief} · was ${baseOn}°→${baseOff}°</div>` : ''}
-        </div>
-        <div class="blower-cells">
-          <div class="bcell"><span class="bcell-lbl">AAN</span><span class="bcell-val" style="color:${afwijkt?'#22c55e':ch.color}">${on}</span><span class="bcell-unit">°</span></div>
-          <div class="bcell"><span class="bcell-lbl">UIT</span><span class="bcell-val" style="color:${afwijkt?'#22c55e':ch.color}">${off}</span><span class="bcell-unit">°</span></div>
-          <div class="bcell"><span class="bcell-lbl">DUUR</span><span class="bcell-val" style="color:#4a6080;font-size:22px;">${dur}</span><span class="bcell-unit">°</span></div>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar-track"><div class="bar-fill" style="left:${lft}%;width:${wid}%;background:${afwijkt?'#22c55e':ch.color};"></div></div>
-          <div class="bar-ticks">${[0,90,180,270,360].map(d=>`<span class="bar-tick">${d}°</span>`).join('')}</div>
-        </div>
-      </div>`;
-  }).join('');
-
-  // SVG diagram
-  const cx=160,cy=160,toRad=d=>(d-90)*Math.PI/180;
-  const radii=[58,72,86,100,114];
-  const arcs = CHANNELS.map((ch,i)=>{
-    const on=getOn(ch.key), off=getOff(ch.key);
-    const dur=off>on?off-on:(360-on+off);
-    if(dur<=0)return '';
-    const large=dur>180?1:0;
-    const x1=cx+radii[i]*Math.cos(toRad(on)),y1=cy+radii[i]*Math.sin(toRad(on));
-    const x2=cx+radii[i]*Math.cos(toRad(off)),y2=cy+radii[i]*Math.sin(toRad(off));
-    return `<path d="M ${x1} ${y1} A ${radii[i]} ${radii[i]} 0 ${large} 1 ${x2} ${y2}" stroke="${ch.color}" stroke-width="10" fill="none" stroke-linecap="round" opacity=".85"/>`;
-  }).join('');
-  const ticks=[0,90,180,270].map(deg=>{
-    const a=toRad(deg);
-    const x1=cx+148*Math.cos(a),y1=cy+148*Math.sin(a);
-    const x2=cx+158*Math.cos(a),y2=cy+158*Math.sin(a);
-    const lx=cx+170*Math.cos(a),ly=cy+170*Math.sin(a);
-    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#f5a623" stroke-width="2"/>
-    <text x="${lx}" y="${ly}" fill="#f5a623" font-size="11" font-family="Share Tech Mono" text-anchor="middle" dominant-baseline="middle">${deg}°</text>`;
-  }).join('');
-  const svg = `
-    <div style="background:#0a0e16;border:1px solid #1a2235;border-radius:4px;padding:16px;margin-bottom:12px;">
-      <svg viewBox="0 0 320 320" width="100%" style="display:block;max-width:320px;margin:0 auto;">
-        ${radii.map(r=>`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1a2235" stroke-width="1"/>`).join('')}
-        <circle cx="${cx}" cy="${cy}" r="152" fill="none" stroke="#1a2235" stroke-width="1.5"/>
-        ${arcs}${ticks}
-        <circle cx="${cx}" cy="${cy}" r="36" fill="#0f1420" stroke="#1a2235" stroke-width="1.5"/>
-        <text x="${cx}" y="${cy-8}" fill="#f5a623" font-size="18" font-family="Rajdhani" font-weight="700" text-anchor="middle">360°</text>
-        <text x="${cx}" y="${cy+10}" fill="#4a6080" font-size="8" font-family="Share Tech Mono" text-anchor="middle">CYCLUS</text>
-        <text x="${cx}" y="308" fill="#4a6080" font-size="9" font-family="Share Tech Mono" text-anchor="middle">${r.speed} ZPM · ${r.material}</text>
-      </svg>
-    </div>`;
-
-  // Attentie banner als er fotos zijn
   const fotoAttentie = aantalFotos > 0 ? `
     <div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:10px;">
       <span style="font-size:18px;">📷</span>
       <div style="font-size:12px;color:#93c5fd;font-family:'Share Tech Mono',monospace;">${aantalFotos} foto${aantalFotos > 1 ? "'s" : ''} opgeslagen -- scroll naar beneden</div>
     </div>` : '';
+
+  const blowerHTML = CHANNELS.map(function(ch) {
+    var on = getOn(ch.key);
+    var off = getOff(ch.key);
+    var baseOn = r[ch.key+'_on'];
+    var baseOff = r[ch.key+'_off'];
+    var dur = off > on ? off - on : (360 - on + off);
+    var lft = (on / 360 * 100).toFixed(1);
+    var wid = Math.max(0.4, dur / 360 * 100).toFixed(1);
+    var afwijkt = optData && (on !== baseOn || off !== baseOff);
+    return '<div class="blower-block" style="'+(afwijkt?'border-left:3px solid #22c55e;':'')+'">'
+      +'<div class="blower-hdr">'
+      +'<div class="bdot" style="background:'+ch.color+';box-shadow:0 0 6px '+ch.color+'55;"></div>'
+      +'<div class="bname">'+ch.label+'</div>'
+      +(afwijkt?'<div style="font-size:9px;color:#22c55e;">OPT.'+actief+' · was '+baseOn+'°→'+baseOff+'°</div>':'')
+      +'</div>'
+      +'<div class="blower-cells">'
+      +'<div class="bcell"><span class="bcell-lbl">AAN</span><span class="bcell-val" style="color:'+(afwijkt?'#22c55e':ch.color)+'">'+on+'</span><span class="bcell-unit">°</span></div>'
+      +'<div class="bcell"><span class="bcell-lbl">UIT</span><span class="bcell-val" style="color:'+(afwijkt?'#22c55e':ch.color)+'">'+off+'</span><span class="bcell-unit">°</span></div>'
+      +'<div class="bcell"><span class="bcell-lbl">DUUR</span><span class="bcell-val" style="color:#4a6080;font-size:22px;">'+dur+'</span><span class="bcell-unit">°</span></div>'
+      +'</div>'
+      +'<div class="bar-wrap">'
+      +'<div class="bar-track"><div class="bar-fill" style="left:'+lft+'%;width:'+wid+'%;background:'+(afwijkt?'#22c55e':ch.color)+';"></div></div>'
+      +'<div class="bar-ticks">'+[0,90,180,270,360].map(function(d){return '<span class="bar-tick">'+d+'°</span>';}).join('')+'</div>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+
+  var cx=160,cy=160;
+  function toRad(d){return (d-90)*Math.PI/180;}
+  var radii=[58,72,86,100,114];
+  var arcs = CHANNELS.map(function(ch,i){
+    var on=getOn(ch.key), off=getOff(ch.key);
+    var dur=off>on?off-on:(360-on+off);
+    if(dur<=0)return '';
+    var large=dur>180?1:0;
+    var x1=cx+radii[i]*Math.cos(toRad(on)),y1=cy+radii[i]*Math.sin(toRad(on));
+    var x2=cx+radii[i]*Math.cos(toRad(off)),y2=cy+radii[i]*Math.sin(toRad(off));
+    return '<path d="M '+x1+' '+y1+' A '+radii[i]+' '+radii[i]+' 0 '+large+' 1 '+x2+' '+y2+'" stroke="'+ch.color+'" stroke-width="10" fill="none" stroke-linecap="round" opacity=".85"/>';
+  }).join('');
+  var ticks=[0,90,180,270].map(function(deg){
+    var a=toRad(deg);
+    var x1=cx+148*Math.cos(a),y1=cy+148*Math.sin(a);
+    var x2=cx+158*Math.cos(a),y2=cy+158*Math.sin(a);
+    var lx=cx+170*Math.cos(a),ly=cy+170*Math.sin(a);
+    return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#f5a623" stroke-width="2"/>'
+      +'<text x="'+lx+'" y="'+ly+'" fill="#f5a623" font-size="11" font-family="Share Tech Mono" text-anchor="middle" dominant-baseline="middle">'+deg+'°</text>';
+  }).join('');
+  var svg = '<div style="background:#0a0e16;border:1px solid #1a2235;border-radius:4px;padding:16px;margin-bottom:12px;">'
+    +'<svg viewBox="0 0 320 320" width="100%" style="display:block;max-width:320px;margin:0 auto;">'
+    +radii.map(function(r){return '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#1a2235" stroke-width="1"/>';}).join('')
+    +'<circle cx="'+cx+'" cy="'+cy+'" r="152" fill="none" stroke="#1a2235" stroke-width="1.5"/>'
+    +arcs+ticks
+    +'<circle cx="'+cx+'" cy="'+cy+'" r="36" fill="#0f1420" stroke="#1a2235" stroke-width="1.5"/>'
+    +'<text x="'+cx+'" y="'+(cy-8)+'" fill="#f5a623" font-size="18" font-family="Rajdhani" font-weight="700" text-anchor="middle">360°</text>'
+    +'<text x="'+cx+'" y="'+(cy+10)+'" fill="#4a6080" font-size="8" font-family="Share Tech Mono" text-anchor="middle">CYCLUS</text>'
+    +'<text x="'+cx+'" y="308" fill="#4a6080" font-size="9" font-family="Share Tech Mono" text-anchor="middle">'+r.speed+' ZPM · '+r.material+'</text>'
+    +'</svg></div>';
 
   document.getElementById('detail-inhoud').innerHTML =
     specs + optBanner + fotoAttentie + knoppen +
@@ -2105,7 +2100,7 @@ function sluitProbleem() {
   document.getElementById('probleem-keuze-overlay').classList.add('active');
 }
 
-// ═══════ FOTO UPLOAD ═══════
+
 let _fotoLabel = '';
 let _fotoFile = null;
 let _fotoReceptKey = null;
