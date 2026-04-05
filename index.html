@@ -1037,7 +1037,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.4.1';
+const APP_VERSION = '2.4.2';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
@@ -2571,23 +2571,73 @@ async function uploadFoto() {
 
 function verkleinfoto(file, maxBreedte, kwaliteit) {
   return new Promise(function(resolve) {
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    img.onload = function() {
-      let breedte = img.width;
-      let hoogte = img.height;
-      if (breedte > maxBreedte) {
-        hoogte = Math.round(hoogte * maxBreedte / breedte);
-        breedte = maxBreedte;
-      }
-      const canvas = document.createElement('canvas');
-      canvas.width = breedte;
-      canvas.height = hoogte;
-      canvas.getContext('2d').drawImage(img, 0, 0, breedte, hoogte);
-      URL.revokeObjectURL(url);
-      canvas.toBlob(resolve, 'image/jpeg', kwaliteit);
+    // Lees EXIF orientatie eerst
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var orientatie = 1;
+      try {
+        var view = new DataView(e.target.result);
+        if (view.getUint16(0, false) === 0xFFD8) {
+          var offset = 2;
+          while (offset < view.byteLength) {
+            var marker = view.getUint16(offset, false);
+            offset += 2;
+            if (marker === 0xFFE1) {
+              if (view.getUint32(offset += 2, false) === 0x45786966) {
+                var little = view.getUint16(offset += 6, false) === 0x4949;
+                offset += view.getUint32(offset + 4, little);
+                var tags = view.getUint16(offset, little);
+                offset += 2;
+                for (var i = 0; i < tags; i++) {
+                  if (view.getUint16(offset + (i * 12), little) === 0x0112) {
+                    orientatie = view.getUint16(offset + (i * 12) + 8, little);
+                  }
+                }
+              }
+              break;
+            } else if ((marker & 0xFF00) !== 0xFF00) break;
+            else offset += view.getUint16(offset, false);
+          }
+        }
+      } catch(ex) { orientatie = 1; }
+
+      var img = new Image();
+      var url = URL.createObjectURL(file);
+      img.onload = function() {
+        var breedte = img.width;
+        var hoogte = img.height;
+
+        // Swap dimensies bij rotatie 90/270
+        var geroteerd = orientatie >= 5 && orientatie <= 8;
+        var w = geroteerd ? hoogte : breedte;
+        var h = geroteerd ? breedte : hoogte;
+
+        if (w > maxBreedte) {
+          h = Math.round(h * maxBreedte / w);
+          w = maxBreedte;
+        }
+
+        var canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext('2d');
+
+        // Pas rotatie toe
+        if (orientatie === 2) { ctx.transform(-1,0,0,1,w,0); }
+        else if (orientatie === 3) { ctx.transform(-1,0,0,-1,w,h); }
+        else if (orientatie === 4) { ctx.transform(1,0,0,-1,0,h); }
+        else if (orientatie === 5) { ctx.transform(0,1,1,0,0,0); }
+        else if (orientatie === 6) { ctx.transform(0,1,-1,0,h,0); }
+        else if (orientatie === 7) { ctx.transform(0,-1,-1,0,h,w); }
+        else if (orientatie === 8) { ctx.transform(0,-1,1,0,0,w); }
+
+        ctx.drawImage(img, 0, 0, geroteerd ? h : w, geroteerd ? w : h);
+        URL.revokeObjectURL(url);
+        canvas.toBlob(resolve, 'image/jpeg', kwaliteit);
+      };
+      img.src = url;
     };
-    img.src = url;
+    reader.readAsArrayBuffer(file);
   });
 }
 
