@@ -186,56 +186,48 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     <div id="home-versie" style="font-size:10px;color:#4a6080;border:1px solid #1a2540;padding:2px 8px;border-radius:2px;"></div>
     <button onclick="logout()" style="background:none;border:none;color:#4a6080;font-size:12px;cursor:pointer;padding:4px 8px;">Uitloggen</button>
   </div>
-  <div style="padding:16px 16px 4px;background:#0a0e16;border-bottom:1px solid #1a2540;">
-    <div id="home-welkom" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#e5e7eb;"></div>
-    <div style="font-size:9px;color:#4a6080;letter-spacing:.15em;margin-top:2px;">HUDSON SHARP 5750W OPERATOR</div>
-  </div>
   <div class="content" style="padding:12px;">
-    <!-- Menu knoppen -->
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <button onclick="ga('s-recepten')" style="background:#0a0e16;border:none;border-left:5px solid #f59e0b;display:flex;align-items:center;gap:20px;padding:26px 22px;cursor:pointer;text-align:left;border-radius:4px;">
-        <div style="font-size:36px;">📋</div>
-        <div style="flex:1;">
-          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:28px;color:#c8d8e8;line-height:1;">Recepten</div>
-          <div style="font-size:11px;color:#4a6080;margin-top:5px;">Alle opgeslagen instellingen</div>
-        </div>
-        <div style="font-size:28px;color:#f59e0b;">›</div>
-      </button>
-      <button onclick="ga('s-probleemoplossing')" style="background:#0a0e16;border:none;border-left:5px solid #ef4444;display:flex;align-items:center;gap:20px;padding:26px 22px;cursor:pointer;text-align:left;border-radius:4px;">
-        <div style="font-size:36px;">🔧</div>
-        <div style="flex:1;">
-          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:28px;color:#c8d8e8;line-height:1;">Probleemoplossing</div>
-          <div style="font-size:11px;color:#4a6080;margin-top:5px;">Uitgebreide uitleg per probleem</div>
-        </div>
-        <div style="font-size:28px;color:#ef4444;">›</div>
-      </button>
-      <button onclick="ga('s-machine')" style="background:#0a0e16;border:none;border-left:5px solid #3b82f6;display:flex;align-items:center;gap:20px;padding:26px 22px;cursor:pointer;text-align:left;border-radius:4px;">
-        <div style="font-size:36px;">⚙️</div>
-        <div style="flex:1;">
-          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:28px;color:#c8d8e8;line-height:1;">Machine Info</div>
-          <div style="font-size:11px;color:#4a6080;margin-top:5px;">5750W specificaties</div>
-        </div>
-        <div style="font-size:28px;color:#3b82f6;">›</div>
-      </button>
-      <button onclick="ga('s-help')" style="background:#0a0e16;border:none;border-left:5px solid #22c55e;display:flex;align-items:center;gap:20px;padding:26px 22px;cursor:pointer;text-align:left;border-radius:4px;">
-        <div style="font-size:36px;">❓</div>
-        <div style="flex:1;">
-          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:28px;color:#c8d8e8;line-height:1;">Hoe werkt de app?</div>
-          <div style="font-size:11px;color:#4a6080;margin-top:5px;">Uitleg voor nieuwe operators</div>
-        </div>
-        <div style="font-size:28px;color:#22c55e;">›</div>
-      </button>
-      <div id="admin-blok" style="display:none;">
-        <button onclick="ga('s-admin')" style="background:#0a0e16;border:none;border-left:5px solid #f59e0b;border-top:1px solid #1a2540;display:flex;align-items:center;gap:16px;padding:18px 20px;cursor:pointer;text-align:left;border-radius:2px;width:100%;">
-          <div style="font-size:28px;">🔑</div>
-          <div style="flex:1;">
-            <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;color:#f59e0b;">Admin</div>
-            <div style="font-size:10px;color:#4a6080;margin-top:3px;">Info app & functies overzicht</div>
-          </div>
-          <div style="font-size:24px;color:#f59e0b;">›</div>
-        </button>
-      </div>
-    </div>
+
+```
+<!-- Welkom + laatste recept -->
+<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:16px;margin-bottom:12px;">
+  <div id="home-welkom" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#e5e7eb;"></div>
+  <div style="font-size:9px;color:#4a6080;letter-spacing:.15em;margin-top:2px;">HUDSON SHARP 5750W OPERATOR</div>
+  <div id="home-laatste" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid #1a2540;">
+    <div style="font-size:9px;color:#6b7280;letter-spacing:.2em;margin-bottom:6px;">LAATSTE RECEPT</div>
+    <div id="home-laatste-inhoud" style="cursor:pointer;" onclick="naarLaatsteRecept()"></div>
+  </div>
+</div>
+
+<!-- Snelle actie knoppen 2x2 -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+  <button onclick="ga('s-recepten')" style="background:#0a0e16;border:1px solid #1a2540;border-top:3px solid #f59e0b;border-radius:4px;padding:20px 12px;cursor:pointer;text-align:center;">
+    <div style="font-size:28px;margin-bottom:6px;">📋</div>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#f59e0b;">Recepten</div>
+  </button>
+  <button onclick="ga('s-probleemoplossing')" style="background:#0a0e16;border:1px solid #1a2540;border-top:3px solid #ef4444;border-radius:4px;padding:20px 12px;cursor:pointer;text-align:center;">
+    <div style="font-size:28px;margin-bottom:6px;">🔧</div>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#ef4444;">Problemen</div>
+  </button>
+  <button onclick="ga('s-machine')" style="background:#0a0e16;border:1px solid #1a2540;border-top:3px solid #3b82f6;border-radius:4px;padding:20px 12px;cursor:pointer;text-align:center;">
+    <div style="font-size:28px;margin-bottom:6px;">⚙️</div>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#3b82f6;">Machine</div>
+  </button>
+  <button onclick="ga('s-help')" style="background:#0a0e16;border:1px solid #1a2540;border-top:3px solid #22c55e;border-radius:4px;padding:20px 12px;cursor:pointer;text-align:center;">
+    <div style="font-size:28px;margin-bottom:6px;">❓</div>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#22c55e;">Help</div>
+  </button>
+</div>
+
+<div id="admin-blok" style="display:none;">
+  <button onclick="ga('s-admin')" style="background:#0a0e16;border:1px solid #f59e0b44;border-radius:4px;display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer;text-align:left;width:100%;">
+    <div style="font-size:22px;">🔑</div>
+    <div style="flex:1;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#f59e0b;">Admin</div>
+    <div style="font-size:20px;color:#f59e0b;">›</div>
+  </button>
+</div>
+```
+
   </div>
 </div>
 
@@ -515,126 +507,80 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 ```
 <div style="background:#22c55e18;border:1px solid #22c55e44;border-radius:4px;padding:14px 16px;margin-bottom:16px;">
-  <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#22c55e;margin-bottom:4px;">Welkom bij de Hudson Sharp 5750W app</div>
-  <div style="font-size:13px;color:#c8d8e8;line-height:1.7;">Deze app helpt je bij het instellen van de machine. Alles wat je nodig hebt staat hier -- recepten, instellingen, probleemoplossing en meer.</div>
+  <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#22c55e;margin-bottom:4px;">Hudson Sharp 5750W App</div>
+  <div style="font-size:13px;color:#c8d8e8;line-height:1.7;">Recepten opslaan, instellingen berekenen, problemen oplossen. Alles op één plek.</div>
 </div>
 
-<!-- STAP 1 -->
-<div class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#f59e0b;">Stap 1 -- Inloggen</div>
-  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
-    <div style="margin-bottom:8px;">1. Voer het <strong style="color:#f59e0b;">app wachtwoord</strong> in op het startscherm.</div>
-    <div style="margin-bottom:8px;">2. Tik op <strong style="color:#f59e0b;">jouw naam</strong> in de lijst.</div>
-    <div style="margin-bottom:8px;">3. Voer je <strong style="color:#f59e0b;">persoonlijke pincode</strong> in.</div>
-    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;font-size:12px;">
-      💡 Elke operator heeft een eigen pincode. Geef deze nooit aan iemand anders.
+<div style="display:flex;flex-direction:column;gap:8px;">
+
+  <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;">
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#f59e0b;width:28px;flex-shrink:0;">1</div>
+    <div>
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#f59e0b;margin-bottom:4px;">Inloggen</div>
+      <div style="font-size:12px;color:#9ca3af;line-height:1.7;">Wachtwoord → jouw naam → pincode. Elke operator heeft eigen pincode.</div>
     </div>
   </div>
-</div>
 
-<!-- STAP 2 -->
-<div class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#f59e0b;">Stap 2 -- Recept opzoeken</div>
-  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
-    <div style="margin-bottom:8px;">1. Tik op <strong style="color:#f59e0b;">Recepten</strong> op het home scherm.</div>
-    <div style="margin-bottom:8px;">2. Zoek op <strong style="color:#f59e0b;">klantnummer, naam of afmeting</strong> via de zoekbalk.</div>
-    <div style="margin-bottom:8px;">3. Tik op een <strong style="color:#f59e0b;">klantnummer map</strong> om de recepten te zien.</div>
-    <div style="margin-bottom:8px;">4. Tik op een <strong style="color:#f59e0b;">recept</strong> om de details te openen.</div>
-    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;font-size:12px;">
-      💡 Recepten zijn gesorteerd op klantnummer. Groene badge = er is een actieve optie ingesteld.
+  <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;">
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#f59e0b;width:28px;flex-shrink:0;">2</div>
+    <div>
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#f59e0b;margin-bottom:4px;">Recept zoeken</div>
+      <div style="font-size:12px;color:#9ca3af;line-height:1.7;">Recepten → zoek op klant of afmeting → tik op recept → zie alle instellingen.</div>
     </div>
   </div>
-</div>
 
-<!-- STAP 3 -->
-<div class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#f59e0b;">Stap 3 -- Instellingen lezen</div>
-  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
-    <div style="margin-bottom:8px;">In het recept detail zie je:</div>
-    <div style="margin-bottom:6px;">• <strong style="color:#22d3ee;">Zak specificaties</strong> -- afmeting, materiaal, snelheid</div>
-    <div style="margin-bottom:6px;">• <strong style="color:#22c55e;">Optimale blower timing</strong> -- AAN/UIT tijden per kanaal in graden</div>
-    <div style="margin-bottom:6px;">• <strong style="color:#f59e0b;">360° diagram</strong> -- visueel overzicht van de cyclus</div>
-    <div style="margin-bottom:8px;">• <strong style="color:#3b82f6;">Foto's</strong> -- hoe de zak er uit moet zien</div>
-    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;font-size:12px;">
-      💡 De blower timing staat in graden (0°–360°). De hele cyclus duurt 360°. AAN = blazer start, UIT = blazer stopt.
+  <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;">
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#f59e0b;width:28px;flex-shrink:0;">3</div>
+    <div>
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#f59e0b;margin-bottom:4px;">Nieuw recept</div>
+      <div style="font-size:12px;color:#9ca3af;line-height:1.7;">＋ Nieuw → vul afmeting en materiaal in → Berekenen & Opslaan. Blower timing wordt automatisch berekend.</div>
     </div>
   </div>
-</div>
 
-<!-- STAP 4 -->
-<div class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#f59e0b;">Stap 4 -- Nieuw recept aanmaken</div>
-  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
-    <div style="margin-bottom:8px;">1. Tik op <strong style="color:#f59e0b;">＋ Nieuw</strong> rechtsboven in het recepten scherm.</div>
-    <div style="margin-bottom:8px;">2. Vul het <strong style="color:#f59e0b;">klantnummer</strong> in -- bekende klanten worden automatisch ingevuld.</div>
-    <div style="margin-bottom:8px;">3. Vul <strong style="color:#f59e0b;">breedte, lengte en dikte</strong> in via het eigen numpad (tik op het veld).</div>
-    <div style="margin-bottom:8px;">4. Kies het <strong style="color:#f59e0b;">materiaal</strong> (LDPE / HDPE / Recyclaat).</div>
-    <div style="margin-bottom:8px;">5. Snelheid staat standaard op <strong style="color:#22c55e;">220 ZPM</strong> -- aanpassen als nodig.</div>
-    <div style="margin-bottom:8px;">6. Tik <strong style="color:#f59e0b;">Berekenen & Opslaan</strong> -- blower timing wordt automatisch berekend.</div>
-    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;font-size:12px;">
-      💡 De blower timing wordt berekend op basis van de dikte. Dun folie = andere timing dan dik folie.
+  <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;">
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#f59e0b;width:28px;flex-shrink:0;">4</div>
+    <div>
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#f59e0b;margin-bottom:4px;">Eigen instelling opslaan</div>
+      <div style="font-size:12px;color:#9ca3af;line-height:1.7;">Open recept → 💾 Opties → ＋ Nieuw → pas graden aan → ✓ Opslaan → ✓ Kiezen.</div>
     </div>
   </div>
-</div>
 
-<!-- STAP 5 -->
-<div class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#f59e0b;">Stap 5 -- Eigen instellingen opslaan (Opties)</div>
-  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
-    <div style="margin-bottom:8px;">Heb je een betere instelling gevonden? Sla het op als optie!</div>
-    <div style="margin-bottom:8px;">1. Open het recept en tik op <strong style="color:#22c55e;">💾 Opties</strong>.</div>
-    <div style="margin-bottom:8px;">2. Tik op <strong style="color:#22c55e;">＋ Nieuw</strong> bij een lege optie (1 t/m 8).</div>
-    <div style="margin-bottom:8px;">3. Pas de AAN/UIT tijden aan per kanaal.</div>
-    <div style="margin-bottom:8px;">4. Tik <strong style="color:#22c55e;">✓ Opslaan</strong>.</div>
-    <div style="margin-bottom:8px;">5. Tik <strong style="color:#22d3ee;">✓ Kiezen</strong> om de optie actief te zetten.</div>
-    <div style="background:#22c55e11;border:1px solid #22c55e33;border-radius:3px;padding:8px;font-size:12px;">
-      💡 Je kunt alleen je eigen opties bewerken en verwijderen. De optimale settings zijn altijd veilig bewaard.
+  <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;">
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#f59e0b;width:28px;flex-shrink:0;">5</div>
+    <div>
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#f59e0b;margin-bottom:4px;">Probleem oplossen</div>
+      <div style="font-size:12px;color:#9ca3af;line-height:1.7;">🔧 Problemen → kies wat je ziet → volg de stappen. Max 1 aanpassing per keer.</div>
     </div>
   </div>
-</div>
 
-<!-- STAP 6 -->
-<div class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#f59e0b;">Stap 6 -- Probleem oplossen</div>
-  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
-    <div style="margin-bottom:8px;"><strong style="color:#ef4444;">Vanuit een recept:</strong> Tik op 🔧 Probleem → kies het probleem → directe aanpassing per parameter.</div>
-    <div style="margin-bottom:8px;"><strong style="color:#ef4444;">Vanuit home scherm:</strong> Tik op 🔧 Probleemoplossing → uitgebreide uitleg met oorzaak en achtergrond.</div>
-    <div style="background:#ef444411;border:1px solid #ef444433;border-radius:3px;padding:8px;font-size:12px;color:#fca5a5;">
-      ⚠ Pas altijd maar één parameter tegelijk aan. Test 10–15 zakken voor je verder gaat. Check spanning eerst!
+  <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;">
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#f59e0b;width:28px;flex-shrink:0;">6</div>
+    <div>
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#f59e0b;margin-bottom:4px;">Foto toevoegen</div>
+      <div style="font-size:12px;color:#9ca3af;line-height:1.7;">Open recept → 📷 Foto's → kies label → maak foto. Zichtbaar voor alle operators.</div>
     </div>
   </div>
-</div>
 
-<!-- STAP 7 -->
-<div class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#f59e0b;">Stap 7 -- Foto's toevoegen</div>
-  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
-    <div style="margin-bottom:8px;">1. Open een recept en tik op <strong style="color:#3b82f6;">📷 Foto's</strong>.</div>
-    <div style="margin-bottom:8px;">2. Kies wat je fotografeert (Klep, Bodem, Perforatie, etc.).</div>
-    <div style="margin-bottom:8px;">3. Maak een foto of kies uit je galerij.</div>
-    <div style="margin-bottom:8px;">4. Tik <strong style="color:#3b82f6;">✓ Opslaan</strong> -- foto wordt zichtbaar bij het recept.</div>
-    <div style="background:#3b82f611;border:1px solid #3b82f633;border-radius:3px;padding:8px;font-size:12px;">
-      💡 Foto's zijn voor iedereen zichtbaar. Zo weet elke operator hoe de zak er uit moet zien.
+  <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;">
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#f59e0b;width:28px;flex-shrink:0;">7</div>
+    <div>
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#f59e0b;margin-bottom:4px;">Leer Data</div>
+      <div style="font-size:12px;color:#9ca3af;line-height:1.7;">🧠 Leer Data toont gemiddelde van alle operators. Hoe meer data, hoe slimmer de app.</div>
     </div>
   </div>
-</div>
 
-<!-- STAP 8 -->
-<div class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#f59e0b;">Stap 8 -- Leer Data</div>
-  <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
-    <div style="margin-bottom:8px;">De app leert van alle opgeslagen opties van alle operators.</div>
-    <div style="margin-bottom:8px;">Tik op <strong style="color:#f59e0b;">🧠 Leer Data</strong> in een recept om te zien:</div>
-    <div style="margin-bottom:6px;">• <strong style="color:#22d3ee;">Algemeen</strong> -- gemiddelde van alle recepten met zelfde materiaal + dikte</div>
-    <div style="margin-bottom:8px;">• <strong style="color:#f59e0b;">Dit recept</strong> -- gemiddelde van alle opties voor dit specifieke recept</div>
-    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;font-size:12px;">
-      💡 Hoe meer operators hun opties opslaan, hoe nauwkeuriger de leer data wordt.
+  <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;">
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#22d3ee;width:28px;flex-shrink:0;">💡</div>
+    <div>
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:#22d3ee;margin-bottom:4px;">Blauw = schatting · Groen = bevestigd</div>
+      <div style="font-size:12px;color:#9ca3af;line-height:1.7;">Blauwe velden zijn gebaseerd op leerdata. Vul in en sla op → wordt groen.</div>
     </div>
   </div>
+
 </div>
 
-<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px;margin-top:4px;font-size:12px;color:#6b7280;line-height:1.8;text-align:center;">
-  Vragen? Vraag Dirk (admin) of kijk bij Machine Info voor technische uitleg.
+<div style="text-align:center;padding:16px;font-size:11px;color:#4a6080;margin-top:8px;">
+  Vragen? Vraag Dirk (admin)
 </div>
 ```
 
@@ -1203,7 +1149,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.4.8';
+const APP_VERSION = '2.5';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
@@ -1329,6 +1275,8 @@ function checkPin() {
     document.getElementById('home-welkom').textContent = 'Welkom, ' + _operator;
     document.getElementById('admin-blok').style.display = _isAdmin ? 'block' : 'none';
     ga('s-home');
+    // Laad recepten op achtergrond voor home banner
+    laadRecepten();
   } else {
     document.getElementById('pin-err').style.display = 'block';
     document.getElementById('inp-pin').value = '';
@@ -1386,6 +1334,36 @@ async function laadRecepten() {
     _recepten = [];
   }
   renderReceptenBoom(_recepten, '');
+  updateHomeLaatste();
+}
+
+function updateHomeLaatste() {
+  if (!_recepten.length) return;
+  // Zoek meest recent recept van huidige operator
+  var eigen = _recepten.filter(function(r) { return r.operator === _operator; });
+  var recept = eigen.length ? eigen[eigen.length-1] : _recepten[_recepten.length-1];
+  if (!recept) return;
+  var actief = recept.actieveOptie ? ' · OPT.' + recept.actieveOptie : '';
+  var fotos = recept.fotos ? Object.keys(recept.fotos).length : 0;
+  document.getElementById('home-laatste-inhoud').innerHTML =
+    '<div style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;">'
+    + recept.width + ' × ' + recept.length + ' cm / ' + recept.thickness + ' mm'
+    + '<span style="font-size:12px;color:#22c55e;margin-left:8px;">' + actief + '</span></div>'
+    + '<div style="font-size:11px;color:#6b7280;margin-top:4px;">'
+    + recept.material + ' · ' + recept.speed + ' ZPM'
+    + (recept.klantnaam ? ' · ' + recept.klantnaam : '')
+    + (fotos > 0 ? ' · 📷 ' + fotos : '')
+    + '</div>'
+    + '<div style="font-size:10px;color:#3b82f6;margin-top:6px;">Tik om te openen ›</div>';
+  document.getElementById('home-laatste').style.display = 'block';
+  document.getElementById('home-laatste').dataset.key = recept._key;
+}
+
+function naarLaatsteRecept() {
+  var key = document.getElementById('home-laatste').dataset.key;
+  if (!key) return;
+  var r = _recepten.find(function(x) { return x._key === key; });
+  if (r) { _huidigRecept = r; _huidigReceptKey = key; renderDetail(r); ga('s-detail'); }
 }
 
 function filterRecepten() {
