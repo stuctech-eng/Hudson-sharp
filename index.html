@@ -417,6 +417,32 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 ```
 <!-- Keuze knoppen -->
+<div class="slabel">Snel diagnose</div>
+<div class="card" style="margin-bottom:16px;">
+  <div style="padding:4px 0;">
+    <div class="info-row" style="padding:10px 14px;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#22d3ee;font-size:11px;">Plakt / opent slecht</div>
+      <div style="font-size:12px;color:#c8d8e8;">Onderpijp eerder starten</div>
+    </div>
+    <div class="info-row" style="padding:10px 14px;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#3b82f6;font-size:11px;">Vliegt / onrustig</div>
+      <div style="font-size:12px;color:#c8d8e8;">Lower blazer lager, upper hoger</div>
+    </div>
+    <div class="info-row" style="padding:10px 14px;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#a78bfa;font-size:11px;">Hoeken krullen</div>
+      <div style="font-size:12px;color:#c8d8e8;">Upper blazer hoger, onder iets lager</div>
+    </div>
+    <div class="info-row" style="padding:10px 14px;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#f59e0b;font-size:11px;">Slecht stapelen</div>
+      <div style="font-size:12px;color:#c8d8e8;">Upper blazer omhoog ✓</div>
+    </div>
+    <div class="info-row" style="padding:10px 14px;border-bottom:none;">
+      <div class="ir-lbl" style="color:#f97316;font-size:11px;">Missers</div>
+      <div style="font-size:12px;color:#c8d8e8;">Onderpijp eerder -- NIET harder</div>
+    </div>
+  </div>
+</div>
+
 <div class="slabel">Kies een probleem</div>
 <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
   <button onclick="toonUitgebreidProbleem('lucht')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #3b82f6;border-radius:4px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;">
@@ -433,6 +459,12 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
   </button>
   <button onclick="toonUitgebreidProbleem('statisch')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #f59e0b;border-radius:4px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;">
     <span style="font-size:22px;">⚡</span><span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;flex:1;text-align:left;">Statische elektriciteit</span><span style="color:#6b7280;">›</span>
+  </button>
+  <button onclick="toonUitgebreidProbleem('plakt')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #22d3ee;border-radius:4px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;">
+    <span style="font-size:22px;">🫧</span><span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;flex:1;text-align:left;">Zak opent slecht / plakt</span><span style="color:#6b7280;">›</span>
+  </button>
+  <button onclick="toonUitgebreidProbleem('missers')" style="background:#070a10;border:1px solid #1a2540;border-left:4px solid #f97316;border-radius:4px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;">
+    <span style="font-size:22px;">🎯</span><span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;flex:1;text-align:left;">Missers -- niet goed opgenomen</span><span style="color:#6b7280;">›</span>
   </button>
 </div>
 
@@ -814,13 +846,125 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
   <div class="info-row"><div class="ir-lbl">Onderste Pijp</div><div class="ir-val" style="font-size:14px;">Gerichte lucht onderin</div></div>
   <div class="info-row"><div class="ir-lbl">Uitgang 6</div><div class="ir-val" style="font-size:14px;">Afneemlucht -- naar stapel</div></div>
 </div>
+
+<div class="card">
+  <div class="card-title" style="color:#22d3ee;">💨 Luchtverhouding (Richtlijn)</div>
+  <div style="padding:14px;">
+    <div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:12px;margin-bottom:12px;">
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#3b82f6;margin-bottom:10px;">Fase 1 -- Blaaspijpen (scheiding)</div>
+      <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
+        <div class="ir-lbl" style="color:#f97316;">Onderste Pijp</div>
+        <div class="ir-val" style="color:#f97316;">65–75%</div>
+      </div>
+      <div class="info-row" style="padding:8px 0;border-bottom:none;">
+        <div class="ir-lbl" style="color:#3b82f6;">Bovenste Pijp</div>
+        <div class="ir-val" style="color:#3b82f6;">25–35%</div>
+      </div>
+      <div style="font-size:11px;color:#6b7280;margin-top:8px;">Onderste pijp dominant -- trekt onderste laag weg via zuiging.</div>
+    </div>
+    <div style="background:#a78bfa18;border:1px solid #a78bfa44;border-radius:4px;padding:12px;">
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#a78bfa;margin-bottom:10px;">Fase 2–3 -- Blazers (stabilisatie)</div>
+      <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
+        <div class="ir-lbl" style="color:#a78bfa;">Onderste Blazer</div>
+        <div class="ir-val" style="color:#a78bfa;">55–65%</div>
+      </div>
+      <div class="info-row" style="padding:8px 0;border-bottom:none;">
+        <div class="ir-lbl" style="color:#22d3ee;">Bovenste Blazer</div>
+        <div class="ir-val" style="color:#22d3ee;">35–45%</div>
+      </div>
+      <div style="font-size:11px;color:#6b7280;margin-top:8px;">Onderste blazer dominant -- ondersteunt positionering op pennen.</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title" style="color:#f59e0b;">⚙ Machineflow -- 3 Fasen</div>
+  <div style="padding:14px;">
+    <div style="background:#22d3ee18;border:1px solid #22d3ee44;border-radius:4px;padding:12px;margin-bottom:8px;">
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#22d3ee;margin-bottom:6px;">Fase 1 -- Na Seal (Kritisch)</div>
+      <div style="font-size:12px;color:#c8d8e8;line-height:1.8;">Folie zit tussen boven- en onderpijp.<br>Hier wordt de zak geopend en losgetrokken.<br><strong style="color:#22d3ee;">Pijpen bepalen 80% van het gedrag.</strong></div>
+    </div>
+    <div style="background:#a78bfa18;border:1px solid #a78bfa44;border-radius:4px;padding:12px;margin-bottom:8px;">
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#a78bfa;margin-bottom:6px;">Fase 2 -- Transport</div>
+      <div style="font-size:12px;color:#c8d8e8;line-height:1.8;">Zak komt op transportband.<br>Blazers nemen over -- geleiding en snelheid.<br>Lower blower duwt zak vooruit.</div>
+    </div>
+    <div style="background:#22c55e18;border:1px solid #22c55e44;border-radius:4px;padding:12px;">
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#22c55e;margin-bottom:6px;">Fase 3 -- Stacking</div>
+      <div style="font-size:12px;color:#c8d8e8;line-height:1.8;">Zak wordt door molenwiek op pennen gelegd.<br>Stabiliteit en vlak gedrag cruciaal.<br>Uitgang 6 fixeert zak op transportband.</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title" style="color:#3b82f6;">💨 Pijpen Logica -- Cruciale Regels</div>
+  <div style="padding:14px;">
+    <div style="background:#ef444418;border:1px solid #ef444444;border-radius:4px;padding:12px;margin-bottom:10px;">
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#ef4444;margin-bottom:6px;">⚠ Gouden Regel</div>
+      <div style="font-size:13px;color:#c8d8e8;line-height:1.7;">Onderpijp <strong style="color:#f97316;">ALTIJD</strong> eerder aan dan bovenpijp. Minimaal 10–20° verschil. Timing is belangrijker dan luchthoeveelheid.</div>
+    </div>
+    <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#f97316;">Onderpijp</div>
+      <div class="ir-val" style="font-size:13px;">Openen + lostrekken folie (dominant)</div>
+    </div>
+    <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#3b82f6;">Bovenpijp</div>
+      <div class="ir-val" style="font-size:13px;">Stabiliseren + geleiden (volgend)</div>
+    </div>
+    <div class="info-row" style="padding:8px 0;border-bottom:none;">
+      <div class="ir-lbl">Verschil</div>
+      <div class="ir-val" style="font-size:13px;color:#22c55e;">10–20° later</div>
+    </div>
+    <div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:10px;margin-top:10px;">
+      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;color:#3b82f6;margin-bottom:4px;">Uitzondering -- folie dubbelplakt na seal</div>
+      <div style="font-size:11px;color:#9ca3af;line-height:1.7;">Alleen dan: heel kort bovenpijp iets eerder als losduw, daarna onderpijp die overneemt. Dit is milliseconde-werk -- niet standaard gebruiken.</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title" style="color:#f59e0b;">⭐ Sterkte Rangorde per Component</div>
+  <div style="padding:14px;">
+    <div style="font-size:11px;color:#6b7280;margin-bottom:12px;">LDPE wicketzakken -- relatieve prioriteit</div>
+    <div class="info-row" style="padding:10px 0;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#f97316;">Onderste Pijp</div>
+      <div class="ir-val" style="font-size:18px;">
+        <span style="color:#f59e0b;">★★★★</span>
+        <span style="font-size:11px;color:#6b7280;margin-left:8px;">Belangrijkste</span>
+      </div>
+    </div>
+    <div class="info-row" style="padding:10px 0;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#a78bfa;">Lower Blazer</div>
+      <div class="ir-val" style="font-size:18px;">
+        <span style="color:#f59e0b;">★★★</span>
+        <span style="font-size:11px;color:#6b7280;margin-left:8px;">Transport</span>
+      </div>
+    </div>
+    <div class="info-row" style="padding:10px 0;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#3b82f6;">Bovenste Pijp</div>
+      <div class="ir-val" style="font-size:18px;">
+        <span style="color:#f59e0b;">★★</span>
+        <span style="font-size:11px;color:#6b7280;margin-left:8px;">Correctie</span>
+      </div>
+    </div>
+    <div class="info-row" style="padding:10px 0;border-bottom:none;">
+      <div class="ir-lbl" style="color:#22d3ee;">Upper Blazer</div>
+      <div class="ir-val" style="font-size:18px;">
+        <span style="color:#f59e0b;">★★–★★★</span>
+        <span style="font-size:11px;color:#6b7280;margin-left:8px;">Stabilisatie</span>
+      </div>
+    </div>
+    <div style="background:#0a0e16;border:1px solid #1a2540;border-radius:4px;padding:10px;margin-top:10px;">
+      <div style="font-size:11px;color:#6b7280;line-height:1.8;">
+        <span style="color:#f97316;">Onder (pijp + blazer):</span> 60–70% totaal<br>
+        <span style="color:#22d3ee;">Boven (pijp + blazer):</span> 30–40% totaal
+      </div>
+    </div>
+  </div>
+</div>
 ```
 
   </div>
 </div>
-
-<!-- ═══════════════ ADMIN ═══════════════ -->
-
 <div class="screen" id="s-admin">
   <div class="topbar">
     <button class="back-btn" onclick="ga('s-home')">‹</button>
@@ -1037,7 +1181,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.4.2';
+const APP_VERSION = '2.4.7';
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
@@ -1061,7 +1205,7 @@ const CHANNELS = [
 
 const TIMING = {
   dun:    { lower:[50,270], upper:[90,300], lower_pipe:[27,220], upper_pipe:[30,200], out6:[60,250] },
-  middel: { lower:[60,280], upper:[120,320], lower_pipe:[30,210], upper_pipe:[20,190], out6:[80,300] },
+  middel: { lower:[60,280], upper:[120,320], lower_pipe:[20,210], upper_pipe:[30,190], out6:[80,300] },
   dik:    { lower:[50,270], upper:[90,300], lower_pipe:[27,220], upper_pipe:[30,200], out6:[135,358] },
 };
 
@@ -2214,6 +2358,28 @@ const PROBLEMEN_UITGEBREID = {
       { naam: 'Balans', actie: '⚖ Afstemmen', detail: 'Pas bodem en klep apart aan. Test altijd of klant de zak nog goed kan openen na aanpassing.', timing: null },
     ]
   },
+  plakt: {
+    titel: '🫧 Zak opent slecht / plakt',
+    kleur: '#22d3ee',
+    oorzaak: 'De onderste blaaspijp start te laat of staat te zwak. De folie wordt niet goed losgetrokken na de seal. De pijpen bepalen 80% van het gedrag -- dit is een fase 1 probleem.',
+    stappen: [
+      { naam: 'Onderste Blaaspijp', actie: '↑ Eerder starten', detail: 'Timing eerder zetten is effectiever dan harder zetten. Onderpijp moet ALTIJD eerder starten dan bovenpijp.', timing: 'AAN-moment 5–10° eerder' },
+      { naam: 'Onderste Blaaspijp', actie: '↑ Lucht verhogen', detail: 'Draaikraan iets verder open. Onderpijp is verantwoordelijk voor het lostrekken van de folie na seal.', timing: null },
+      { naam: 'Bovenste Blaaspijp', actie: '↓ Later starten', detail: 'Als bovenpijp te vroeg komt duwt hij de folie juist terug. Zorg voor minimaal 10-20° verschil met onderpijp.', timing: 'AAN-moment naar 30–40°' },
+      { naam: 'Uitzondering', actie: '⚠ Folie dubbelplakt', detail: 'Alleen als folie meteen na seal dubbelplakt: heel kort bovenpijp iets eerder als losduw, daarna onderpijp die overneemt. Dit is milliseconde-werk.', timing: null },
+    ]
+  },
+  missers: {
+    titel: '🎯 Missers -- niet goed opgenomen',
+    kleur: '#f97316',
+    oorzaak: 'De molenwiek pakt de zak niet goed op. Dit is bijna altijd een timing probleem in fase 1 -- de zak ligt verkeerd omdat de onderpijp te laat of te zwak werkt. NIET oplossen door harder zetten.',
+    stappen: [
+      { naam: 'Onderste Blaaspijp', actie: '↑ Eerder starten', detail: 'Eerste actie bij missers: onderpijp eerder laten starten. Timing aanpassen is effectiever dan lucht verhogen.', timing: 'AAN-moment 5–10° eerder' },
+      { naam: 'Uitgang 6', actie: '↑ Controleer timing', detail: 'Uitgang 6 stabiliseert de zak richting molenwiek. Moet stoppen net vóór het ophaalmoment van de molenwiek.', timing: 'UIT-moment controleren' },
+      { naam: 'Bovenste Blazer', actie: '↑ Langer actief', detail: 'Meer bovencontrole tijdens transport naar molenwiek verbetert de positionering.', timing: 'UIT-moment 10–15° later' },
+      { naam: 'Lucht NIET verhogen', actie: '⚠ Vermijd dit', detail: 'Harder zetten lost missers zelden op. Eerst timing optimaliseren, dan pas lucht aanpassen.', timing: null },
+    ]
+  },
 };
 
 function toonUitgebreidProbleem(type) {
@@ -2510,7 +2676,7 @@ function fotoGekozen(event) {
   reader.onload = function(e) {
     document.getElementById('foto-preview').src = e.target.result;
     document.getElementById('foto-preview-wrap').style.display = 'block';
-    document.getElementById('foto-bestandsinfo').textContent = (file.size / 1024).toFixed(0) + ' KB -- wordt verkleind naar max 1920px';
+    document.getElementById('foto-bestandsinfo').textContent = (file.size / 1024 / 1024).toFixed(1) + ' MB -- originele kwaliteit';
     document.getElementById('btn-foto-upload').style.display = 'block';
   };
   reader.readAsDataURL(file);
@@ -2521,8 +2687,8 @@ async function uploadFoto() {
   document.getElementById('btn-foto-upload').style.display = 'none';
   document.getElementById('foto-upload-voortgang').style.display = 'block';
 
-  // Verkleinen via canvas (max 1200px breed, kwaliteit 0.8)
-  const verkleindBlob = await verkleinfoto(_fotoFile, 1920, 0.9);
+  // Direct uploaden zonder verkleinen
+  const verkleindBlob = file;
   document.getElementById('foto-pct').textContent = '30';
 
   // Upload naar Firebase Storage
