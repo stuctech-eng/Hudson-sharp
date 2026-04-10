@@ -334,28 +334,39 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
       <input id="f-s" type="text" readonly value="220" class="groen"
         style="cursor:pointer;" onclick="openNumpad('f-s','integer','Snelheid (ZPM)')">
     </div>
+  </div>
+</div>
 
-    <!-- Toggle Optimaal / Werkelijk -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;">
-      <button id="btn-optimaal" onclick="laadOptimaal()" style="background:#f59e0b22;border:2px solid #f59e0b;border-radius:4px;padding:10px 8px;cursor:pointer;text-align:center;">
-        <div style="font-size:16px;margin-bottom:3px;">⚙</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#f59e0b;">Optimaal</div>
-        <div style="font-size:9px;color:#6b7280;margin-top:2px;">Berekend startpunt</div>
-      </button>
-      <button id="btn-werkelijk" onclick="laadWerkelijk()" style="background:#0f1520;border:2px solid #1a2540;border-radius:4px;padding:10px 8px;cursor:pointer;text-align:center;">
-        <div style="font-size:16px;margin-bottom:3px;">📊</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#6b7280;">Werkelijk</div>
-        <div style="font-size:9px;color:#6b7280;margin-top:2px;" id="werkelijk-info">Leerdata</div>
-      </button>
+<!-- Toggle knoppen -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+  <button id="btn-optimaal" onclick="laadOptimaal()" style="background:#f59e0b22;border:2px solid #f59e0b;border-radius:4px;padding:12px 8px;cursor:pointer;text-align:center;">
+    <div style="font-size:18px;margin-bottom:3px;">⚙</div>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#f59e0b;">Optimaal</div>
+    <div style="font-size:9px;color:#6b7280;margin-top:2px;">Berekend startpunt</div>
+  </button>
+  <button id="btn-werkelijk" onclick="laadWerkelijk()" style="background:#0f1520;border:2px solid #1a2540;border-radius:4px;padding:12px 8px;cursor:pointer;text-align:center;">
+    <div style="font-size:18px;margin-bottom:3px;">📊</div>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#6b7280;">Werkelijk</div>
+    <div style="font-size:9px;color:#6b7280;margin-top:2px;" id="werkelijk-info">Leerdata</div>
+  </button>
+</div>
+<div id="leer-banner" style="display:none;background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#93c5fd;"></div>
+
+<!-- Blower Timing -->
+<div class="card">
+  <div class="card-title" style="color:#22d3ee;">⚡ Blower Timing</div>
+  <div style="padding:14px;">
+    <div id="blower-velden">
+      <div style="text-align:center;padding:20px;color:#4a6080;font-size:12px;">Vul dikte in en kies Optimaal of Werkelijk ↑</div>
     </div>
-    <div id="leer-banner" style="display:none;background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:8px 12px;margin-top:8px;font-size:11px;color:#93c5fd;"></div>
   </div>
 </div>
 
 <!-- Doorvoer & Afneem -->
 <div class="card">
-  <div class="card-title">Doorvoer & Afneem Moment</div>
+  <div class="card-title">📐 Doorvoer & Afneem Moment</div>
   <div style="padding:14px;">
+    <div style="font-size:10px;color:#6b7280;margin-bottom:10px;">Blauw = leerdata van vergelijkbare recepten</div>
     <div class="grid2" style="margin-bottom:10px;">
       <div class="field">
         <label>Start Doorvoer (mm)</label>
@@ -384,8 +395,6 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 </div>
 
 <!-- TOEBEHOREN -->
-```
-
 <div class="card" style="margin-bottom:12px;">
   <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;" onclick="toggleToebehoren()">
     <div>
@@ -429,19 +438,6 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
         <input id="f-mes-ro" type="text" readonly value="353" class="blauw" data-origineel="353"
           style="cursor:pointer;" onclick="openNumpad('f-mes-ro','integer','Mes Rechtsonder')">
       </div>
-    </div>
-  </div>
-</div>
-
-```
-<!-- Blower Timing -->
-<div class="card">
-  <div class="card-title" style="color:#22d3ee;">Blower Timing</div>
-  <div style="padding:14px;">
-    <div style="font-size:10px;color:#6b7280;margin-bottom:12px;">Kies Optimaal of Werkelijk hierboven om te laden. Tik op een waarde om te bewerken.</div>
-    <div id="blower-velden">
-      <!-- Dynamisch gevuld door laadOptimaal/laadWerkelijk -->
-      <div style="text-align:center;padding:20px;color:#4a6080;font-size:12px;">Kies eerst Optimaal of Werkelijk ↑</div>
     </div>
   </div>
 </div>
@@ -1123,7 +1119,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.7.3';
+const APP_VERSION = '2.7.4';
 
 const CHANGELOG = [
   { v: '2.5',   txt: 'Home met laatste recept banner, help scherm visueel, parameters naar machine info' },
@@ -1848,6 +1844,7 @@ function nieuwRecept() {
   document.getElementById('s-nieuw').dataset.editKey = '';
   resetNieuwForm();
   ga('s-nieuw');
+  // Direct optimale laden als dikte al bekend (edit mode) anders wachten
 }
 
 function bewerkRecept(key) {
@@ -1864,8 +1861,26 @@ function bewerkRecept(key) {
   zetVeldGroen('f-t', r.thickness || '');
   zetVeldGroen('f-s', r.speed || '220');
   kiesMat(r.material || 'LDPE');
-  var bv = document.getElementById('blower-velden');
-  if (bv) bv.innerHTML = '<div style="text-align:center;padding:20px;color:#4a6080;font-size:12px;">Kies eerst Optimaal of Werkelijk ↑</div>';
+  // Laad bestaande blower waarden
+  _huidigTiming = {};
+  CHANNELS.forEach(function(ch) {
+    _huidigTiming[ch.key+'_on']  = r[ch.key+'_on']  || 0;
+    _huidigTiming[ch.key+'_off'] = r[ch.key+'_off'] || 0;
+  });
+  renderBlowerVelden();
+  // Zet velden groen (zijn opgeslagen waarden)
+  CHANNELS.forEach(function(ch) {
+    var elOn  = document.getElementById('f-blw-'+ch.key+'-on');
+    var elOff = document.getElementById('f-blw-'+ch.key+'-off');
+    if (elOn  && elOn.value)  elOn.className  = 'groen';
+    if (elOff && elOff.value) elOff.className = 'groen';
+  });
+  // Laad doorvoer/afneem
+  function setDv(id, val) { var el=document.getElementById(id); if(el&&val){el.value=val;el.className='groen';} }
+  setDv('f-dv-start',   r.start_doorvoer);
+  setDv('f-dv-stop',    r.stop_doorvoer);
+  setDv('f-afneem-mm',  r.afneem_mm);
+  setDv('f-afneem-gr',  r.afneem_moment);
   var bdw = document.getElementById('btn-detail-wrap');
   if (bdw) bdw.style.display = 'none';
   var bop = document.getElementById('btn-opslaan');
@@ -2114,6 +2129,10 @@ function npBevestig() {
     el.style.cursor = 'pointer';
   }
   sluitNumpad();
+  // Auto-laad optimaal als dikte ingevuld wordt in nieuw recept
+  if (_npVeld === 'f-t' && _npWaarde && document.getElementById('blower-velden')) {
+    setTimeout(function() { laadOptimaalStil(); }, 100);
+  }
 }
 
 function sluitNumpad() {
@@ -2857,6 +2876,52 @@ function renderAfstellenKlaar() {
 function toggleMI(id) {
   var el = document.getElementById(id);
   el.classList.toggle('open');
+}
+
+function laadOptimaalStil() {
+  // Zelfde als laadOptimaal maar zonder toast
+  var t = parseFloat(document.getElementById('f-t').value);
+  if (!t) return;
+  var basis = berekenTiming(t);
+  _huidigTiming = {};
+  CHANNELS.forEach(function(ch) {
+    _huidigTiming[ch.key+'_on']  = basis[ch.key][0];
+    _huidigTiming[ch.key+'_off'] = basis[ch.key][1];
+  });
+  renderBlowerVelden();
+  var bo = document.getElementById('btn-optimaal');
+  var bw = document.getElementById('btn-werkelijk');
+  if (bo) { bo.style.background='#f59e0b22'; bo.style.borderColor='#f59e0b'; bo.querySelector('div:nth-child(2)').style.color='#f59e0b'; }
+  if (bw) { bw.style.background='#0f1520'; bw.style.borderColor='#1a2540'; bw.querySelector('div:nth-child(2)').style.color='#6b7280'; }
+  // Laad ook doorvoer/afneem uit leerdata (stil)
+  _laadDoorvoerLeerdata();
+}
+
+function _laadDoorvoerLeerdata() {
+  var w = parseFloat(document.getElementById('f-w').value);
+  var l = parseFloat(document.getElementById('f-l').value);
+  var t = parseFloat(document.getElementById('f-t').value);
+  var mat = _gekozenMat;
+  function gem(key) {
+    var pool = _recepten.filter(function(r) {
+      return Math.abs(r.thickness-t) < 0.005 && r.material === mat && r[key];
+    });
+    if (!pool.length && t) pool = _recepten.filter(function(r) { return Math.abs(r.thickness-t)<0.005 && r[key]; });
+    var vals = pool.map(function(r){return parseFloat(r[key]);}).filter(function(v){return !isNaN(v);});
+    return vals.length ? (vals.reduce(function(a,b){return a+b;},0)/vals.length).toFixed(1) : null;
+  }
+  var dvStart = gem('start_doorvoer');
+  var dvStop  = gem('stop_doorvoer');
+  var afnMm   = gem('afneem_mm');
+  var afnGr   = gem('afneem_moment');
+  function setBlauw(id, val) {
+    var el = document.getElementById(id);
+    if (el && val) { el.value = val; el.className = 'blauw'; }
+  }
+  setBlauw('f-dv-start', dvStart);
+  setBlauw('f-dv-stop',  dvStop);
+  setBlauw('f-afneem-mm', afnMm);
+  setBlauw('f-afneem-gr', afnGr);
 }
 
 function renderBlowerVelden() {
