@@ -882,7 +882,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     <span>📖 Parameters -- Wat Doen Ze?</span>
     <span class="mi-chevron">›</span>
   </div>
-  <div class="mi-body" id="params-inhoud" style="display:none;">
+  <div class="mi-body" id="params-inhoud">
     <div style="padding:14px;font-size:12px;color:#c8d8e8;line-height:1.8;">
       <div style="margin-bottom:10px;"><strong style="color:#22d3ee;">Bovenste Blazer:</strong> Stabiliseert bovenkant tijdens transport. Te veel → lucht in zak. Te weinig → onrustige baan.</div>
       <div style="margin-bottom:10px;"><strong style="color:#a78bfa;">Onderste Blazer:</strong> Ondersteunt transport en positionering op pennen. Te veel → zak zweeft voorbij.</div>
@@ -1123,7 +1123,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.7.1';
+const APP_VERSION = '2.7.3';
 
 const CHANGELOG = [
   { v: '2.5',   txt: 'Home met laatste recept banner, help scherm visueel, parameters naar machine info' },
@@ -1864,9 +1864,12 @@ function bewerkRecept(key) {
   zetVeldGroen('f-t', r.thickness || '');
   zetVeldGroen('f-s', r.speed || '220');
   kiesMat(r.material || 'LDPE');
-  document.getElementById('berekend-box').style.display = 'none';
-  document.getElementById('btn-detail-wrap').style.display = 'none';
-  document.getElementById('btn-opslaan').style.display = 'block';
+  var bv = document.getElementById('blower-velden');
+  if (bv) bv.innerHTML = '<div style="text-align:center;padding:20px;color:#4a6080;font-size:12px;">Kies eerst Optimaal of Werkelijk ↑</div>';
+  var bdw = document.getElementById('btn-detail-wrap');
+  if (bdw) bdw.style.display = 'none';
+  var bop = document.getElementById('btn-opslaan');
+  if (bop) bop.style.display = 'block';
   ga('s-nieuw');
 }
 
@@ -1882,9 +1885,22 @@ function resetNieuwForm() {
   kiesMat('LDPE');
   _huidigTiming = null;
   _nieuwOpgeslaanKey = null;
-  document.getElementById('berekend-box').style.display = 'none';
-  document.getElementById('btn-detail-wrap').style.display = 'none';
-  document.getElementById('btn-opslaan').style.display = 'block';
+  // Reset blower velden
+  var bv = document.getElementById('blower-velden');
+  if (bv) bv.innerHTML = '<div style="text-align:center;padding:20px;color:#4a6080;font-size:12px;">Kies eerst Optimaal of Werkelijk ↑</div>';
+  // Reset doorvoer velden
+  ['f-dv-start','f-dv-stop','f-afneem-mm','f-afneem-gr'].forEach(function(id) { setLeeg(id); });
+  // Reset toggle styling
+  var bo = document.getElementById('btn-optimaal');
+  var bw = document.getElementById('btn-werkelijk');
+  if (bo) { bo.style.background='#f59e0b22'; bo.style.borderColor='#f59e0b'; bo.querySelector('div:nth-child(2)').style.color='#f59e0b'; }
+  if (bw) { bw.style.background='#0f1520'; bw.style.borderColor='#1a2540'; bw.querySelector('div:nth-child(2)').style.color='#6b7280'; }
+  var lb = document.getElementById('leer-banner');
+  if (lb) lb.style.display = 'none';
+  var bdw = document.getElementById('btn-detail-wrap');
+  if (bdw) bdw.style.display = 'none';
+  var bop = document.getElementById('btn-opslaan');
+  if (bop) bop.style.display = 'block';
 }
 
 function setLeeg(id) {
