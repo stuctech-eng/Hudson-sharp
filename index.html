@@ -337,12 +337,12 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     <div class="grid2" style="margin-bottom:10px;">
       <div class="field">
         <label>Starttijd (mm)</label>
-        <input id="f-starttijd" type="text" readonly value="5" class="blauw"
+        <input id="f-starttijd" type="text" readonly value="5" class="blauw" data-origineel="5"
           style="cursor:pointer;" onclick="openNumpad('f-starttijd','decimal','Starttijd (mm)')">
       </div>
       <div class="field">
         <label>Lastijd (ms)</label>
-        <input id="f-lastijd" type="text" readonly value="12" class="blauw"
+        <input id="f-lastijd" type="text" readonly value="12" class="blauw" data-origineel="12"
           style="cursor:pointer;" onclick="openNumpad('f-lastijd','integer','Lastijd (ms)')">
       </div>
     </div>
@@ -350,22 +350,22 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     <div class="grid2">
       <div class="field">
         <label>Linksboven</label>
-        <input id="f-mes-lb" type="text" readonly value="353" class="blauw"
+        <input id="f-mes-lb" type="text" readonly value="353" class="blauw" data-origineel="353"
           style="cursor:pointer;" onclick="openNumpad('f-mes-lb','integer','Mes Linksboven')">
       </div>
       <div class="field">
         <label>Rechtsboven</label>
-        <input id="f-mes-rb" type="text" readonly value="353" class="blauw"
+        <input id="f-mes-rb" type="text" readonly value="353" class="blauw" data-origineel="353"
           style="cursor:pointer;" onclick="openNumpad('f-mes-rb','integer','Mes Rechtsboven')">
       </div>
       <div class="field">
         <label>Linksonder</label>
-        <input id="f-mes-lo" type="text" readonly value="353" class="blauw"
+        <input id="f-mes-lo" type="text" readonly value="353" class="blauw" data-origineel="353"
           style="cursor:pointer;" onclick="openNumpad('f-mes-lo','integer','Mes Linksonder')">
       </div>
       <div class="field">
         <label>Rechtsonder</label>
-        <input id="f-mes-ro" type="text" readonly value="353" class="blauw"
+        <input id="f-mes-ro" type="text" readonly value="353" class="blauw" data-origineel="353"
           style="cursor:pointer;" onclick="openNumpad('f-mes-ro','integer','Mes Rechtsonder')">
       </div>
     </div>
@@ -1186,7 +1186,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.5.6';
+const APP_VERSION = '2.5.7';
 
 const CHANGELOG = [
   { v: '2.5',   txt: 'Home met laatste recept banner, help scherm visueel, parameters naar machine info' },
@@ -2104,10 +2104,11 @@ function npDel() {
 function npBevestig() {
   const el = document.getElementById(_npVeld);
   if (el) {
-    var wasWaarde = el.getAttribute('data-origineel') || el.value;
+    var oudeWaarde = el.value;
     el.value = _npWaarde;
-    // Blauw blijft blauw als waarde niet gewijzigd is tov origineel
-    if (el.classList.contains('blauw') && _npWaarde === wasWaarde) {
+    // Groen als waarde gewijzigd tov origineel, blauw als zelfde als standaard
+    var wasOrigineel = el.getAttribute('data-origineel');
+    if (wasOrigineel !== null && _npWaarde === wasOrigineel) {
       el.className = 'blauw';
     } else {
       el.className = _npWaarde ? 'groen' : 'leeg';
