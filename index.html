@@ -1119,7 +1119,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.7.4';
+const APP_VERSION = '2.7.5';
 
 const CHANGELOG = [
   { v: '2.5',   txt: 'Home met laatste recept banner, help scherm visueel, parameters naar machine info' },
@@ -2056,31 +2056,6 @@ async function berekenEnSla() {
     _recepten.push({...recept, _key: _nieuwOpgeslaanKey});
   }
   toast('Recept opgeslagen!');
-
-  // Doorvoer benadering op basis van leerdata
-  var dvVergelijk = _recepten.filter(function(rec) {
-    return rec._key !== _nieuwOpgeslaanKey
-      && rec.material === _gekozenMat
-      && Math.abs(parseFloat(rec.thickness) - parseFloat(document.getElementById('f-t').value)) < 0.001
-      && (rec.start_doorvoer || rec.stop_doorvoer || rec.afneem_moment);
-  });
-  if (dvVergelijk.length) {
-    function dvGemNieuw(veld) {
-      var vals = dvVergelijk.map(function(r) { return parseFloat(r[veld]); }).filter(function(v) { return !isNaN(v); });
-      return vals.length ? (vals.reduce(function(a,b){return a+b;},0)/vals.length).toFixed(1) : '';
-    }
-    var hint = '<div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:12px 14px;margin-top:12px;">'
-      +'<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:13px;color:#3b82f6;margin-bottom:6px;">&#9881; Doorvoer benadering (leer data)</div>'
-      +'<div style="font-size:12px;color:#93c5fd;line-height:1.8;">'
-      +'Start: <strong>'+( dvGemNieuw('start_doorvoer')||'?')+'</strong> &nbsp;'
-      +'Stop: <strong>'+(dvGemNieuw('stop_doorvoer')||'?')+'</strong> &nbsp;'
-      +'Afneem: <strong>'+(dvGemNieuw('afneem_moment')||'?')+'</strong>'
-      +'</div>'
-      +'<div style="font-size:10px;color:#6b7280;margin-top:4px;">Invullen via recept detail</div>'
-      +'</div>';
-    document.getElementById('berekend-inhoud').insertAdjacentHTML('beforeend', hint);
-  }
-
   document.getElementById('btn-detail-wrap').style.display = 'block';
 }
 
