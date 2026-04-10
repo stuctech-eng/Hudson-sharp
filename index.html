@@ -890,6 +890,36 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
   </div>
 </div>
 <div class="card">
+  <div class="card-title" style="color:#22c55e;">📐 Referentie Instelling -- 23µ LDPE</div>
+  <div style="padding:14px;">
+    <div style="font-size:11px;color:#6b7280;margin-bottom:12px;">Startpunt voor 27×31.5cm boterhamzakken 0.023mm</div>
+    <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#f97316;">Onderste Pijp</div>
+      <div class="ir-val" style="font-size:14px;color:#f97316;">14° → 200°</div>
+    </div>
+    <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#3b82f6;">Bovenste Pijp</div>
+      <div class="ir-val" style="font-size:14px;color:#3b82f6;">26° → 155°</div>
+    </div>
+    <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#a78bfa;">Lower Blazer</div>
+      <div class="ir-val" style="font-size:14px;color:#a78bfa;">50° → 260°</div>
+    </div>
+    <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
+      <div class="ir-lbl" style="color:#22d3ee;">Upper Blazer</div>
+      <div class="ir-val" style="font-size:14px;color:#22d3ee;">90° → 300°</div>
+    </div>
+    <div class="info-row" style="padding:8px 0;border-bottom:none;">
+      <div class="ir-lbl" style="color:#f59e0b;">Uitgang 6</div>
+      <div class="ir-val" style="font-size:14px;color:#f59e0b;">68° → 240°</div>
+    </div>
+    <div style="background:#22c55e11;border:1px solid #22c55e33;border-radius:4px;padding:8px 10px;margin-top:10px;font-size:11px;color:#6b7280;line-height:1.7;">
+      Onder eerder dan boven -- minimaal 10° verschil. Finetune via opties in recept.
+    </div>
+  </div>
+</div>
+
+<div class="card">
   <div class="card-title" style="color:#f59e0b;">⭐ Sterkte Rangorde per Component</div>
   <div style="padding:14px;">
     <div style="font-size:11px;color:#6b7280;margin-bottom:12px;">LDPE wicketzakken -- relatieve prioriteit</div>
@@ -971,11 +1001,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     </div>
     <div class="card">
       <div class="card-title">Versie Historie</div>
-      <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">v2.4</div><div class="ir-val" style="font-size:13px;">Blower volgorde NL, toebehoren, opmerking, doorvoer leerdata, foto lightbox, specs inklapbaar</div></div>
-      <div class="info-row"><div class="ir-lbl">v2.3</div><div class="ir-val" style="font-size:13px;">Foto's onderaan + attentie banner + pincode beveiliging foto verwijderen</div></div>
-      <div class="info-row"><div class="ir-lbl">v2.2</div><div class="ir-val" style="font-size:13px;">Help scherm toegevoegd -- 8 stappen voor nieuwe operators</div></div>
-      <div class="info-row"><div class="ir-lbl">v2.1</div><div class="ir-val" style="font-size:13px;">Foto upload naar Firebase Storage -- camera + galerij</div></div>
-      <div class="info-row"><div class="ir-lbl">v2.0</div><div class="ir-val" style="font-size:13px;">Blaaspijpen correct beschreven (lift/zuiging), home knoppen groter</div></div>
+      <div id="versie-historie-inhoud"></div>
       <div class="info-row"><div class="ir-lbl">v1.9</div><div class="ir-val" style="font-size:13px;">Parameters volledig herschreven met cyclus volgorde</div></div>
       <div class="info-row"><div class="ir-lbl">v1.8</div><div class="ir-val" style="font-size:13px;">Machine Info uitgebreid, folie spanning in probleemoplossing</div></div>
       <div class="info-row"><div class="ir-lbl">v1.7</div><div class="ir-val" style="font-size:13px;">Probleemoplossing herschreven op basis van echte praktijk</div></div>
@@ -1149,7 +1175,27 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.5';
+const APP_VERSION = '2.5.1';
+
+const CHANGELOG = [
+  { v: '2.5',   txt: 'Home met laatste recept banner, help scherm visueel, parameters naar machine info' },
+  { v: '2.4.8', txt: 'Probleemoplossing herbouwd met graden, zak draait op band toegevoegd' },
+  { v: '2.4.7', txt: 'Sterkte rangorde componenten, machineflow 3 fasen, pijpen logica' },
+  { v: '2.4.6', txt: 'Nieuwe problemen: plakt + missers, fase logica in machine info' },
+  { v: '2.4.5', txt: 'Middel timing gecorrigeerd: onderpijp eerder dan bovenpijp' },
+  { v: '2.4.4', txt: 'Luchtverhouding richtlijn toegevoegd aan machine info' },
+  { v: '2.4',   txt: 'Leerdata titels, foto lightbox, foto kwaliteit 1920px' },
+  { v: '2.3.8', txt: 'Doorvoer leerdata knop, specs inklapbaar, 5 knop grid' },
+  { v: '2.3.6', txt: 'Doorvoer + afneem moment met leerdata benadering' },
+  { v: '2.3.5', txt: 'Opmerking vak: bewerken/opslaan toggle' },
+  { v: '2.3.3', txt: 'Toebehoren standaardwaarden blauw (5mm / 12ms / 353°C)' },
+  { v: '2.3.2', txt: 'Toebehoren vak in nieuw recept' },
+  { v: '2.3.1', txt: 'Blower volgorde NL: Bovenste Blazer eerst' },
+  { v: '2.3',   txt: 'Foto\'s onderaan + lightbox + pincode beveiliging' },
+  { v: '2.2',   txt: 'Help scherm 8 stappen voor nieuwe operators' },
+  { v: '2.1',   txt: 'Foto upload naar Firebase Storage' },
+  { v: '2.0',   txt: 'Blaaspijpen correct beschreven (lift/zuiging)' },
+];
 const APP_PW = 'hudson2024';
 const FB = 'https://hudson-sharp-default-rtdb.europe-west1.firebasedatabase.app';
 const FB_STORAGE = 'https://firebasestorage.googleapis.com/v0/b/hudson-sharp.firebasestorage.app/o';
@@ -1200,6 +1246,10 @@ let _openGroepen = new Set();
 document.getElementById('login-versie').textContent = 'v' + APP_VERSION;
 document.getElementById('home-versie').textContent = 'v' + APP_VERSION;
 document.getElementById('admin-versie').textContent = APP_VERSION;
+document.getElementById('versie-historie-inhoud').innerHTML = CHANGELOG.map(function(c, i) {
+  return '<div class="info-row"><div class="ir-lbl" style="color:' + (i===0?'#f59e0b':'#6b7280') + ';">v' + c.v + '</div>'
+    + '<div class="ir-val" style="font-size:13px;">' + c.txt + '</div></div>';
+}).join('');
 checkVersie();
 
 function checkVersie() {
@@ -2038,8 +2088,14 @@ function npDel() {
 function npBevestig() {
   const el = document.getElementById(_npVeld);
   if (el) {
+    var wasWaarde = el.getAttribute('data-origineel') || el.value;
     el.value = _npWaarde;
-    el.className = _npWaarde ? 'groen' : 'leeg';
+    // Blauw blijft blauw als waarde niet gewijzigd is tov origineel
+    if (el.classList.contains('blauw') && _npWaarde === wasWaarde) {
+      el.className = 'blauw';
+    } else {
+      el.className = _npWaarde ? 'groen' : 'leeg';
+    }
     el.style.cursor = 'pointer';
   }
   sluitNumpad();
