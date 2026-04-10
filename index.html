@@ -929,6 +929,37 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     </div>
   </div>
 </div>
+
+<div class="card">
+  <div class="card-title" style="color:#22c55e;">✅ Mag -- Regels</div>
+  <div style="padding:14px;">
+    <div style="font-size:12px;color:#c8d8e8;line-height:2.1;">
+      <div>✅ Onderpijp = eerste actie (of max gelijk met boven)</div>
+      <div>✅ Onderpijp langer actief dan bovenpijp</div>
+      <div>✅ Upper blazer start LAAT -- ≥110°</div>
+      <div>✅ Upper blazer loopt door tot eind -- ±300–320°</div>
+      <div>✅ Lower blazer start vóór upper blazer</div>
+      <div>✅ Uitgang 6 start NA pijpen -- ±65–80°</div>
+      <div>✅ Timing aanpassen vóór lucht verhogen</div>
+      <div>✅ Kleine stappen: 2–5° per keer</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title" style="color:#ef4444;">❌ Niet Mag -- Fouten</div>
+  <div style="padding:14px;">
+    <div style="font-size:12px;color:#c8d8e8;line-height:2.1;">
+      <div>❌ Upper blazer actief tijdens pijpfase -- te vroeg &lt;100°</div>
+      <div>❌ Bovenpijp veel eerder dan onderpijp</div>
+      <div>❌ Te veel onderlucht → zak gaat vliegen</div>
+      <div>❌ Alles tegelijk aanpassen</div>
+      <div>❌ Blowers gebruiken om pijpfouten op te lossen</div>
+      <div>❌ Uitgang 6 te vroeg → verstoort opening</div>
+      <div>❌ Onderpijp te laat → plakken</div>
+    </div>
+  </div>
+</div>
 ```
 
   </div>
@@ -1155,7 +1186,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.5.5';
+const APP_VERSION = '2.5.6';
 
 const CHANGELOG = [
   { v: '2.5',   txt: 'Home met laatste recept banner, help scherm visueel, parameters naar machine info' },
@@ -1198,8 +1229,8 @@ const CHANNELS = [
 ];
 
 const TIMING = {
-  dun:    { lower:[50,270], upper:[90,300], lower_pipe:[27,220], upper_pipe:[30,200], out6:[60,250] },
-  middel: { lower:[60,280], upper:[90,300], lower_pipe:[20,210], upper_pipe:[30,190], out6:[80,300] },
+  dun:    { lower:[50,270], upper:[110,300], lower_pipe:[27,220], upper_pipe:[30,200], out6:[60,250] },
+  middel: { lower:[60,280], upper:[110,300], lower_pipe:[20,210], upper_pipe:[30,190], out6:[80,300] },
   dik:    { lower:[50,270], upper:[90,300], lower_pipe:[27,220], upper_pipe:[30,200], out6:[135,358] },
 };
 
