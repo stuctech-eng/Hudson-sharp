@@ -1186,7 +1186,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.5.7';
+const APP_VERSION = '2.5.9';
 
 const CHANGELOG = [
   { v: '2.5',   txt: 'Home met laatste recept banner, help scherm visueel, parameters naar machine info' },
@@ -2104,15 +2104,9 @@ function npDel() {
 function npBevestig() {
   const el = document.getElementById(_npVeld);
   if (el) {
-    var oudeWaarde = el.value;
     el.value = _npWaarde;
-    // Groen als waarde gewijzigd tov origineel, blauw als zelfde als standaard
-    var wasOrigineel = el.getAttribute('data-origineel');
-    if (wasOrigineel !== null && _npWaarde === wasOrigineel) {
-      el.className = 'blauw';
-    } else {
-      el.className = _npWaarde ? 'groen' : 'leeg';
-    }
+    el.removeAttribute('data-origineel');
+    el.className = _npWaarde ? 'groen' : 'leeg';
     el.style.cursor = 'pointer';
   }
   sluitNumpad();
