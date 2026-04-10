@@ -26,6 +26,13 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 /* CARDS */
 .card{background:#0f1520;border:1px solid #1a2540;border-radius:4px;margin-bottom:12px;overflow:hidden;}
 .card-title{font-family:‘Rajdhani’,sans-serif;font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#f59e0b;padding:12px 16px;border-bottom:1px solid #1a2540;}
+.mi-sectie{background:#0f1520;border:1px solid #1a2540;border-radius:4px;margin-bottom:8px;overflow:hidden;}
+.mi-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;font-family:‘Rajdhani’,sans-serif;font-weight:700;font-size:15px;color:#e5e7eb;letter-spacing:.05em;}
+.mi-header:active{background:#141d2e;}
+.mi-chevron{color:#6b7280;font-size:20px;transition:transform .2s;flex-shrink:0;}
+.mi-body{display:none;border-top:1px solid #1a2540;}
+.mi-sectie.open .mi-chevron{transform:rotate(90deg);}
+.mi-sectie.open .mi-body{display:block;}
 
 /* INFO ROWS */
 .info-row{display:flex;align-items:center;padding:10px 16px;border-bottom:1px solid #0a0d14;}
@@ -199,6 +206,14 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
   </div>
 </div>
 
+<!-- Zoekbalk -->
+<div style="position:relative;margin-bottom:12px;">
+  <input id="home-zoek" type="search" placeholder="🔍  Zoek recept -- klant, afmeting..." 
+    oninput="homeZoek(this.value)"
+    style="width:100%;background:#0f1520;border:1px solid #1a2540;border-radius:4px;color:#e5e7eb;font-family:'Courier New',monospace;font-size:14px;padding:13px 16px;outline:none;-webkit-appearance:none;">
+  <div id="home-zoek-resultaten" style="display:none;background:#0f1520;border:1px solid #1a2540;border-top:none;border-radius:0 0 4px 4px;max-height:280px;overflow-y:auto;"></div>
+</div>
+
 <!-- Snelle actie knoppen 2x2 -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
   <button onclick="ga('s-recepten')" style="background:#0a0e16;border:1px solid #1a2540;border-top:3px solid #f59e0b;border-radius:4px;padding:20px 12px;cursor:pointer;text-align:center;">
@@ -319,6 +334,52 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
       <input id="f-s" type="text" readonly value="220" class="groen"
         style="cursor:pointer;" onclick="openNumpad('f-s','integer','Snelheid (ZPM)')">
     </div>
+
+    <!-- Toggle Optimaal / Werkelijk -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;">
+      <button id="btn-optimaal" onclick="laadOptimaal()" style="background:#f59e0b22;border:2px solid #f59e0b;border-radius:4px;padding:10px 8px;cursor:pointer;text-align:center;">
+        <div style="font-size:16px;margin-bottom:3px;">⚙</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#f59e0b;">Optimaal</div>
+        <div style="font-size:9px;color:#6b7280;margin-top:2px;">Berekend startpunt</div>
+      </button>
+      <button id="btn-werkelijk" onclick="laadWerkelijk()" style="background:#0f1520;border:2px solid #1a2540;border-radius:4px;padding:10px 8px;cursor:pointer;text-align:center;">
+        <div style="font-size:16px;margin-bottom:3px;">📊</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#6b7280;">Werkelijk</div>
+        <div style="font-size:9px;color:#6b7280;margin-top:2px;" id="werkelijk-info">Leerdata</div>
+      </button>
+    </div>
+    <div id="leer-banner" style="display:none;background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:8px 12px;margin-top:8px;font-size:11px;color:#93c5fd;"></div>
+  </div>
+</div>
+
+<!-- Doorvoer & Afneem -->
+<div class="card">
+  <div class="card-title">Doorvoer & Afneem Moment</div>
+  <div style="padding:14px;">
+    <div class="grid2" style="margin-bottom:10px;">
+      <div class="field">
+        <label>Start Doorvoer (mm)</label>
+        <input id="f-dv-start" type="text" readonly placeholder="--" class="leeg"
+          style="cursor:pointer;" onclick="openNumpad('f-dv-start','decimal','Start Doorvoer (mm)')">
+      </div>
+      <div class="field">
+        <label>Stop Doorvoer (mm)</label>
+        <input id="f-dv-stop" type="text" readonly placeholder="--" class="leeg"
+          style="cursor:pointer;" onclick="openNumpad('f-dv-stop','decimal','Stop Doorvoer (mm)')">
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label>Afneem Moment (mm)</label>
+        <input id="f-afneem-mm" type="text" readonly placeholder="1–6 mm" class="leeg"
+          style="cursor:pointer;" onclick="openNumpad('f-afneem-mm','decimal','Afneem Moment (mm)')">
+      </div>
+      <div class="field">
+        <label>Afneem Graden (°)</label>
+        <input id="f-afneem-gr" type="text" readonly placeholder="bv. 31" class="leeg"
+          style="cursor:pointer;" onclick="openNumpad('f-afneem-gr','integer','Afneem Graden')">
+      </div>
+    </div>
   </div>
 </div>
 
@@ -372,13 +433,20 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
   </div>
 </div>
 
-<div id="berekend-box" style="display:none;">
-      <div class="slabel">Blower Timing -- Berekend</div>
-      <div id="berekend-inhoud"></div>
-    </div>
-
 ```
-<button id="btn-opslaan" class="btn btn-amber" onclick="berekenEnSla()">⚙ Berekenen & Opslaan</button>
+<!-- Blower Timing -->
+<div class="card">
+  <div class="card-title" style="color:#22d3ee;">Blower Timing</div>
+  <div style="padding:14px;">
+    <div style="font-size:10px;color:#6b7280;margin-bottom:12px;">Kies Optimaal of Werkelijk hierboven om te laden. Tik op een waarde om te bewerken.</div>
+    <div id="blower-velden">
+      <!-- Dynamisch gevuld door laadOptimaal/laadWerkelijk -->
+      <div style="text-align:center;padding:20px;color:#4a6080;font-size:12px;">Kies eerst Optimaal of Werkelijk ↑</div>
+    </div>
+  </div>
+</div>
+
+<button id="btn-opslaan" class="btn btn-amber" onclick="berekenEnSla()">💾 Opslaan</button>
 <div id="btn-detail-wrap" style="display:none;">
   <button class="btn btn-green" onclick="naarDetail()">→ Recept bekijken</button>
 </div>
@@ -595,368 +663,236 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     <div class="topbar-title">Machine Info</div>
   </div>
   <div class="content">
-    <div class="card">
-      <div class="card-title">Hudson Sharp 5750W</div>
-      <div class="info-row"><div class="ir-lbl">Bouwjaar</div><div class="ir-val">2007</div></div>
-      <div class="info-row"><div class="ir-lbl">Type</div><div class="ir-val">Wicket zakkenmaker</div></div>
-      <div class="info-row"><div class="ir-lbl">Product</div><div class="ir-val">Boterhamzakken op wicket</div></div>
-      <div class="info-row"><div class="ir-lbl">Max snelheid</div><div class="ir-val">250 <span class="u">ZPM</span></div></div>
-      <div class="info-row"><div class="ir-lbl">Typisch</div><div class="ir-val">200–230 <span class="u">ZPM</span></div></div>
-      <div class="info-row"><div class="ir-lbl">Materiaal</div><div class="ir-val">LDPE / HDPE / Recyclaat</div></div>
-      <div class="info-row"><div class="ir-lbl">Besturing</div><div class="ir-val">Cam-timing in graden (0°–360°)</div></div>
-      <div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">240ms <span class="u">@ 250 ZPM</span></div></div>
-    </div>
 
 ```
-<div class="card">
-  <div class="card-title">Dikte Regels</div>
-  <div class="info-row"><div class="ir-lbl" style="color:#22d3ee;">≤ 0.020mm</div><div class="ir-val" style="font-size:14px;">Dun -- standaard timing</div></div>
-  <div class="info-row"><div class="ir-lbl" style="color:#f59e0b;">≤ 0.030mm</div><div class="ir-val" style="font-size:14px;">Middel -- aangepaste timing</div></div>
-  <div class="info-row"><div class="ir-lbl" style="color:#ef4444;">&gt; 0.030mm</div><div class="ir-val" style="font-size:14px;">Dik -- verhoogde lucht</div></div>
-</div>
-
-<div class="card">
-  <div class="card-title" style="color:#22c55e;">🎚 Folie Spanning (Web Tension)</div>
-  <div style="padding:14px;">
-    <div style="background:#ef444418;border:1px solid #ef444444;border-radius:4px;padding:12px;margin-bottom:10px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#ef4444;margin-bottom:6px;">⚠ Gouden Regel</div>
-      <div style="font-size:13px;color:#c8d8e8;line-height:1.7;">Liever iets te <strong style="color:#22c55e;">slap</strong> dan te <strong style="color:#ef4444;">strak</strong>. Te strak verandert het materiaal (gevaarlijk). Te slap is alleen een controle probleem (oplosbaar).</div>
-    </div>
-    <div style="background:#22c55e18;border:1px solid #22c55e44;border-radius:4px;padding:12px;margin-bottom:10px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#22c55e;margin-bottom:4px;">✓ Juiste spanning</div>
-      <div style="font-size:12px;color:#9ca3af;line-height:1.7;">Folie blijft vlak · geen rek · stabiele baan · strakke seal · mooie stapel</div>
-    </div>
-    <div style="margin-bottom:8px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#ef4444;margin-bottom:6px;">Te strak -- symptomen</div>
-      <div style="font-size:12px;color:#c8d8e8;line-height:1.8;">• Zakken trekken krom (curling)<br>• Seal kan zwakker worden<br>• Lengtevariatie (zak wordt langer)<br>• Folie wordt uitgerekt -- moleculen strekken<br>• Sealzone wordt dunner</div>
-    </div>
-    <div style="margin-bottom:12px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#f59e0b;margin-bottom:6px;">Te slap -- symptomen</div>
-      <div style="font-size:12px;color:#c8d8e8;line-height:1.8;">• Folie gaat "zweven" / fladderen<br>• Slechte registratie (fotocel)<br>• Seal niet recht<br>• Onrustige / slechte stapel</div>
-    </div>
-    <div style="background:#0a0e16;border:1px solid #1a2540;border-radius:4px;padding:12px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#f59e0b;margin-bottom:8px;">Spanningspunten op de machine</div>
-      <div class="info-row" style="padding:6px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl" style="font-size:11px;">Afrol (Unwind)</div><div class="ir-val" style="font-size:13px;">Eerste spanningspunt</div></div>
-      <div class="info-row" style="padding:6px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl" style="font-size:11px;">Dancer rollen</div><div class="ir-val" style="font-size:13px;">Spanning bufferen & regelen</div></div>
-      <div class="info-row" style="padding:6px 0;"><div class="ir-lbl" style="font-size:11px;">Nip rollen</div><div class="ir-val" style="font-size:13px;">Vóór seal -- kritiek punt</div></div>
-    </div>
-    <div style="background:#f59e0b18;border:1px solid #f59e0b44;border-radius:4px;padding:10px;margin-top:10px;font-size:12px;color:#f59e0b;line-height:1.7;">
-      💡 50% van de "lucht problemen" is eigenlijk spanning. Check spanning eerst voor je blazers aanpast.
+<!-- SECTIE: MACHINE -->
+<div class="mi-sectie" id="mi-machine">
+  <div class="mi-header" onclick="toggleMI('mi-machine')">
+    <span>⚙ Machine & Specificaties</span>
+    <span class="mi-chevron">›</span>
+  </div>
+  <div class="mi-body">
+    <div class="info-row"><div class="ir-lbl">Machine</div><div class="ir-val">Hudson Sharp 5750W</div></div>
+    <div class="info-row"><div class="ir-lbl">Zaktype</div><div class="ir-val" style="font-size:14px;">Wicketzakken op pennen</div></div>
+    <div class="info-row"><div class="ir-lbl">Cyclus</div><div class="ir-val">360°</div></div>
+    <div class="info-row"><div class="ir-lbl">Max snelheid</div><div class="ir-val">250 ZPM</div></div>
+    <div class="info-row"><div class="ir-lbl">Luchtdoel</div><div class="ir-val" style="font-size:13px;">Scheiding + positionering</div></div>
+    <div style="padding:12px 14px;">
+      <div style="font-size:10px;color:#6b7280;letter-spacing:.15em;margin-bottom:8px;">DIKTE REGELS</div>
+      <div class="info-row" style="padding:6px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl">Dun</div><div class="ir-val" style="font-size:14px;">≤ 0.020 mm</div></div>
+      <div class="info-row" style="padding:6px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl">Middel</div><div class="ir-val" style="font-size:14px;">0.021 – 0.030 mm</div></div>
+      <div class="info-row" style="padding:6px 0;border-bottom:none;"><div class="ir-lbl">Dik</div><div class="ir-val" style="font-size:14px;">> 0.030 mm</div></div>
     </div>
   </div>
 </div>
 
-<div class="card">
-  <div class="card-title">Blower Uitgangen</div>
-  <div class="info-row"><div class="ir-lbl">Bovenste Blazer</div><div class="ir-val" style="font-size:14px;">Lucht van boven in zak</div></div>
-  <div class="info-row"><div class="ir-lbl">Onderste Blazer</div><div class="ir-val" style="font-size:14px;">Lucht van onder in zak</div></div>
-  <div class="info-row"><div class="ir-lbl">Bovenste Pijp</div><div class="ir-val" style="font-size:14px;">Gerichte lucht bovenin</div></div>
-  <div class="info-row"><div class="ir-lbl">Onderste Pijp</div><div class="ir-val" style="font-size:14px;">Gerichte lucht onderin</div></div>
-  <div class="info-row"><div class="ir-lbl">Uitgang 6</div><div class="ir-val" style="font-size:14px;">Afneemlucht -- naar stapel</div></div>
+<!-- SECTIE: MACHINEFLOW -->
+<div class="mi-sectie" id="mi-flow">
+  <div class="mi-header" onclick="toggleMI('mi-flow')">
+    <span>🔄 Machineflow -- 3 Fasen</span>
+    <span class="mi-chevron">›</span>
+  </div>
+  <div class="mi-body">
+    <div style="padding:14px;display:flex;flex-direction:column;gap:8px;">
+      <div style="background:#22d3ee18;border:1px solid #22d3ee44;border-radius:4px;padding:12px;">
+        <div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:14px;color:#22d3ee;margin-bottom:6px;">Fase 1 -- Na Seal</div>
+        <div style="font-size:12px;color:#c8d8e8;line-height:1.8;">Folie tussen pijpen → openen + lostrekken.<br><strong style="color:#22d3ee;">Pijpen bepalen 80% van het gedrag.</strong></div>
+      </div>
+      <div style="background:#a78bfa18;border:1px solid #a78bfa44;border-radius:4px;padding:12px;">
+        <div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:14px;color:#a78bfa;margin-bottom:6px;">Fase 2 -- Transport</div>
+        <div style="font-size:12px;color:#c8d8e8;line-height:1.8;">Zak op transportband → blazers nemen over.</div>
+      </div>
+      <div style="background:#22c55e18;border:1px solid #22c55e44;border-radius:4px;padding:12px;">
+        <div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:14px;color:#22c55e;margin-bottom:6px;">Fase 3 -- Stacking</div>
+        <div style="font-size:12px;color:#c8d8e8;line-height:1.8;">Molenwiek legt zak op pennen → stabiliteit cruciaal.</div>
+      </div>
+      <div style="background:#0a0e16;border:1px solid #1a2540;border-radius:4px;padding:10px;font-size:11px;color:#6b7280;line-height:1.8;">
+        <strong style="color:#f59e0b;">Volgorde:</strong> Seal → Pijpen → Blazers → Uitgang 6 → Molenwiek
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="card">
-  <div class="card-title" style="color:#22d3ee;">💨 Luchtverhouding (Richtlijn)</div>
-  <div style="padding:14px;">
-    <div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:12px;margin-bottom:12px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#3b82f6;margin-bottom:10px;">Fase 1 -- Blaaspijpen (scheiding)</div>
+<!-- SECTIE: PIJPEN -->
+<div class="mi-sectie" id="mi-pijpen">
+  <div class="mi-header" onclick="toggleMI('mi-pijpen')">
+    <span>💨 Blaaspijpen</span>
+    <span class="mi-chevron">›</span>
+  </div>
+  <div class="mi-body">
+    <div style="padding:14px;">
+      <div style="background:#ef444418;border:1px solid #ef444444;border-radius:4px;padding:12px;margin-bottom:12px;">
+        <div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:14px;color:#ef4444;margin-bottom:6px;">⚠ Gouden Regel</div>
+        <div style="font-size:13px;color:#c8d8e8;line-height:1.7;">Onderpijp <strong style="color:#f97316;">ALTIJD</strong> eerder aan. Minimaal 10–20° verschil. Timing boven kracht.</div>
+      </div>
       <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
         <div class="ir-lbl" style="color:#f97316;">Onderste Pijp</div>
-        <div class="ir-val" style="color:#f97316;">65–75%</div>
+        <div class="ir-val" style="font-size:13px;">Openen + lostrekken (dominant)</div>
       </div>
-      <div class="info-row" style="padding:8px 0;border-bottom:none;">
-        <div class="ir-lbl" style="color:#3b82f6;">Bovenste Pijp</div>
-        <div class="ir-val" style="color:#3b82f6;">25–35%</div>
-      </div>
-      <div style="font-size:11px;color:#6b7280;margin-top:8px;">Onderste pijp dominant -- trekt onderste laag weg via zuiging.</div>
-    </div>
-    <div style="background:#a78bfa18;border:1px solid #a78bfa44;border-radius:4px;padding:12px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#a78bfa;margin-bottom:10px;">Fase 2–3 -- Blazers (stabilisatie)</div>
       <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
-        <div class="ir-lbl" style="color:#a78bfa;">Onderste Blazer</div>
-        <div class="ir-val" style="color:#a78bfa;">55–65%</div>
+        <div class="ir-lbl" style="color:#3b82f6;">Bovenste Pijp</div>
+        <div class="ir-val" style="font-size:13px;">Stabiliseren + geleiden (volgend)</div>
       </div>
       <div class="info-row" style="padding:8px 0;border-bottom:none;">
-        <div class="ir-lbl" style="color:#22d3ee;">Bovenste Blazer</div>
-        <div class="ir-val" style="color:#22d3ee;">35–45%</div>
+        <div class="ir-lbl">Verschil</div>
+        <div class="ir-val" style="font-size:13px;color:#22c55e;">10–20° later</div>
       </div>
-      <div style="font-size:11px;color:#6b7280;margin-top:8px;">Onderste blazer dominant -- ondersteunt positionering op pennen.</div>
-    </div>
-  </div>
-</div>
-
-<div class="card">
-  <div class="card-title" style="color:#f59e0b;">⚙ Machineflow -- 3 Fasen</div>
-  <div style="padding:14px;">
-    <div style="background:#22d3ee18;border:1px solid #22d3ee44;border-radius:4px;padding:12px;margin-bottom:8px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#22d3ee;margin-bottom:6px;">Fase 1 -- Na Seal (Kritisch)</div>
-      <div style="font-size:12px;color:#c8d8e8;line-height:1.8;">Folie zit tussen boven- en onderpijp.<br>Hier wordt de zak geopend en losgetrokken.<br><strong style="color:#22d3ee;">Pijpen bepalen 80% van het gedrag.</strong></div>
-    </div>
-    <div style="background:#a78bfa18;border:1px solid #a78bfa44;border-radius:4px;padding:12px;margin-bottom:8px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#a78bfa;margin-bottom:6px;">Fase 2 -- Transport</div>
-      <div style="font-size:12px;color:#c8d8e8;line-height:1.8;">Zak komt op transportband.<br>Blazers nemen over -- geleiding en snelheid.<br>Lower blower duwt zak vooruit.</div>
-    </div>
-    <div style="background:#22c55e18;border:1px solid #22c55e44;border-radius:4px;padding:12px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#22c55e;margin-bottom:6px;">Fase 3 -- Stacking</div>
-      <div style="font-size:12px;color:#c8d8e8;line-height:1.8;">Zak wordt door molenwiek op pennen gelegd.<br>Stabiliteit en vlak gedrag cruciaal.<br>Uitgang 6 fixeert zak op transportband.</div>
-    </div>
-  </div>
-</div>
-
-<div class="card">
-  <div class="card-title" style="color:#3b82f6;">💨 Pijpen Logica -- Cruciale Regels</div>
-  <div style="padding:14px;">
-    <div style="background:#ef444418;border:1px solid #ef444444;border-radius:4px;padding:12px;margin-bottom:10px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#ef4444;margin-bottom:6px;">⚠ Gouden Regel</div>
-      <div style="font-size:13px;color:#c8d8e8;line-height:1.7;">Onderpijp <strong style="color:#f97316;">ALTIJD</strong> eerder aan dan bovenpijp. Minimaal 10–20° verschil. Timing is belangrijker dan luchthoeveelheid.</div>
-    </div>
-    <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
-      <div class="ir-lbl" style="color:#f97316;">Onderpijp</div>
-      <div class="ir-val" style="font-size:13px;">Openen + lostrekken folie (dominant)</div>
-    </div>
-    <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
-      <div class="ir-lbl" style="color:#3b82f6;">Bovenpijp</div>
-      <div class="ir-val" style="font-size:13px;">Stabiliseren + geleiden (volgend)</div>
-    </div>
-    <div class="info-row" style="padding:8px 0;border-bottom:none;">
-      <div class="ir-lbl">Verschil</div>
-      <div class="ir-val" style="font-size:13px;color:#22c55e;">10–20° later</div>
-    </div>
-    <div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:10px;margin-top:10px;">
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;color:#3b82f6;margin-bottom:4px;">Uitzondering -- folie dubbelplakt na seal</div>
-      <div style="font-size:11px;color:#9ca3af;line-height:1.7;">Alleen dan: heel kort bovenpijp iets eerder als losduw, daarna onderpijp die overneemt. Dit is milliseconde-werk -- niet standaard gebruiken.</div>
-    </div>
-  </div>
-</div>
-
-
-<div class="card">
-  <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #1a2540;cursor:pointer;" onclick="toggleParams()">
-    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#f59e0b;">Parameters -- Wat Doen Ze?</div>
-    <span id="params-chevron" style="font-size:18px;color:#6b7280;transition:transform .2s;">&#8250;</span>
-  </div>
-  <div id="params-inhoud" style="display:none;">
-<!-- Parameters uitleg -->
-<div class="slabel">Parameters -- Wat Doen Ze?</div>
-
-<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:14px;margin-bottom:12px;">
-  <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#f59e0b;margin-bottom:10px;">⚙ Volgorde in de cyclus</div>
-  <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px;line-height:2.2;">
-    <span style="background:#22d3ee22;border:1px solid #22d3ee44;color:#22d3ee;padding:3px 8px;border-radius:3px;">Seal</span>
-    <span style="color:#4a6080;">→</span>
-    <span style="background:#3b82f622;border:1px solid #3b82f644;color:#3b82f6;padding:3px 8px;border-radius:3px;">Blaaspijpen</span>
-    <span style="color:#4a6080;">→</span>
-    <span style="background:#a78bfa22;border:1px solid #a78bfa44;color:#a78bfa;padding:3px 8px;border-radius:3px;">Blazers</span>
-    <span style="color:#4a6080;">→</span>
-    <span style="background:#f59e0b22;border:1px solid #f59e0b44;color:#f59e0b;padding:3px 8px;border-radius:3px;">Uitgang 6</span>
-    <span style="color:#4a6080;">→</span>
-    <span style="background:#22c55e22;border:1px solid #22c55e44;color:#22c55e;padding:3px 8px;border-radius:3px;">Molenwiek</span>
-  </div>
-  <div style="font-size:11px;color:#6b7280;margin-top:8px;">Als deze volgorde niet klopt = problemen. Uitgang 6 is de belangrijkste fine-tune parameter.</div>
-  </div>
-  <div style="margin:0;border-radius:0;border-left:none;border-right:none;border-bottom:none;" class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#22d3ee;">🌬 Bovenste Blazer</div>
-  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
-    <div style="margin-bottom:6px;"><strong style="color:#22d3ee;">Wat:</strong> Stabiliseert de bovenkant van het folie tijdens transport naar de molenwiek.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#22d3ee;">Timing:</strong> AAN/UIT in graden -- vroeg tot midden in de cyclus.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#22d3ee;">Lucht:</strong> Draaikraan bepaalt hoeveel.</div>
-    <div style="background:#22d3ee11;border:1px solid #22d3ee33;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
-      <span style="color:#22c55e;">↑ Meer:</span> betere stabilisatie bovenkant<br>
-      <span style="color:#ef4444;">↑ Te veel:</span> zak bolt op, lucht ingesloten, krult<br>
-      <span style="color:#f59e0b;">↓ Te weinig:</span> onrustige baan
-    </div>
-  </div>
-  </div>
-  <div style="margin:0;border-radius:0;border-left:none;border-right:none;border-bottom:none;" class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#a78bfa;">🌬 Onderste Blazer</div>
-  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
-    <div style="margin-bottom:6px;"><strong style="color:#a78bfa;">Wat:</strong> Ondersteunt onderkant folie en helpt positioneren op de pennen.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#a78bfa;">Timing:</strong> AAN/UIT in graden.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#a78bfa;">Lucht:</strong> Draaikraan bepaalt hoeveel.</div>
-    <div style="background:#a78bfa11;border:1px solid #a78bfa33;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
-      <span style="color:#22c55e;">↑ Meer:</span> zak landt beter op pennen<br>
-      <span style="color:#ef4444;">↑ Te veel:</span> zak zweeft voorbij pennen<br>
-      <span style="color:#f59e0b;">↓ Te weinig:</span> slechte plaatsing op pennen
-    </div>
-  </div>
-  </div>
-  <div style="margin:0;border-radius:0;border-left:none;border-right:none;border-bottom:none;" class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#3b82f6;">💨 Bovenste Blaaspijp <span style="font-size:11px;color:#6b7280;font-weight:400;">-- Stripper jet boven (lift)</span></div>
-  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
-    <div style="margin-bottom:6px;"><strong style="color:#3b82f6;">Wat:</strong> Blaast lucht omhoog = <strong style="color:#3b82f6;">liftende werking</strong> -- duwt de bovenste folielaag omhoog om lagen te scheiden.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#3b82f6;">Verschil met onderste:</strong> Bovenste blaast omhoog (lift). Onderste zuigt omlaag (trek). Samen = maximale scheiding.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#3b82f6;">Wanneer:</strong> Vroeg in de cyclus -- direct na aanvoer. Voorzichtig instellen.</div>
-    <div style="background:#ef444411;border:1px solid #ef444433;border-radius:3px;padding:7px;margin-top:4px;margin-bottom:8px;font-size:12px;color:#fca5a5;">
-      ⚠ SCHEIDER via lift -- geen opener.
-    </div>
-    <div style="background:#3b82f611;border:1px solid #3b82f633;border-radius:3px;padding:8px;font-size:12px;">
-      <span style="color:#22c55e;">↑ Meer lift:</span> betere scheiding bovenkant, minder dubbelplakken<br>
-      <span style="color:#ef4444;">↑ Te veel:</span> lucht in zak / folie zweeft<br>
-      <span style="color:#f59e0b;">↓ Te weinig:</span> lagen plakken samen → dubbel pakken
-    </div>
-  </div>
-  </div>
-  <div style="margin:0;border-radius:0;border-left:none;border-right:none;border-bottom:none;" class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#f97316;">💨 Onderste Blaaspijp <span style="font-size:11px;color:#6b7280;font-weight:400;">-- Stripper jet onder (onderdruk)</span></div>
-  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
-    <div style="margin-bottom:6px;"><strong style="color:#f97316;">Wat:</strong> Werkt via <strong style="color:#f97316;">onderdruk (zuiging)</strong> -- trekt de onderste folielaag naar beneden om de lagen van elkaar te scheiden.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#f97316;">Verschil met bovenste:</strong> Bovenste pijp blaast omhoog (lift). Onderste pijp zuigt omlaag (trek). Samen pakken ze folie van twee kanten.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#f97316;">Wanneer:</strong> Vroeg in de cyclus, samen met bovenste blaaspijp.</div>
-    <div style="background:#ef444411;border:1px solid #ef444433;border-radius:3px;padding:7px;margin-top:4px;margin-bottom:8px;font-size:12px;color:#fca5a5;">
-      ⚠ SCHEIDER via zuiging -- geen opener.
-    </div>
-    <div style="background:#f9731611;border:1px solid #f9731633;border-radius:3px;padding:8px;font-size:12px;">
-      <span style="color:#22c55e;">↑ Meer onderdruk:</span> sterkere zuiging → betere scheiding onderkant<br>
-      <span style="color:#ef4444;">↑ Te veel:</span> folie te hard naar beneden → verstoort baan<br>
-      <span style="color:#f59e0b;">↓ Te weinig:</span> lagen plakken onderin samen
-    </div>
-  </div>
-  </div>
-  <div style="margin:0;border-radius:0;border-left:none;border-right:none;border-bottom:none;" class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#f59e0b;">⬡ Uitgang 6 <span style="font-size:11px;color:#6b7280;font-weight:400;">-- Belangrijkste fine-tune</span></div>
-  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
-    <div style="margin-bottom:6px;"><strong style="color:#f59e0b;">Wat:</strong> Laatste controle vóór molenwiek. Trekt zak naar beneden en positioneert op pennen.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#f59e0b;">Wanneer:</strong> Laat in de cyclus -- net voor molenwiek pakt.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#f59e0b;">Lucht:</strong> Draaikraan bepaalt kracht.</div>
-    <div style="background:#f59e0b22;border:1px solid #f59e0b44;border-radius:3px;padding:7px;margin-top:4px;margin-bottom:8px;font-size:12px;color:#f59e0b;">
-      ★ Dit is jouw belangrijkste fine-tune parameter voor goede stapeling op de pennen.
-    </div>
-    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;font-size:12px;">
-      <span style="color:#22c55e;">↑ Meer / langer:</span> zak stevig op pennen<br>
-      <span style="color:#ef4444;">Te laat UIT:</span> zak zweeft → mist pennen<br>
-      <span style="color:#f59e0b;">Te vroeg UIT:</span> geen controle → slechte plaatsing
-    </div>
-  </div>
-  </div>
-  <div style="margin:0;border-radius:0;border-left:none;border-right:none;border-bottom:none;" class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#e5e7eb;">⚡ Las Tijd (ms) + Sealtemperatuur</div>
-  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
-    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Las Tijd:</strong> Verblijftijd sealbalk op folie in ms. Dikker folie = langere tijd.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Temperatuur:</strong> Smelt de folielagen. Werkt samen met tijd -- allebei aanpassen.</div>
-    <div style="background:#ffffff11;border:1px solid #ffffff22;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
-      <span style="color:#ef4444;">Tijd te lang / temp te hoog:</span> folie vervormt, krult, verbrandt<br>
-      <span style="color:#f59e0b;">Tijd te kort / temp te laag:</span> zwakke seal -- gaat open<br>
-      <span style="color:#22c55e;">Goed:</span> strakke seal, geen vervorming
-    </div>
-  </div>
-  </div>
-  <div style="margin:0;border-radius:0;border-left:none;border-right:none;border-bottom:none;" class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#e5e7eb;">⚡ Snelheid (ZPM)</div>
-  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
-    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Wat:</strong> Zakken per minuut -- bepaalt de hele 360° cyclus. Hogere snelheid = minder tijd per actie.</div>
-    <div style="background:#ffffff11;border:1px solid #ffffff22;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
-      <span style="color:#ef4444;">↑ Te snel:</span> slechte seal, timing loopt mis, slechte stapeling<br>
-      <span style="color:#22c55e;">↓ Langzamer:</span> meer tijd per actie, betere kwaliteit
-    </div>
-  </div>
-  </div>
-  <div style="margin:0;border-radius:0;border-left:none;border-right:none;border-bottom:none;" class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#e5e7eb;">⚙ Doorvoer + Molenwiek Timing</div>
-  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
-    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Doorvoer:</strong> Bepaalt waar zak stopt na transport → direct effect op positionering bij molenwiek.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#e5e7eb;">Molenwiek:</strong> Pakt de zak en plaatst op pennen. Zak moet los zijn maar niet zweven.</div>
-    <div style="background:#ffffff11;border:1px solid #ffffff22;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
-      <span style="color:#ef4444;">Doorvoer verkeerd:</span> molenwiek pakt verkeerd → zak scheef<br>
-      <span style="color:#ef4444;">Molenwiek te vroeg:</span> zak nog niet los → misgrepen<br>
-      <span style="color:#ef4444;">Molenwiek te laat:</span> zak zweeft → mist pennen
-    </div>
-  </div>
-  </div>
-  <div style="margin:0;border-radius:0;border-left:none;border-right:none;border-bottom:none;" class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#22c55e;">🎚 Folie Spanning</div>
-  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
-    <div style="margin-bottom:6px;"><strong style="color:#22c55e;">Wat:</strong> Trek in het folie van afrol tot seal. Via dancer rollen en nip rollen.</div>
-    <div style="margin-bottom:6px;"><strong style="color:#22c55e;">Belangrijk:</strong> 50% van de "lucht problemen" is eigenlijk spanning. Check spanning EERST!</div>
-    <div style="background:#22c55e11;border:1px solid #22c55e33;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
-      <span style="color:#ef4444;">↑ Te strak:</span> krullen, zwakke seal, lengtevariatie<br>
-      <span style="color:#f59e0b;">↓ Te slap:</span> folie fladdeert, slechte seal, slechte stapeling<br>
-      <span style="color:#22c55e;">Gouden regel:</span> liever iets te slap dan te strak
-    </div>
-  </div>
-  </div>
-  <div style="margin:0;border-radius:0;border-left:none;border-right:none;border-bottom:none;" class="card" style="margin-bottom:8px;">
-  <div class="card-title" style="color:#f59e0b;">⚡ Statische Elektriciteit</div>
-  <div style="padding:14px;line-height:1.8;font-size:13px;color:#c8d8e8;">
-    <div style="margin-bottom:6px;"><strong style="color:#f59e0b;">Wat:</strong> Statische lading op folie -- instelbaar per zone (klep en bodem apart).</div>
-    <div style="margin-bottom:6px;"><strong style="color:#f59e0b;">Balans:</strong> Bodem mag meer statisch dan klep. Klep nooit te veel.</div>
-    <div style="background:#f59e0b11;border:1px solid #f59e0b33;border-radius:3px;padding:8px;margin-top:8px;font-size:12px;">
-      <span style="color:#22c55e;">Bodem ↑:</span> zakken blijven beter op stapel<br>
-      <span style="color:#ef4444;">Klep ↑ te veel:</span> zak plakt dicht → klant krijgt hem niet open<br>
-      <span style="color:#f59e0b;">Te weinig:</span> zakken schuiven weg
-    </div>
-  </div>
-</div>
-
-  </div>
-</div>
-<div class="card">
-  <div class="card-title" style="color:#f59e0b;">⭐ Sterkte Rangorde per Component</div>
-  <div style="padding:14px;">
-    <div style="font-size:11px;color:#6b7280;margin-bottom:12px;">LDPE wicketzakken -- relatieve prioriteit</div>
-    <div class="info-row" style="padding:10px 0;border-bottom:1px solid #1a2540;">
-      <div class="ir-lbl" style="color:#f97316;">Onderste Pijp</div>
-      <div class="ir-val" style="font-size:18px;">
-        <span style="color:#f59e0b;">★★★★</span>
-        <span style="font-size:11px;color:#6b7280;margin-left:8px;">Belangrijkste</span>
-      </div>
-    </div>
-    <div class="info-row" style="padding:10px 0;border-bottom:1px solid #1a2540;">
-      <div class="ir-lbl" style="color:#a78bfa;">Lower Blazer</div>
-      <div class="ir-val" style="font-size:18px;">
-        <span style="color:#f59e0b;">★★★</span>
-        <span style="font-size:11px;color:#6b7280;margin-left:8px;">Transport</span>
-      </div>
-    </div>
-    <div class="info-row" style="padding:10px 0;border-bottom:1px solid #1a2540;">
-      <div class="ir-lbl" style="color:#3b82f6;">Bovenste Pijp</div>
-      <div class="ir-val" style="font-size:18px;">
-        <span style="color:#f59e0b;">★★</span>
-        <span style="font-size:11px;color:#6b7280;margin-left:8px;">Correctie</span>
-      </div>
-    </div>
-    <div class="info-row" style="padding:10px 0;border-bottom:none;">
-      <div class="ir-lbl" style="color:#22d3ee;">Upper Blazer</div>
-      <div class="ir-val" style="font-size:18px;">
-        <span style="color:#f59e0b;">★★–★★★</span>
-        <span style="font-size:11px;color:#6b7280;margin-left:8px;">Stabilisatie</span>
-      </div>
-    </div>
-    <div style="background:#0a0e16;border:1px solid #1a2540;border-radius:4px;padding:10px;margin-top:10px;">
-      <div style="font-size:11px;color:#6b7280;line-height:1.8;">
-        <span style="color:#f97316;">Onder (pijp + blazer):</span> 60–70% totaal<br>
-        <span style="color:#22d3ee;">Boven (pijp + blazer):</span> 30–40% totaal
+      <div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:10px;margin-top:10px;">
+        <div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:12px;color:#3b82f6;margin-bottom:4px;">Uitzondering</div>
+        <div style="font-size:11px;color:#9ca3af;line-height:1.7;">Folie dubbelplakt direct na seal → heel kort bovenpijp iets eerder als losduw. Milliseconde-werk.</div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="card">
-  <div class="card-title" style="color:#22c55e;">✅ Mag -- Regels</div>
-  <div style="padding:14px;">
-    <div style="font-size:12px;color:#c8d8e8;line-height:2.1;">
-      <div>✅ Onderpijp = eerste actie (of max gelijk met boven)</div>
-      <div>✅ Onderpijp langer actief dan bovenpijp</div>
-      <div>✅ Upper blazer start LAAT -- ≥110°</div>
-      <div>✅ Upper blazer loopt door tot eind -- ±300–320°</div>
-      <div>✅ Lower blazer start vóór upper blazer</div>
-      <div>✅ Uitgang 6 start NA pijpen -- ±65–80°</div>
-      <div>✅ Timing aanpassen vóór lucht verhogen</div>
-      <div>✅ Kleine stappen: 2–5° per keer</div>
+<!-- SECTIE: BLAZERS -->
+<div class="mi-sectie" id="mi-blazers">
+  <div class="mi-header" onclick="toggleMI('mi-blazers')">
+    <span>🌬 Blazers & Uitgang 6</span>
+    <span class="mi-chevron">›</span>
+  </div>
+  <div class="mi-body">
+    <div style="padding:14px;">
+      <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
+        <div class="ir-lbl" style="color:#22d3ee;">Upper Blazer</div>
+        <div class="ir-val" style="font-size:12px;">Start LAAT ≥110° · Stabilisatie bovenkant</div>
+      </div>
+      <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
+        <div class="ir-lbl" style="color:#a78bfa;">Lower Blazer</div>
+        <div class="ir-val" style="font-size:12px;">Start vóór upper · Transport + doorvoer</div>
+      </div>
+      <div class="info-row" style="padding:8px 0;border-bottom:none;">
+        <div class="ir-lbl" style="color:#f59e0b;">Uitgang 6</div>
+        <div class="ir-val" style="font-size:12px;">Fixatie op band · Fine-tune richting molenwiek</div>
+      </div>
+      <div style="background:#0a0e16;border:1px solid #1a2540;border-radius:4px;padding:10px;margin-top:10px;font-size:11px;color:#6b7280;line-height:1.8;">
+        <span style="color:#f97316;">Onder (pijp+blazer):</span> 60–70% · <span style="color:#22d3ee;">Boven (pijp+blazer):</span> 30–40%
+      </div>
     </div>
   </div>
 </div>
 
-<div class="card">
-  <div class="card-title" style="color:#ef4444;">❌ Niet Mag -- Fouten</div>
-  <div style="padding:14px;">
-    <div style="font-size:12px;color:#c8d8e8;line-height:2.1;">
-      <div>❌ Upper blazer actief tijdens pijpfase -- te vroeg &lt;100°</div>
-      <div>❌ Bovenpijp veel eerder dan onderpijp</div>
-      <div>❌ Te veel onderlucht → zak gaat vliegen</div>
-      <div>❌ Alles tegelijk aanpassen</div>
-      <div>❌ Blowers gebruiken om pijpfouten op te lossen</div>
-      <div>❌ Uitgang 6 te vroeg → verstoort opening</div>
-      <div>❌ Onderpijp te laat → plakken</div>
+<!-- SECTIE: LUCHTVERHOUDING -->
+<div class="mi-sectie" id="mi-lucht">
+  <div class="mi-header" onclick="toggleMI('mi-lucht')">
+    <span>💧 Luchtverhouding</span>
+    <span class="mi-chevron">›</span>
+  </div>
+  <div class="mi-body">
+    <div style="padding:14px;display:flex;flex-direction:column;gap:8px;">
+      <div style="background:#3b82f618;border:1px solid #3b82f644;border-radius:4px;padding:12px;">
+        <div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:13px;color:#3b82f6;margin-bottom:8px;">Fase 1 -- Blaaspijpen</div>
+        <div class="info-row" style="padding:4px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl" style="color:#f97316;">Onderste Pijp</div><div class="ir-val">65–75%</div></div>
+        <div class="info-row" style="padding:4px 0;border-bottom:none;"><div class="ir-lbl" style="color:#3b82f6;">Bovenste Pijp</div><div class="ir-val">25–35%</div></div>
+      </div>
+      <div style="background:#a78bfa18;border:1px solid #a78bfa44;border-radius:4px;padding:12px;">
+        <div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:13px;color:#a78bfa;margin-bottom:8px;">Fase 2–3 -- Blazers</div>
+        <div class="info-row" style="padding:4px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl" style="color:#a78bfa;">Lower Blazer</div><div class="ir-val">55–65%</div></div>
+        <div class="info-row" style="padding:4px 0;border-bottom:none;"><div class="ir-lbl" style="color:#22d3ee;">Upper Blazer</div><div class="ir-val">35–45%</div></div>
+      </div>
+      <div style="background:#f59e0b18;border:1px solid #f59e0b44;border-radius:4px;padding:12px;">
+        <div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:13px;color:#f59e0b;margin-bottom:8px;">⭐ Sterkte Rangorde</div>
+        <div class="info-row" style="padding:4px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl" style="color:#f97316;">Onderste Pijp</div><div class="ir-val"><span style="color:#f59e0b;">★★★★</span></div></div>
+        <div class="info-row" style="padding:4px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl" style="color:#a78bfa;">Lower Blazer</div><div class="ir-val"><span style="color:#f59e0b;">★★★</span></div></div>
+        <div class="info-row" style="padding:4px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl" style="color:#3b82f6;">Bovenste Pijp</div><div class="ir-val"><span style="color:#f59e0b;">★★</span></div></div>
+        <div class="info-row" style="padding:4px 0;border-bottom:none;"><div class="ir-lbl" style="color:#22d3ee;">Upper Blazer</div><div class="ir-val"><span style="color:#f59e0b;">★★–★★★</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTIE: AFNEEM MOMENT -->
+<div class="mi-sectie" id="mi-afneem">
+  <div class="mi-header" onclick="toggleMI('mi-afneem')">
+    <span>🎯 Afneem Moment</span>
+    <span class="mi-chevron">›</span>
+  </div>
+  <div class="mi-body">
+    <div style="padding:14px;">
+      <div style="font-size:12px;color:#c8d8e8;line-height:1.8;margin-bottom:12px;">Het moment waarop de molenwiek de zak overneemt van de transportband. Ingesteld in <strong style="color:#f59e0b;">mm</strong> (1–6mm) en <strong style="color:#f59e0b;">graden</strong> via de computer.</div>
+      <div style="background:#22c55e18;border:1px solid #22c55e44;border-radius:4px;padding:12px;margin-bottom:10px;">
+        <div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:13px;color:#22c55e;margin-bottom:6px;">Standaard instelling</div>
+        <div class="info-row" style="padding:4px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl">Afneem start</div><div class="ir-val">20°</div></div>
+        <div class="info-row" style="padding:4px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl">Afneem stop</div><div class="ir-val">4°</div></div>
+        <div class="info-row" style="padding:4px 0;border-bottom:none;"><div class="ir-lbl">Afstand</div><div class="ir-val">1–6 mm</div></div>
+      </div>
+      <div style="font-size:11px;color:#6b7280;line-height:1.8;margin-bottom:10px;">⚠ Afneem moment ALTIJD als laatste afstellen -- pas nadat pijpen, blazers en uitgang 6 correct staan.</div>
+      <div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:10px;">
+        <div style="font-size:10px;color:#f59e0b;letter-spacing:.15em;margin-bottom:8px;">SNELLE CORRECTIES</div>
+        <div style="font-size:12px;color:#c8d8e8;line-height:2.1;">
+          <div>🎯 Zak gemist → START eerder (-2°)</div>
+          <div>⏩ Te vroeg weggetrokken → START later (+2°)</div>
+          <div>↩ Blijft hangen → STOP eerder (-2°)</div>
+          <div>📐 Scheef opgepakt → check upper blazer eerst</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTIE: FOLIE SPANNING -->
+<div class="mi-sectie" id="mi-spanning">
+  <div class="mi-header" onclick="toggleMI('mi-spanning')">
+    <span>🎚 Folie Spanning</span>
+    <span class="mi-chevron">›</span>
+  </div>
+  <div class="mi-body">
+    <div style="padding:14px;font-size:13px;color:#c8d8e8;line-height:1.8;">
+      <div style="margin-bottom:8px;"><strong style="color:#22c55e;">50% van luchtproblemen is eigenlijk spanning.</strong> Check dit eerst!</div>
+      <div class="info-row" style="padding:6px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl" style="color:#ef4444;">Te strak</div><div class="ir-val" style="font-size:12px;">Krullen · zwakke seal · variatie</div></div>
+      <div class="info-row" style="padding:6px 0;border-bottom:1px solid #1a2540;"><div class="ir-lbl" style="color:#f59e0b;">Te slap</div><div class="ir-val" style="font-size:12px;">Fladdert · slechte seal</div></div>
+      <div class="info-row" style="padding:6px 0;border-bottom:none;"><div class="ir-lbl" style="color:#22c55e;">Goed</div><div class="ir-val" style="font-size:12px;">Liever iets slap dan strak</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTIE: REGELS -->
+<div class="mi-sectie" id="mi-regels">
+  <div class="mi-header" onclick="toggleMI('mi-regels')">
+    <span>📋 Regels -- Mag / Niet Mag</span>
+    <span class="mi-chevron">›</span>
+  </div>
+  <div class="mi-body">
+    <div style="padding:14px;">
+      <div style="font-size:12px;color:#c8d8e8;line-height:2.1;margin-bottom:12px;">
+        <div>✅ Onderpijp = eerste actie</div>
+        <div>✅ Onderpijp langer actief dan bovenpijp</div>
+        <div>✅ Upper blazer start LAAT -- ≥110°</div>
+        <div>✅ Lower blazer start vóór upper blazer</div>
+        <div>✅ Uitgang 6 start NA pijpen -- ±65–80°</div>
+        <div>✅ Kleine stappen: 2–5° per keer</div>
+        <div>✅ Timing aanpassen vóór lucht verhogen</div>
+      </div>
+      <div style="height:1px;background:#1a2540;margin-bottom:12px;"></div>
+      <div style="font-size:12px;color:#c8d8e8;line-height:2.1;">
+        <div>❌ Upper blazer actief tijdens pijpfase (&lt;100°)</div>
+        <div>❌ Bovenpijp veel eerder dan onderpijp</div>
+        <div>❌ Te veel onderlucht → zak vliegt</div>
+        <div>❌ Alles tegelijk aanpassen</div>
+        <div>❌ Uitgang 6 te vroeg → verstoort opening</div>
+        <div>❌ Afneem gebruiken om blowerproblemen op te lossen</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTIE: PARAMETERS -->
+<div class="mi-sectie" id="mi-params">
+  <div class="mi-header" onclick="toggleMI('mi-params')">
+    <span>📖 Parameters -- Wat Doen Ze?</span>
+    <span class="mi-chevron">›</span>
+  </div>
+  <div class="mi-body" id="params-inhoud" style="display:none;">
+    <div style="padding:14px;font-size:12px;color:#c8d8e8;line-height:1.8;">
+      <div style="margin-bottom:10px;"><strong style="color:#22d3ee;">Bovenste Blazer:</strong> Stabiliseert bovenkant tijdens transport. Te veel → lucht in zak. Te weinig → onrustige baan.</div>
+      <div style="margin-bottom:10px;"><strong style="color:#a78bfa;">Onderste Blazer:</strong> Ondersteunt transport en positionering op pennen. Te veel → zak zweeft voorbij.</div>
+      <div style="margin-bottom:10px;"><strong style="color:#3b82f6;">Bovenste Blaaspijp:</strong> Lift -- duwt bovenste laag omhoog. Scheider via lift, geen opener.</div>
+      <div style="margin-bottom:10px;"><strong style="color:#f97316;">Onderste Blaaspijp:</strong> Zuiging -- trekt onderste laag naar beneden. Scheider via onderdruk.</div>
+      <div style="margin-bottom:10px;"><strong style="color:#f59e0b;">Uitgang 6:</strong> Laatste controle vóór molenwiek. Belangrijkste fine-tune parameter.</div>
+      <div style="margin-bottom:10px;"><strong style="color:#e5e7eb;">Las Tijd:</strong> Verblijftijd sealbalk op folie in ms. Dikker folie = langere tijd.</div>
+      <div style="margin-bottom:10px;"><strong style="color:#e5e7eb;">Snelheid (ZPM):</strong> Bepaalt de hele 360° cyclus. Hogere snelheid = minder tijd per actie.</div>
+      <div style="margin-bottom:10px;"><strong style="color:#22c55e;">Folie Spanning:</strong> Trek in folie van afrol tot seal. 50% van luchtproblemen is eigenlijk spanning.</div>
+      <div><strong style="color:#f59e0b;">Statisch:</strong> Bodem mag meer dan klep. Klep te veel → zak plakt dicht voor klant.</div>
     </div>
   </div>
 </div>
@@ -964,6 +900,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
   </div>
 </div>
+
 <div class="screen" id="s-admin">
   <div class="topbar">
     <button class="back-btn" onclick="ga('s-home')">‹</button>
@@ -1186,7 +1123,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.5.9';
+const APP_VERSION = '2.7.1';
 
 const CHANGELOG = [
   { v: '2.5',   txt: 'Home met laatste recept banner, help scherm visueel, parameters naar machine info' },
@@ -1427,6 +1364,40 @@ function naarLaatsteRecept() {
   if (r) { _huidigRecept = r; _huidigReceptKey = key; renderDetail(r); ga('s-detail'); }
 }
 
+function homeZoek(q) {
+  var el = document.getElementById('home-zoek-resultaten');
+  if (!q || q.length < 2) { el.style.display = 'none'; return; }
+  var lq = q.toLowerCase();
+  var hits = _recepten.filter(function(r) {
+    return (r.klantnaam||'').toLowerCase().includes(lq)
+      || (r.klant||'').toLowerCase().includes(lq)
+      || (r.width+'x'+r.length).includes(lq)
+      || (r.material||'').toLowerCase().includes(lq);
+  }).slice(0, 8);
+  if (!hits.length) {
+    el.innerHTML = '<div style="padding:12px 16px;font-size:12px;color:#6b7280;">Geen resultaten</div>';
+    el.style.display = 'block';
+    return;
+  }
+  el.innerHTML = hits.map(function(r) {
+    return '<div onclick="naarReceptVanZoek(\'' + r._key + '\')" style="padding:12px 16px;border-bottom:1px solid #1a2540;cursor:pointer;display:flex;align-items:center;gap:10px;">'
+      + '<div style="flex:1;">'
+      + '<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:16px;color:#e5e7eb;">' + r.width + '×' + r.length + ' <span style="font-size:12px;color:#6b7280;">/ ' + r.thickness + 'mm</span></div>'
+      + '<div style="font-size:11px;color:#6b7280;margin-top:2px;">' + (r.klantnaam||r.klant||'') + ' · ' + r.material + '</div>'
+      + '</div>'
+      + '<span style="color:#f59e0b;">›</span>'
+      + '</div>';
+  }).join('');
+  el.style.display = 'block';
+}
+
+function naarReceptVanZoek(key) {
+  document.getElementById('home-zoek').value = '';
+  document.getElementById('home-zoek-resultaten').style.display = 'none';
+  var r = _recepten.find(function(x) { return x._key === key; });
+  if (r) { _huidigRecept = r; _huidigReceptKey = key; renderDetail(r); ga('s-detail'); }
+}
+
 function filterRecepten() {
   const q = document.getElementById('zoek-input').value.toLowerCase();
   renderReceptenBoom(_recepten, q);
@@ -1653,11 +1624,13 @@ function renderDetail(r) {
   var dvStart  = r.start_doorvoer || '';
   var dvStop   = r.stop_doorvoer  || '';
   var dvAfneem = r.afneem_moment  || '';
+  var dvAfneemMm = r.afneem_mm   || '';
 
   // Als leeg: gebruik leerdata als blauw startpunt
-  var dvStartVal  = dvStart  || dvGemSpec('start_doorvoer')  || dvGemAlg('start_doorvoer');
-  var dvStopVal   = dvStop   || dvGemSpec('stop_doorvoer')   || dvGemAlg('stop_doorvoer');
-  var dvAfneemVal = dvAfneem || dvGemSpec('afneem_moment')   || dvGemAlg('afneem_moment');
+  var dvStartVal    = dvStart    || dvGemSpec('start_doorvoer')  || dvGemAlg('start_doorvoer');
+  var dvStopVal     = dvStop     || dvGemSpec('stop_doorvoer')   || dvGemAlg('stop_doorvoer');
+  var dvAfneemVal   = dvAfneem   || dvGemSpec('afneem_moment')   || dvGemAlg('afneem_moment');
+  var dvAfneemMmVal = dvAfneemMm || dvGemSpec('afneem_mm')       || dvGemAlg('afneem_mm');
 
   // Kleur: groen = eigen waarde, blauw = leerdata benadering, leeg = blauw leeg
   function dvStyle(eigen, val) {
@@ -1681,22 +1654,29 @@ function renderDetail(r) {
       + ' style="cursor:pointer;' + dvStyle(dvStop, dvStopVal) + 'font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;padding:12px;border-radius:3px;border-width:1px;border-style:solid;width:100%;outline:none;"'
       + ' onclick="openNumpad(\'dv-stop\',\'decimal\',\'Stop Doorvoer\')"></div>'
       + '</div>'
-      + '<div class="field"><label>Afneem Moment</label>'
+      + '<div class="grid2">'
+      + '<div class="field"><label>Afneem Moment (mm)</label>'
+      + '<input id="dv-afneem-mm" type="text" readonly value="' + dvAfneemMmVal + '"'
+      + ' style="cursor:pointer;' + dvStyle(dvAfneemMm, dvAfneemMmVal) + 'font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;padding:12px;border-radius:3px;border-width:1px;border-style:solid;width:100%;outline:none;"'
+      + ' onclick="openNumpad(\'dv-afneem-mm\',\'decimal\',\'Afneem Moment (mm)\')"></div>'
+      + '<div class="field"><label>Afneem Graden (°)</label>'
       + '<input id="dv-afneem" type="text" readonly value="' + dvAfneemVal + '"'
       + ' style="cursor:pointer;' + dvStyle(dvAfneem, dvAfneemVal) + 'font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;padding:12px;border-radius:3px;border-width:1px;border-style:solid;width:100%;outline:none;"'
-      + ' onclick="openNumpad(\'dv-afneem\',\'decimal\',\'Afneem Moment\')"></div>'
+      + ' onclick="openNumpad(\'dv-afneem\',\'decimal\',\'Afneem Graden\')"></div>'
+      + '</div>'
       + ((!dvStart || !dvStop || !dvAfneem) && (dvStartVal || dvStopVal || dvAfneemVal)
-        ? '<div style="font-size:10px;color:#93c5fd;margin-bottom:8px;">&#9675; Blauw = leerdata benadering</div>' : '')
+        ? '<div style="font-size:10px;color:#93c5fd;margin-top:8px;margin-bottom:8px;">&#9675; Blauw = leerdata benadering</div>' : '<div style="margin-top:8px;"></div>')
       + '<button data-key="' + r._key + '" onclick="slaDoorvoerOp(this.dataset.key)"'
       + ' class="btn btn-green" style="margin-top:4px;margin-bottom:0;font-size:15px;padding:12px;">'
       + '&#10003; Opslaan</button>'
       + '</div></div>';
-  } else if (dvStart || dvStop || dvAfneem) {
+  } else if (dvStart || dvStop || dvAfneem || dvAfneemMm) {
     doorvoerHTML = '<div class="slabel">Doorvoer &amp; Afneem Moment</div>'
       + '<div class="card" style="margin-bottom:12px;">'
       + '<div class="info-row"><div class="ir-lbl">Start</div><div class="ir-val">' + (dvStart||'--') + '</div></div>'
       + '<div class="info-row"><div class="ir-lbl">Stop</div><div class="ir-val">' + (dvStop||'--') + '</div></div>'
-      + '<div class="info-row"><div class="ir-lbl">Afneem</div><div class="ir-val">' + (dvAfneem||'--') + '</div></div>'
+      + '<div class="info-row"><div class="ir-lbl">Afneem mm</div><div class="ir-val">' + (dvAfneemMm||'--') + '</div></div>'
+      + '<div class="info-row"><div class="ir-lbl">Afneem °</div><div class="ir-val">' + (dvAfneem||'--') + '</div></div>'
       + '</div>';
   }
   var opmerkingTekst = r.opmerking || '';
@@ -1966,37 +1946,35 @@ function berekenTiming(t) {
 }
 
 async function berekenEnSla() {
-  const w = parseFloat(document.getElementById('f-w').value);
-  const l = parseFloat(document.getElementById('f-l').value);
-  const t = parseFloat(document.getElementById('f-t').value);
-  const s = parseInt(document.getElementById('f-s').value);
+  var w = parseFloat(document.getElementById('f-w').value);
+  var l = parseFloat(document.getElementById('f-l').value);
+  var t = parseFloat(document.getElementById('f-t').value);
+  var s = parseInt(document.getElementById('f-s').value);
   if (!w||!l||!t||!s) { toast('Vul alle velden in', true); return; }
 
-  const basis = berekenTiming(t);
-  _huidigTiming = {};
-  CHANNELS.forEach(ch => {
-    _huidigTiming[ch.key+'_on']  = basis[ch.key][0];
-    _huidigTiming[ch.key+'_off'] = basis[ch.key][1];
+  // Lees blower waarden uit velden (als geladen), anders bereken
+  var timing = {};
+  var heeftVelden = false;
+  CHANNELS.forEach(function(ch) {
+    var elOn  = document.getElementById('f-blw-'+ch.key+'-on');
+    var elOff = document.getElementById('f-blw-'+ch.key+'-off');
+    if (elOn && elOn.value) {
+      timing[ch.key+'_on']  = parseInt(elOn.value);
+      timing[ch.key+'_off'] = parseInt(elOff.value);
+      heeftVelden = true;
+    }
   });
 
-  // Toon berekend
-  const html = CHANNELS.map(ch => {
-    const on = _huidigTiming[ch.key+'_on'];
-    const off = _huidigTiming[ch.key+'_off'];
-    const dur = off - on;
-    return `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0a0d14;border:1px solid #1a2540;border-radius:3px;margin-bottom:6px;">
-      <div style="width:8px;height:8px;border-radius:50%;background:${ch.color};flex-shrink:0;"></div>
-      <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:#e5e7eb;flex:1;">${ch.label}</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:12px;color:${ch.color};">${on}°→${off}°</div>
-      <div style="font-size:10px;color:#4a6080;">${dur}°</div>
-    </div>`;
-  }).join('');
+  if (!heeftVelden) {
+    // Fallback: bereken automatisch
+    var basis = berekenTiming(t);
+    CHANNELS.forEach(function(ch) {
+      timing[ch.key+'_on']  = basis[ch.key][0];
+      timing[ch.key+'_off'] = basis[ch.key][1];
+    });
+  }
+  _huidigTiming = timing;
 
-  document.getElementById('berekend-inhoud').innerHTML = html;
-  document.getElementById('berekend-box').style.display = 'block';
-  document.getElementById('btn-opslaan').style.display = 'none';
-
-  // Opslaan
   toast('Opslaan...');
   var tb = {};
   var st = document.getElementById('f-starttijd').value.trim();
@@ -2023,6 +2001,16 @@ async function berekenEnSla() {
     ..._huidigTiming
   };
   if (Object.keys(tb).length) recept.toebehoren = tb;
+
+  // Doorvoer + afneem uit formulier
+  var dvStart = document.getElementById('f-dv-start').value.trim();
+  var dvStop  = document.getElementById('f-dv-stop').value.trim();
+  var afnMm   = document.getElementById('f-afneem-mm').value.trim();
+  var afnGr   = document.getElementById('f-afneem-gr').value.trim();
+  if (dvStart) recept.start_doorvoer = dvStart;
+  if (dvStop)  recept.stop_doorvoer  = dvStop;
+  if (afnMm)   recept.afneem_mm      = afnMm;
+  if (afnGr)   recept.afneem_moment  = afnGr;
 
   const editKey = document.getElementById('s-nieuw').dataset.editKey;
   if (editKey) {
@@ -2848,6 +2836,129 @@ function renderAfstellenKlaar() {
     + '</div>';
   document.getElementById('afstellen-inhoud').innerHTML = html;
 }
+
+// ═══════ MACHINE INFO TOGGLE ═══════
+function toggleMI(id) {
+  var el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+function renderBlowerVelden() {
+  var html = CHANNELS.map(function(ch) {
+    var onVal  = _huidigTiming[ch.key+'_on']  || '';
+    var offVal = _huidigTiming[ch.key+'_off'] || '';
+    var cls = onVal ? 'blauw' : 'leeg';
+    return '<div style="background:#0a0e16;border:1px solid #1a2540;border-left:3px solid '+ch.color+';border-radius:4px;padding:10px 12px;margin-bottom:8px;">'
+      + '<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:14px;color:'+ch.color+';margin-bottom:8px;">'+ch.label+'</div>'
+      + '<div class="grid2" style="gap:8px;">'
+      + '<div class="field" style="margin:0;"><label>AAN (°)</label>'
+      + '<input id="f-blw-'+ch.key+'-on" type="text" readonly value="'+onVal+'" class="'+cls+'" style="cursor:pointer;" onclick="openNumpad(\'f-blw-'+ch.key+'-on\',\'integer\',\''+ch.label+' AAN\')"></div>'
+      + '<div class="field" style="margin:0;"><label>UIT (°)</label>'
+      + '<input id="f-blw-'+ch.key+'-off" type="text" readonly value="'+offVal+'" class="'+cls+'" style="cursor:pointer;" onclick="openNumpad(\'f-blw-'+ch.key+'-off\',\'integer\',\''+ch.label+' UIT\')"></div>'
+      + '</div></div>';
+  }).join('');
+  document.getElementById('blower-velden').innerHTML = html;
+}
+
+// ═══════ OPTIMAAL / WERKELIJK TOGGLE ═══════
+function laadOptimaal() {
+  var t = parseFloat(document.getElementById('f-t').value);
+  if (!t) { toast('Vul eerst de dikte in', true); return; }
+
+  var basis = berekenTiming(t);
+  _huidigTiming = {};
+  CHANNELS.forEach(function(ch) {
+    _huidigTiming[ch.key+'_on']  = basis[ch.key][0];
+    _huidigTiming[ch.key+'_off'] = basis[ch.key][1];
+  });
+
+  renderBlowerVelden();
+
+  // Toggle styling
+  document.getElementById('btn-optimaal').style.background = '#f59e0b22';
+  document.getElementById('btn-optimaal').style.borderColor = '#f59e0b';
+  document.getElementById('btn-optimaal').querySelector('div:nth-child(2)').style.color = '#f59e0b';
+  document.getElementById('btn-werkelijk').style.background = '#0f1520';
+  document.getElementById('btn-werkelijk').style.borderColor = '#1a2540';
+  document.getElementById('btn-werkelijk').querySelector('div:nth-child(2)').style.color = '#6b7280';
+  document.getElementById('leer-banner').style.display = 'none';
+
+  toast('Optimale instellingen geladen');
+}
+
+function laadWerkelijk() {
+  var w = parseFloat(document.getElementById('f-w').value);
+  var l = parseFloat(document.getElementById('f-l').value);
+  var t = parseFloat(document.getElementById('f-t').value);
+  var mat = _gekozenMat;
+  if (!t) { toast('Vul eerst de dikte in', true); return; }
+
+  // Zoek vergelijkbare recepten
+  var exact = _recepten.filter(function(r) {
+    return Math.abs(r.width-w) < 1 && Math.abs(r.length-l) < 1
+      && Math.abs(r.thickness-t) < 0.005 && r.material === mat;
+  });
+  var breed = exact.length ? exact : _recepten.filter(function(r) {
+    return Math.abs(r.thickness-t) < 0.005 && r.material === mat;
+  });
+  var basis = breed.length ? breed : _recepten.filter(function(r) {
+    return Math.abs(r.thickness-t) < 0.005;
+  });
+
+  if (!basis.length) {
+    document.getElementById('werkelijk-info').textContent = 'Geen data';
+    document.getElementById('btn-werkelijk').style.background = '#0f1520';
+    document.getElementById('btn-werkelijk').style.borderColor = '#1a2540';
+    document.getElementById('leer-banner').innerHTML = '⚠ Geen vergelijkbare recepten gevonden -- optimale instellingen worden gebruikt.';
+    document.getElementById('leer-banner').style.display = 'block';
+    laadOptimaal();
+    return;
+  }
+
+  // Bereken gemiddelden
+  function gem(key) {
+    var vals = basis.map(function(r) { return parseFloat(r[key]); }).filter(function(v) { return !isNaN(v); });
+    if (!vals.length) return null;
+    return Math.round(vals.reduce(function(a,b){return a+b;},0) / vals.length);
+  }
+
+  CHANNELS.forEach(function(ch) {
+    var on  = gem(ch.key+'_on');
+    var off = gem(ch.key+'_off');
+    var elOn  = document.getElementById('f-blw-' + ch.key + '-on');
+    var elOff = document.getElementById('f-blw-' + ch.key + '-off');
+    if (elOn  && on  !== null) { elOn.value  = on;  elOn.className  = 'blauw'; }
+    if (elOff && off !== null) { elOff.value = off; elOff.className = 'blauw'; }
+    if (on  !== null) _huidigTiming[ch.key+'_on']  = on;
+    if (off !== null) _huidigTiming[ch.key+'_off'] = off;
+  });
+
+  // Doorvoer + afneem gemiddelden
+  var gemDvStart = gem('start_doorvoer');
+  var gemDvStop  = gem('stop_doorvoer');
+  var gemAfnMm   = gem('afneem_mm');
+  var gemAfnGr   = gem('afneem_moment');
+  if (gemDvStart) { var el = document.getElementById('f-dv-start'); if(el){el.value=gemDvStart;el.className='blauw';} }
+  if (gemDvStop)  { var el = document.getElementById('f-dv-stop');  if(el){el.value=gemDvStop; el.className='blauw';} }
+  if (gemAfnMm)   { var el = document.getElementById('f-afneem-mm'); if(el){el.value=gemAfnMm; el.className='blauw';} }
+  if (gemAfnGr)   { var el = document.getElementById('f-afneem-gr'); if(el){el.value=gemAfnGr; el.className='blauw';} }
+
+  // Toggle styling
+  document.getElementById('btn-werkelijk').style.background = '#3b82f622';
+  document.getElementById('btn-werkelijk').style.borderColor = '#3b82f6';
+  document.getElementById('btn-werkelijk').querySelector('div:nth-child(2)').style.color = '#3b82f6';
+  document.getElementById('btn-optimaal').style.background = '#0f1520';
+  document.getElementById('btn-optimaal').style.borderColor = '#1a2540';
+  document.getElementById('btn-optimaal').querySelector('div:nth-child(2)').style.color = '#6b7280';
+
+  var type = exact.length ? 'exact' : (breed.length === basis.length ? 'dikte+materiaal' : 'dikte');
+  document.getElementById('werkelijk-info').textContent = basis.length + ' recepten';
+  document.getElementById('leer-banner').innerHTML = '📊 Op basis van <strong>' + basis.length + ' recepten</strong> (' + type + ')';
+  document.getElementById('leer-banner').style.display = 'block';
+
+  toast('Werkelijke instellingen geladen');
+}
+
 function toggleSpecs() {
   var inhoud = document.getElementById('specs-inhoud');
   var chevron = document.getElementById('specs-chevron');
@@ -2866,14 +2977,15 @@ function toggleParams() {
 
 // ═══════ DOORVOER ═══════
 async function slaDoorvoerOp(key) {
-  var start  = document.getElementById('dv-start').value.trim();
-  var stop   = document.getElementById('dv-stop').value.trim();
-  var afneem = document.getElementById('dv-afneem').value.trim();
-  var data = { start_doorvoer: start, stop_doorvoer: stop, afneem_moment: afneem };
+  var start    = document.getElementById('dv-start').value.trim();
+  var stop     = document.getElementById('dv-stop').value.trim();
+  var afneemMm = document.getElementById('dv-afneem-mm') ? document.getElementById('dv-afneem-mm').value.trim() : '';
+  var afneem   = document.getElementById('dv-afneem').value.trim();
+  var data = { start_doorvoer: start, stop_doorvoer: stop, afneem_moment: afneem, afneem_mm: afneemMm };
   await fbPatch('recepten/' + key, data);
   var r = _recepten.find(function(x) { return x._key === key; });
-  if (r) { r.start_doorvoer = start; r.stop_doorvoer = stop; r.afneem_moment = afneem; }
-  toast('Doorvoer opgeslagen');
+  if (r) { r.start_doorvoer = start; r.stop_doorvoer = stop; r.afneem_moment = afneem; r.afneem_mm = afneemMm; }
+  toast('Doorvoer & afneem opgeslagen');
   renderDetail(r);
 }
 
