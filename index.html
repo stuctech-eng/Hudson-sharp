@@ -890,36 +890,6 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
   </div>
 </div>
 <div class="card">
-  <div class="card-title" style="color:#22c55e;">📐 Referentie Instelling -- 23µ LDPE</div>
-  <div style="padding:14px;">
-    <div style="font-size:11px;color:#6b7280;margin-bottom:12px;">Startpunt voor 27×31.5cm boterhamzakken 0.023mm</div>
-    <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
-      <div class="ir-lbl" style="color:#f97316;">Onderste Pijp</div>
-      <div class="ir-val" style="font-size:14px;color:#f97316;">14° → 200°</div>
-    </div>
-    <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
-      <div class="ir-lbl" style="color:#3b82f6;">Bovenste Pijp</div>
-      <div class="ir-val" style="font-size:14px;color:#3b82f6;">26° → 155°</div>
-    </div>
-    <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
-      <div class="ir-lbl" style="color:#a78bfa;">Lower Blazer</div>
-      <div class="ir-val" style="font-size:14px;color:#a78bfa;">50° → 260°</div>
-    </div>
-    <div class="info-row" style="padding:8px 0;border-bottom:1px solid #1a2540;">
-      <div class="ir-lbl" style="color:#22d3ee;">Upper Blazer</div>
-      <div class="ir-val" style="font-size:14px;color:#22d3ee;">90° → 300°</div>
-    </div>
-    <div class="info-row" style="padding:8px 0;border-bottom:none;">
-      <div class="ir-lbl" style="color:#f59e0b;">Uitgang 6</div>
-      <div class="ir-val" style="font-size:14px;color:#f59e0b;">68° → 240°</div>
-    </div>
-    <div style="background:#22c55e11;border:1px solid #22c55e33;border-radius:4px;padding:8px 10px;margin-top:10px;font-size:11px;color:#6b7280;line-height:1.7;">
-      Onder eerder dan boven -- minimaal 10° verschil. Finetune via opties in recept.
-    </div>
-  </div>
-</div>
-
-<div class="card">
   <div class="card-title" style="color:#f59e0b;">⭐ Sterkte Rangorde per Component</div>
   <div style="padding:14px;">
     <div style="font-size:11px;color:#6b7280;margin-bottom:12px;">LDPE wicketzakken -- relatieve prioriteit</div>
@@ -1035,6 +1005,16 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 <!-- ═══════════════ LEERDATA SCHERM ═══════════════ -->
 
 <div class="fullscreen" id="s-leerdata">
+
+<!-- ═══════════════ SNEL AFSTELLEN ═══════════════ -->
+
+<div class="fullscreen" id="s-afstellen">
+  <div class="fullscreen-bar" style="border-bottom-color:#ef4444;">
+    <button class="back-btn" onclick="sluitAfstellen()">‹</button>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;flex:1;">⚡ Snel Afstellen</div>
+  </div>
+  <div class="content" id="afstellen-inhoud"></div>
+</div>
   <div class="fullscreen-bar" style="border-bottom-color:#f59e0b;">
     <button class="back-btn" onclick="sluitLeerdata()">‹</button>
     <div id="leerdata-titel" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;flex:1;">🧠 Leer Data</div>
@@ -1175,7 +1155,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.5.1';
+const APP_VERSION = '2.5.3';
 
 const CHANGELOG = [
   { v: '2.5',   txt: 'Home met laatste recept banner, help scherm visueel, parameters naar machine info' },
@@ -1721,9 +1701,14 @@ function renderDetail(r) {
 
   const knoppen = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
-      <button onclick="toonProbleemKeuze()" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #ef4444;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
+      <button data-key="${r._key}" onclick="openAfstellen(this.dataset.key)" style="background:#0f1520;border:1px solid #ef444466;border-top:3px solid #ef4444;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;grid-column:span 2;">
+        <div style="font-size:22px;margin-bottom:6px;">⚡</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:#ef4444;">Snel Afstellen</div>
+        <div style="font-size:9px;color:#6b7280;margin-top:3px;">Probleem → directe correctie op dit recept</div>
+      </button>
+      <button onclick="toonProbleemKeuze()" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #f97316;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
         <div style="font-size:22px;margin-bottom:6px;">🔧</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#ef4444;">Probleem</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:#f97316;">Probleem</div>
       </button>
       <button data-key="${r._key}" onclick="openOpties(this.dataset.key)" style="background:#0f1520;border:1px solid #1a2540;border-top:3px solid #22c55e;border-radius:4px;padding:14px 8px;cursor:pointer;text-align:center;">
         <div style="font-size:22px;margin-bottom:6px;">💾</div>
@@ -2633,7 +2618,210 @@ async function openDoorvoerLeerdata(key) {
   }
 }
 
-// ═══════ SPECS INKLAPBAAR ═══════
+// ═══════ SNEL AFSTELLEN ═══════
+var _afstellenRecept = null;
+var _afstellenProbleem = null;
+var _afstellenStap = 0;
+
+const AFSTELLEN_STAPPEN = {
+  plakt: [
+    { kanaal: 'lower_pipe', veld: 'on', delta: -2, label: 'Onderste Blaaspijp AAN', uitleg: 'Onderpijp 2° eerder starten -- meest effectieve eerste stap.' },
+    { kanaal: 'upper_pipe', veld: 'on', delta: +3, label: 'Bovenste Blaaspijp AAN', uitleg: 'Bovenpijp 3° later -- meer ruimte voor onderpijp om te werken.' },
+    { kanaal: 'lower_pipe', veld: 'on', delta: -2, label: 'Onderste Blaaspijp AAN', uitleg: 'Nogmaals 2° eerder -- cumulatief effect.' },
+    { kanaal: null, veld: null, delta: 0, label: 'Lucht verhogen', uitleg: 'Timing is gecorrigeerd. Als probleem aanhoudt: onderpijp draaikraan iets verder open (+5%).' },
+  ],
+  missers: [
+    { kanaal: 'lower_pipe', veld: 'on', delta: -2, label: 'Onderste Blaaspijp AAN', uitleg: 'Onderpijp 2° eerder -- zak stabiliseert sneller voor molenwiek.' },
+    { kanaal: 'out6', veld: 'on', delta: -5, label: 'Uitgang 6 AAN', uitleg: 'Uitgang 6 5° eerder -- zak eerder gefixeerd richting molenwiek.' },
+    { kanaal: 'lower', veld: 'off', delta: -10, label: 'Lower Blazer UIT', uitleg: 'Lower blazer 10° eerder stoppen -- minder turbulentie bij ophalen.' },
+    { kanaal: null, veld: null, delta: 0, label: 'Check doorvoer', uitleg: 'Als missers blijven: controleer doorvoer timing in het recept.' },
+  ],
+  lucht: [
+    { kanaal: 'upper', veld: 'off', delta: -10, label: 'Bovenste Blazer UIT', uitleg: 'Upper blazer 10° eerder stoppen -- minder lucht ingesloten.' },
+    { kanaal: 'out6', veld: 'on', delta: +5, label: 'Uitgang 6 AAN', uitleg: 'Uitgang 6 5° later -- meer tijd voor lucht om te ontsnappen.' },
+    { kanaal: 'lower', veld: 'off', delta: -10, label: 'Lower Blazer UIT', uitleg: 'Lower blazer 10° eerder -- minder lucht ophoping.' },
+    { kanaal: null, veld: null, delta: 0, label: 'Snelheid verlagen', uitleg: 'Als lucht blijft: snelheid 5-10 ZPM lager geeft meer tijd per cyclus.' },
+  ],
+  krult: [
+    { kanaal: 'lower', veld: 'off', delta: -10, label: 'Lower Blazer UIT', uitleg: 'Lower blazer 10° eerder stoppen -- minder neerwaartse druk.' },
+    { kanaal: 'upper', veld: 'on', delta: -10, label: 'Upper Blazer AAN', uitleg: 'Upper blazer 10° eerder -- meer compensatie van boven.' },
+    { kanaal: 'out6', veld: 'off', delta: -10, label: 'Uitgang 6 UIT', uitleg: 'Uitgang 6 10° eerder stoppen -- minder afneemkracht.' },
+    { kanaal: null, veld: null, delta: 0, label: 'Check foliespanning', uitleg: 'Krullen kan ook spanning zijn -- check dancer rollen.' },
+  ],
+  hoeken: [
+    { kanaal: 'upper', veld: 'off', delta: +10, label: 'Upper Blazer UIT', uitleg: 'Upper blazer 10° langer actief -- betere bovencontrole.' },
+    { kanaal: 'lower', veld: 'off', delta: -10, label: 'Lower Blazer UIT', uitleg: 'Lower blazer 10° eerder -- minder turbulentie bij hoeken.' },
+    { kanaal: 'out6', veld: 'on', delta: +5, label: 'Uitgang 6 AAN', uitleg: 'Uitgang 6 5° later -- zak meer tijd om recht te hangen.' },
+    { kanaal: null, veld: null, delta: 0, label: 'Upper blazer lucht +5%', uitleg: 'Timing gecorrigeerd. Als hoeken blijven: upper blazer draaikraan iets verder open.' },
+  ],
+  stapeling: [
+    { kanaal: 'upper', veld: 'off', delta: +10, label: 'Upper Blazer UIT', uitleg: 'Upper blazer 10° langer -- meer controle richting molenwiek.' },
+    { kanaal: 'out6', veld: 'off', delta: +5, label: 'Uitgang 6 UIT', uitleg: 'Uitgang 6 5° langer actief -- betere fixatie op band.' },
+    { kanaal: 'lower', veld: 'off', delta: -10, label: 'Lower Blazer UIT', uitleg: 'Lower blazer 10° eerder -- minder scheefblazen.' },
+    { kanaal: null, veld: null, delta: 0, label: 'Upper blazer lucht +5%', uitleg: 'Timing gecorrigeerd. Als stapeling blijft slecht: upper blazer draaikraan iets verder open.' },
+  ],
+  draait: [
+    { kanaal: 'upper', veld: 'off', delta: +10, label: 'Upper Blazer UIT', uitleg: 'Upper blazer 10° langer -- meer stabilisatie bovenop.' },
+    { kanaal: 'lower', veld: 'off', delta: -10, label: 'Lower Blazer UIT', uitleg: 'Lower blazer 10° eerder -- minder onbalans.' },
+    { kanaal: 'out6', veld: 'off', delta: +5, label: 'Uitgang 6 UIT', uitleg: 'Uitgang 6 5° langer -- betere fixatie op band.' },
+    { kanaal: null, veld: null, delta: 0, label: 'Lucht balans aanpassen', uitleg: 'Upper +5% / Lower -5% draaikraan als timing niet helpt.' },
+  ],
+};
+
+const AFSTELLEN_PROBLEMEN = [
+  { key: 'plakt',    icon: '🫧', label: 'Plakt / opent slecht', kleur: '#22d3ee' },
+  { key: 'missers',  icon: '🎯', label: 'Missers', kleur: '#f97316' },
+  { key: 'lucht',    icon: '💨', label: 'Lucht in de zak', kleur: '#3b82f6' },
+  { key: 'krult',    icon: '🌀', label: 'Vliegt / krult', kleur: '#22d3ee' },
+  { key: 'hoeken',   icon: '📐', label: 'Hoeken vouwen om', kleur: '#a78bfa' },
+  { key: 'stapeling',icon: '📦', label: 'Slecht stapelen', kleur: '#f59e0b' },
+  { key: 'draait',   icon: '🔄', label: 'Zak draait op band', kleur: '#22c55e' },
+];
+
+function openAfstellen(key) {
+  _afstellenRecept = _recepten.find(function(x) { return x._key === key; });
+  if (!_afstellenRecept) return;
+  _afstellenProbleem = null;
+  _afstellenStap = 0;
+  renderAfstellenKeuze();
+  document.getElementById('s-afstellen').classList.add('active');
+}
+
+function sluitAfstellen() {
+  document.getElementById('s-afstellen').classList.remove('active');
+  _afstellenProbleem = null;
+  _afstellenStap = 0;
+}
+
+function renderAfstellenKeuze() {
+  var r = _afstellenRecept;
+  var html = '<div style="background:#ef444418;border:1px solid #ef444444;border-radius:4px;padding:12px 16px;margin-bottom:16px;">'
+    + '<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:14px;color:#ef4444;margin-bottom:4px;">Wat zie je?</div>'
+    + '<div style="font-size:11px;color:#9ca3af;">Kies het probleem -- de app berekent de correctie voor dit recept.</div>'
+    + '</div>';
+
+  AFSTELLEN_PROBLEMEN.forEach(function(p) {
+    html += '<div onclick="kiesAfstellenProbleem(\'' + p.key + '\')" style="background:#0f1520;border:1px solid #1a2540;border-left:4px solid ' + p.kleur + ';border-radius:4px;padding:14px 16px;margin-bottom:8px;cursor:pointer;display:flex;align-items:center;gap:14px;">'
+      + '<span style="font-size:24px;">' + p.icon + '</span>'
+      + '<div style="flex:1;">'
+      + '<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:17px;color:#e5e7eb;">' + p.label + '</div>'
+      + '</div>'
+      + '<span style="color:#6b7280;font-size:20px;">›</span>'
+      + '</div>';
+  });
+
+  document.getElementById('afstellen-inhoud').innerHTML = html;
+}
+
+function kiesAfstellenProbleem(probleem) {
+  _afstellenProbleem = probleem;
+  _afstellenStap = 0;
+  renderAfstellenStap();
+}
+
+function renderAfstellenStap() {
+  var r = _afstellenRecept;
+  var stappen = AFSTELLEN_STAPPEN[_afstellenProbleem];
+  var p = AFSTELLEN_PROBLEMEN.find(function(x) { return x.key === _afstellenProbleem; });
+  if (!stappen || _afstellenStap >= stappen.length) {
+    renderAfstellenKlaar();
+    return;
+  }
+
+  var stap = stappen[_afstellenStap];
+  var totaal = stappen.length;
+
+  // Bereken huidige en nieuwe waarde
+  var huidigVal = null;
+  var nieuweVal = null;
+  var kanaalLabel = '';
+
+  if (stap.kanaal) {
+    var ch = CHANNELS.find(function(c) { return c.key === stap.kanaal; });
+    kanaalLabel = ch ? ch.label : stap.kanaal;
+    var veldNaam = stap.kanaal + '_' + stap.veld;
+    huidigVal = r[veldNaam];
+    if (huidigVal !== undefined) {
+      nieuweVal = Math.max(0, Math.min(359, huidigVal + stap.delta));
+    }
+  }
+
+  var progressBars = '';
+  for (var i = 0; i < totaal; i++) {
+    progressBars += '<div style="flex:1;height:3px;border-radius:2px;background:' + (i <= _afstellenStap ? p.kleur : '#1a2540') + ';"></div>';
+  }
+
+  var html = '<div style="display:flex;gap:4px;margin-bottom:20px;">' + progressBars + '</div>'
+    + '<div style="background:' + p.kleur + '18;border:1px solid ' + p.kleur + '44;border-radius:4px;padding:14px 16px;margin-bottom:16px;">'
+    + '<div style="font-size:10px;color:#6b7280;letter-spacing:.2em;margin-bottom:4px;">STAP ' + (_afstellenStap+1) + ' VAN ' + totaal + '</div>'
+    + '<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:20px;color:' + p.kleur + ';">' + stap.label + '</div>'
+    + '</div>';
+
+  if (stap.kanaal && huidigVal !== undefined) {
+    var richting = stap.delta > 0 ? '↑' : '↓';
+    html += '<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:20px;margin-bottom:16px;text-align:center;">'
+      + '<div style="font-size:11px;color:#6b7280;margin-bottom:12px;">' + kanaalLabel + ' -- ' + (stap.veld === 'on' ? 'AAN' : 'UIT') + '</div>'
+      + '<div style="display:flex;align-items:center;justify-content:center;gap:20px;">'
+      + '<div>'
+      + '<div style="font-size:10px;color:#6b7280;margin-bottom:4px;">NU</div>'
+      + '<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:42px;color:#6b7280;">' + huidigVal + '<span style="font-size:18px;">°</span></div>'
+      + '</div>'
+      + '<div style="font-size:28px;color:' + p.kleur + ';">' + richting + '</div>'
+      + '<div>'
+      + '<div style="font-size:10px;color:#6b7280;margin-bottom:4px;">INSTELLEN OP</div>'
+      + '<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:42px;color:' + p.kleur + ';">' + nieuweVal + '<span style="font-size:18px;">°</span></div>'
+      + '</div>'
+      + '</div>'
+      + '<div style="font-size:11px;color:#4a6080;margin-top:8px;">Verschil: ' + (stap.delta > 0 ? '+' : '') + stap.delta + '°</div>'
+      + '</div>';
+  } else {
+    html += '<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;padding:20px;margin-bottom:16px;text-align:center;">'
+      + '<div style="font-size:32px;margin-bottom:8px;">🔧</div>'
+      + '<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:18px;color:#e5e7eb;">' + stap.label + '</div>'
+      + '</div>';
+  }
+
+  html += '<div style="background:#070a10;border:1px solid #1a2540;border-radius:4px;padding:12px 14px;margin-bottom:20px;font-size:12px;color:#9ca3af;line-height:1.7;">'
+    + stap.uitleg + '</div>'
+    + '<div style="font-size:11px;color:#4a6080;text-align:center;margin-bottom:12px;">Pas de instelling aan op de machine en test 10–15 zakken</div>'
+    + '<button onclick="afstellenWerkt()" class="btn btn-green" style="margin-bottom:8px;font-size:16px;padding:16px;">✓ Werkt! Probleem opgelost</button>'
+    + '<button onclick="afstellenVolgende()" style="width:100%;background:#0f1520;border:1px solid #1a2540;border-radius:4px;color:#9ca3af;font-family:Rajdhani,sans-serif;font-weight:700;font-size:15px;padding:14px;cursor:pointer;margin-bottom:8px;">Nog niet opgelost → volgende stap</button>'
+    + '<button onclick="renderAfstellenKeuze()" style="width:100%;background:transparent;border:none;color:#4a6080;font-size:13px;padding:10px;cursor:pointer;">← Ander probleem</button>';
+
+  document.getElementById('afstellen-inhoud').innerHTML = html;
+}
+
+function afstellenWerkt() {
+  var html = '<div style="text-align:center;padding:40px 20px;">'
+    + '<div style="font-size:48px;margin-bottom:16px;">✅</div>'
+    + '<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:24px;color:#22c55e;margin-bottom:8px;">Probleem opgelost!</div>'
+    + '<div style="font-size:13px;color:#9ca3af;margin-bottom:32px;">Vergeet niet de nieuwe instelling op te slaan als optie in het recept.</div>'
+    + '<button onclick="sluitAfstellen()" class="btn btn-green" style="font-size:16px;padding:16px;">✓ Klaar</button>'
+    + '<button onclick="openOpties(_huidigReceptKey)" style="width:100%;background:#0f1520;border:1px solid #1a2540;border-radius:4px;color:#22c55e;font-family:Rajdhani,sans-serif;font-weight:700;font-size:15px;padding:14px;cursor:pointer;margin-top:8px;">💾 Sla op als optie</button>'
+    + '</div>';
+  document.getElementById('afstellen-inhoud').innerHTML = html;
+}
+
+function afstellenVolgende() {
+  _afstellenStap++;
+  var stappen = AFSTELLEN_STAPPEN[_afstellenProbleem];
+  if (_afstellenStap >= stappen.length) {
+    renderAfstellenKlaar();
+  } else {
+    renderAfstellenStap();
+  }
+}
+
+function renderAfstellenKlaar() {
+  var html = '<div style="text-align:center;padding:32px 20px;">'
+    + '<div style="font-size:48px;margin-bottom:16px;">🔍</div>'
+    + '<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:22px;color:#f59e0b;margin-bottom:8px;">Alle stappen geprobeerd</div>'
+    + '<div style="font-size:13px;color:#9ca3af;line-height:1.7;margin-bottom:24px;">Het probleem is complexer. Controleer foliespanning, materiaal en machinesnelheid.</div>'
+    + '<button onclick="renderAfstellenKeuze()" class="btn btn-amber" style="font-size:16px;padding:16px;margin-bottom:8px;">← Ander probleem proberen</button>'
+    + '<button onclick="sluitAfstellen()" style="width:100%;background:transparent;border:1px solid #1a2540;border-radius:4px;color:#6b7280;font-family:Rajdhani,sans-serif;font-size:15px;padding:14px;cursor:pointer;">Sluiten</button>'
+    + '</div>';
+  document.getElementById('afstellen-inhoud').innerHTML = html;
+}
 function toggleSpecs() {
   var inhoud = document.getElementById('specs-inhoud');
   var chevron = document.getElementById('specs-chevron');
