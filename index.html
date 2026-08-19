@@ -1086,7 +1086,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.7.6';
+const APP_VERSION = '2.7.7';
 
 const CHANGELOG = [
   { v: '2.5',   txt: 'Home met laatste recept banner, help scherm visueel, parameters naar machine info' },
@@ -2725,9 +2725,14 @@ function sluitAfstellen() {
 
 function renderAfstellenKeuze() {
   var r = _afstellenRecept;
+  var actieveOpt = r.actieveOptie && r.opties && r.opties[r.actieveOptie];
+  var basisInfo = actieveOpt
+    ? '<strong style="color:#22c55e;">Optie ' + r.actieveOptie + '</strong> actief -- correctie op basis van optie waarden.'
+    : 'Geen actieve optie -- correctie op basis van basisrecept.';
   var html = '<div style="background:#ef444418;border:1px solid #ef444444;border-radius:4px;padding:12px 16px;margin-bottom:16px;">'
     + '<div style="font-family:Rajdhani,sans-serif;font-weight:700;font-size:14px;color:#ef4444;margin-bottom:4px;">Wat zie je?</div>'
-    + '<div style="font-size:11px;color:#9ca3af;">Kies het probleem -- de app berekent de correctie voor dit recept.</div>'
+    + '<div style="font-size:11px;color:#9ca3af;margin-bottom:4px;">Kies het probleem -- de app berekent de correctie voor dit recept.</div>'
+    + '<div style="font-size:11px;color:#9ca3af;">' + basisInfo + '</div>'
     + '</div>';
 
   AFSTELLEN_PROBLEMEN.forEach(function(p) {
@@ -2770,7 +2775,9 @@ function renderAfstellenStap() {
     var ch = CHANNELS.find(function(c) { return c.key === stap.kanaal; });
     kanaalLabel = ch ? ch.label : stap.kanaal;
     var veldNaam = stap.kanaal + '_' + stap.veld;
-    huidigVal = r[veldNaam];
+    // Gebruik actieve optie als die er is, anders basisrecept
+    var actieveOpt = r.actieveOptie && r.opties && r.opties[r.actieveOptie];
+    huidigVal = (actieveOpt && actieveOpt[veldNaam] !== undefined) ? actieveOpt[veldNaam] : r[veldNaam];
     if (huidigVal !== undefined) {
       nieuweVal = Math.max(0, Math.min(359, huidigVal + stap.delta));
     }
@@ -3293,3 +3300,5 @@ console.log('Hudson Sharp 5750W v' + APP_VERSION + ' geladen');
 </script>
 </body>
 </html>
+  
+  
