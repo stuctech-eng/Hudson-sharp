@@ -1086,7 +1086,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '2.7.7';
+const APP_VERSION = '2.7.8';
 
 const CHANGELOG = [
   { v: '2.5',   txt: 'Home met laatste recept banner, help scherm visueel, parameters naar machine info' },
@@ -1740,6 +1740,11 @@ function renderDetail(r) {
     var lft = (on / 360 * 100).toFixed(1);
     var wid = Math.max(0.4, dur / 360 * 100).toFixed(1);
     var afwijkt = optData && (on !== baseOn || off !== baseOff);
+    // Bereken optimale waarden
+    var optTiming = berekenTiming(r.thickness);
+    var optOn  = optTiming[ch.key] ? optTiming[ch.key][0] : null;
+    var optOff = optTiming[ch.key] ? optTiming[ch.key][1] : null;
+    var afwijktVanOptimaal = optOn !== null && (on !== optOn || off !== optOff);
     return '<div class="blower-block" style="'+(afwijkt?'border-left:3px solid #22c55e;':'')+'">'
       +'<div class="blower-hdr">'
       +'<div class="bdot" style="background:'+ch.color+';box-shadow:0 0 6px '+ch.color+'55;"></div>'
@@ -1751,6 +1756,7 @@ function renderDetail(r) {
       +'<div class="bcell"><span class="bcell-lbl">UIT</span><span class="bcell-val" style="color:'+(afwijkt?'#22c55e':ch.color)+'">'+off+'</span><span class="bcell-unit">°</span></div>'
       +'<div class="bcell"><span class="bcell-lbl">DUUR</span><span class="bcell-val" style="color:#4a6080;font-size:22px;">'+dur+'</span><span class="bcell-unit">°</span></div>'
       +'</div>'
+      +(afwijktVanOptimaal ? '<div style="font-size:10px;color:#4a6080;padding:4px 12px 6px;font-family:\'Share Tech Mono\',monospace;">Optimaal: '+optOn+'°→'+optOff+'°</div>' : '')
       +'<div class="bar-wrap">'
       +'<div class="bar-track"><div class="bar-fill" style="left:'+lft+'%;width:'+wid+'%;background:'+(afwijkt?'#22c55e':ch.color)+';"></div></div>'
       +'<div class="bar-ticks">'+[0,90,180,270,360].map(function(d){return '<span class="bar-tick">'+d+'°</span>';}).join('')+'</div>'
@@ -3300,5 +3306,3 @@ console.log('Hudson Sharp 5750W v' + APP_VERSION + ' geladen');
 </script>
 </body>
 </html>
-  
-  
