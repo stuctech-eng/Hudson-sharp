@@ -1210,7 +1210,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '3.0.6';
+const APP_VERSION = '3.0.7';
 
 const STATUSSEN = [
   { key: 'THEORETISCH', label: 'Theoretisch',  kleur: '#6b7280', bg: '#6b728018' },
@@ -1221,6 +1221,7 @@ const STATUSSEN = [
 ];
 
 const CHANGELOG = [
+  { v: '3.0.7', txt: 'Henk kent klep (rechts) vs bodem (links) — klep-hoek slaatomvaak eerste om' },
   { v: '3.0.6', txt: 'Hoekjes op de band: upper blazer eerder UIT als eerste stap, dan verschuiven/dopjes/druk' },
   { v: '3.0.5', txt: 'Henk kent hoekjes omslaan: bovenste blazers verschuiven, afdekdopjes, druk verlagen' },
   { v: '3.0.4', txt: 'Lokale antwoorden altijd beschikbaar — chat werkt zonder AI verbinding' },
@@ -3567,12 +3568,18 @@ WICKET PROBLEMEN:
 - Bovenkant slaat om bij transportband → Upper blazer te kort/lang AAN, of te veel bovenlucht, of zijplaat te kort, stripper jets/blowers controleren
 - Onderkant slaat om bij transportband → Te veel onderlucht, zijplaat onderste stripper jets, of zijplaat staat te vroeg
 
+ZAKGEOMETRIE (belangrijk voor hoekjes):
+- RECHTS = klep-kant: enkelzijdig folie, ~4cm klep, lichter/dunner → slaat eerder om
+- LINKS = bodem-kant: gesloten einde van de zak, zwaarder → stabieler
+- Klep-kant (rechts) is tricky: minder massa om neer te leggen, pakt lucht anders op
+
 HOEKJES OMSLAAN OP DE TRANSPORTBAND:
 - Situatie: zak komt goed uit machine maar hoekjes slaan om zodra hij op de band neerkomt
+- Klep-hoek (rechts-boven) slaatomvaak het eerst om — minder gewicht, pakt blazerlucht makkelijker
 - Oorzaak: bovenste blazers blazen nog te veel als de zak neerlegt, of lucht zit ongelijk verdeeld
 - Oplossing 1 — UPPER BLAZER EERDER UIT: upper blazer AAN-duur verkorten (eerder UIT), zodat er minder lucht in de zak zit bij het neerleggen
 - Oplossing 2 — VERSCHUIVEN: hele bovenste blaassectie iets naar links of rechts schuiven zodat lucht gelijkmatiger over zak verdeeld wordt
-- Oplossing 3 — AFDEKDOPJES: dopjes op de blaastuitjes plaatsen. Meest effectief: eerste tuitje links, of tweede tuitje links, of allebei afdekken. Linker tuitjes afdekken helpt als hoekjes aan linkerkant omslaan
+- Oplossing 3 — AFDEKDOPJES: dopjes op blaastuitjes. Als klep-kant (rechts) omslaat → rechter tuitjes afdekken. Als bodem-kant (links) omslaat → linker tuitjes afdekken
 - Oplossing 4 — MINDER LUCHT: upper blazer druk verlagen zodat hoeken niet weggeblazen worden bij neerleggen
 - Volgorde aanpak: upper blazer eerder UIT → verschuiven → afdekdopjes → druk verlagen
 - Let op: als hoekjes al omslaan VOOR de band → ander probleem (stripper jets/zijplaat)
@@ -3797,7 +3804,9 @@ function henkLokaalAntwoord(vraag) {
   if (v.includes('bovenkant') && v.includes('omslaat') || v.includes('boven') && v.includes('omslagen')) return '**Upper blazer controleren** — te kort of te lang AAN? Of te veel druk? Ook zijplaat en stripper jets checken.';
   if (v.includes('onderkant') && v.includes('omslaat') || v.includes('onder') && v.includes('omslagen')) return '**Te veel onderlucht** of zijplaat staat te vroeg. Lower blazer timing later laten stoppen.';
   if (v.includes('hoekje') || v.includes('hoekjes') || v.includes('omslaan') || v.includes('tuitje') || v.includes('tuitjes') || v.includes('afdek') || v.includes('dopje')) {
-    return `**Hoekjes slaan om op de band — bovenste blazers aanpakken:**\n\n1. **Upper blazer eerder UIT** — verkort de AAN-duur zodat er minder lucht in de zak zit bij het neerleggen op de band.\n\n2. **Verschuiven** — hele bovenste blaassectie iets naar links of rechts. Lucht verdeelt zich gelijkmatiger.\n\n3. **Afdekdopjes** — dopje op eerste of tweede tuitje links (of allebei). Blokkeert de lucht precies waar de hoekjes omklappen.\n\n4. **Druk verlagen** — upper blazer iets minder druk.\n\n**Aanpak:** blazer eerder UIT → verschuiven → dopjes → druk verlagen.`;
+    const kant = v.includes('rechts') || v.includes('klep') ? 'rechts (klep-kant)' : v.includes('links') || v.includes('bodem') ? 'links (bodem-kant)' : null;
+    const dopjesTip = kant === 'rechts (klep-kant)' ? 'Klep-kant omslaat → **rechter tuitjes** afdekken.' : kant === 'links (bodem-kant)' ? 'Bodem-kant omslaat → **linker tuitjes** afdekken.' : 'Klep-kant (rechts) slaatomvaak het eerst om — die heeft minder gewicht. Rechter tuitjes afdekken als het rechts is.';
+    return `**Hoekjes slaan om op de band — bovenste blazers aanpakken:**\n\n1. **Upper blazer eerder UIT** — minder lucht in de zak bij het neerleggen.\n\n2. **Verschuiven** — hele bovenste blaassectie iets naar links of rechts.\n\n3. **Afdekdopjes** — ${dopjesTip}\n\n4. **Druk verlagen** — upper blazer iets minder druk.\n\n**Aanpak:** blazer eerder UIT → verschuiven → dopjes → druk verlagen.`;
   }
   return null;
 }
