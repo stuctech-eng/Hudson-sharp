@@ -2025,6 +2025,15 @@ function bewerkRecept(key) {
   setDv('f-dv-stop',    r.stop_doorvoer);
   setDv('f-afneem-mm',  r.afneem_mm);
   setDv('f-afneem-gr',  r.afneem_moment);
+  // Laad toebehoren
+  var tb = r.toebehoren || {};
+  function setTb(id, val) { var el=document.getElementById(id); if(el&&val){el.value=val;el.className='groen';} }
+  setTb('f-starttijd', tb.starttijd);
+  setTb('f-lastijd',   tb.lastijd);
+  setTb('f-mes-lb',    tb.mes_lb);
+  setTb('f-mes-rb',    tb.mes_rb);
+  setTb('f-mes-lo',    tb.mes_lo);
+  setTb('f-mes-ro',    tb.mes_ro);
   var bdw = document.getElementById('btn-detail-wrap');
   if (bdw) bdw.style.display = 'none';
   var bop = document.getElementById('btn-opslaan');
