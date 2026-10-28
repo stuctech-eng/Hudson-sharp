@@ -3813,16 +3813,20 @@ async function henkVerstuur(tekst) {
   // Huidige machine-instellingen meesturen als recept actief is
   if (_huidigRecept) {
     const r = _huidigRecept;
+    // Gebruik actieve optie als die er is, anders het recept zelf
+    const src = (r.actieveOptie && r.opties && r.opties[r.actieveOptie]) ? r.opties[r.actieveOptie] : r;
+    const optLabel = (r.actieveOptie && r.opties && r.opties[r.actieveOptie]) ? ` (optie ${r.actieveOptie})` : '';
     const ins = [];
-    if (r.lower_on || r.lower_off) ins.push(`Lower blazer: ${r.lower_on||'?'}°-${r.lower_off||'?'}°`);
-    if (r.upper_on || r.upper_off) ins.push(`Upper blazer: ${r.upper_on||'?'}°-${r.upper_off||'?'}°`);
-    if (r.lower_pipe_on || r.lower_pipe_off) ins.push(`Onderpijp: ${r.lower_pipe_on||'?'}°-${r.lower_pipe_off||'?'}°`);
-    if (r.upper_pipe_on || r.upper_pipe_off) ins.push(`Bovenpijp: ${r.upper_pipe_on||'?'}°-${r.upper_pipe_off||'?'}°`);
-    if (r.out6_on || r.out6_off) ins.push(`Uitgang 6: ${r.out6_on||'?'}°-${r.out6_off||'?'}°`);
-    if (r.start_doorvoer) ins.push(`Start doorvoer: ${r.start_doorvoer}mm`);
-    if (r.stop_doorvoer) ins.push(`Stop doorvoer: ${r.stop_doorvoer}mm`);
-    if (r.afneemmoment) ins.push(`Afneemmoment: ${r.afneemmoment}mm`);
-    if (ins.length) context += `Huidige instellingen: ${ins.join(', ')}. `;
+    if (src.lower_on || src.lower_off) ins.push(`Lower blazer: ${src.lower_on||'?'}°-${src.lower_off||'?'}°`);
+    if (src.upper_on || src.upper_off) ins.push(`Upper blazer: ${src.upper_on||'?'}°-${src.upper_off||'?'}°`);
+    if (src.lower_pipe_on || src.lower_pipe_off) ins.push(`Onderpijp: ${src.lower_pipe_on||'?'}°-${src.lower_pipe_off||'?'}°`);
+    if (src.upper_pipe_on || src.upper_pipe_off) ins.push(`Bovenpijp: ${src.upper_pipe_on||'?'}°-${src.upper_pipe_off||'?'}°`);
+    if (src.out6_on || src.out6_off) ins.push(`Uitgang 6: ${src.out6_on||'?'}°-${src.out6_off||'?'}°`);
+    if (src.start_doorvoer) ins.push(`Start doorvoer: ${src.start_doorvoer}mm`);
+    if (src.stop_doorvoer) ins.push(`Stop doorvoer: ${src.stop_doorvoer}mm`);
+    if (src.afneem_mm) ins.push(`Afneemmoment: ${src.afneem_mm}mm`);
+    if (src.afneem_moment) ins.push(`Afneemmoment graden: ${src.afneem_moment}°`);
+    if (ins.length) context += `Huidige instellingen${optLabel}: ${ins.join(', ')}. `;
   }
 
   const vraagMetContext = context ? `${context}\n${tekst}` : tekst;
