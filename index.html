@@ -2067,6 +2067,10 @@ function resetNieuwForm() {
   if (bv) bv.innerHTML = '<div style="text-align:center;padding:20px;color:#4a6080;font-size:12px;">Kies eerst Optimaal of Werkelijk ↑</div>';
   // Reset doorvoer velden
   ['f-dv-start','f-dv-stop','f-afneem-mm','f-afneem-gr'].forEach(function(id) { setLeeg(id); });
+  // Reset toebehoren naar standaard blauw
+  [['f-starttijd','5'],['f-lastijd','12'],['f-mes-lb','353'],['f-mes-rb','353'],['f-mes-lo','353'],['f-mes-ro','353']].forEach(function(p) {
+    var el = document.getElementById(p[0]); if (el) { el.value = p[1]; el.className = 'blauw'; }
+  });
   // Reset toggle styling
   var bo = document.getElementById('btn-optimaal');
   var bw = document.getElementById('btn-werkelijk');
@@ -2170,12 +2174,17 @@ async function berekenEnSla() {
 
   toast('Opslaan...');
   var tb = {};
-  var st = document.getElementById('f-starttijd').value.trim();
-  var lt = document.getElementById('f-lastijd').value.trim();
-  var lb = document.getElementById('f-mes-lb').value.trim();
-  var rb = document.getElementById('f-mes-rb').value.trim();
-  var lo = document.getElementById('f-mes-lo').value.trim();
-  var ro = document.getElementById('f-mes-ro').value.trim();
+  function tbVeld(id) {
+    var el = document.getElementById(id);
+    // Alleen opslaan als groen (eigen waarde), niet blauw (standaard leerdata)
+    return (el && el.className === 'groen' && el.value.trim()) ? el.value.trim() : null;
+  }
+  var st = tbVeld('f-starttijd');
+  var lt = tbVeld('f-lastijd');
+  var lb = tbVeld('f-mes-lb');
+  var rb = tbVeld('f-mes-rb');
+  var lo = tbVeld('f-mes-lo');
+  var ro = tbVeld('f-mes-ro');
   if (st) tb.starttijd = st;
   if (lt) tb.lastijd = lt;
   if (lb) tb.mes_lb = lb;
