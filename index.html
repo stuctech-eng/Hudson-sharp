@@ -1210,7 +1210,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '3.0.9';
+const APP_VERSION = '3.1.0';
 
 const STATUSSEN = [
   { key: 'THEORETISCH', label: 'Theoretisch',  kleur: '#6b7280', bg: '#6b728018' },
@@ -1221,6 +1221,7 @@ const STATUSSEN = [
 ];
 
 const CHANGELOG = [
+  { v: '3.1.0', txt: 'Grote kennisupdate: sealbar, praktijkrecepten, doorvoer, snelheidstabel, receptstatussen' },
   { v: '3.0.9', txt: 'Uitzondering: bovenpijp eerder aan kan soms werken — op resultaat beoordelen' },
   { v: '3.0.8', txt: 'Bewezen regel: afdekdopjes ALLEEN rechts (klep-kant), NOOIT links (bodem-kant)' },
   { v: '3.0.7', txt: 'Henk kent klep (rechts) vs bodem (links) — klep-hoek slaatomvaak eerste om' },
@@ -3527,6 +3528,9 @@ MACHINE FUNDAMENTEN:
 - 360° servo cyclus per zak
 - CycleTime = 60000 / ZPM ms
 - Timing in graden (0-360°)
+- Bij 210 ZPM: 285,7 ms per cyclus, 0,794 ms per graad
+- Bij 220 ZPM: 272,7 ms per cyclus, 0,758 ms per graad
+- Bij 250 ZPM: 240,0 ms per cyclus, 0,667 ms per graad
 
 VOLGORDE PER CYCLUS:
 1. SEAL (lasmes sluit)
@@ -3606,6 +3610,32 @@ AFNEEMMOMENT:
 - Waarde in mm = aantal mm dat lasmes open is na lassen
 - Minimum 10mm film op vacuumarm
 - PP film: waarde 0 (eerder opnemen)
+
+SEALBAR:
+- Bij koude omstandigheden eerder residu op de sealbar → reinigingssysteem checken
+- Te lage temperatuur → residu en vastkleven folie
+- Te hoge temperatuur → kleven en gaatjes
+- Temperatuurweergave op scherm ≠ werkelijke sealtemperatuur (kan afwijken)
+- Één instelling tegelijk wijzigen om oorzaak te kunnen bepalen
+
+BEKENDE PRAKTIJKRECEPTEN:
+- 34,7×44cm LDPE 0,015mm: 210 ZPM, sealbar 555°C, upper blazer 90-300°
+- 34,7×44cm LDPE 0,028mm: 220 ZPM, sealbar 545°C
+- 34×44cm LDPE 0,026mm (Beirut's Bakery): 220 ZPM, operator Dirk
+- Historische instelling 17-11-2025: 215 ZPM, lower[50-270°] upper[90-330°] lower_pipe[27-220°] upper_pipe[30-200°] out6[150-38°]
+- Historische instelling 19-02-2026: 210 ZPM, lower[50-270°] upper[140-280°] lower_pipe[20-200°] upper_pipe[20-180°] out6[60-250°]
+
+DOORVOERINSTELLINGEN:
+- start_doorvoer, stop_doorvoer: waarden in millimeters
+- Eerder besproken: start doorvoer 20mm, stop doorvoer 4mm, afneempunt 3mm
+- Verander niet tegelijk — één parameter per keer aanpassen
+
+RECEPTSTATUS (nooit automatisch upgraden — operator beslist):
+- THEORETISCH: startpunt, niet getest
+- GETEST: geprobeerd, nog niet beoordeeld
+- AANGEPAST: na test gewijzigd
+- GOEDGEKEURD: operator heeft bevestigd dat het goed is
+- BEWEZEN: definitieve referentie, betrouwbaar in productie
 
 LUCHTVERHOUDING:
 - Fase 1 pijpen: onderpijp 65-75% / bovenpijp 25-35%
