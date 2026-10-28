@@ -255,11 +255,11 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
       </button>
     </div>
 
-    <!-- Henk Stroek knop -->
+    <!-- Henkie knop -->
     <button onclick="ga('s-henk')" style="background:linear-gradient(135deg,#0a0e16 0%,#0f1a2e 100%);border:1px solid #a78bfa44;border-top:3px solid #a78bfa;border-radius:4px;padding:16px;cursor:pointer;text-align:left;width:100%;display:flex;align-items:center;gap:14px;margin-bottom:8px;">
       <div style="font-size:32px;">🤖</div>
       <div style="flex:1;">
-        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;color:#a78bfa;">Henk Stroek</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;color:#a78bfa;">Henkie</div>
         <div style="font-size:11px;color:#6b7280;margin-top:2px;">AI vakman — stel je vraag</div>
       </div>
       <div style="font-size:20px;color:#a78bfa;">›</div>
@@ -949,7 +949,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
       <div class="info-row"><div class="ir-lbl">Auto-update</div><div class="ir-val" style="font-size:14px;">App ververst automatisch bij nieuwe versie</div></div>
     </div>
     <div class="card" id="admin-henk-card">
-      <div class="card-title">🤖 Henk Stroek — API Instelling</div>
+      <div class="card-title">🤖 Henkie — API Instelling</div>
       <div style="padding:12px 16px;">
         <div style="font-size:11px;color:#6b7280;margin-bottom:8px;">Anthropic API key (alleen voor admin)</div>
         <input id="admin-api-key-input" type="password" placeholder="sk-ant-..."
@@ -964,7 +964,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     <div class="card">
       <div class="card-title">Versie Historie</div>
       <div id="versie-historie-inhoud"></div>
-      <div class="info-row"><div class="ir-lbl">v2.9.0</div><div class="ir-val" style="font-size:13px;">Henk Stroek AI vakman — eigen pagina met Anthropic API</div></div>
+      <div class="info-row"><div class="ir-lbl">v2.9.0</div><div class="ir-val" style="font-size:13px;">Henkie AI vakman — eigen pagina met Anthropic API</div></div>
       <div class="info-row"><div class="ir-lbl">v1.9</div><div class="ir-val" style="font-size:13px;">Parameters volledig herschreven met cyclus volgorde</div></div>
       <div class="info-row"><div class="ir-lbl">v1.8</div><div class="ir-val" style="font-size:13px;">Machine Info uitgebreid, folie spanning in probleemoplossing</div></div>
       <div class="info-row"><div class="ir-lbl">v1.7</div><div class="ir-val" style="font-size:13px;">Probleemoplossing herschreven op basis van echte praktijk</div></div>
@@ -998,7 +998,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 <div class="screen" id="s-henk">
   <div class="topbar">
     <button class="back-btn" onclick="ga('s-home')">‹</button>
-    <div class="topbar-title" style="color:#a78bfa;">🤖 Henk Stroek</div>
+    <div class="topbar-title" style="color:#a78bfa;">🤖 Henkie</div>
     <button class="topbar-btn" onclick="henkReset()" style="color:#6b7280;">Reset</button>
   </div>
   <div class="content" style="display:flex;flex-direction:column;height:calc(100vh - 56px);padding:0;">
@@ -1036,7 +1036,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
       <div class="henk-msg-ai">
         <div class="henk-avatar">H</div>
         <div class="henk-bubble">
-          Hoi! Ik ben Henk Stroek. Vul de afmetingen in en stel me je vraag over de machine. Ik ken de 5750W van binnen en buiten. 💪
+          Hoi! Ik ben Henkie. Vul de afmetingen in en stel me je vraag over de machine. Ik ken de 5750W van binnen en buiten. 💪
         </div>
       </div>
     </div>
@@ -1243,8 +1243,8 @@ const CHANGELOG = [
   { v: '3.0.6', txt: 'Hoekjes op de band: upper blazer eerder UIT als eerste stap, dan verschuiven/dopjes/druk' },
   { v: '3.0.5', txt: 'Henk kent hoekjes omslaan: bovenste blazers verschuiven, afdekdopjes, druk verlagen' },
   { v: '3.0.4', txt: 'Lokale antwoorden altijd beschikbaar — chat werkt zonder AI verbinding' },
-  { v: '3.0.0', txt: 'Henk Stroek via Vercel proxy — API key veilig op server, nooit in de app code' },
-  { v: '2.9.0', txt: 'Henk Stroek AI vakman — eigen pagina met Anthropic API' },
+  { v: '3.0.0', txt: 'Henkie via Vercel proxy — API key veilig op server, nooit in de app code' },
+  { v: '2.9.0', txt: 'Henkie AI vakman — eigen pagina met Anthropic API' },
   { v: '2.5',   txt: 'Home met laatste recept banner, help scherm visueel, parameters naar machine info' },
   { v: '2.4.8', txt: 'Probleemoplossing herbouwd met graden, zak draait op band toegevoegd' },
   { v: '2.4.7', txt: 'Sterkte rangorde componenten, machineflow 3 fasen, pijpen logica' },
@@ -3537,7 +3537,7 @@ console.log('Hudson Sharp 5750W v' + APP_VERSION + ' geladen');
 // ═══════════════════════════════════════════════
 
 const HENK_KENNISDOCUMENT = `
-Je bent Henk Stroek, een ervaren operator-vakman op de Hudson Sharp 5750W High Speed Wicketer.
+Je bent Henkie, een ervaren operator-vakman op de Hudson Sharp 5750W High Speed Wicketer.
 Je spreekt ALTIJD Nederlands. Je antwoorden zijn kort, praktisch en direct — zoals een echte machineoperator.
 Geen lange verhalen, geen overbodige uitleg. Directe actie.
 
@@ -3977,7 +3977,7 @@ function henkReset() {
   const chat = document.getElementById('henk-chat');
   chat.innerHTML = `<div class="henk-msg-ai">
     <div class="henk-avatar">H</div>
-    <div class="henk-bubble">Hoi! Ik ben Henk Stroek. Vul de afmetingen in en stel me je vraag over de machine. Ik ken de 5750W van binnen en buiten. 💪</div>
+    <div class="henk-bubble">Hoi! Ik ben Henkie. Vul de afmetingen in en stel me je vraag over de machine. Ik ken de 5750W van binnen en buiten. 💪</div>
   </div>`;
   document.getElementById('henk-b').value = '';
   document.getElementById('henk-l').value = '';
