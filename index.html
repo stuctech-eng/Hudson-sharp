@@ -3599,9 +3599,12 @@ let henkApiKey = null;
 const HENK_PROXY_URL = 'https://hudson-sharp.vercel.app/api/henk';
 
 function henkInit() {
-  // Proxy aanwezig → geen API key nodig in de app
+  // Reset state bij elke keer openen
   henkApiKey = 'via-proxy';
+  henkBezig = false;
+  henkGeschiedenis = [];
   document.getElementById('henk-api-melding').style.display = 'none';
+  document.getElementById('henk-stuur-btn').style.opacity = '1';
 }
 
 function henkBerekenLive() {
@@ -3735,15 +3738,23 @@ async function henkVerstuur(tekst) {
       })
     });
 
-    const data = await response.json();
+    const tekst_response = await response.text();
     henkVerwijderTyping();
+
+    let data;
+    try { data = JSON.parse(tekst_response); } catch(pe) {
+      henkVoegBerichtToe('❌ Geen JSON: ' + tekst_response.substring(0,200), 'ai');
+      henkBezig = false;
+      document.getElementById('henk-stuur-btn').style.opacity = '1';
+      return;
+    }
 
     if (data.content && data.content[0]) {
       const antwoord = data.content[0].text;
       henkVoegBerichtToe(antwoord, 'ai');
       henkGeschiedenis.push({ role: 'assistant', content: antwoord });
     } else {
-      henkVoegBerichtToe('❌ ' + JSON.stringify(data), 'ai');
+      henkVoegBerichtToe('❌ HTTP ' + response.status + ': ' + JSON.stringify(data), 'ai');
     }
   } catch (e) {
     henkVerwijderTyping();
