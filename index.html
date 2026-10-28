@@ -2370,22 +2370,26 @@ function bewerkOptie(nr) {
       <div style="background:#0f1520;padding:10px;text-align:center;">
         <div style="font-size:8px;color:#6b7280;margin-bottom:4px;">START DV (mm)</div>
         <input id="opt-dv-start" type="number" inputmode="decimal" value="${opt.start_doorvoer||r.start_doorvoer||''}"
-          style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:#22d3ee;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;text-align:center;padding:8px;outline:none;">
+          onclick="openNumpad('opt-dv-start','decimal','Start Doorvoer (mm)')"
+          readonly style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:#22d3ee;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;text-align:center;padding:8px;outline:none;cursor:pointer;">
       </div>
       <div style="background:#0f1520;padding:10px;text-align:center;">
         <div style="font-size:8px;color:#6b7280;margin-bottom:4px;">STOP DV (mm)</div>
         <input id="opt-dv-stop" type="number" inputmode="decimal" value="${opt.stop_doorvoer||r.stop_doorvoer||''}"
-          style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:#a78bfa;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;text-align:center;padding:8px;outline:none;">
+          onclick="openNumpad('opt-dv-stop','decimal','Stop Doorvoer (mm)')"
+          readonly style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:#a78bfa;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;text-align:center;padding:8px;outline:none;cursor:pointer;">
       </div>
       <div style="background:#0f1520;padding:10px;text-align:center;">
         <div style="font-size:8px;color:#6b7280;margin-bottom:4px;">AFNEEM (mm)</div>
         <input id="opt-afneem-mm" type="number" inputmode="decimal" value="${opt.afneem_mm||r.afneem_mm||''}"
-          style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:#f59e0b;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;text-align:center;padding:8px;outline:none;">
+          onclick="openNumpad('opt-afneem-mm','decimal','Afneemmoment (mm)')"
+          readonly style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:#f59e0b;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;text-align:center;padding:8px;outline:none;cursor:pointer;">
       </div>
       <div style="background:#0f1520;padding:10px;text-align:center;">
         <div style="font-size:8px;color:#6b7280;margin-bottom:4px;">AFNEEM (°)</div>
         <input id="opt-afneem-gr" type="number" inputmode="numeric" value="${opt.afneem_moment||r.afneem_moment||''}"
-          style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:#f59e0b;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;text-align:center;padding:8px;outline:none;">
+          onclick="openNumpad('opt-afneem-gr','integer','Afneemmoment (°)')"
+          readonly style="width:100%;background:#070a10;border:1px solid #1a2540;border-radius:3px;color:#f59e0b;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:24px;text-align:center;padding:8px;outline:none;cursor:pointer;">
       </div>
     </div>
   </div>`;
