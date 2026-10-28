@@ -75,6 +75,21 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 .mat-btn{background:#0a0d14;border:1px solid #1a2540;border-radius:3px;color:#6b7280;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;padding:12px;cursor:pointer;}
 .mat-btn.active{background:rgba(245,158,11,.15);border-color:#f59e0b;color:#f59e0b;}
 
+/* HENK CHAT */
+.henk-quick{background:#0f1520;border:1px solid #a78bfa44;border-radius:20px;color:#a78bfa;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;padding:7px 14px;cursor:pointer;white-space:nowrap;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.henk-quick:active{background:#a78bfa22;}
+.henk-msg-ai{display:flex;gap:8px;align-items:flex-start;}
+.henk-msg-user{display:flex;gap:8px;align-items:flex-start;flex-direction:row-reverse;}
+.henk-avatar{width:32px;height:32px;border-radius:50%;background:#a78bfa;color:#000;font-family:'Rajdhani',sans-serif;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.henk-bubble{background:#0f1520;border:1px solid #1a2540;border-radius:12px;padding:10px 14px;font-size:14px;color:#c8d8e8;line-height:1.6;max-width:85%;white-space:pre-wrap;}
+.henk-msg-user .henk-bubble{background:#1a2540;border-color:#2a3a60;color:#e5e7eb;}
+.henk-bubble-user{background:#1a2540;border:1px solid #2a3a60;border-radius:12px;padding:10px 14px;font-size:14px;color:#e5e7eb;line-height:1.6;max-width:85%;white-space:pre-wrap;}
+.henk-avatar-user{width:32px;height:32px;border-radius:50%;background:#22d3ee;color:#000;font-family:'Rajdhani',sans-serif;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.henk-typing{display:flex;gap:4px;padding:6px 0;align-items:center;}
+.henk-typing span{width:8px;height:8px;border-radius:50%;background:#a78bfa;display:inline-block;animation:henkDot 1.2s infinite;}
+.henk-typing span:nth-child(2){animation-delay:.2s;}
+.henk-typing span:nth-child(3){animation-delay:.4s;}
+@keyframes henkDot{0%,80%,100%{opacity:.2;transform:scale(1);}40%{opacity:1;transform:scale(1.3);}}
 /* BLOWER */
 .blower-block{background:#0a0d14;border:1px solid #1a2540;border-radius:4px;margin-bottom:8px;overflow:hidden;}
 .blower-hdr{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#0f1520;border-bottom:1px solid #1a2540;}
@@ -3626,9 +3641,13 @@ BEKENDE PRAKTIJKRECEPTEN:
 - Historische instelling 19-02-2026: 210 ZPM, lower[50-270°] upper[140-280°] lower_pipe[20-200°] upper_pipe[20-180°] out6[60-250°]
 
 DOORVOERINSTELLINGEN:
-- start_doorvoer, stop_doorvoer: waarden in millimeters
-- Eerder besproken: start doorvoer 20mm, stop doorvoer 4mm, afneempunt 3mm
-- Verander niet tegelijk — één parameter per keer aanpassen
+- Start Doorvoer (mm): beginpositie van foliebeweging na het sealen — hoe ver de folie start met bewegen
+- Stop Doorvoer (mm): eindpositie van foliebeweging — bepaalt hoe ver de zak is verplaatst vóór afname
+- Afneem Moment: het punt waarop de zak wordt afgepakt. Te vroeg → rafelig seal. Later = betere seal
+- Standaard: start doorvoer ~18mm, stop doorvoer ~5mm
+- Rafelig seal → stop doorvoer verhogen (bijv. van 5 naar 7-10mm) zodat seal langer stolt vóór afname
+- Verander start en stop NOOIT tegelijk — één parameter per keer aanpassen
+- Bekende werkwaarden: start 18mm / stop 5mm (standaard), start 20mm / stop 4mm (eerder gebruikt)
 
 RECEPTSTATUS (nooit automatisch upgraden — operator beslist):
 - THEORETISCH: startpunt, niet getest
@@ -3717,14 +3736,17 @@ function henkBerekenLive() {
 
 function henkVoegBerichtToe(tekst, vanWie) {
   const chat = document.getElementById('henk-chat');
+  if (!chat) return null;
   const div = document.createElement('div');
+  const initials = (typeof _gekozenOperator === 'string' && _gekozenOperator.length > 0) ? _gekozenOperator[0].toUpperCase() : 'O';
+  const veiligeTekst = String(tekst).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
 
   if (vanWie === 'user') {
     div.className = 'henk-msg-user';
-    div.innerHTML = `<div class="henk-bubble-user">${tekst.replace(/\n/g,'<br>')}</div><div class="henk-avatar-user">${huidigePersoon ? huidigePersoon[0] : 'O'}</div>`;
+    div.innerHTML = '<div class="henk-bubble-user">'+veiligeTekst+'</div><div class="henk-avatar-user">'+initials+'</div>';
   } else {
     div.className = 'henk-msg-ai';
-    div.innerHTML = `<div class="henk-avatar">H</div><div class="henk-bubble">${tekst.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')}</div>`;
+    div.innerHTML = '<div class="henk-avatar">H</div><div class="henk-bubble">'+veiligeTekst+'</div>';
   }
 
   chat.appendChild(div);
@@ -3734,10 +3756,11 @@ function henkVoegBerichtToe(tekst, vanWie) {
 
 function henkTypingIndicator() {
   const chat = document.getElementById('henk-chat');
+  if (!chat) return;
   const div = document.createElement('div');
   div.className = 'henk-msg-ai';
   div.id = 'henk-typing-indicator';
-  div.innerHTML = `<div class="henk-avatar">H</div><div class="henk-bubble"><div class="henk-typing"><span></span><span></span><span></span></div></div>`;
+  div.innerHTML = '<div class="henk-avatar">H</div><div class="henk-bubble"><div class="henk-typing"><span></span><span></span><span></span></div></div>';
   chat.appendChild(div);
   chat.scrollTop = chat.scrollHeight;
 }
@@ -3750,7 +3773,7 @@ function henkVerwijderTyping() {
 async function henkStuur() {
   const input = document.getElementById('henk-input');
   const tekst = input.value.trim();
-  if (!tekst) { alert('Typ eerst een vraag'); return; }
+  if (!tekst) return;
 
   henkBezig = false; // forceer reset
   input.value = '';
@@ -3765,13 +3788,18 @@ function henkStelVraag(vraag) {
 }
 
 async function henkVerstuur(tekst) {
+  try {
   henkBezig = false; // nooit blokkeren
-  document.getElementById('henk-stuur-btn').style.opacity = '0.4';
+  var stuurBtn = document.getElementById('henk-stuur-btn');
+  if (stuurBtn) stuurBtn.style.opacity = '0.4';
 
   // Context opbouwen
-  const b = document.getElementById('henk-b').value;
-  const l = document.getElementById('henk-l').value;
-  const d = document.getElementById('henk-d').value;
+  const bEl = document.getElementById('henk-b');
+  const lEl = document.getElementById('henk-l');
+  const dEl = document.getElementById('henk-d');
+  const b = bEl ? bEl.value : '';
+  const l = lEl ? lEl.value : '';
+  const d = dEl ? dEl.value : '';
 
   let context = '';
   if (b || l || d) {
@@ -3788,15 +3816,54 @@ async function henkVerstuur(tekst) {
   henkGeschiedenis.push({ role: 'user', content: vraagMetContext });
   henkTypingIndicator();
 
-  // Lokale antwoorden (snel, geen internet nodig)
-  await new Promise(r => setTimeout(r, 600));
-  henkVerwijderTyping();
-  const antwoord = henkLokaalAntwoord(tekst) || 'Dat ken ik nog niet uit mijn hoofd. Stel de vraag specifieker (bijv. "missers", "hoekjes omslaan", "plakt") — of vraag de admin om de AI aan te zetten.';
-  henkVoegBerichtToe(antwoord, 'ai');
-  henkGeschiedenis.push({ role: 'assistant', content: antwoord });
+  // Lokaal eerst proberen
+  const lokaalAntwoord = henkLokaalAntwoord(tekst);
+  if (lokaalAntwoord) {
+    await new Promise(r => setTimeout(r, 400));
+    henkVerwijderTyping();
+    henkVoegBerichtToe(lokaalAntwoord, 'ai');
+    henkGeschiedenis.push({ role: 'assistant', content: lokaalAntwoord });
+  } else if (henkApiKey) {
+    // AI via Vercel proxy
+    try {
+      const systemPrompt = `Je bent Henk Stroek, een doorgewinterde machineoperator met 25 jaar ervaring op de Hudson Sharp 5750W wicket bag machine. Je spreekt altijd Nederlands. Je antwoorden zijn kort, praktisch en direct — geen lange uitleg, gewoon wat de operator moet doen. Je kent alle typische problemen: missers, plakken, omslaan hoeken, foliespanning, blazerinstellingen. Geef altijd een concrete actie als antwoord. Gebruik soms machineterminologie zoals: onderpijp, bovenpijp, lower blazer, upper blazer, uitgang 6, vouwbok, vacuumarmen, doorvoerrollen. Nooit meer dan 3 zinnen.`;
+      const messages = henkGeschiedenis.slice(-10); // max 10 berichten context
+      const resp = await fetch(HENK_PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ system: systemPrompt, messages })
+      });
+      henkVerwijderTyping();
+      if (resp.ok) {
+        const data = await resp.json();
+        const aiTekst = data.content?.[0]?.text || data.text || 'Geen antwoord ontvangen.';
+        henkVoegBerichtToe(aiTekst, 'ai');
+        henkGeschiedenis.push({ role: 'assistant', content: aiTekst });
+      } else {
+        henkVoegBerichtToe('AI reageert niet (HTTP ' + resp.status + '). Probeer opnieuw.', 'ai');
+      }
+    } catch(aiErr) {
+      henkVerwijderTyping();
+      henkVoegBerichtToe('Geen verbinding met AI. Controleer internet.', 'ai');
+    }
+  } else {
+    await new Promise(r => setTimeout(r, 400));
+    henkVerwijderTyping();
+    henkVoegBerichtToe('Dat ken ik nog niet uit mijn hoofd. Stel de vraag specifieker (bijv. "missers", "hoekjes omslaan", "plakt") — of vraag de admin om de AI aan te zetten.', 'ai');
+    henkGeschiedenis.push({ role: 'assistant', content: '' });
+  }
 
   henkBezig = false;
-  document.getElementById('henk-stuur-btn').style.opacity = '1';
+  var stuurBtn2 = document.getElementById('henk-stuur-btn');
+  if (stuurBtn2) stuurBtn2.style.opacity = '1';
+  } catch(e) {
+    console.error('Henk fout:', e);
+    henkVerwijderTyping();
+    henkVoegBerichtToe('Er ging iets mis. Probeer opnieuw.', 'ai');
+    henkBezig = false;
+    var stuurBtnErr = document.getElementById('henk-stuur-btn');
+    if (stuurBtnErr) stuurBtnErr.style.opacity = '1';
+  }
 }
 
 function adminSlaApiKeyOp() {
@@ -3837,8 +3904,8 @@ function henkLokaalAntwoord(vraag) {
   }
   if (v.includes('stapel')) return '**Upper blazer UIT 10° langer laten doorlopen.** Zak moet vlakker op de pennen komen.';
   if (v.includes('draait')) return '**Upper +5%, lower -5%.** Luchtbalans herstellen.';
-  if (v.includes('bovenkant') && v.includes('omslaat') || v.includes('boven') && v.includes('omslagen')) return '**Upper blazer controleren** — te kort of te lang AAN? Of te veel druk? Ook zijplaat en stripper jets checken.';
-  if (v.includes('onderkant') && v.includes('omslaat') || v.includes('onder') && v.includes('omslagen')) return '**Te veel onderlucht** of zijplaat staat te vroeg. Lower blazer timing later laten stoppen.';
+  if (v.includes('bovenkant') || (v.includes('boven') && (v.includes('omslaat') || v.includes('omslagen') || v.includes('slaat om')))) return '**Upper blazer controleren** — te kort of te lang AAN? Of te veel druk? Ook zijplaat en stripper jets checken.';
+  if (v.includes('onderkant') || (v.includes('onder') && (v.includes('omslaat') || v.includes('omslagen') || v.includes('slaat om')))) return '**Te veel onderlucht** of zijplaat staat te vroeg. Lower blazer timing later laten stoppen.';
   if (v.includes('hoekje') || v.includes('hoekjes') || v.includes('omslaan') || v.includes('tuitje') || v.includes('tuitjes') || v.includes('afdek') || v.includes('dopje')) {
     return `**Hoekjes slaan om op de band — bovenste blazers aanpakken:**\n\n1. **Upper blazer eerder UIT** — minder lucht in de zak bij het neerleggen.\n\n2. **Verschuiven** — hele bovenste blaassectie iets naar links of rechts.\n\n3. **Afdekdopjes** — ALLEEN rechter tuitjes (klep-kant) afdekken. Linker tuitjes (bodem-kant) NOOIT afdekken.\n\n4. **Druk verlagen** — upper blazer iets minder druk.\n\n**Aanpak:** blazer eerder UIT → verschuiven → rechter dopjes → druk verlagen.`;
   }
