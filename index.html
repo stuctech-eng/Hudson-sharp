@@ -1723,10 +1723,19 @@ function renderDetail(r) {
     + '<div class="info-row"><div class="ir-lbl">Materiaal</div><div class="ir-val">'+r.material+'</div></div>'
     + '<div class="info-row"><div class="ir-lbl">Snelheid</div><div class="ir-val">'+r.speed+'<span class="u">ZPM</span></div></div>'
     + '<div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">'+Math.round(60000/r.speed)+'<span class="u">ms</span></div></div>'
-    + (r.toebehoren && r.toebehoren.starttijd ? '<div class="info-row"><div class="ir-lbl">Starttijd</div><div class="ir-val">'+r.toebehoren.starttijd+'<span class="u">mm</span></div></div>' : '')
-    + (r.toebehoren && r.toebehoren.lastijd   ? '<div class="info-row"><div class="ir-lbl">Lastijd</div><div class="ir-val">'+r.toebehoren.lastijd+'<span class="u">ms</span></div></div>' : '')
-    + (r.toebehoren && (r.toebehoren.mes_lb || r.toebehoren.mes_rb || r.toebehoren.mes_lo || r.toebehoren.mes_ro) ? '<div class="info-row"><div class="ir-lbl">Messen</div><div class="ir-val" style="font-size:12px;">LB:' + (r.toebehoren.mes_lb||'—') + ' RB:' + (r.toebehoren.mes_rb||'—') + ' LO:' + (r.toebehoren.mes_lo||'—') + ' RO:' + (r.toebehoren.mes_ro||'—') + '</div></div>' : '')
     + '</div></div>';
+
+  // Toebehoren kaart — altijd zichtbaar als er data is
+  const tb = r.toebehoren || {};
+  const toebehoren = (tb.starttijd || tb.lastijd || tb.mes_lb || tb.mes_rb || tb.mes_lo || tb.mes_ro) ? (
+    '<div class="card" style="margin-bottom:12px;">'
+    + '<div style="padding:10px 16px;border-bottom:1px solid #1a2540;font-family:Rajdhani,sans-serif;font-weight:700;font-size:13px;letter-spacing:.2em;color:#f59e0b;">⚙ TOEBEHOREN</div>'
+    + (tb.starttijd ? '<div class="info-row"><div class="ir-lbl">Starttijd</div><div class="ir-val">'+tb.starttijd+'<span class="u">mm</span></div></div>' : '')
+    + (tb.lastijd   ? '<div class="info-row"><div class="ir-lbl">Lastijd</div><div class="ir-val">'+tb.lastijd+'<span class="u">ms</span></div></div>' : '')
+    + (tb.mes_lb || tb.mes_rb ? '<div class="info-row"><div class="ir-lbl">Mes boven</div><div class="ir-val" style="font-size:13px;">L: '+(tb.mes_lb||'—')+'°C &nbsp; R: '+(tb.mes_rb||'—')+'°C</div></div>' : '')
+    + (tb.mes_lo || tb.mes_ro ? '<div class="info-row"><div class="ir-lbl">Mes onder</div><div class="ir-val" style="font-size:13px;">L: '+(tb.mes_lo||'—')+'°C &nbsp; R: '+(tb.mes_ro||'—')+'°C</div></div>' : '')
+    + '</div>'
+  ) : '';
 
   const aantalOpties = r.opties ? Object.values(r.opties).filter(o => o && typeof o === 'object' && o.operator).length : 0;
   const aantalFotos = r.fotos ? Object.keys(r.fotos).length : 0;
@@ -1967,7 +1976,7 @@ function renderDetail(r) {
     +'</svg></div>';
 
   document.getElementById('detail-inhoud').innerHTML =
-    statusBadge + specs + optBanner + fotoAttentie + knoppen +
+    statusBadge + specs + toebehoren + optBanner + fotoAttentie + knoppen +
     opmerkingHTML +
     '<div class="slabel">Optimale Blower Timing</div>' + blowerHTML +
     doorvoerHTML +
