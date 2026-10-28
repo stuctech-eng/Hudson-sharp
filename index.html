@@ -2328,7 +2328,7 @@ function renderOpties(r) {
 async function kiesOptie(nr) {
   await fbPatch('recepten/' + _huidigReceptKey, { actieveOptie: nr });
   const r = _recepten.find(x => x._key === _huidigReceptKey);
-  if (r) { r.actieveOptie = nr; renderOpties(r); }
+  if (r) { r.actieveOptie = nr; renderOpties(r); renderDetail(r); }
   toast(`Optie ${nr} actief!`);
 }
 
@@ -2424,6 +2424,7 @@ async function slaOptieOp() {
   toast(`Optie ${_huidigOptieNr} opgeslagen!`);
   sluitOptieBewerk();
   renderOpties(r);
+  renderDetail(r);
 }
 
 async function verwijderOptie(key, nr) {
