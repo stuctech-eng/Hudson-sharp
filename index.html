@@ -1723,6 +1723,9 @@ function renderDetail(r) {
     + '<div class="info-row"><div class="ir-lbl">Materiaal</div><div class="ir-val">'+r.material+'</div></div>'
     + '<div class="info-row"><div class="ir-lbl">Snelheid</div><div class="ir-val">'+r.speed+'<span class="u">ZPM</span></div></div>'
     + '<div class="info-row"><div class="ir-lbl">Cyclustijd</div><div class="ir-val">'+Math.round(60000/r.speed)+'<span class="u">ms</span></div></div>'
+    + (r.toebehoren && r.toebehoren.starttijd ? '<div class="info-row"><div class="ir-lbl">Starttijd</div><div class="ir-val">'+r.toebehoren.starttijd+'<span class="u">mm</span></div></div>' : '')
+    + (r.toebehoren && r.toebehoren.lastijd   ? '<div class="info-row"><div class="ir-lbl">Lastijd</div><div class="ir-val">'+r.toebehoren.lastijd+'<span class="u">ms</span></div></div>' : '')
+    + (r.toebehoren && (r.toebehoren.mes_lb || r.toebehoren.mes_rb || r.toebehoren.mes_lo || r.toebehoren.mes_ro) ? '<div class="info-row"><div class="ir-lbl">Messen</div><div class="ir-val" style="font-size:12px;">LB:' + (r.toebehoren.mes_lb||'—') + ' RB:' + (r.toebehoren.mes_rb||'—') + ' LO:' + (r.toebehoren.mes_lo||'—') + ' RO:' + (r.toebehoren.mes_ro||'—') + '</div></div>' : '')
     + '</div></div>';
 
   const aantalOpties = r.opties ? Object.values(r.opties).filter(o => o && typeof o === 'object' && o.operator).length : 0;
