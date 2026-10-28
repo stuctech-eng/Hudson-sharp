@@ -1759,10 +1759,11 @@ function renderDetail(r) {
     return vals.length ? (vals.reduce(function(a,b){return a+b;},0)/vals.length).toFixed(1) : '';
   }
 
-  var dvStart  = r.start_doorvoer || '';
-  var dvStop   = r.stop_doorvoer  || '';
-  var dvAfneem = r.afneem_moment  || '';
-  var dvAfneemMm = r.afneem_mm   || '';
+  // Gebruik actieve optie waarden als die er zijn, anders recept
+  var dvStart    = (optData && optData.start_doorvoer) ? optData.start_doorvoer : (r.start_doorvoer || '');
+  var dvStop     = (optData && optData.stop_doorvoer)  ? optData.stop_doorvoer  : (r.stop_doorvoer  || '');
+  var dvAfneem   = (optData && optData.afneem_moment)  ? optData.afneem_moment  : (r.afneem_moment  || '');
+  var dvAfneemMm = (optData && optData.afneem_mm)      ? optData.afneem_mm      : (r.afneem_mm      || '');
 
   // Als leeg: gebruik leerdata als blauw startpunt
   var dvStartVal    = dvStart    || dvGemSpec('start_doorvoer')  || dvGemAlg('start_doorvoer');
