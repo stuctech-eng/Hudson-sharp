@@ -2298,7 +2298,7 @@ function renderOpties(r) {
       return `<div class="opt-card filled">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:${afwijkingen.length?'10px':'0'};">
           <div>
-            <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#22c55e;">Optie ${nr}</div>
+            <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#22c55e;">Optie ${nr}${opt.naam ? ' — ' + opt.naam : ''}</div>
             <div style="font-size:10px;color:#6b7280;margin-top:2px;">👤 ${opt.operator||'?'} — ${opt.datum||''}</div>
           </div>
           <div style="display:flex;gap:6px;">
@@ -2330,6 +2330,12 @@ function bewerkOptie(nr) {
   if (!r) return;
   const opt = (r.opties && r.opties[nr] && r.opties[nr] !== null) ? r.opties[nr] : r;
   document.getElementById('optie-bewerk-titel').textContent = `Optie ${nr} bewerken`;
+
+  var naamHTML = `<div style="background:#0f1520;border:1px solid #1a2540;border-radius:4px;margin-bottom:8px;padding:12px 14px;">
+    <div style="font-size:9px;color:#6b7280;letter-spacing:.1em;margin-bottom:6px;">NAAM OPTIE</div>
+    <input id="opt-naam" type="text" placeholder="bv. Zomer instelling, Dun folie, ..." value="${opt.naam||''}"
+      style="width:100%;background:#070a10;border:1px solid #22c55e55;border-radius:3px;color:#22c55e;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;padding:10px;outline:none;box-sizing:border-box;">
+  </div>`;
 
   var blowerHTML = CHANNELS.map(ch => {
     const baseOn  = r[ch.key+'_on'];
@@ -2383,7 +2389,7 @@ function bewerkOptie(nr) {
     </div>
   </div>`;
 
-  document.getElementById('optie-bewerk-inhoud').innerHTML = blowerHTML + dvHTML;
+  document.getElementById('optie-bewerk-inhoud').innerHTML = naamHTML + blowerHTML + dvHTML;
   document.getElementById('s-optie-bewerk').classList.add('active');
 }
 
@@ -2409,7 +2415,9 @@ async function slaOptieOp() {
   if (afneemMm) timing.afneem_mm      = afneemMm;
   if (afneemGr) timing.afneem_moment  = afneemGr;
 
+  var optNaam = document.getElementById('opt-naam').value.trim();
   const optie = { ...timing, operator: _operator, datum: new Date().toISOString().split('T')[0] };
+  if (optNaam) optie.naam = optNaam;
   await fbPatch('recepten/' + _huidigReceptKey, { [`opties/${_huidigOptieNr}`]: optie });
   if (!r.opties) r.opties = {};
   r.opties[_huidigOptieNr] = optie;
