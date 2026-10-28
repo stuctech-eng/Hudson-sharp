@@ -166,6 +166,11 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
     <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:64px;color:#e5e7eb;letter-spacing:.05em;line-height:1;">5750W</div>
     <div style="font-size:10px;color:#4a6080;letter-spacing:.3em;margin-bottom:4px;">SETUP APP</div>
     <div id="login-versie" style="font-size:10px;color:#f59e0b;border:1px solid #f59e0b44;padding:2px 10px;border-radius:2px;margin-bottom:32px;">v1.0</div>
+    <!-- TIJDELIJKE PROXY TEST -->
+    <div id="proxy-test-blok" style="width:100%;max-width:340px;margin-bottom:16px;">
+      <div onclick="proxyTest()" style="background:#a78bfa;color:#000;font-weight:700;font-size:14px;padding:10px;border-radius:4px;text-align:center;cursor:pointer;">🧪 Test Henk proxy</div>
+      <div id="proxy-test-result" style="font-size:11px;color:#6b7280;margin-top:6px;word-break:break-all;"></div>
+    </div>
 
     <!-- Stap 1: wachtwoord -->
     <div id="stap1" style="width:100%;max-width:340px;">
@@ -3597,6 +3602,25 @@ let henkBezig = false;
 let henkApiKey = null;
 // Vercel proxy URL — vul in na deployment op Vercel
 const HENK_PROXY_URL = 'https://hudson-sharp.vercel.app/api/henk';
+
+async function proxyTest() {
+  const el = document.getElementById('proxy-test-result');
+  el.style.color = '#f59e0b';
+  el.textContent = 'Bezig...';
+  try {
+    const r = await fetch('https://hudson-sharp.vercel.app/api/henk', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({system:'Je bent Henk.',messages:[{role:'user',content:'Zeg hoi'}]})
+    });
+    const t = await r.text();
+    el.style.color = r.ok ? '#22c55e' : '#ef4444';
+    el.textContent = 'HTTP ' + r.status + ': ' + t.substring(0,300);
+  } catch(e) {
+    el.style.color = '#ef4444';
+    el.textContent = 'FOUT: ' + e.message;
+  }
+}
 
 function henkInit() {
   // Reset state bij elke keer openen
