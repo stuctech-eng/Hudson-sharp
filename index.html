@@ -1210,7 +1210,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '3.0.7';
+const APP_VERSION = '3.0.8';
 
 const STATUSSEN = [
   { key: 'THEORETISCH', label: 'Theoretisch',  kleur: '#6b7280', bg: '#6b728018' },
@@ -1221,6 +1221,7 @@ const STATUSSEN = [
 ];
 
 const CHANGELOG = [
+  { v: '3.0.8', txt: 'Bewezen regel: afdekdopjes ALLEEN rechts (klep-kant), NOOIT links (bodem-kant)' },
   { v: '3.0.7', txt: 'Henk kent klep (rechts) vs bodem (links) — klep-hoek slaatomvaak eerste om' },
   { v: '3.0.6', txt: 'Hoekjes op de band: upper blazer eerder UIT als eerste stap, dan verschuiven/dopjes/druk' },
   { v: '3.0.5', txt: 'Henk kent hoekjes omslaan: bovenste blazers verschuiven, afdekdopjes, druk verlagen' },
@@ -3550,6 +3551,7 @@ BEWEZEN REGELS (NOOIT van afwijken):
 - Timing aanpassen VÓÓR lucht verhogen
 - Max 2-5° aanpassing per keer
 - Pijpen bepalen 80% van gedrag
+- Afdekdopjes tuitjes: ALLEEN rechterkant (klep-kant) afdekken — NOOIT linkerkant (bodem-kant)
 
 TIMING WAARDEN:
 - Dun (≤0.020mm): lower[50-270°] upper[110-300°] lower_pipe[27-220°] upper_pipe[30-200°] out6[60-250°]
@@ -3579,7 +3581,7 @@ HOEKJES OMSLAAN OP DE TRANSPORTBAND:
 - Oorzaak: bovenste blazers blazen nog te veel als de zak neerlegt, of lucht zit ongelijk verdeeld
 - Oplossing 1 — UPPER BLAZER EERDER UIT: upper blazer AAN-duur verkorten (eerder UIT), zodat er minder lucht in de zak zit bij het neerleggen
 - Oplossing 2 — VERSCHUIVEN: hele bovenste blaassectie iets naar links of rechts schuiven zodat lucht gelijkmatiger over zak verdeeld wordt
-- Oplossing 3 — AFDEKDOPJES: dopjes op blaastuitjes. Als klep-kant (rechts) omslaat → rechter tuitjes afdekken. Als bodem-kant (links) omslaat → linker tuitjes afdekken
+- Oplossing 3 — AFDEKDOPJES: dopjes op blaastuitjes. ALLEEN rechter tuitjes (klep-kant) afdekken. NOOIT linker tuitjes (bodem-kant) afdekken
 - Oplossing 4 — MINDER LUCHT: upper blazer druk verlagen zodat hoeken niet weggeblazen worden bij neerleggen
 - Volgorde aanpak: upper blazer eerder UIT → verschuiven → afdekdopjes → druk verlagen
 - Let op: als hoekjes al omslaan VOOR de band → ander probleem (stripper jets/zijplaat)
@@ -3804,9 +3806,7 @@ function henkLokaalAntwoord(vraag) {
   if (v.includes('bovenkant') && v.includes('omslaat') || v.includes('boven') && v.includes('omslagen')) return '**Upper blazer controleren** — te kort of te lang AAN? Of te veel druk? Ook zijplaat en stripper jets checken.';
   if (v.includes('onderkant') && v.includes('omslaat') || v.includes('onder') && v.includes('omslagen')) return '**Te veel onderlucht** of zijplaat staat te vroeg. Lower blazer timing later laten stoppen.';
   if (v.includes('hoekje') || v.includes('hoekjes') || v.includes('omslaan') || v.includes('tuitje') || v.includes('tuitjes') || v.includes('afdek') || v.includes('dopje')) {
-    const kant = v.includes('rechts') || v.includes('klep') ? 'rechts (klep-kant)' : v.includes('links') || v.includes('bodem') ? 'links (bodem-kant)' : null;
-    const dopjesTip = kant === 'rechts (klep-kant)' ? 'Klep-kant omslaat → **rechter tuitjes** afdekken.' : kant === 'links (bodem-kant)' ? 'Bodem-kant omslaat → **linker tuitjes** afdekken.' : 'Klep-kant (rechts) slaatomvaak het eerst om — die heeft minder gewicht. Rechter tuitjes afdekken als het rechts is.';
-    return `**Hoekjes slaan om op de band — bovenste blazers aanpakken:**\n\n1. **Upper blazer eerder UIT** — minder lucht in de zak bij het neerleggen.\n\n2. **Verschuiven** — hele bovenste blaassectie iets naar links of rechts.\n\n3. **Afdekdopjes** — ${dopjesTip}\n\n4. **Druk verlagen** — upper blazer iets minder druk.\n\n**Aanpak:** blazer eerder UIT → verschuiven → dopjes → druk verlagen.`;
+    return `**Hoekjes slaan om op de band — bovenste blazers aanpakken:**\n\n1. **Upper blazer eerder UIT** — minder lucht in de zak bij het neerleggen.\n\n2. **Verschuiven** — hele bovenste blaassectie iets naar links of rechts.\n\n3. **Afdekdopjes** — ALLEEN rechter tuitjes (klep-kant) afdekken. Linker tuitjes (bodem-kant) NOOIT afdekken.\n\n4. **Druk verlagen** — upper blazer iets minder druk.\n\n**Aanpak:** blazer eerder UIT → verschuiven → rechter dopjes → druk verlagen.`;
   }
   return null;
 }
