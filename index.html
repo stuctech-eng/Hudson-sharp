@@ -1210,7 +1210,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '3.0.4';
+const APP_VERSION = '3.0.5';
 
 const STATUSSEN = [
   { key: 'THEORETISCH', label: 'Theoretisch',  kleur: '#6b7280', bg: '#6b728018' },
@@ -1221,6 +1221,7 @@ const STATUSSEN = [
 ];
 
 const CHANGELOG = [
+  { v: '3.0.5', txt: 'Henk kent hoekjes omslaan: bovenste blazers verschuiven, afdekdopjes, druk verlagen' },
   { v: '3.0.4', txt: 'Lokale antwoorden altijd beschikbaar — chat werkt zonder AI verbinding' },
   { v: '3.0.0', txt: 'Henk Stroek via Vercel proxy — API key veilig op server, nooit in de app code' },
   { v: '2.9.0', txt: 'Henk Stroek AI vakman — eigen pagina met Anthropic API' },
@@ -3565,6 +3566,14 @@ WICKET PROBLEMEN:
 - Bovenkant slaat om bij transportband → Upper blazer te kort/lang AAN, of te veel bovenlucht, of zijplaat te kort, stripper jets/blowers controleren
 - Onderkant slaat om bij transportband → Te veel onderlucht, zijplaat onderste stripper jets, of zijplaat staat te vroeg
 
+HOEKJES OMSLAAN (onder én boven) — BOVENSTE BLAZERS:
+- Oorzaak: bovenste blowers blazen ongelijk of te breed → hoekjes klappen om
+- Oplossing 1 — VERSCHUIVEN: hele bovenste blaassectie iets naar links of rechts schuiven zodat lucht gelijkmatiger over zak verdeeld wordt
+- Oplossing 2 — AFDEKDOPJES: dopjes op de blaastuitjes plaatsen om bepaalde tuitjes te blokkeren. Meest effectief: eerste tuitje links, of tweede tuitje links, of allebei afdekken
+- Oplossing 3 — MINDER LUCHT: upper blazer druk verlagen zodat hoeken niet weggeblazen worden
+- Volgorde aanpak: eerst verschuiven proberen → dan afdekdopjes → dan druk verlagen
+- Tip: linker tuitjes afdekken helpt als hoekjes aan linkerkant omslaan
+
 FOLIESPANNING:
 - Slappe kant folie (zichtbaar aan afrolstand) → vouwbok zwaarder zetten tot folie strak is
 - Dit voorkomt hoeken die naar buiten krullen
@@ -3736,7 +3745,7 @@ async function henkVerstuur(tekst) {
   // Lokale antwoorden (snel, geen internet nodig)
   await new Promise(r => setTimeout(r, 600));
   henkVerwijderTyping();
-  const antwoord = henkLokaalAntwoord(tekst);
+  const antwoord = henkLokaalAntwoord(tekst) || 'Dat ken ik nog niet uit mijn hoofd. Stel de vraag specifieker (bijv. "missers", "hoekjes omslaan", "plakt") — of vraag de admin om de AI aan te zetten.';
   henkVoegBerichtToe(antwoord, 'ai');
   henkGeschiedenis.push({ role: 'assistant', content: antwoord });
 
@@ -3784,7 +3793,10 @@ function henkLokaalAntwoord(vraag) {
   if (v.includes('draait')) return '**Upper +5%, lower -5%.** Luchtbalans herstellen.';
   if (v.includes('bovenkant') && v.includes('omslaat') || v.includes('boven') && v.includes('omslagen')) return '**Upper blazer controleren** — te kort of te lang AAN? Of te veel druk? Ook zijplaat en stripper jets checken.';
   if (v.includes('onderkant') && v.includes('omslaat') || v.includes('onder') && v.includes('omslagen')) return '**Te veel onderlucht** of zijplaat staat te vroeg. Lower blazer timing later laten stoppen.';
-  return '⚠️ Geen API key ingesteld. Vraag admin (Dirk) om een Anthropic API key in te stellen. Ik kan je dan echt helpen!';
+  if (v.includes('hoekje') || v.includes('hoekjes') || v.includes('omslaan') || v.includes('tuitje') || v.includes('tuitjes') || v.includes('afdek') || v.includes('dopje')) {
+    return `**Hoekjes slaan om — bovenste blazers aanpakken:**\n\n1. **Verschuiven** — hele bovenste blaassectie iets naar links of rechts schuiven. Lucht verdeelt zich dan gelijkmatiger over de zak.\n\n2. **Afdekdopjes** — dopje op het eerste of tweede tuitje links plaatsen (of allebei). Blokkeert de lucht precies waar de hoekjes omklappen.\n\n3. **Druk verlagen** — upper blazer iets minder druk geven.\n\n**Aanpak:** eerst verschuiven → dan dopjes → dan druk verlagen.`;
+  }
+  return null;
 }
 
 function henkReset() {
