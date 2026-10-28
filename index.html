@@ -2201,9 +2201,11 @@ async function berekenEnSla() {
   if (editKey) {
     await fbPatch('recepten/' + editKey, recept);
     _nieuwOpgeslaanKey = editKey;
-    // Update lokale array — behoud fotos, opties en andere velden die niet in het formulier zitten
+    // Herlaad vers vanuit Firebase zodat detail scherm altijd de juiste data toont
+    const vers = await fbGet('recepten/' + editKey);
     const idx = _recepten.findIndex(x => x._key === editKey);
-    if (idx >= 0) _recepten[idx] = {..._recepten[idx], ...recept, _key: editKey};
+    if (idx >= 0 && vers) _recepten[idx] = {...vers, _key: editKey};
+    else if (idx >= 0) _recepten[idx] = {..._recepten[idx], ...recept, _key: editKey};
   } else {
     const res = await fbPost('recepten', recept);
     _nieuwOpgeslaanKey = res.name;
