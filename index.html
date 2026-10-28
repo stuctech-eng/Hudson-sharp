@@ -3692,11 +3692,11 @@ function henkVerwijderTyping() {
 }
 
 async function henkStuur() {
-  if (henkBezig) return;
   const input = document.getElementById('henk-input');
   const tekst = input.value.trim();
-  if (!tekst) return;
+  if (!tekst) { alert('Typ eerst een vraag'); return; }
 
+  henkBezig = false; // forceer reset
   input.value = '';
   input.style.height = 'auto';
 
