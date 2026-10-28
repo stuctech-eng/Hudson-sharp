@@ -1043,12 +1043,13 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
         onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();henkStuur();}"
         oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px';"
         style="flex:1;background:#0f1520;border:1px solid #1a2540;border-radius:4px;color:#e5e7eb;font-family:'Courier New',monospace;font-size:14px;padding:10px 12px;outline:none;resize:none;line-height:1.4;"></textarea>
-      <button id="henk-stuur-btn"
-        ontouchend="event.preventDefault();henkStuur();"
+      <div id="henk-stuur-btn"
+        ontouchstart="this.style.opacity='0.6'"
+        ontouchend="this.style.opacity='1';henkStuur();"
         onclick="henkStuur()"
-        style="background:#a78bfa;border:none;border-radius:4px;color:#000;font-weight:700;font-size:20px;padding:12px 20px;cursor:pointer;white-space:nowrap;min-width:52px;min-height:52px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;">
+        style="background:#a78bfa;border-radius:4px;color:#000;font-weight:700;font-size:20px;padding:12px 20px;cursor:pointer;white-space:nowrap;min-width:52px;min-height:52px;display:flex;align-items:center;justify-content:center;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;">
         ➤
-      </button>
+      </div>
     </div>
 
     <!-- API key melding -->
