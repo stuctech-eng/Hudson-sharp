@@ -3743,11 +3743,11 @@ async function henkVerstuur(tekst) {
       henkVoegBerichtToe(antwoord, 'ai');
       henkGeschiedenis.push({ role: 'assistant', content: antwoord });
     } else {
-      henkVoegBerichtToe('❌ Fout: ' + (data.error?.message || 'Onbekende fout'), 'ai');
+      henkVoegBerichtToe('❌ ' + JSON.stringify(data), 'ai');
     }
   } catch (e) {
     henkVerwijderTyping();
-    henkVoegBerichtToe('❌ Verbindingsfout. Controleer internet.', 'ai');
+    henkVoegBerichtToe('❌ Fout: ' + e.message, 'ai');
   }
 
   henkBezig = false;
