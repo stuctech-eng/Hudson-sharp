@@ -1210,7 +1210,7 @@ body{background:#070a10;color:#c8d8e8;font-family:'Share Tech Mono',monospace;mi
 
 <script>
 // ═══════ CONFIG ═══════
-const APP_VERSION = '3.0.2';
+const APP_VERSION = '3.0.3';
 
 const STATUSSEN = [
   { key: 'THEORETISCH', label: 'Theoretisch',  kleur: '#6b7280', bg: '#6b728018' },
@@ -3709,8 +3709,7 @@ function henkStelVraag(vraag) {
 }
 
 async function henkVerstuur(tekst) {
-  if (henkBezig) return;
-  henkBezig = true;
+  henkBezig = false; // nooit blokkeren
   document.getElementById('henk-stuur-btn').style.opacity = '0.4';
 
   // Context opbouwen
@@ -3731,7 +3730,6 @@ async function henkVerstuur(tekst) {
 
   henkVoegBerichtToe(tekst, 'user');
   henkGeschiedenis.push({ role: 'user', content: vraagMetContext });
-
   henkTypingIndicator();
 
   // Proxy URL niet ingesteld: lokale fallback
@@ -3748,7 +3746,7 @@ async function henkVerstuur(tekst) {
 
   // Via Vercel proxy (key staat veilig op server)
   try {
-    const response = await fetch(HENK_PROXY_URL, {
+    const response = await fetch('/api/henk', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
