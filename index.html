@@ -3431,7 +3431,7 @@ async function uploadFoto() {
   document.getElementById('foto-upload-voortgang').style.display = 'block';
 
   // Direct uploaden zonder verkleinen
-  const verkleindBlob = file;
+  const verkleindBlob = _fotoFile;
   document.getElementById('foto-pct').textContent = '30';
 
   // Upload naar Firebase Storage
