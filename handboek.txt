@@ -1,0 +1,6412 @@
+
+--- deel1 pagina 1 ---
+Hupson SHARP
+
+= SECTIE 4.9 STATISCHE LADER
+’ \ 4.9.1 Doel
+
+5 We gebruiken een statische lader om de mond
+\ van de zak en bodemvouw dicht te houden,
+
+zodat we een zo viak mogelijke film kunnen
+bewerken.
+
+4.9.2 Werking
+
+De statische lader bevat 2 ionisatie staven. Eén
+op de mond van de zak en één op de
+bodemvouw gericht.
+
+\
+
+| \
+a
+
+=
+ra
+
+Figuur 43 — Statische ionisatie staven
+
+NOTA: De ionisatiestaven moet steeds
+VOOrzien Zijn van een goede aarding.
+De sterkte van de iomisatie staven kan men
+regelen door middel van 2 potentiometers op
+de lader:
+- Potentiometer 1 voor niveauregeling 1|
+(continue werking).
+
+- Potentiometer 2 voor niveauregeling 2
+
+(puls)
+
+———
+
+Continuous Pulse
+
+Figuur 44 — Statische lader
+STSOW High Speed Wicketer
+
+Machine
+
+ES
+
+Bij normale werking hebben de ionis atiestaven
+een lading ingesteld op niveau 1. Op de plaats
+waar de las moet komen wordt er een puls
+gegeven die de sterkte heeft van niveau 2.
+
+- De staaf langs de mond van de lip wordt
+altijd gebruikt (puls). Dit om te
+voorkomen dat de film zou bewegen
+tijdens het lassen.
+
+- De staaf langs de kant van de bodemvouw
+wordt gebruikt als het pak gestapelde
+zakken op de stapelaar een te dikke
+hoeveelheid bedraagt, anders wordt deze
+uitgeschakeld.
+
+We gaan de film extra laden (niveau 2), daar
+waar de las zal komen. Dit om een perfekte las
+te verkrijgen.
+
+Level 1 Level 1 Level 1
+aaa
+
+Level2 Level 2 Level 2 Level 2
+
+Figuur 45 — Ionisatie op de las
+
+4.9.3 Afregeling
+
+De lengte van de puls kan men veranderen
+vanop het bedieningspaneel van de computer.
+Zie hoofdstuk "ELEKTRIS CHE"
+
+NOTA: Op vraag van de klant wordt er ook
+gebruik gemaakt van een statische
+lader met slechts 1 niveau. Hier
+kunnen we slechts alleen gebruik
+maken van de continue
+niveauregeling die dan op de mond
+van de zak gericht wordt.
+
+4.9.4 Laden
+
+Afhankelijk van de samenstelling van de film
+moeten we de kracht van de lading gaan
+instellen. We moeten er steeds voor zorgen dat
+we de zak nog gemakkelijk kunnen openen als
+
+hij afgewerkt is. Met bepaalde film moeten we
+zelfs de lader afzetten.
+
+61
+
+ar") / } PA
+
+pf LA
+
+
+--- deel1 pagina 2 ---
+~ ll
+J 4% >.
+
+tupson-SHARP
+
+SECTIE 4.9STATISCHE LADER
+
+4.9.1 Doel
+We gebruiken een statische lader om de mond
+van de zak en bodemvouw dicht te houden,
+zodat we een zo vlak mogelijke film kunnen
+
+Machine
+
+oe ee
+
+Bij normale werking hebben de ionisatiestaven
+een lading ingesteld op niveau 1. Op de plaats
+waar de las moet komen wordt er een puls
+gegeven die de sterkte heeft van niveau 2.
+
+- De staaf langs de mond van de lip wordt
+altijd gebruikt (puls). Dit om te
+voorkomen dat de film zou bewegen
+
+tijdens het lassen.
+
+- De staaf langs de kant van de bodemvouw
+wordt gebruikt als het pak gestapelde
+zakken op de stapelaar een te dikke
+hoeveelheid bedraagt, anders wordt deze
+
+uitgeschakeld.
+We gaan de film extra laden (niveau 2), daar
+waar de las zal komen. Dit om een perfekte las
+
+te verknygen.
+~s | oF | |
+
+SC | RR |
+Level 2 Level 2 Level Z Level 2
+
+bewerken.
+
+1.9.2 Werking
+
+le statische lader bevat 2 ionisatie staven. Eén
+_ de mond van de zak en één op de
+lemvouw gericht.
+
+Figuur 45 — Ionisatie op de las
+
+4.9.3 Afregeling
+
+De lengte van de puls kan men veranderen
+vanop het bedieningspaneel van de computer.
+Zie hoofdstuk "ELEKTRISCHE"
+
+NOTA: Op vraag van de klant wordt er ook
+gebruik gemaakt van een statische
+lader met slechts 1 miveau. Hier
+
+(3 — Statische ionisatie staven
+
+ionisatiestaven moet steeds
+1 zijn van een goede aarding.
+
+Je ionisatie staven kan men
+Jel van 2 potentiometers op
+
+i kunnen we slechts alleen gebruik
+| voor mivesmmssste, maken van de  contnue
+ng) niveauregeling die dan op de mond
+voor niveauregeling 2 van de zak gericht wordt.
+
+%
+(yaa
+
+r
+f )
+
+”
+
+yO4
+fa*
+' ;
+: ~ :
+
+be ~~ Lykant van de lip niet
+")spypje ligt maar iets meer naar
+en of naar binnen. Zodat de zijkant van de
+lip niet in het gleufje van de doorvoerrollen
+
+5750W High Speed Wicketer
+
+
+
+--- deel1 pagina 3 ---
+Machine
+
+SECTIE 4.10 AUTOCORRECTIE
+(OPTIE)
+
+Figuur 46 — Autocorrectie
+
+4.10.1 Doel
+
+Autocorrecte wordt gebruikt om alle
+attachments te verplaatsen ten gevolge van
+Variaties oF de bedrukking van de film. We
+
+4.10.3 Inbedrijfstelling BST 'ekrPro Com
+
+40'
+
+Als we de BST 'ekrPro Com 40’ voor de eerste
+keer gebruiken, bijvoorbeeld bij een
+vervanging ven het toestel, moeten we eerst
+enkele hardware matige instelling doen, alsook
+
+de gebruikte aangesloten componenten
+instellen in het 'SETUP' menu.
+
+Hupson-SHARP
+>
+
+maken hiervoor gebruik van een BST 'ekrPro
+Com 40' met contrast sensor en actuator.
+
+ekrPro Com#
+
+Gh hegre PA ¢|
+OOOCO = =
+MENU ©
+MNEGEE
+Die
+el al od el el =e
+
+Figuur 47 - BST 'ekrPro Com 40’
+
+4.10.2 Type aansluitcomponenten
+
+De BST 'ekrPro Com 40' kent verschillende
+modes toe aan de aan te sluiten sensoren. In dit
+geval maken we gebruik van een contrast
+sensor. Dit type sensor wordt door de BST
+herkent als sensor 3. Volgende tabel geeft de in
+te stellen parameterwaarden weer van de
+verschillende aansluitbare componenten.
+
+|Mode —S—=s|,- Parameter | Parameter | Parameter waarde
+
+Figuur 48 - Tabel gebruikte modes op BST 'ekrProCom 40"
+
+4.10.3.1 Hardware instellingen
+
+OID
+
+it
+
+As
+
+GB86 SSEAESSE
+
+EET
+
+Figuur 49 - Printplaat deksel 'ekrPro Com 40'
+
+10. Zet het regelapparaat spanningsloos
+
+11. Open het deksel van de aansluitklemmen
+van het regelapparaat.
+
+12. Plaats de BCD-Schakelaar $1 (A) op 3
+13. Stel de DIL-schakelaar (B) in zoals op de
+originele unit.
+
+S750W High Speed Wicketer
+
+r _
+
+L Ty OA LT
+
+ye
+
+
+--- deel1 pagina 4 ---
+|. heeds
+—
+
+her
+
+i,
+
+~ |
+
+ay
+Lassa
+
+Sy
+j ;
+
+a
+
+La
+(a
+| a
+|
+ia
+A.
+
+ry
+
+ted
+
+Ca Fe ei
+
+eee
+
+ON SHARD
+
+14. Plaats de jumper JX27 (C) op OFF
+
+15. Alle gebruikte sensoren en actuator
+moeten elektrisch aangesloten worden
+volgens het bijgeleverde  elektrisch
+schema "BST_autocorrection
+EKR_PROCOM4O"
+
+16. Slut het deksel van het regelapparaat
+17. Schakel de netspanning opnieuw in.
+
+4.10.3.2 Inbedrijfstel ling contrast sensor op
+BST 'ekrPro Com 40'
+
+Met behulp van bovenstaande tabel zien we dat
+we voor de autocorrectie toepassing gebruik
+maken van een contrast sensor type TW54 CS.
+De voor deze sensor in te stellen
+parameterwaarde is '220'. De  gebruikte
+actuator is van het type EMS 17.
+
+Methode:
+Druk toets 'MENU' in.
+De LED ‘MENU‘ brandt.
+
+Het regelapparaat bevindt zich nu in de
+parameterselectie van het set-up-menu. In het
+LC-Display wordt de actuele parameter
+weergegeven.
+
+18. Selecteer parameter '2' (contrast sensor)
+door op toets 'MIN' of 'PLUS' te drukken.
+
+Druk op 'SETUF' toets
+
+Naast de LED 'MENU' gaat nu ook de LED
+van de toets 'SETUP’ branden. De LED van de
+toets 'ENTER' knippert. In het LC-Display
+wordt de ingestelde parameterwaarde
+weergegeven.
+
+Stel de parameterwaarde '220' in, door middel
+van de toetsen 'MIN' of 'PLUS' in te
+drukken.
+
+Om de parameterwaarde op te slaan, moet u op
+“ENTER‘ drukken.
+
+Voor het afbreken van de invoer op de toets
+
+‘SETUP‘drukken. De gewijzigde parameter-
+
+waarde wordt verworpen. De oorspronkelijke
+
+waarde blift behouden. De weergave keert
+
+terug naar de parameterselectie.
+
+19. Druk toets 'MENU' in en het set-up menu
+wordt verlaten.
+
+S750W High Speed Wicketer
+
+Machine
+
+4.10.3.3 Inbedrijfstelling actuator BST
+'ekrPro Com 40'
+
+20. Druk toets 'MENU' in.
+
+21. Selecteer parameter '3' (Actuator) door op
+toets 'MIN' of 'PLUS' te drukken.
+
+Druk op 'SETUP' toets
+
+Stel de parameterwaarde '102' in, door middel
+van de toetsen 'MIN' of 'PLUS' in te
+drukken.
+
+Om de parameterwaarde op te slaan, moet u op
+‘ENTER‘ drukken.
+
+22. Druk toets 'MENU' in en het set-up menu
+wordt verlaten.
+
+4.10.3.4 Bewegingsbe grenzingen afstellen
+van de actuator.
+
+23. Toets 'MAN' indrukken en ingedrukt
+houden. Daarnaast de toets ‘SETUP’
+indrukken.
+
+Actuator met behulp van de toets 'MIN' op het
+gewenste uitschakelpunt 1 positioneren.
+
+Het uitschakelpunt 1  begrenst' de
+
+actuatorbeweging in de neerwaartse richting.
+
+Toets ‘SENSOR LEFT’ indmkken en de
+uitschakelpositie wordt opgeslagen.
+
+Actuator met behulp van de toets 'PLUS' op het
+gewenste uitschakelpunt 2 positioneren.
+
+Het uitschakelpunt 2  begrenst' de
+
+actuatorbeweging in de opwaartse richting.
+
+Toets 'SENSOR RIGHT" indrmukken en de
+uitschakelpositie wordt opgeslagen.
+
+Druk toets 'ENTER' in. Het afstellen van de
+actuator begrenzing is afgesloten.
+4.10.3.5 Middenstand actuator afstellen
+24. Toets 'S-C' indrukken
+De actuator loopt nu naar zijn middenstand
+
+Kik na of de actuator evenveel naar boven als
+naar onder kan bewegen. Indien dit niet
+het geval is kan men dit bijregelen door
+op 'PLUS' of 'MIN' te drukken.
+
+Het systeem slaat automatisch de _ laatst
+ingesteld positie op als middenstand.
+
+63
+
+a Sed ee en Cee
+
+‘ pan i aa RO WAT PAIR ARIE Nw
+
+
+--- deel1 pagina 5 ---
+Ee
+
+Li
+
+f
+
+Lina
+
+|
+
+uae
+
+———— ad
+
+=m
+
+eS
+
+i <
+
+‘a a ole
+
+Machine
+
+4.10.4 Materiaal-set-up voor contrast
+Sensor (sensor 3)
+
+25. Zorg ervoor dat de contrastsensor geen
+materiaal detecteert
+
+26. Druk de toets 'MAN' in.
+
+27. Stel de gewenste aftastwijze (licht/donker
+of donker/licht) in.
+
+28. Druk toets 'SETUP’
+
+29. De maximale licht- en donkerwaarde bij
+
+voeler 3 zoals hierna beschreven tot stand
+brengen.
+
+- Spot van de sensor 2 seconden op het lichte
+gedeelte van het te detecteren contrast
+positioneren.
+
+- Spot van de sensor 2 seconden op het
+donkere gedeelte van het te detecteren
+contrast positioneren.
+
+30. Toets 'ENTER' in
+De materiaal-set-up is beéindigd.
+
+31. Druk Toets 'AUTO' in om de ingestelde
+aftastwijze te activeren.
+
+Als de actuator tijdens de regeling naar de
+verkeerde kant gaat of als het verkeerde
+contrast wordt detecteerd, dan moet de
+aftastwijze (BRIGHT/DARK of
+DARK/BRIGHT worden veranderd.
+
+4.10.5 Werken zonder autocorrectie
+
+Deze machine kan werken met en zonder
+autocorrectie. Als men voor de één of andere
+reden zonder autocorrectie wenst te werken,
+moet men de “servo-center” drukknop op de
+BST controller of op het aanraakscherm
+indrukken. De actuator zal zich naar zijn center
+positie verplaatsen. De herpositionering van de
+attachments op de attachment rail kan men
+doen door het pneumatisch ventiel aan de
+
+operator zijde van ieder attachment te
+deblokkeren.
+
+NOTA: Loop NOOIT productie met de BST
+controller in de “manual” positie. In
+de manual positie zal de actuator uit
+zijn positie komen ten gevolge van het
+gewicht van de hefboom arm van de
+
+autocorrectie. Hierbij zullen de
+posities van de attachments ontregeld
+worden.
+
+64
+
+| ed Sonn , \{
+
+Hupson-‘SHARP
+>
+
+Werken in “servo-center” wordt gebruikt in
+
+volgende gevallen:
+- Bij niet bedrukte film
+- Bij de instelling voor een nieuwe functie
+
+4.10.6 Werken met autocorrectie
+
+4.10.6.1 Proportionele verplaatsing
+
+Gedurende de normale functie zal de
+autocorrectie ieder attachment doen bewegen
+als er door de een of andere reden verschil is in
+de herhalende drukafstand. Het scharnierpunt
+van de autocorrectie arm staat in lijn met het
+lasmes. Als er correctie nodig is zal de lineaire
+actuator de hefboom arm doen bewegen. Hoe
+verder de attachments van het lasmes
+verwijderd zijn, hoe groter de verplaatsing van
+de hefboom arm en hoe groter de verplaatsing
+van de attachments die op de hefboomarm
+gemonteerd zijn. Als resultaat verkrygt men
+dat bedrukking op de zakken en de positie van
+de verschillende ponsgaten, voorlasapparaten,
+enz. automatisch in positie worden gehouden.
+
+4.10.6.2 Instellen van een nieuwe funktie
+
+De fotocel die gebruikt wordt op de
+autocorrectie is een contrast sensor en werkt
+met kleurovergangen. Volgende procedure
+
+licht toe hoe men een nieuwe funktie moet
+instellen.
+
+- Plaats de autocorrectie controller in
+“servo-center mode.
+
+- Ryg de film door de machine.
+- Jog de machine totdat de laslijn ongeveer
+onder het lasmes komt te liggen.
+
+- Plaats alle attachments ongeveer in de
+correcte positie.
+
+- Als de registratie fotocel op het
+voorlasapparaat staat gemonteerd, plaats
+dan de fotocel op het merkteken nadat
+
+men het voorlasapparaat in zijn Juiste
+positie geplaatst heeft.
+
+- Start de machine.
+
+- Plaats de attachments in de positie om de
+correcte zakken te verkrijgen.
+
+- Voor een "materiaal-set-up” uit volgens
+
+paragraaf 4.10.4
+
+5750W High Speed Wicketer
+
+
+--- deel1 pagina 6 ---
+ry 1
+
+emery
+
+ia
+
+Hupson-SHARP
+a. .
+
+- Beweeg nu de autocorrectie fotocel op het
+merkteken of op het richtpunt welke zal
+gebruikt worden voor de autocorrectie.
+Vergewis U ervan dat de spot van max. 2
+contrast oppervlakken detecteert.
+
+v x
+
+. |
+AT
+
+x<
+
+Figuur 50 - Contrastovergang TW 54
+- Druk op de “Automatic” drukknop op de
+BST controller.
+
+- De autocorrectie staat nu in de automatic
+mode.
+
+- Als de machine werkt, is het mogelijk de
+attachments te herpositioneren. Rekening
+houdend dat het attachment waarop de
+fotocel gemonteerd staat beweegt, ook de
+andere attachments zullen bewegen.
+Daarom is het beter eerst dit attachment
+met de fotocel af te regelen en later de
+andere.
+
+4.10.6.3 Bewegingstijd van de autocorrectie
+
+Gedurende de machine stop en de doorvoer
+van de film is de autocorrectie buiten werking.
+Alleen gedurende het lassen en enige tyd
+ervoor en ema is de autocorrectie functioneel.
+Gedurende deze periode leest de fotocel zijn
+informatie en dit kan leiden tot een
+verplaatsing van de lineaire actuator. De
+toegankelijke tijd voor de correctie is
+afhankelijk van de lastijd. Hoe langer de
+lastijd, hoe langer de tijd om te corrigeren.
+Deze informatie wordt gestuurd door de
+hoofdcomputer naar het BST geleidingsysteem
+
+5750W High Speed Wicketer
+
+Machine
+
+door middel van de witgang van de
+“autocorrectie” (PLS2).
+
+4.10.6.4 Selectieschakelaar AUTO/MAN
+
+Figuur 51 - Schakelaar AUTO/MAN
+
+Zoals in voorgaande paragraaf beschreven,
+werkt de autocorrectie enkel maar gedurende
+het lassen. Om de instellingen en werking van
+de autocorrectie tijdens stilstand te controleren,
+kunnen we de schakelaar van de BST op
+"MAN" zetten. Hiermee zien we of de
+autocorrectie wel degelijk in de juiste nchting
+stuurt. Eénmaal dat de werking juist 1s,
+schakelen we over naar de "AUTO" stand die
+dient voor het corrigeren tijdens productie.
+
+4.10.6.5 Fotocel uit registratie
+
+Als de fotocel van de autocorrecte wit
+registratie is, lift de autocorrectie
+geblokkeerd totdat deze weer in registratie
+komt.
+
+4.10.6.6 Gedetailleerde instellngen BST
+regelapparaat
+
+Voor meer gedetailleerde informatie over het
+BST-regelapparaat moet men de BST
+documentatie raadplegen welke bij de machine
+is meegeleverd.
+
+65
+
+\\
+
+
+--- deel1 pagina 7 ---
+Machine
+
+SECTIE 4.11 STAPELGATEN EENHEID
+4.11.1 Doel
+
+De ponsen van de eenheid maken twee gaten
+(A) in de lipzijde van de zak en dit gedurende
+
+elke cyclus van de machine. Deze gaten
+worden gebruikt om de zak over de
+stapelpinnen te hangen.
+
+Op aanvraag zijn er ook mesijes verknjgbaar
+om de zakken gemakkelijker van een
+stapelhouder (houder waar zakken aanhangen)
+
+te trekken. Deze mesjes noemen we de
+afscheurperforatie (B).
+
+\ B
+
+O
+O-
+
+Figuur 52 — Stapelgaten en afscheurperforatie
+4.11.2 Werking
+
+Twee cilinders met ponsen staan gemonteerd
+
+op een gemeenschappelijke staaf aan de zijkant
+van de stapelgaten eenheid.
+
+a —_—.
+e -~ ;
+a _
+—_— “7 : — 5
+’ a aa ~~
+’ ~—a >
+vy. - oe =
+
+Figuur 53 — Stapelgaten eenheid
+
+66
+
+—
+
+De cilinders worden voorzien van perslucht (3
+bar) doorheen een regelaar en een pneumatisch
+ventiel. De spoel van het pneumatisch ventiel
+wordt op een vooraf ingesteld moment in
+werking gezet en dit voor iedere cyclus van de
+machine. De afval van de film wordt afgezogen
+langs een buisje (A) onderaan de pons (B). De
+
+mesjes (C) voor de afscheurperforatie staan
+
+onder het ponsje gemonteerd.
+
+| +7
+It EA
+a
+aE
+
+iN ‘
+pam
+hergy
+
+NY |
+
+- —
+OME
+7
+\
+
+Tie
+
+‘
+
+»
+—et |
+SST =
+Sa
+
+Figuur 54 — Pons eenheid en afscheurperforatie mes
+
+Als de machine stopt om te lassen, worden de
+de ponsen geactiveerd door een elektrisch
+signaal van de computer. De duur en de
+vertraging van de puls zijn instelbaar vanop het
+
+bedieningspaneel en dit vanuit het scherm
+“PLS functies”.
+
+4.11.3 Plaats van de Stapelgaten eenheid
+
+Als we de film in de machine invoeren,
+brengen we deze tot voorbiy de hoofd
+doorvoerrollen en zorgen ervoor dat de
+buitenkant van de lip ongeveer onder het
+platgedrukte blaaspijpje (A) komt te liggen.
+Ook zeer belangrijk is dat de lip steeds op de
+gaatjes van de armen komt higgen. Indien de
+hoekjes van de zak aan de lipzijde zouden
+omkrullen tijdens het zakken maken, moeten
+we ervoor zorgen dat de zijkant van de lip niet
+onder het blaaspijpje ligt maar iets meer naar
+buiten of naar binnen. Zodat de zijkant van de
+lip niet in het gleufje van de doorvoerrollen
+
+5750W High Speed Wicketer
+
+
+--- deel1 pagina 8 ---
+Hupson-SHARp
+
+ligt. De maximale verplaatsing die men kan
+doen met de film is vanaf het midden van de
+
+eerste gleuf van de doorvoerrollen langs de
+4 lipzajde + 10 mm naar de buitenkant toe.
+
+‘ . . — ;
+LDS
+PE Neat Wee eae het OR
+; . + xf < Se
+Le ae =
+x
+\: e
+2
+—_
+a5,
+a
+va |
+; Ly)
+
+q
+
+Figuur 56 - Stelknop fotocellen op stapelgaten
+eenheid
+
+De positie van de afscheurperforatie is
+mechamsch bij te stellen en dit ook naar de
+
+wensen van de klant.
+Figuur $5 - Filmlijn
+
+q
+4 Om de ponsen te centreren ten opzichte van de
+zak, moeten we de machine Joggen tot op de
+1 Plaats waar de film moet gelast worden.
+Verplaats nu het frame van de stapelgaten
+
+WAARSCHUW
+
+G
+
+eenheid door het pneumatisch ventiel te
+ontgrendelen en het frame te verplaatsen met
+de stelknop. Als het frame op zijn plaats staat,
+
+WERK NOOIT MET VERWIJDERDE
+AFSCHERMING VAN DE PONSEN.
+laten we het pneumatisch ventiel los om de HOU STEEDS HANDEN UIT DE
+eenheid weer te blokkeren. | BUURT VAN DE PONSEN EN/OF HET
+oie | MESJE VAN DE LASBEVEILIGER.
+4.11.4 Positie ponsen i DEZE KUNNEN ERNSTIGE
+De plaats van de stapelgaten die in de lip van VERWONDINGEN AAN HANDEN EN
+We de zak geponst worden, is afhankelijk van de VINGERS VEROORZAKEN.
+wensen van de klant. Deze kan men regelen
+\ | door de fotocellen van de stapelgaten eenheid
+
+verder of dichter van de zijkant te plaatsen met
+
+4.11.5 Afregelen fo tocellen
+behulp van een stelknop (A). De afstand tussen
+te ponsen is eveneens verstelbaar naar de
+
+De fotocellen zijn nagenoeg identiek, doch zijn
+wensen van de klant.
+
+ze vooraf ingesteld voor hun type detectie (LO
+of DO).
+
+Sensor 1 is het verst van de zijkant van de
+machine verwijderd en staat ingesteld op LO
+(Light output). Sensor 2 staat het dichtst bij de
+zijkant van de machine en is ingesteld op DO
+(Dark output).
+
+"| Om de fotocellen af te tegelen, moeten we het
+
+stelschroefje bovenaan de fotocel in
+tegenuurwijzerszin draaien totdat het ledje net
+dooft. Als men nu de te detecteren film voor de
+fotocel brengt moet het led
+knipperen. Knippert het 1
+
+je zachtjes
+het te traag,
+
+edje niet of knippert
+
+dan moet we de gevoeligheid
+STSOW High Speed Wicketer
+
+67
+
+\ Syn :
+yt ——__|
+deere! wom i r
+ES ~~
+f hat’ y it a
+{ Fn | 2 -
+
+
+
+--- deel1 pagina 9 ---
+me ie
+
+CoE LO to) OD ee oe OE EEE
+
+Machine
+
+lichtjes opdrijven door aan het stelschroefje in
+uurwijzerszin te draaien.
+
+De toestanden van de fotocellen kunnen 3
+verschillende situaties teweegbrengen.
+
+1. Regeling naar omhoog
+
+aS
+i
+
+Figuur 57 — Afregelen fotocellen stapelgaten eenheid:
+sitnatie 1
+
+Geen van beide led indicaties branden.
+
+Resultaat: De stapelgaten eenheid gaat de film
+zoeken.
+
+2. Geen regeling
+
+Film
+
+2
+
+Figuur 58 — Afregelen fotocellen stapelgaten eenheid:
+situ atie 2
+
+Het ledje van fotocel 1 brandt.
+
+Resultaat: De stapelgaten eenheid gaat zich
+niet verplaatsen.
+
+Regeling naar beneden
+
+ae
+
+Figuur 59 — Afregelen fotocellen stapelgaten eenheid:
+situ atie 3
+
+Beide led indicaties branden.
+
+68
+
+Hupson-SHARP
+>
+
+Resultaat: De stapelgaten eenheid gaat zich
+naar de zijkant van de machine bewegen.
+
+Het is mogelijk dat de richtingen tegengesteld
+zijn dan aangegeven. Men moet hiervoor de
+connectoren van de fotocellen verwisselen.
+4.11.6 HS Referentie
+
+Fotocel (LO): # §.7039.918.191
+
+Fotocel (DO): # 8.7039.918.192
+
+SECTIE 4.12 LASBEVEILIGER (OPTIE)
+
+4.12.1 Doel
+Een gleufje (A) aan de laszijde van de zak,
+voorkomt het openscheuren van de las.
+
+Figuur 60 — Lasbeveiliging
+
+4.12.2 Werking
+
+De lasbeveiliger staat op het frame van de
+stapelgaten eenheid gemonteerd en wordt op
+hetzelfde ogenblik bediend als de stapelgaten
+ponsen.
+
+SECTIE 4.13 SERVO ATT ACHMENTS
+(OPTIE)
+
+Naargelang de bewerkingen die men wenst uit
+
+te voeren, kunnen we gebruik maken van
+verschillende opties:
+
+- Voorlasapparaat
+- Vierkante bodemuitsnijder
+- Ronde bodemuitsnijder
+
+- Chevronsealer
+
+5750W High Speed Wicketer
+
+
+--- deel1 pagina 10 ---
+=taDsOw SHARD,
+
+SECTIE 4.14 FOTOCEL
+DRUKREGIST RATIE
+
+4.14.1 Doel
+
+Als we productie lopen met bedrukte film zorgt
+de fotocel ervoor dat de bedrukking op
+dezelfde plaats komt te staan voor iedere zak.
+
+Machine
+
+blauwe achtergrond, enz...). Dit laat de fotocel
+toe om het bewegend merkteken beter te
+detecteren.
+
+Het richtpunt hoeft geen registratie merkteken
+te zijn. Het kan ook iets anders zijn dat gedrukt
+staat op de film (zoals de “H” in het Hudson-
+Sharp logo in volgende figuur). Enkel de
+volgende vereisten moeten voldaan zijn:
+
+Wanneer dit tot stand is gebracht, zegt men dat
+trast
+de machine “in registratie” is. 1. Het richtpunt moet een hoog con
+
+hebben met de achtergrond kleur.
+
+2. De ruimte véér het te detecteren doel
+moet vrij zijn van eender welke
+bedrukking en moet breder zijn dan het
+venster (het begrip venster wordt
+besproken in de volgende paragraaf).
+
+E f
+
+H
+
+/
+
+~ B
+|
+
+[
+Lacsad
+
+3. Het te detecteren doel moet groot genoeg
+zijn, zodat de fotocel duidelijk
+onderscheid kan maken (7 mm is vereist).
+In vele gevallen kan men op een lijn
+detecteren.
+
+ncaa
+
+aa
+
+Out Of Registration Direction Of Film Travel
+<_
+
+Figuur 61 - Zakken in/uit registratie
+
+4.14.2 Beschrijving
+
+De fotocel is een elektronische sensor welke
+een lichtbundel projecteert op een object. De
+fotocel zet dan de hoeveelheid weerkaatst licht
+om in een voorafingestelde toestand.
+
+4.14.3 Werking
+
+4.14.3.1 Registreren van richtpunt
+
+De fotocel wordt gebruikt om een nchtpunt te
+detecteren op de film. Meestal is het nchtpunt
+een rechthoekig merkteken.
+
+Figuur 63 — Registreren richtpunt
+
+Wanneer de fotocel zijn doel heeft
+gedetecteerd, zal hij een signaal zenden naar de
+B&R computer. De computer zal enkel het
+signaal aanvaarden als de funktie ’Fotocel
+on/off is ingeschakeld. Deze funktie kan men
+inschakelen vanop het bedieningspaneel.
+
+4.14.3.2 Venster
+
+Er is een bepaalde tijd (venster) dat de B&R
+computer het signaal van de fotocel NIET
+aanvaard. De periode dat het signaal NIET
+aanvaard wordt = de lengte van de zak - de
+
+69
+
+7 mm Min.
+
+isd
+
+Figuur 62 — Registreren merktekens
+
+Het registratie merkteken moet in kleur gedrukt
+zijn zodat het een hoog contrast heeft met de
+achtergrond kleur (zwart merkteken met witte
+achtergrond, donkerblauw merkteken op licht
+
+Y
+
++ 20 mm Min.
+
+aise oe a a
+
+sisal
+
+5750W High Speed Wicketer
+
+a al
+
+
+
+--- deel1 pagina 11 ---
+>=
+|
+x
+
+Machine
+
+m | grootte van het venster. De grootte van dit
+
+Venster kan men aanpassen (zie hoofdstuk
+: “elektisch”). Door het toevoegen van het
+ms Venster voorkomt men ook dat de fotocel
+andere delen gaat detecteren dan het richtpunt.
+Als het signaal ontvangen wordt tidens de
+peniode van het venster, is de film in
+
+| tegistratie en als het signaal niet ontvangen
+\ Wordt tijdens de periode van het venster, is de
+film uit registratie. Wanneer de film uit
+Tegistratie is, voegt de computer de lengte van
+een half venster toe aan de lengte van de zak,
+ka en zoekt automatisch verder naar het richtpunt
+tot dit gevonden is, dit enkel als de waarde van
+de functie “register kwijt” gelijk is aan nul in
+het B&R-scherm. Als het tichtpunt gevonden
+is, gaat de computer de zaklengte herberekenen
+“1 aanpassen. Men kan ook de computer zo
+instellen dat de machine stopt wanneer de
+computer na een ingesteld aantal zakken
+register kwijt” > 0) het mertkteken niet
+gevonden heeft.
+
+4143.3 Tastafstand fotocel
+
+wed,
+
+Mazak de 2 vijzen waarmee de fotocel (A) is
+bevestigd los en hou deze +/- 8 mm boven de
+film. Het is ook belangrijk dat de film strak
+komt te liggen. Dit gebeurt grotendeels met de
+stabiliserende staaf die is aangebracht (C).
+
+Figuur 64 — Film doorvoer
+
+Als de film niet strak komt te liggen, kunnen
+
+de plooien in de film verkeerd geinterpreteerd
+worden door de fotocel.
+
+Hupson-SHARP
+
+a
+
+4.14.3.4 Reflecterende strook
+
+Er is een staaf met een reflecterende strook (B)
+gemonteerd onder de fotocel. In de meeste
+gevallen is het gebruikelijk dat de reflecterende
+strook de lichtbundel van de fotocel weerkaatst
+als men produktie loopt met een heldere film of
+een film met een helder richtpunt heeft. Deze
+
+strook zorgt er dan voor dat de fotocel de film
+
+herkent als een lichte kleur. Voorbeeld: zwart
+merkteken op transparante film.
+
+In andere gevallen kan het nodig zijn om de
+reflecterende strook te bedekken met zwarte
+tape. Deze tape zorgt ervoor dat de fotocel de
+
+film herkent als een donkere kleur. Voorbeeld:
+wit merkteken op transparante film.
+
+4.14.3.5 Afregelen gev oeligheid
+
+Teneinde de fotocel in te stellen voor een
+betrouwbare detectie moet het contrast tussen
+de kleur van het merkteken en de kleur van de
+film hoog genoeg zijn. De gebruikte procedure
+hangt af van de kleur van de film en de kleur
+van het merkteken. Er zijn verschillende
+mogehjkheden die kunnen onderverdeeld
+worden in twee groepen.
+
+1.Donker merkteken op een lichte achtergrond
+
+eDonker merkteken op een licht gekleurde
+film
+
+eDonker merkteken op een heldere film
+
+eHelder merkteken op een licht gekleurde
+film (zie NOTA)
+
+NOTA: In dit geval is het nodig om een zwarte
+
+tape op de reflecterende strook te
+
+kleven, zodat de fotocel het metkteken
+
+als een donker merkteken gaat
+interpreteren.
+
+2.Licht merkteken op een donkere achtergrond
+eLicht merkteken op een donker gekleurde
+film
+eHelder mertkteken Op een donker
+gekleurde film
+
+eLicht merkteken op
+
+een heldere film (zie
+NOTE)
+
+NOTA: In dit geval is het nodig om een zwarte
+
+tape op de reflecterende stro ok te
+Sons zodat de fotocel de heldere
+
+| als een donkere kleur gaat
+interpreteren.
+
+5750W High Speed Wicketer
+
+
+--- deel1 pagina 12 ---
+ad _
+
+=IUDSON SHARD.
+
+Daar we werken met een 'teach in' fotocel
+stellen we deze als volgt in:
+
+- Zet de selectieschakelaar (A) op "TEACH"
+
+ve (7)
+
+S
+
+TEACH
+
+Figuur 65 — "Teach in" fotocel
+
+- Breng de ondergrond in de lichtbundel en
+druk de "TEACH" knop (B) in.
+De lichtvlek en de werkingsindicatie (C)
+knipperen langzaam.
+
+Figuur 66 — Fotocel schijnt op achtergrond
+
+- Breng het merkteken (A) in de lichtbundel
+en druk de "TEACH" knop (B) in.
+
+5750W High Speed Wicketer
+
+Machine
+
+Figuur 67 — Fotocel schijnt op merkteken
+
+- De TEACH in-proces is beéindigd.
+
+Wanneer het rode zenderlicht en de
+werkingsindicatie (C) snel knipperen, dan is er
+niet voldoende contrast. De helder-/donker
+omschakeling wordt automatische aangepast.
+
+- Zet de selectieschakelaar op "RUN" als de
+fotocel is ingesteld.
+
+NOTA: Wanneer we werken met een
+glanzende, hoog reflecterende film,
+kan het soms beter zijn de fotocel
+onder een licht hellende hoek te
+plaatsen ten opzichte van de film.
+
+15° to 20° 15° to20°
+
+Figuur 68 — Fotocel onder hoek plaatsen bij sterk
+reflecterende film
+
+4.14.3.6 Plaatsing
+
+Het is mogelijk dat de film in registratie loopt,
+alhoewel de bedrukking niet in het midden van
+de zakken staat. “In registratie” betekent dat de
+
+71
+
+bal HH PS \ a
+
+[ Pos
+
+XY
+¢ +
+
+; r TXT
+
+
+--- deel1 pagina 13 ---
+tiie
+
+Machine
+
+fotocel het merkteken tidens het venster
+ontdekt en dat de positie van de bedrukking op
+elke zak op dezelfde plaats staat.
+
+Figuur 69 — Film in registratie
+
+Het is ook mogelijk dat de film in registratie 1s,
+maar dat de bedrukking nog niet in het midden
+van de zak staat. De bedrukking herhaalt zich
+wel telkens op dezelfde afstand.
+
+Figuur 70 — Film in registratie maar b edrukking niet
+in center
+
+Als laatste bestaat de mogelijkheid dat de film
+
+niet in registratie is. Dit wil zeggen dat de
+
+bedrukking zich niet op dezelfde plaats gaat
+
+herhalen.
+
+“I
+No
+
+| ee ee oe
+
+ae ee ee
+ola
+
+Figuur 71 — Film uit registratie
+
+Om ervoor te zorgen dat de bedrukking in het
+midden van de zak komt, moet de fotocel naar
+de voorkant of de achterkant van de machine
+bewogen worden. Dit kan men doen door
+tegelijkertijd op het pneumatisch ventiel te
+duwen en aan de stelknop te draaten.
+NOTA: Zorg er steeds voor dat de eenheid met
+de fotocel zo dicht mogelijk tegen de
+doorvoerrollen wordt geplaatst.
+
+4.14.3.7 Schoonmaak van de fotocel
+Vuildeeltjes op de lens kunnen de gevoeligheid
+van de scanner aanzienlyk aantasten.
+Verwijder de vuildeeltjes van de lens met een
+zachte doek. Gebruik geen solventen voor het
+schoonmaken van de lens. Zorg er ook steeds
+voor dat de reflectiestrook zuiver is.
+
+4.14.3.8 HS Referentie
+Fotocel SICK KTSW: # 8.7039.918.215
+
+5750W High Speed Wicketer
+
+
+--- deel1 pagina 14 ---
+—,.
+
+SECTIE 4.15 DOORVOE RROLLEN
+
+4.15.1 Doel
+
+Het doel is de tijdelijke doorvoer van film te
+voorzien waardoor de juiste hoeveelheid film
+voorbij het lasmes komt voor de produktie van
+zakken.
+
+WAARSCHUWING
+
+A ©
+
+PLAATS NOOIT UW
+HANDEN IN DE
+NABIJHEID VAN DE
+DRAAIENDE
+DOORVOERROLLEN.
+INDIEN HET TOCH
+NODIG ZOU ZIJN,
+PLAATS DAN DE
+MACHINE IN NOODSTOP!
+OOK BIJ EEN
+STILSTAANDE MACHINE
+ZIJN DE SERVO ASSEN
+GEWAPEND EN KUNNEN
+ZIJ TEN GEVOLGE VAN
+DEFEKTEN BRUUSKE
+BEWEGINGEN MAKEN.
+
+Sy eo OO pra pnd ere ee
+
+4.15.2 Werking
+
+Nadat de drive een signaal ontvangen heeft van
+de computer, zal een servo motor de
+doorvoerrollen aandnjven via een platte
+getande riem. De intermitterende
+doorvoerrollen trekken de voorafingestelde
+film mee van de invoer, zodat de zakken steeds
+een zelfde lengte hebben.
+
+5750W High Speed Wicketer
+
+Machine
+
+Figuur 72 - Doorvoerrollen
+
+Wanneer we de machine resetten, zal de
+cilinder (A) die tegen de aandrijfriem duwt,
+vrijkomen. Deze cilinder heeft als doel de
+doorvoerrollen tegen te houden zodat de film
+niet van tussen de walsen kan glijden als de
+machine in noodstop is. De werkdruk van de
+
+Figuur 73 —-Rem doorvoerrollen
+
+4.15.3 Druk op doorvoerrollen
+
+Om de slip tussen de doorvoerrollen te
+elimineren staan er __ persluchtcilinders
+gemonteerd op de bovenste doorvoerrol. De
+druk voor deze cilinder bedraagt tussen 5-6
+bar. Bij het invoeren van de film bezitten we de
+mogelikheid om met behulp van een
+pneumatische schakelaar de doorvoerrollen te
+openen.
+
+Door de schroef (A) in de ondersteuningsrol
+(B) te verdraaien is het mogelijk druk op de
+centeras van de onderste doorvoerrol uit te
+oefenen.
+
+Hoe? Zet de doorvoerrollen open en draai de
+vijzen voor de  houder van de
+ondersteuningsrol los. Wanneer de onderste
+doorvoerrol en de ondersteuningsrol elkaar
+
+73
+
+
+--- deel1 pagina 15 ---
+Machine
+
+raken, draai dan deze schroef nog 1/4 toer
+door. Draai NOOIT een volledige toer door,
+anders is de kans op beschadiging van de
+doorvoerrollen te groot. Zet vervolgens de
+vijzen voor de rolhouder goed vast.
+
+Figuur 74 — Steunrol doorvoerrollen
+
+4.15.4 Uitlijnen tan dwielen
+
+Na het vervangen van de tandwielen moeten
+we erop letten dat de tandwielen terug perfect
+in elkaar passen. Volg onderstaande instructies:
+
+1. Laat de tandwielen van de onderste
+doorvoerrol aan | kant los staan zodat we
+deze nog kunnen verschuiven.
+
+2. Monteer de onderste doorvoerrol in de
+machine.
+
+3. Monteer de bovenste doorvoerrol in de
+machine.
+
+3. Zorg ervoor dat de onderste en bovenste
+doorvoerrollen evenwidig op elkaar
+staan.
+
+4. Regel de onderste tandwielen zo af, dat
+deze perfect in de bovenste tandwielen
+passen. Geef 1 mm speling zodanig dat de
+bovenste tandwielen miet op de
+bevestiging van de onderste tandwielen
+kunnen lopen.
+
+6. Draai de bouten van de_ onderste
+tandwielen nu vast.
+
+7. Regel nu de hoogte van de cilinders af,
+zodat de tanden niet uit elkaar kunnen
+gaan als de doorvoerrollen open staan.
+
+4.15.5 Blaaspijpjes tussen de doorvoerrollen
+De blaaspijpen zijn gemonteerd in de gleuven
+van de bovenste en de onderste doorvoerrollen.
+Hun doel bestaat eruit te beletten dat de film
+
+74
+
+| =r! Kieecctcune ty in! ea
+
+Hupson-SHARP
+>
+
+zich rond de doorvoerrollen en/of rond de
+lasrol zou gaan wikkelen. Alsook om de film te
+begeleiden op de aflegtafel.
+
+4.15.5.1 Afregelen bl aaspijpjes
+
+Figuur 75 — Afregelen blaaspijp jes
+
+Plaats de onderste blaaspijpjes (A) 1 mm
+
+boven de top van de lasrol (B). De speling
+
+tussen de bovenste (C) en onderste blaaspijpjes
+
+zou niet meer dan 5 mm mogen bedragen om
+
+filmopstropping te vermijden.
+
+NOTA: Let wel op dat de blaaspypjes NIET
+met de doorvoerrollen in aanraking
+komen.
+
+Figuur 76 — Blaaspijp jes tussen doorvoerrollen
+
+4.15.5.2 Tijdsinstellin gen van de
+afstrijklucht
+
+De lucht door de blaaspijpjes komt op tussen
+350 en 30 graden en af tussen 60 en 260
+graden. De opkomingstijd wordt als het
+mogelijk is op 0 graden gezet. De luchtpuls op
+dat moment zal de voorliggende zak van de
+lasrol trekken. Het is ook beter dat de aflegtafel
+zo dicht mogelijk tegen de lasrol bevestigd is,
+zodat de luchtstroom de zak niet tussen de rol
+en koordentafel blaast. Als deze problemen
+optreden, moet men de opkomingstijd van de
+
+5750W High Speed Wicketer
+
+
+--- deel1 pagina 16 ---
+—j—
+
+en
+
+lucht verminderen tot de voorliggende zak op
+de aflegtafel licht.
+
+4.15.5.3 Stropdetektor
+
+Deze schakelaar detekteert een opstropping
+van de film. Plaats de schakelaar zo dat hij
+bekrachtigd wordt bij 1 mm beweging van de
+bewegingsarm. Het is belangrijk dat deze
+schakelaar nauwkeurig geplaatst wordt. Als er
+minder speling is, kan de schakelaar al
+bekrachtigd worden door trillingen. Nooit meer
+dan 1 mm speling toelaten, want een grote
+hoeveelheid opgestropte film kan de machine
+beschadigen.
+
+NOTA: Wanneer de schakelaar bediend wordt,
+veroorzaakt dit een noodstop van de
+machine. Alle functies van de machine
+eindigen zonder naar hun stoppositie
+
+Figuur 77 — Stropdetektor
+
+4.15.6 HS Referentie
+
+SBC Servo motor doorvoerrollen:
+# §.7038.914.101
+
+Acopos Servo-module doorvoerrollen
+
+# 8V 1320:00-2
+
+SECTIE 4.16 LASMESAA NDRIJVING
+
+4.16.1 Doel
+
+De lasmes aandnjving zorgt voor de korte
+vertikale op en neerwaartse beweging van het
+lasmes en dit door middel van excenters in
+combinatie met 2 glijstangen.
+5750W High Speed Wicketer
+
+Pm
+
+-\ We —-  * ERS,
+
+Machine
+
+4.16.2 Werking
+
+De servo motor wordt intermitterend gestuurd,
+een halve omwenteling van de excenteras
+brengt het lasmes naar beneden. De servomotor
+stopt tijdens het lassen en de volgende halve
+omwenteling brengt het lasmes omhoog. De
+lastijd van het lasmes is
+
+snelheidsonafhankelijk. De cyclustijd van het
+lasmes (opgaande en neergaande beweging)
+staat standaard op 57 msec ingesteld. Een
+technicus kan de cyclustijd van het lasmes
+veranderen indien vereist ( zie hoofdstuk
+“ELEKTRISCH” ).
+
+Figuur 78 - Lasmes aandrijving
+
+Bij een normale machine stop, loopt de
+machine uit en stopt het lasmes in zijn hoogste
+positie. Om de machine dan opnieuw te starten
+volstaat het om op de startknop te drukken.
+
+Wanneer we tijdens produktie op de noodstop
+drukken, zal het lasmes op zijn huidige positie
+onmiddelhjk stoppen. Om dan de machine
+opnieuw te starten, moeten we eerst de
+machine resetten en wachten tot de sturingen in
+hun nulpositie staan alvorens op de startknop te
+drukken. De nulpositie voor het lasmes is zijn
+
+TS
+
+
+--- deel1 pagina 17 ---
+tern 7
+
+Machine
+
+hoogste positie en deze wordt gedetecteerd
+door een digitale naderingsschakelaar op de as
+van de excentrieken. De naderingsschakelaar
+zendt een signaal naar de computer dat het
+
+lasmes in de juiste positie staat voor het
+starten.
+
+4.16.3 Positie vlag op de excentrische as van
+het lasmes
+
+Zorg ervoor dat het vilagje (A) de
+
+naderingschakelaar (B) net niet bediend als het
+kopvlak van de as (C) horizontaal staat.
+
+> £ seis \\ , iss
+3 i \ .
+ / at A)
+
+~
+
++
+
+psdadene
+
+“ere ~
+.
+{2
+i -=
+hiis aa "
+ee
+—_—— D>
+
+caeteewl Wiwekedey
+
+"tee
+7 dae
+
+Figuur 79 — Vlagje op as van excentrieken
+
+4.16.4 HS Referentie
+
+SBC Servo motor Lasmes:# §.7038.914.101
+Acopos Servo-module Lasmes:
+
+# 8V1320:00-2
+
+76
+
+Hupson-SHARP
+>
+
+SECTIE 4.17 LASMES LIFTING
+
+4.17.1 Doel en omschrijving
+
+WAARSCHUWING
+
+A
+
+HOUD VINGERS WEG UIT DE
+BUURT VAN DE BEWEGINGEN
+VAN HET LASMES. VINGERS
+EN/OF HANDEN KUNNEN GEPLET
+WORDEN DOOR DEZE
+BEWEGENDE ONDERDELEN.
+
+De grootste beweging van het lasmes wordt
+teweeggebracht door 2  persluchtcilinders
+(druk: 5 bar) aan de zijkant van het lasmes. Als
+de machine gestopt is, zijn de cilinders
+uitgeschoven. Dit beveiligt de film tegen
+smelten, alsook de lasrol, transportriempjes,
+koelplaat en de doorvoerrollen tegen
+overdadige hitte.
+
+Figuur 80 — Lasmes lifting
+
+Wanneer de startknop is ingedrukt, zjn de
+cilinders ingetrokken. Het lasmes staat dan nog
++/- 22 mm van de lasrol verwijderd. De
+overige afstand wordt dan teweeggebracht door
+de aandrijving en de excentrieken. Wanneer
+
+5750W High Speed Wicketer
+
+
+--- deel1 pagina 18 ---
+Hupson-SHARP Machine
+
+het lasmes contact maakt met de lasrol, maakt
+deze een indrukking in de lasrol. Deze
+indrukking noemen we penetratie en de diepte
+ervan is regelbaar. HET VERANDEREN VAN
+DE PENETRATIE KAN EEN GROOT
+GEVOLG HEBBEN VOOR DE KWALITEIT
+VAN HET LASSEN.
+
+5750W High Speed Wicketer 77
+
+
+--- deel1 pagina 19 ---
+J f
+
+wit
+
+re je "
+. Sh. LL
+
+Machine
+
+SECTIE 4.18 PENETRATIE & LASMES
+STEUNEN
+
+4.18.1 Doel en omsch rijving
+
+De lasmes steunen staan bevestigd op de
+bovenste uiteinden van de glijstangen, waaraan
+we het lasmes gaan bevestigen. Op de steunen
+staan eindelslagbumpers (A) gemonteerd die
+ons toelaten de penetratie van het lasmes te
+regelen. Om het lasmes te bevestigen, gaan we
+de lagers aan de zijkant van het lasmes in de
+lagerhouders (B) plaatsen. Let wel op dat men
+na het plaatsen van het lasmes steeds de bouten
+in de lagerhouders goed vast draait.
+
+Figuur $1 — Lasmes steun
+
+4.18.2 Penetratie kalibreren
+
+We kunnen de penetratie regelen door aan de
+regelschroef (A) te draaien die zich in het
+center van de bumper bevindt. Draaien we in
+uurwijzerszin aan de regelschroef dan duwen
+we de bumper naar beneden. Dit resulteert dat
+het lasmes hoger komt te staan en dus de
+penetratie vermindert Draaien we nu in
+tegenuurwijzerszin aan de regelschroef dan
+komt het lasmes lager te staan met als resultaat
+dat men de penetratie verhoogt. Met een platte
+moer (B) kunnen we positie van de
+regelschroef vergrendelen. Er is een merkteken
+(C) gegraveerd bovenaan elke regelschroef, en
+er is een schaalverdeling (D) voorzien rond
+
+iedere regelschroef.
+
+78
+
+Figuur 82 — Penetratie regelcomponenten
+
+Elk vierde deel van de gradueringsschaal komt
+overeen met een verplaatsing van de
+regelschroef van 0,25 mm of 0,05 mm per
+schaalverdeling. Dit wil zeggen dat de
+regelschroef een spoed heeft van 1 mm, wat
+overeen komt met een verplaatsing van 1 mm
+als de regelschroef 1 toer verdraaid is. Opdat
+de penetratie perfect kan geschieden, moeten
+we eerst de gradueringsschaal kalibreren.
+
+| WAARSCHUWING
+
+AANGEZIEN HET KALIBREREN VAN
+| DE PENETRATIE MOET GEBEUREN
+| ALS DE MACHINE ONDER SPANNING
+G3 STAAT, MOETEN WE UITERST
+VOORZICHTIG ZIJN IN DE
+NABIJHEID VAN HET LASMES.
+HANDEN EN VINGERS KUNNEN
+VERPLETTERD EN/OF ERNSTIG
+VERBRAND WORDEN.
+
+op zijn
+bednyjfstemperatuur is. Dit is noodzakelijk
+omdat het lasmes uitzet als het warm is.
+
+2. Zet de moeren van de regelschroef los, en
+draai de regelschroef meerdere toeren in
+uurwijZerszin.
+
+1. Let op dat het lasmes
+
+5750W High Speed Wicketer
+
+
+--- deel1 pagina 20 ---
+Ny eee
+
+——_
+J teeing Machine
+= |
+i 3. Draai _ de schakelaar op het 7. Draat de regelschroef in |
+> bedieningspaneel zo dat het lasmes tegenuurwijzerszin tot men een lichte |
+i. J beneden komt. Laat het lasmes niet te weerstand voelt als men de voeler van |
+lang beneden staan, anders kan men de tussen het lasmes en de lasrol probeert te
+: ’ lasrol verbranden trekken.
+, 8  Controleer steeds aan beide zijden, regel
+zodanig, dat de weerstand aan beide zijde
+] CG) © hetzelfde aanvoelt. |
+. = 9. Draai de vijzen van de |
+as gradueringsschalen aan beide zijden los. )
+see E 10. Draai de gradueringsschalen (A) zo, dat :
+het merkteken (B) overeenstemt met 0,75
+mm. Dit is 0,25 mm minder dan 0 (dit is |
+de dikte van de voeler).
+
+Figuur 83 — Schakelaar lasmes
+
+Ee
+
+NOTA: De volgende stappen zijn geschreven Ah.
+
+voor gebruik van een voeler met een
+
+x
+j .
+ia dikte van 0,25 mm.
+4. Plaats een diktevoeler (A) van 0,25 mm |
+] tussen het lasmes en de lasrol en dit aan :
+mae het uiteinde van het lasmes.
+Bs Ga Co orm |
+| \ NS RAR a USA
+= Se se anny
+Ra Renee Rees i
+$ my c as ae A)
+Re HAS
+a fh co :
+.* |
+)
+ed
+
+0,25mm Gap
+
+Seal Roll
+Rubber
+
+Figuur $4 — Plaats diktevoeler
+
+5. Draai de regelschroef in
+tegenuurwijzerszin tot men een lichte Op dit moment is er een opening van 0,25 mm
+tussen het lasmes en de lasrol (enkel als men
+
+weerstand voelt als men de voeler van
+tussen het lasmes en de lasrol probeert te gebruik maakt van een voeler met een dikte
+van 0,25 mm).
+
+trekken.
+11. Draai de vyzen van de gradueringsschaal
+
+6. Steek de diktevoeler opnieuw tussen het
+lasmes en de lasrol, maar nu aan de (A) vast terwijl men deze op zijn plaats
+houdt.
+
+andere zijde van het lasmes.
+5750W High Speed Wicketer e
+
+Figuur 85 — Verdraaien van gradueringsschaal
+
+Ne ee rt
+
+
+
+--- deel1 pagina 21 ---
+Spe ea Vas
+
+Hupson-SHARP
+>
+
+J Machine
+
+4.18.2.1 Penetratie instellen
+
+; a
+a | 12. Draat de _ regelschroeven (B) in
+i tegenuurwijzerszin tot de merktekens (C)
+J overeenstemmen met de 0. O p G E L ET |
+VERSCHEIDENE ONDERDELEN
+KUNNEN BESCHADIGD GERAKEN
+BIJ EEN OVERDADIGE
+
+PENETRATIE!
+
+De maximum penetratie bedraagt 0,70 mm
+
+met een druk op de cilinders van lasmes van 5
+bar. Stelt men een hogere penetratie, dan
+
+kunnen een aantal onderdelen aan de machine
+beschadigd worden.
+
+OPGELET |
+
+STEL DE PENETRATIE ENKEL IN
+
+ALS MEN ZEKER IS DAT HET
+KALIBREREN PERFECTIS
+
+GEBEURD.
+
+Afhankelijk van hoe groot de penetratie moet
+zijn, draaien we het merkteken van de
+regelschroeven in tegenuurwijzerszin tot op de
+gewenste markering. Voor een penetratie van
+0,5 mm moeten we het merkteken op 0,5
+plaatsen. Het lasmes zal nu een indrukking in
+
+de lasrol maken van 0,5 mm.
+
+Figuur 86 — Merkteken op nul plaatsen
+
+a 13. Vergeet niet de moeren vast te draaien om
+—s de regelschroeven te blokkeren.
+| De gradueringsschalen zijn nu gekalibreerd.
+Van zodra het merkteken op 0 geplaatst 1s,
+raakt het lasmes juist aan de lasrol ( Nul
+J penetratie).
+
+NOTA: Voorbeeld indien men zou gebruik
+maken van een voeler van 0,20 mm.
+
+uy *Gebruik een voeler met een dikte van 0,20
+
+mmm in stap 4.
+
+BE *Draai de penetratieschaal zo, dat het
+merkteken 0,80 mm aanduidt in stap 10 (dit 1s
+
+roe ee ee | 4 -
+
+0,20 mm minder dan 0).
+i ‘Vervang 0,25 mm in de overgebleven tekst
+door 0,20 mm.
+“| 80 5750W High Speed Wicketer
+ces
+
+
+
+--- deel1 pagina 22 ---
+Machine
+
+Seal bar
+penetration
+0,5 mm
+
+Seal Roll Seal Bar
+
+Rubber
+
+G@ <— Seal Roll
+
+Figuur 87 — Instellen van penetratie 0,5 mm
+
+Het is toegelaten een verschillende penetrate
+in te stellen langs beide zijden. Dit naargelang
+men zakken maakt met een lip of zonder lip.
+We nemen steeds een algemene regel in acht:
+Hoe dikker de film, hoe groter de penetratie die
+men dient in te stellen.
+
+4.18.2.2 Installatie van een nieuw lasmes
+
+Wanneer we een ander lasmes installeren,
+moeten we telkens opnieuw de
+gradueringsschaal kalibreren en resetten. Bi
+nieuwe machines is het geinstalleerde lasmes
+
+standaard gekalibreerd.
+
+5750W High Speed Wicketer
+
+SECTIE 4.19 WARMTESCHERM
+
+4.19.1 Doel en omschrijving
+
+Dit scherm  beveiligt de  rubberen
+doorvoerrollen van de overtollige hitte van het
+lasmes en staat gemonteerd op het frame van
+de bovenste hoofd doorvoerrol. Wanneer de
+machine voorzien is van perslucht en de hoofd
+doorvoerrollen staan open voor film invoer,
+dan komt het warmtescherm ook omhoog te
+staan. De in- en uitvoer van het koelingswater
+is langs de gedreven zijde voorzien en het
+water wordt gekoeld door middel van een
+koelgroep of stromend water. Indien men
+gebruik maakt van een externe koeling, beperk
+dan de waterdruk tot een maximum van 4 bar.
+Plaats een temperatuurregelaar voor de
+temperatuur van het koelwater die we instellen
+op de omgevingstemperatuur + 5 graden
+Celcius. Plaats ook een ventiel en regel het
+debiet op ongeveer 5,5 l/min. Te hoge druk zal
+de in- en uitvoerleidingen doen springen. Te
+koud water zal kondensatie veroorzaken welke
+vergaard wordt in de bovenste blaaspijpjes, wat
+aanleiding kan geven tot filmopstropping.
+
+Figuur 88 — Afregeling warmtescherm
+
+Men kan de hoogte van het scherm instellen
+aan de hand van 2 regelschroeven (A) aan de
+zijkant van het schild. Regel de hoogte van het
+scherm zo af dat het 2 mm boven de bovenste
+blaaspijpjes staat. Let wel op dat de
+blaaspijpjes nog vrij kunnen bewegen.
+
+81
+
+0) A oo 7, See eae Z -
+
+et ee ey
+
+
+
+--- deel1 pagina 23 ---
+Machine
+
+| SECTIE 420 LASROLEN
+| AANDRIJVING
+
+\
+
+Se a...
+L aE.
+
+Re-aaer_
+
+\)
+
+” - °
+— —
+\
+Y:
+rt ~ : yaya
+~ \ | o_, x
+‘ r ae
+a\ ¥ \ae
+Niemiemsce 1) Ly
+
+| _ Figuur 90 — Steunrollen lasrol
+y | Yiguur 89 — Lasrol en aandrijving
+
+4.20.3 Vervangen van teflon
+4.20.1 Doel en omschrijving
+
+Door de lasrol te omwikkelen met teflon gaan
+4 By het vervaardigen van zijlas zakken raakt de we de levensduur van de lasrol sterk verlengen.
+
+| zak de lasrol. De getrokken zijkant (trailing Vooraleer we de teflon willen vervangen,
+edge) van de zak wordt weggenomen door de
+
+| moeten we de lasrol wit de machine nemen.
+| vacuumarmen, terwijl de stootkant (leading a) Jog de machine zodat de bouten voor
+a edge) de start is van de nieuwe zak. Doordat de bevestiging van de lasrol
+| de lasrol indexeert wordt de klevende zichtbaar zijn.
+oy stootkant (leading edge) van de zak verwijderd se |
+a | \ van de lasrol. De indexering van de lasrol kan >) Breng de machine in noodstop.
+
+men instellen in het "lasmes menu’ van de
+B&R computer. De aandnjving van de lasrol
+
+| c) Verwijder de vijzen en neem de
+gebeurt via een getande mem en een lastol uit de machine.
+servomotor. De vereiste methode om de rubberen lasrol te
+\ 4.20.2 Ondersteuningsrollen voor lasrol herwikkelen met teflon is als volgt:
+
+De ondersteuningsrollen voor de lasrol wordt
+Ve gebruikt om de lasrol te beschermen tegen een
+
+te hoge penetratie. Zorg ervoor dat de breed af, of gebruik de voorgesneden
+ondersteuningsrollen (A) de lasrol net NIET teflon van Hudson-Sharp. HS Ref. #
+raken zodat deze nog, vrij kan bewegen. Oefen 9D3530
+| nooit druk uit op de lasrol, anders zal de teflon
+van de lasrol beschadigd worden. Blokkeer de
+positie van de ondersteuningsrollen met behulp f)Bedek de naad met een band klevende
+| van de regelschroef (B) en de moer. teflon van 25 mm breed. HS Ref. #
+
+5.7093.906.008.
+82
+
+5750W High Speed Wicketer
+= |
+
+d) ‘Snij een stuk teflon (A) met klevende
+zones van 760 mm lang op 138 mm
+
+e) Wikkel de teflon rond de rubberen
+lasrol.
+
+; i a ee ee oe oes
+
+@.- wir > S Geer . a “es
+
+m— ae oh ae = ~FIE rT
+
+
+--- deel1 pagina 24 ---
+Figuur 91— Vervangen van teflon
+g) Plaats de lasrol terug in de machine
+en zet de bouten vast.
+h) Deblokkeer de noodstop en reset de
+machine.
+4.20.4 HS Referentie
+SBC Servo motor lasrol: # $.7038.914.103
+Acopos Servo-module lasrol:
+# 8V 1090:00-2
+
+SECTIE 4.21 LASMES
+
+4.21.1 Doel en oms chrijving
+
+Twee lagen film worden samengedrukt tussen
+het warme lasmes en de met teflon bedekte
+lasrol tot ze worden gescheiden door een
+lasnaad en een zak wordt gevormd. De dikte
+van de gevormde lasnaad is afhankeliyk van
+het gebruikte lasmes, de lastyd, de snelheid
+van de machine en de temperatuur van het
+
+lasmes.
+
+Machine
+
+Het verwarmingselement (A) is vastgeklemd
+tussen de bovenste en onderste onderdelen van
+de lasstaaf. De lasstaaf is zodanig vervaardigd
+dat het de uitzetting tengevolge van de
+temperatuursveranderingen kan opnemen. Een
+thermokoppel (B) die gemonteerd is in de
+lasstaaf geeft een signaal aan de
+temperatuurregelaar. Indien er een probleem
+optreedt met de temperatuur, wordt dit gemeld
+op het B&R scherm. De voedingskabel en
+thermokoppel worden via een connector
+verbonden aan de basis van de machine, dit om
+gemakkelijk van type lasmes te kunnen
+veranderen.
+
+NOTA: Elk nieuw geassembleerd lasmes is
+door Hudson-Sharp afgesteld en
+gecontroleerd op een temperatuur van
+500 graden Celsius.
+
+4.21.2 Hellingshoek
+De hellingshoek van het lasmes is regelbaar in
+
+de machine. De geleidingen van het lasmes
+passen in twee rollende noksteunen (A) die
+
+gemonteerd staan op een zijdelings beweegbare
+beugel (B).
+
+Figuur 93 — Hellingshoek lasmes
+
+4.21.3 4.23.3 Afregeling
+Om de hellingshoek te veranderen moeten we
+volgende instructies volgen:
+
+1. Breng het lasmes naar beneden met
+behulp van de voorziene schakelaar op het
+bedieningspaneel. Zie hoofdstuk
+“ELEKTRISCH”.
+
+Figuur 92 — Lasmes sam enstelling
+5750W High Speed Wicketer 93
+
+
+
+--- deel2 pagina 1 ---
+a%
+
+Machine
+
+2. Maak de beweegbare beugels van de
+
+noksteunen langs beide zijden van het
+lasmes los.
+
+Plaats vervolgens het lasmes onder hoek
+
+en zet een beugel vast langs één zijde van
+het lasmes.
+
+4. Zet nu de andere beugel vast.
+
+We mogen nooit beide beugels  gelijk
+vastzetten, anders zal het lasmes torsen.
+
+4.21.4 Wanneer hellingshoek veranderen?
+
+- Als we een slecht gestoten zijkant
+(leading edge) hebben, moeten we het
+
+lasmes voorwaarts plaatsen (tip in de
+richting van de stapelaar).
+
+- Als we een slecht getrokken (trailing
+edge) hebben, moeten we het lasmes
+achterwaarts plaatsen (tip in de richting
+van de unwind).
+
+NOTA: De normale positie van het lasmes is
+vertikaal boven het center van de
+lasrol. Het lasmes bijstellen kan enkel
+overwogen worden als alle andere
+oorzaken die een slechte las kunnen
+veroorzaken weggenomen zijn.
+
+Als er speling optreedt tijdens de beweging
+van het lasmes moeten we deze weg nemen
+
+a) Breng het lasmes naar beneden met
+
+behulp van de voorziene schakelaar
+op het bedieningspaneel. Zie
+hoofdstuk “ELEKTRISCH”.
+Regel de rollende noksteunen zo af
+dat deze net de geleidingen van het
+lasmes raken. Nadat dit voltooid 1s,
+regel dan de hellingshoek indien
+nodig opmieuw af.
+
+4.21.5 Las temperatuur
+
+b)
+
+Het zijlassen gebeurt meestal met een
+temperatuur tussen 380 graden en 540 graden
+Celsius. De lastemperatuur is afhankeliyk van
+de samenstelling en dikte van de film, snelheid
+van de machine en de lastijd van het lasmes.
+De juiste lastemperatuur kan bepaald worden
+door het observeren van de
+filmopstroppingen onder het lasmes.
+De temperatuur moet verhoogd worden tot het
+
+ophopen van onzuiverheden verdwenen 1s. De
+84
+
+las en
+
+Hupson-SHARP
+>
+
+onzuiverheden moeten weggebrand zijn voor
+het lassen van de volgende zak, of het zal,
+
+warineer deze onzuiverheden zich opstapelen,
+slechte lassen veroorzaken.
+
+4.21.6 Tip van het lasmes veranderen
+
+Als we de tip van het lasmes willen vervangen
+moeten we het lasmes uit de machine nemen en
+opspannen in een vaste kleminrichting (A) die
+we op een vlaktetafel plaatsen. § Een
+gekwalificeerd technicus moet ervoor zorgen
+dat het lasmes PERFECT uitgelijnd is op een
+temperatuur van 500 graden Celsius en volgens
+de voorschriften van Hudson-Sharp. Voer de
+metingen uit met een meetklok (comparator).
+
+l.
+
+Als het lasmes rechtop staat in de
+kleminrichting moet het midden van de tip
+0,2 mm hoger zijn dan aan de zijkanten.
+(Zie meetopstelling onderstaande foto)
+
+Figuur 94 — Rechtstaande meetopstellin g lasmes
+
+2. Als het lasmes gekanteld staat in de
+
+kleminrichting, moet de tip van het lasmes
+perfect horizontaal zijn (Zie
+meetopstelling onderstaande foto).
+
+Figuur 95 — Liggende meetopstelling lasm es
+
+S7SOW High Speed Wicketer
+
+
+--- deel2 pagina 2 ---
+Sects
+
+nj |
+Lok
+
+a a a
+
+ee a gr Ya : \ ee Cte my ~. is et ' > agi ee ower £ ._-e <" oh ae ¥
+
+=HIDSON SHARD.
+Het bijregelen gebeurt via de regelschroeven
+op het frame van het lasmes, waarvoor we
+enkel een imbusleutel van 4 mm en een
+steeksleutel van 17 mm nodig hebben.
+
+NOTA: Bij het vervangen van de tip van het
+lasmes MOET ook steeds de
+bovenplaat van de tip vervangen
+worden. Dit omdat men anders met
+een verschillende  uitzetting van
+materialen te maken zal hebben en de
+tip zal kromtrekken. Let ook op dat de
+twee stelringen aan de zijkant van het
+verwarmingselement langs  iedere
+zijde 3 mm van de tip verwijderd
+staan, eveneens om het kromtrekken
+van de tip te vermijden.
+
+A: regelschroeven
+B: Verwarmingselement
+
+C: Bovenplaat tip
+D: Tip
+Figuur 96 — Lasmes samenstelling
+
+4.21.6.1 HS Referentie
+Kleminrichting: # 3M11451
+
+5750W High Speed Wicketer
+
+Machine
+
+85
+
+
+
+--- deel2 pagina 3 ---
+Machine Hupson-SHARP ;
+
+4 3
+4.21.7 Lasmes radius bepalen tabel is enkel informatief, dit yn zeggen dat
+| Uit onderstaande tabel kan men afleiden welke igs cine apna am et iba .
+radius men het best gebruikt voor een bepaald
+
+soort materiaal met een speciefieke dikte. Deze
+
+}
+MATERIAL - SEALBAR RADIUS SELECTION TABLE ;
+|
+
+20 |25 |30 3s Jao [as 55 160 165 170 175 |80 |85 |90 :
+erat TT
+i“ oF TTIITl
+
+_. EREREEEEEREE
+Elz SSEE AE
+
+Figuur 97 — Lasmes radius tab el
+
+E| &
+i i Ii
+apc!
+
+;
+
+LLDPE
+
+ie SS. 8 ll. ie. (hs etm a
+
+ae ee oh A, it
+
+ae
+
+3
+
+BOPP
+
+86
+
+jt wee i
+
+I-rF-4
+
+os ON RUA ee ee, eee Se
+
+",
+
+S750W High Speed Wicketer
+
+
+
+--- deel2 pagina 4 ---
+“HUDSON SHARD.
+
+SECTIE 4.22 NEERWAARTSE
+BLAASPIJPJES
+
+4.22.1 Doel
+
+Het doel van deze blaaspijpjes is om de
+zak vlak te houden op de aflegtafel
+zZodat de zak door de vacuum armen kan
+worden opgenomen.
+
+4.22.2 Werking
+
+Aan de lasbalkkonstruktie worden
+luchtpijpen aangebracht. Door deze
+Pljpjes wordt lucht doorgestuwd en de
+luchtstralen zijn zo gericht dat deze de
+film tegen de vlakke riempjes houdt net
+na het lassen. Voor _ standaard
+toepassingen gebruiken we lasmessen
+met 2 luchtpijpen en voor het gebruik
+van lange vacuumarmen gebruiken we
+lasmessen met 3 luchtpijpen. De lucht
+die door de pijpen gestuurd wordt,
+wordt gestuurd door een ventiel dat zijn
+
+signalen ontvangt van de B&R
+computer. De druk kan men regelen
+vanop het pneumatisch
+bedieningspaneel.
+
+4.22.3 Tijdsinstellin g
+
+De tyd van blazen kan bijgeregeld
+worden door herprogrammeren van de
+tyd op het bedieningsscherm (zie
+hoofdstuk “ELEKTRISCH”). Deze
+blazers worden zo ingesteld dat ze
+beginnen te blazen na dat de vorige zak
+ver genoeg verwijderd is en stoppen
+met blazen net voor de volgende zak
+
+wordt opgenomen.
+
+4.22.4 Blaasrichting
+
+De  blaasrichting is eenvoudig
+verstelbaar door de schroeven die de
+pijp vastklemmen los te draaien en de
+pijp te verdraaien. Stop de machine met
+een druk op de stopknop en breng het
+lasmes in zijn beneden positie door de
+schakelaar van het lasmes op het
+bedieningspaneel naar links te draaien.
+Nu bevindt het lasmes zich ongeveer 25
+mm boven de lasrol. Het lasmes 1s nu in
+de juiste positie om de blaasrichting in
+
+5750W High Speed Wicketer
+
+Machine
+
+te stellen. Onderstaande tekening geeft een
+eerste afstelling weer en kan een verdere
+bijregeling vragen. Indien we gebruik maken
+van een lasmes met 2 luchtpijpen vervalt de
+instelling van de middelste blaaspijp door de
+bovenste luchtpijp dan op ongeveer 3/4 van de
+lengte van de zak te laten blazen.
+
+Figuur 98 — Blaasrichting
+Gewoonliyk zijn de afstanden die op de
+tekening zijn aangegeven een goed startpunt,
+maar er dient nog te worden bygeregeld als de
+parameters te veel verschillen. De volgende
+bystellmg wordt gedaan bij de volgende
+machinestop.
+
+4.22.5 Luchtdruk
+
+De luchtdruk hangt af van de zakgrootte,
+filmdikte en de snelheid van de machine. Hoge
+snelheden en grote zakken zullen een groter
+blaasbereik vragen.
+
+Volgende waarden kunnen gebruikt worden
+voor een eerste instelling:
+
+- Bovenste neerwaartse blaaspijpjes:1,5 - 2
+
+bar
+
+- Middelste neerswaartse blaaspijpjes: 1,5 -
+2 bar
+
+- Onderste neerwaartse blaaspijpjes: 1 - 1,5
+bar
+
+87
+
+242 ast |}. wr le ee us” le ss
+
+U8 af ri
+
+ees
+
+_ “
+
+*V.. +s
+
+ee oe ig te el ey |
+
+a SS ae Se
+
+hm
+
+i
+
+‘se
+
+er
+
+‘io ey 6... Ne ee ee eS LUCY
+
+
+
+--- deel2 pagina 5 ---
+¥
+; Machine Hupson-SHARP
+7 ee
+
+[ ] SECTIE 4.23 STATI ; 7
+
+>» SCHE statische ontlader. Een vlamboogje kan dan
+_ ONTLADERS (HAUG) opgemerkt worden. , |
+| Als de statische laders werken, maar de .
+L if a 4.23.1 Doel statische problemen blijven, kijk dan na of de |
+- De machine is uitgerust met statische machine goed geaard is, of plaats meerdere |
+[ a ontladers om de statische elektriciteit te ontladers op de probleemplaatsen. Let wel op i
+| . neutraliseren welke ontstaat wanneer de dat per transformator  slechts 15m
+7 film door de machine loopt ionisatiekabel mag worden gebruikt (incl.
+[ a @ 4.23.2 Werking ionisatiestaaf). Ook kan er mogelijk een defect |
+: De statische lads be aan de transformator en/of ionisatiestaaf
+| pled to ader bezit een reeks van optreden. Om zeker te zijn dat de transformator
+[ | o ae Punten met een hoge spanning en/of de ionisatiestaaf niet defect zijn moeten :
+| aardoor de lucht in de nabiyheid van we dit controleren met een speciaal ontworpen |
+
+| de film geioniseerd wordt. De apparaat van HAUG. HS Ref: #
+[ ae Seioniseerde lucht neutraliseert elke S_7053.913.058 |
+q statische lading. :
+
+De hoeveelheid statische elektriciteit :
+[ 7 opgewekt door de _ verschillende |
+3 bewerkingen wisselt met de additieven
+| in de film, klimaat en zelfs de relatieve
+vochtgheid op een bepaalde dag.
+Daardoor kan het nodig zijn om extra
+statische ontladers te plaatsen.
+
+4.23.3 Plaatsing
+
+- By de ionisatiestaven védr de
+hoofd doorvoerrollen moet men
+erop letten dat de polariteit van de
+staven steeds verwisselt is m.a.w.
+staaf 1 (+), staaf 2 (-), staaf 3 (+),
+staat 4 (-).
+
+- Voor de richting van het blazen
+van het luchtmes aan de lIasrol
+moet men ervoor zorgen dat deze
+net tussen de lasrol en de
+
+koordjestafel blaast.
+
+- Het luchtmes op de stapelpoort
+moet men zodanig regelen dat
+deze met de zak mee blaast.
+
+on fs
+
+Le... en ae
+
+fe 4,23.4 Onderhoud
+
+De statische ontladers moeten na
+iy verloop van tyd eens uwitgeblazen
+worden met een luchtpijp of geremigd
+
+Te worden met een zachte borstel.
+Wanneer de statische ontlader vuil
+
+; wordt of filmdeeltjes tegen de staven
+
+plakken, zal de hoge spanning een lek
+id of kortsluiting veroorzaken in de
+
+is | 99 5750W High Speed Wicketer
+
+
+
+--- deel2 pagina 6 ---
+| Os as oe ee er
+Machine
+
+wn
+UDSON-SHARP
+~ @
+
+_
+oJ SECTIE 4.24 PREUMATISCHE BEDIENINGEN
+rm. -
+< | 4.24.1 Pneumatisch e bedieningen lasmes sectie
+1 7 7 _ G
+Tr
+|
+U7
+» I 2 3 4 5
+LJ Figuur 99 — Pneumatisch bedieningspaneel lasmes sectie
+P 7 4.24.2 Doel 4.24.3.1 Neerwaartse blaaspijpjes (1-2-3)
+—~! Pneumatische sturingen laten het manueel De ventielen voor de neerwaartse blaaspijpjes
+afregelen van de machine toe. Deze sturingen in de pmeumatische kast worden elke
+machinecyclus in werking gesteld om de film
+tijdens de verplaatsing op de aflegtafel tegen
+de riempjes te blazen. Hierdoor ligt de film
+
+kunnen door elektrische of handbediende
+
+signalen mechanische bewegingen veroorzaken
+vlak voor het opnemen door de vacuumarmen.
+
+it
+| van onderdelen van de machine.
+z.
+q 4.24.3 Werking
+Alle machinecomponenten ontvangen lucht dat 4.24.3.2 Blaaspijpjes tussen doorvoerrollen
+ig eerst gefilterd is en dan naar een luchttank (4-5)
+ig gestuurd wordt. Van huiermt vertrekken Een regelaar en een ventiel levert lucht aan de
+naar de verschillende blaaspijpjes. De elektro-ventielen voor de
+tijdsinstelling worden gestuurd door de B&R
+computer en bevinden zich in de pneumatische
+
+kast.
+4.24.5 Pneumatische bedieningen aan de
+
+luchtleidingen
+componenten die in de pneumatische kast
+zijkant van de lasmes sectie.
+
+a bevestigd zijn.
+
+IF | 4.24.4 Afregeling
+c= COMPONENT INSTELLING
+blaaspyjpjes
+Middenste nociwanre 0,8-1 bar
+blaasp1jpjes
+° Onderste neerwaartse 0,8-1 bar
+blaaspijpjes
+rE | Bovenste blaaspijpjes tussen 0,8-1 bar
+hoofd doorvoerrollen
+0,8-1 bar
+
+Onderse blaaspijpjes tussen
+hoofd doorvoerrollen
+
+89
+
+Figuur 100 - Pneumatische b edieningen zijkant
+lasmes sectie
+
+q 5750W High Speed Wicketer
+
+
+
+--- deel2 pagina 7 ---
+Fart
+A af
+—— i
+
+7
+a i
+
+Machine
+
+4.24.5.1 Doorvoerrollen (1-2)
+
+Het druksysteem op de doorvoerrollen dient
+
+voor de druk tussen de bovenste en de onderste
+doorvoerrollen en bestaat uit een drukventiel,
+twee regelaars en twee luchtcilinders. Beide
+Zijkanten zijn onafhankelijk van elkaar
+instelbaar.
+
+4.24.5.2 Antistatisch luchtmes aan lasrol (3)
+
+Door de druk op het luchtmes te regelen
+kunnen we de afstand van de antistatische
+
+4.24.7 Pneumatische bedieningen opnemer
+
+2 4
+— S
+
+Hupson-SHARP
+>
+
+lading gaan verlengen. Let wel op dat de
+zakken niet van de vacuum armen worden
+
+geblazen.
+
+4.24.6 Afregeling
+
+INSTELLING
+
+5-6 bar
+
+COMPONENT
+
+Antistatisch luchtmes lasrol
+
+©
+
+Figuur 101 - Pneumatisch b edienin gspaneel opnemer
+
+4.24.7.1 Zakafblazer (1)
+
+De zakafblazer blaast Jucht door de
+opneemarmen om de zakken vnj te maken
+wanneer ze gestapeld worden.
+
+4.24.7.2 Antistatisch luchtmes aan
+wicketmolen (2)
+
+Door de druk op het luchtmes te regelen
+kunnen we de afstand van de antistatische
+lading gaan verlengen. Let wel op dat de
+zakken niet van de vacuum armen worden
+geblazen.
+
+4.24.7.3 Zak onderst euning (3)(optie)
+Bij het vervaardigen van lange zakken kan het
+noodzakelijk zijn om gebruik te maken van de
+
+zakondersteuning. Hiervoor moeten we
+persluchtcilinder onder druk zetten met behulp
+
+van de drukregelaar. De cilinder zal dan samen
+met de stapelpoort geactiveerd worden. Staat
+de drukregelaar op nul, dan is de zak
+ondersteuning uitgeschakeld.
+
+90
+
+4.24.7.4 Stapelpoort (4)
+
+Met behulp van deze regelaar kunnen we de
+snelheid van de beweging van de stapelpoort
+gaan regelen.
+
+4.24.7.5 Bodemvouw ondersteuning (5)
+Aangezien we de kracht van de luchtdruk ner
+kunnen regelen, kunnen we ook de stabiliteit
+van de bodemvouw gaan controleren zodat de
+deze vlak op de vacuumarmen komt te liggen.
+
+4.24.7.6 Lip onderste uning (6)
+Aangezien we de kracht van de luchtdruk hier
+kunnen regelen, kunnen we ook de stabiliteit
+van de lip gaan controleren zodat de lip vlak op
+de vacuumarmen komt te liggen.
+
+4.24.7.7 Lasmes op/ neer
+
+Deze regelaar regelt de dmk van de
+luchtcilinders van de lasbalk en bevindt zich in
+de pneumatische kast van het lasmes. Wanneer
+de machine draait zal het elektro-ventiel de
+lucht direkt naar de cilinder stuwen aan de
+zuigerstangzijde, om de lasbalk in zijn
+laspositie te brengen. Wanneer’ de
+stopdrukknop is ingedrukt of de spanning valt
+
+5750W High Speed Wicketer
+
+
+
+--- deel2 pagina 8 ---
+Hupson-SHARP
+Mgr iea kn ae
+
+weg, stuurt het ventiel de lucht naar de
+cilinders aan bodemzijde. Wanneer de machine
+stopt, kan het ventiel manueel bediend worden
+
+met de schakelaar, aangeduid met “lasmes op /
+neer’’,
+
+4.24.8 Afregeling
+
+__COMPONENT | INSTELLING
+Zakafblazer 1,5-2 bar
+
+Antistatisch luchtmes
+wicketmolen
+
+SECTIE 4.25 OPNEMER
+
+Figuur 102 - Opnemer
+
+4.25.1 Doel
+
+Het systeem is ontworpen om de zak van de
+lasplaats naar de stapelpinnen over te brengen
+op het juiste tijdstip om de goede laskwaliteit te
+verzekeren. Daar we deze opnemer kunnen
+naar achteren schuiven, wordt onderhoud en
+afregelingen aan opnemer en lasmes veel
+eenvoudinger.
+
+4.25.2 Werking
+
+Het opneemsyteem ontvangt zijn aandrijving
+van de hoofdas van de basismachine via een
+servo motor met  tandwielreduktor en
+tandriemcombinatie die zich aan de zijkant van
+de machine bevinden. De riemschyf dat op de
+as van de vacuumarmen zit, is verbonden met
+
+5750W High Speed Wicketer
+
+Machine
+
+Zak ondersteuning
+Stapelpoort
+Ondersteuning bodemvouw
+Ondersteuning lip
+
+4.24.8.1 Elektrische s chakelaars
+
+De funktie van de elektrische schakelaars
+wordt besproken in het hoofdstuk
+“ELEKTRISCH”.
+
+Lasmes op / neer
+
+een koppelbegrenzer. Deze begrenzer is een
+beveiliging.
+
+In geval van klemming zullen de vacuumarmen
+die geklemd zitten op de as van de vacuumnaaf
+in staat zijn de veerkracht te overwinnen in de
+koppelbegrenzer en toelaten dat de
+aangedreven as kontinu mag draaien. De
+opneemeenheid is gemonteerd op limeaire
+lagers die een zijdelingse verplaatsing van de
+stapelaar toelaat om de armen in lijn te houden
+met de zak. Deze lineaire beweging wordt
+bekomen door gebruik van een tandwielmotor
+die zijn  signalen ontvangt van het
+detekttesysteem. Met behulp van een
+elektrische schakelaar bedienen we een ventiel,
+waarmee we de opnemer kunnen verschuiven.
+LIMLISMDIPLIMAIPPPPLPEAP ALPE PPADS f.
+
+WAARSCHUWING
+
+~,
+
+SCHAKEL ALTIJD DE
+NOODSTOPKABEL TUSSEN DE
+OPNEMER IN, ALS WERKEN IN
+
+DEZE OMGEVING
+NOODZAKELIJK ZIJN. DEZE
+NOODSTOP BELET DAT DE
+OPNEMER KAN GESLOTEN
+
+WORDEN
+
+YISLIILL SLILILLLILELIFLI PEEVE DPD DPD SSS
+
+WADA DARARARA ERAS A ARARALARAASR
+WAAAAAAAANLARAANSARAARAARARAARAASD
+
+SS
+
+9]
+
+
+
+--- deel2 pagina 9 ---
+a 7
+
+_ ee ee ee —— | er i
+
+Machine
+
+SLLELTTTTA Li hhittstsihiththninththe
+
+WAARSCHUWING
+
+Ad
+
+.
+
+KOM NIET ONDER DE DRAAIENDE
+VACUUMARMEN OM ZAKKEN
+VANONDER DE MACHINE OF VAN
+DE VLOER TE RAPEN. DIT KAN
+AANLEIDING GEVEN TOT
+ERNSTIGE KWETSUREN.
+
+VV AAAAAAALANSRAARARARARAARRARANS
+
+~
+
+{
+
+CALI LLEL EOP EEL LAME LEL EMILE,
+
+4.25.3 HS Referentie
+
+SBC Servo motor Opnemer: # $.7038.914.135
+Acopos Servo-module wicketmolen:
+# 8V1320:00-2
+
+4.25.4 Aflegtafel
+
+Een transportband bestaande uit elastische
+riempjes wordt gebruikt om de gemaakte zak
+naar de vacuumarmen te verplaatsen. De
+aandnjving van de riempjes gebeurt via een
+tandriemaandrijving die op een tussenas
+gemonteerd staat. De riempjes lopen op
+wieltjes die gemonteerd staan op frames en
+worden aangedreven door de tussenrol. De
+frames zijn in hoogte verstelbaar en ieder frame
+bevat 2 of 4 nempjes. Met behulp van een
+riemspanner worden de riempjes opgespannen
+
+Normal 3 mm
+
+Exc. PP: 6mm
+@Q— Seal Bar
+
+By a tains
+ae
+ns
+
+Rope Belt
+
+Figuur 103 — Koordjestafel
+92
+
+Hupson-SHARP
+@
+
+Voor het afregelen van de framen moet men
+ervoor zorgen dat de ruimte tussen de framen
+en de lasrol 3 mm bedraagd. De hoogte van de
+aflegtafel moet eveneens afgeregeld worden en
+dit op 3 mm van de bovenzijde van de lasrol.
+Maken we gebruik van Poly Propuleen film
+dan is het beter het frame te laten zakken naar 6
+mm. Regel het eerste frame dat deze zo dicht
+mogelijk tegen de lipzijde van de
+vacuumarmen staat. Plaats nu alle framen zo
+dicht mogelijk tegen elkaar waar kan. Zorg er
+steeds voor dat de volledige zak steeds op de
+aflegtafel ligt. Hoe meer framen, hoe beter de
+ondersteuning en aandrijving.
+
+4.25.5 Opstroppingsfotocel
+
+Deze fotocel staat gemonteerd tussen de
+riempjes van aflegtafel. De fotocel stopt de
+machine als na een X-aantal opeenvolgende
+bewegingen van het lasmes, de machine geen
+zakken meer produceert. De waarde van het
+aantal zakken is instelbaar in de B&R
+computer.
+
+4.25.6 Vacuum sys teem
+
+4.25.6.1 Doel
+
+Het doel van het vacuum systeem is de zak op
+de opneemarmen te houden terwiyl hy
+overgeplaatst wordt van de aflegtafel naar de
+stapelpinnen.
+
+4.25.6.2 Werking
+
+Het hart van het vacuum systeem is de
+vacuumturbine. Deze turbine is bevestigd met
+de §§ vacuumverdeeltank onderaan de
+opneemkader. Flexibele slangen (A) worden
+gebrukt om de vacuumverdeeltank aan de
+naven van de opneemarmen (B) te verbinden.
+Deze naven bestaan uit 2 delen, een roterend
+deel (C) dat 8 poorten bevat en 8
+vacuumarmen, en een statisch deel (D) dat een
+inwendig, banaanvormige poort bevat.
+
+3750W High Speed Wicketer
+
+2 > z ay ae Fs ee gh.
+
+_—
+
+
+--- deel2 pagina 10 ---
+} ee ae a Se !
+‘
+ee = a ‘
+
+Figuur 104 — Vacuum systeem
+
+Deze inwendige poort van het statische deel
+laat toe dat vacuum kan worden getrokken in
+verschillende poorten in de roterende naaf op
+eenzelfde moment. De instelling is zo dat de
+vacuumpoort van het armdeel = de
+banaanvormige poort van het statische deel
+bereikt, zodat de vacuum opkomt net voor het
+opnemen.
+
+Als de arm draait wordt de vacuum behouden
+tot de zak over de stapelpinnen geplaatst is. Op
+dit moment zal de roterende poort aan het einde
+van de banaanvormige poort komen in de
+statische naaf waardoor de vacuum wordt
+afgesneden. Deze komt nu voor een opening
+waar lucht wordt doorgestuurd om de zak van
+de armen af te blazen.
+
+4.25.6.3 Afstelling
+
+De afstelling van het vacuumzuigen wordt
+gedaan door het losdraaien van de schroef (A)
+aan de zijde van het stationaire deel, en de naaf
+in de gewenste richting te verdraaien. De naaf
+naar het lasmes verdraaien zal het opkomen
+van de vacuum versnellen. Verdraaien in de
+tegenovergestelde richting zal deze later doen
+opkomen.
+
+De vacuum aan de lipkant zal afgesneden
+worden wanneer de zak ongeveer 50 mm
+voorbij de top van de stapelpinnen (B) komt.
+Aan de gussetzijde zal deze ongeveer 25 mm
+later afgesneden worden. Deze instelling is zeer
+afhankelijk van zakgrootte en filmdikte.
+
+5750W High Speed Wicketer
+
+Machine
+
+Figuur 105 — Vacuum afstelling
+
+4.25.7 Vacuumarmen
+
+4.25.7.1 Doel
+
+Het doel van de vacuumarmen is de zak van de
+aflegtafel op te nemen en het over te brengen
+naar de stapelpinnen. Elke vacuumarm bezit
+een rij gaten in de lengterichting van de arm.
+Deze gaten dienen om vacuum te creéren om
+de zak tegen de armen te houden tijdens de
+overbrenging.
+
+4,25.7.2 Uitlijning
+
+Figuur 106 — Uitlining vacuumarmen
+
+De uitlymng van de vacuumarmen is zeer
+belangryk voor de goede werking van de
+machine. De twee of dre sets opneemarmen
+worden bevestigd op vacuumnaven welke
+instelbaar zijn zoals besproken in vorige
+paragraaf.
+
+93
+
+
+
+--- deel2 pagina 11 ---
+a
+
+5 ee
+
+Machine
+
+De Vvacuumnaaf aan de lipzijde van de zak zal
+altijd zo opgesteld worden dat er 3 mm speling
+1s tussen de vacuumarm en de punt van de
+stapelpinnen op de stapelaar. Deze regeling
+gebeurt door het instellen van de
+regelschroeven onderaan de stapelaar. De
+afstand tussen de andere armen en de bodem
+van de zak moet ongeveer 25-50 mm zijn.
+
+4.25.7.3 Opneem moment
+
+Vooraleer we het opneem moment gaan
+instellen in het B&R scherm moeten we ervoor
+zorgen dat de sets vacuumarmen afgeregeld
+zijn. Nadat we de machine in noodstop
+geplaatst hebben en opnieuw gereset hebben,
+moeten we de vacuumarmen zo afregelen dat
+deze overeenkomen met de bovenkant van de
+
+lasrol.
+Se ar
+Lip Side
+
+Seal Roll
+
+Figuur 107 - Opneem moment
+
+Indien we produktie lopen met Poly Propuleen
+film moeten we de zak vroeger opnemen.
+Hiervoor geven we de waarde 0 in voor het
+afneemmoment en plaatsen we de
+vacuumarmen iets hoger dan de lasrol.
+
+NOTA: De ingegeven waarde voor het opneem
+moment is gelijk aan het aantal mm
+dat het lasmes geopend is na het lassen
+van de zak. Gaan we de zak vroeger
+gaan opnemen, dan is het opneem
+
+94
+
+Hupson-SHARP
+>}
+
+moment gelijk aan het aantal msec dat
+het lasmes nog gesloten is.
+
+4.25.7.4 Afregeling hoeveelheid film op
+vacuumarm aan lipzijde
+
+De hoeveelheid film op de vacuumarm aan de
+lipzijde kan men regelen door de filmbaan te
+verleggen. Om een goede werking te
+verzekeren, moet de hoeveelheid film op de
+vacuumarm minimum 10 mm bedragen.
+
+SECTIE 4.26 STAPELPOORT
+
+4.26.1 Doel
+
+De stapelpoort heeft als doel een aanslag te zijn
+voor het stapelen van de zakken. Op deze
+stapelpoort staat ook een antistatisch luchtmes
+om de laatste ladingen op de zak weg te nemen.
+De regelaar en de manometer om de luchtdruk
+van het luchtmes te regelen staan eveneens
+gemonteerd op deze eenheid.
+
+Figuur 108 — Stapelpoort
+
+S750W High Speed Wicketer
+
+ee
+
+
+--- deel2 pagina 12 ---
+sIUDSON SHAR.
+
+SECTIE 4.27 STAPELAAR
+
+Machine
+
+Figuur 109 — 1 staps stapelaar
+
+4.27.1 Doel
+
+De stapelaar transporteert de gestapelde zakken
+zodat deze kunnen opgenomen worden door de
+operator.
+
+4.27.2 Werking
+
+De bewegingen van de pinnen van de stapelaar
+worden teweeggebracht door een verplaatsing
+van 2x2 kettingen die verscholen zitten onder
+de groene band. De beweging van de ganse set
+stapelpinnen en de indexering van de stapelaar
+gebeurt d.m.v. een tandnemaandnyjving en een
+servomotor. De beweging voor de afstand van
+de stapelpinnen onderling wordt ook
+teweeggebracht door een tandriemaandrijving
+en een faseshifter maar dit in combinatie met
+een asynchrone motor. Om de afstand van de
+stapelpinnen niet te overschrijden wordt deze
+begrensd door een nok op_ een
+spindelmechanisme die één van de 2
+eindeloopschakelaars gaat bedienen. Alle
+aandrijvingen en motoren bevinden zich onder
+de kast achteraan de stapelaar. Als men tydens
+produktie zakken wil wegnemen van de
+stapelaar dan zal een fotocel beletten dat de
+stapelaar kan indexeren. Een fotocel detecteert
+als de stapelaar vol is en men hoort een
+
+5750W High Speed Wicketer
+
+biepsignaal als de stapelaar gaat indexeren. Als
+de fotocel achteraan de stapelaar zakken
+detecteert of er neemt iemand zakken van de
+stapelaar, dan zal de stapelaar niet indexeren en
+valt de machine in stopfunctie. By het
+produkte lopen, wordt de eerste set
+stapelpinnen vergrendeld door middel van een
+persluchtcilinder onder de groene band. Met
+behulp van een knop in het aanraakscherm
+kunnen we de stapelaar handmatig laten
+
+indexeren.
+
+WAARSCHUWING
+
+A
+
+NEEM GEEN ZAKKEN MEER WEG
+VAN DE STAPELAAR, NADAT MEN
+HET BIEPSIGNAAL VOOR HET
+INDEXEREN VAN DE STAPELAAR
+GEHOORD HEEFT.
+
+95
+
+
+
+--- deel2 pagina 13 ---
+a
+
+ail
+
+Y
+
+Lee ee a
+
+seal
+
+Machine
+
+4.27.3 Stapelinnen
+
+De stapelpinnen (A) hebben achteraan een
+gleuf, om toe te laten een wicket te gebruiken
+voor het samenhouden van de zakken zodat
+men gemakkelijk de zakken van de
+stapelpinnen kan nemen.
+
+Voor het stapelen van de zakken moeten we er
+steeds voor zorgen dat de pin die het dichtst
+tegen het lasmes staat de vaste pin (B) is. Dit
+wil zeggen als we de schakelaar voor het
+verplaatsen van de pinafstand op _ het
+bedieningspaneel bedienen, moet de achterste
+stapelpin (C) zich verplaatsen. Is dit niet het
+geval dan moeten we de schakelaar zolang
+bedienen tot de vaste pin vooraan komt te
+staan. Als dit gedaan is, zetten we de
+stapelpinnen op dezelfde centerafstand als de
+stapelgaten. Vervolgens moeten we met behulp
+van een schakelaar op het bedieningspaneel de
+stapelpinnen positioneren tot de zak perfect
+over de stapelpinnen komt te liggen.
+
+Hupson-SHARP
+>
+
+van de film en de wicketstapelaar en de
+stapelgaten in lijn te houden met de film.
+
+Met een knop in het aanraakscherm kan men
+de fotocellen op de stapelgaten eenheid
+afzetten (Zie hoofdstuk “ELEKTRISCH”). Het
+detectiesysteem bestaat uit een motor, een
+encoder, een spindel en 2
+eindeloopschakelaars.
+Wanneer de film beweegt in een richting die
+loodrecht is aan de doorvoerrichting van de
+film, zullen de fotocellen de motor doen
+activeren met als gevolg dat de stapelgaten
+eenheid en de stapelaar deze beweging zullen
+meevolgen.
+Tijdens produktie moet men er steeds voor
+zorgen dat de stapelgaten eenheid en de
+stapelaar steeds in het midden van de
+eindeloopschakelaars kunnen bewegen.
+NOTA: De eindeloopschakelaar voor de
+beweging van de stapelaar staat in de
+machine gemonteerd (zie volgende
+
+Figuur 111 — Eindeloopschakelaar beweging
+stap elaar
+
+Met een schakelaar op het bedieningspaneel
+kunnen we enkel de stapelaar van plaats doen
+bewegen, dit om perfekt de zak te kunnen
+opnemen (Zie hoofdstuk “ELEKTRISCH”?.
+
+Figuur 110 — Stapelpinnen
+
+4.27.4 Automatisch uitlijnen van stapelaar
+
+4.27.4.1 Doel
+
+Het automatisch uitlijnen van de stapelaar
+gebeurt aan de hand van het detectiesysteem op
+de stapelgaten eenheid. Het doel van het
+detectiesysteem is het volgen van de zijkant
+
+S750W High Speed Wicketer
+
+96
+
+
+
+--- deel2 pagina 14 ---
+t
+
+Neti
+
+Hupson-SHARP
+Th ee ee
+
+Elektrisch
+
+HOOFDSTUK 5 - ELEKTRISCH
+
+SECTIE 5.1 BEDIENING SPANEEL
+
+Hupson:S
+
+verting qu mm SCREEN
+
+‘Ovteut teas so
+lGrrent (air >. ic
+mt 2s mA UB
+
+Figuur 112 - Bedieningspaneel
+
+5.1.1 Lip grootte
+
+oH ¢
+
+Figuur 113 — Schakelaar Lip grootte
+
+Met deze schakelaar kunnen we de grootte van
+de lip aanpassen. De schakelaar gaat de positie
+van de sensor(en) op de  afwikkelaar
+verplaatsen, zodat de film meer naar links of
+naar rechts door de vouwdriehoek gaat. Dit
+resulteert na het vouwen in een grotere of een
+
+kleinere lip.
+
+5750W High Speed Wicketer
+
+5.1.2 Film geleiding
+
+el)
+
+Figuur 114 — Schakelaar film geleiding
+
+Met deze schakelaar kunnen we de positie van
+de vouwdriehoek veranderen, zodat de film een
+goede positie heeft bij het intreden van de
+invoerrollen.
+
+10]
+
+ee a oa —— soe -
+
+-_. wen 2 Oe .e& Te §
+
+so ——— OF a «
+
+
+
+--- deel2 pagina 15 ---
+Elektrisch
+
+5.1.3 Jog machine
+
+wv”
+C
+
+Figuur 115 —- Drukknop Jog machine
+
+Zolang deze drukknop bedient is, zullen de
+wicketmolen en de elastische riempjes draaien.
+
+5.1.4 Positie stapelaar
+
+ay /amz/ay
+ORGS,
+
+Figuur 116 — Schakelaar positie stapelaar
+
+Door deze schakelaar links of rechts te
+bewegen brengen we de stapelaar dichter of
+verder van de operatorzijde. Dit om de
+stapelgaten juist over de stapelpinnen te
+brengen.
+
+5.1.5 Positie stapelpinnen
+
+by /amr/a9
+Se
+
+Figuur 117 — Schakelaar positie stapelpinnen
+
+Naargelang we een kleine of een grote zak
+produceren, moeten we de stapelpinnen verder
+of dichter naar de vacuum armen verplaatsen.
+Hier ook om de stapelgaten juist over de
+stapelpinnen te laten vallen.
+
+102
+
+Hupson-S
+DUNC SHARE.
+
+5.1.6 Afstand tuss en stapelpinnen
+arpa
+
+Figuur 118 — Schakdaar afstand stapelpinnen
+
+Door deze schakelaar in de min of de plus
+stand te bewegen, kunnen we de afstand tussen
+de stapelpinnen onderling verkleinen of
+
+vergroten.
+5.1.7 Lasmes
+
+Figuur 119 — Schakelaar lasmes
+
+Wanneer de schakelaar in de linkse positie
+staat, hoort men een geluidssignaal en zal het
+lasmes naar beneden gaan. Deze zal zolang
+beneden blijven tot dat de schakelaar weer in
+zijn nulpositie wordt geplaatst. Wanneer men
+de schakelaar in de rechtse positie plaatst, dan
+zal men eveneens het geluidssignaal horen en
+zal het lasmes een cyclus maken. Dit wil
+zeggen een korte beweging neerwaarts en
+onmiddellijk terug naar zijn rustpositie.
+
+OPGELET |
+
+ALS HET LASMES TE LANG IN DE
+
+BENEDEN POSITIE STAAT, KAN
+DEZE SCHADE TEWEEGBRENGEN
+OP DE LASROL!
+
+3750W High Speed Wicketer
+
+
+
+--- deel2 pagina 16 ---
+Hupson-SHARP
+SG aes ean ee
+
+5.1.8 Jog doorvoerrollen
+
+c)
+
+Figuur 120 — Schakelaar doorvoerrollen JOG/CONT
+
+Wanneer men de schakelaar in de rechtse
+positie ; houdt, dan hoort men een
+geluidssignaal en Zullen de doorvoerrollen
+draaien. Als men de schakelaar loslaat en
+onmiddellijk terug activeert in dezelfde
+nichting, dan zal men geen signaal meer horen
+en Zullen de doorvoerrollen met een tragere
+snelheid draaien. Wanneer men de schakelaar
+in de linkse positie plaatst dan gebeurt dezelfde
+actle, maar men moet de schakelaar niet
+vasthouden in zijn positie. Ook hier is de korte
+beweging van toepassing zodat de
+doorvoerrollen ook in de vaste stand met een
+tragere snelheid kunnen blijven draaien.
+Gelijktijdig met de doorvoerrollen worden de
+blazers tussen de doorvoerrollen bediend, dit
+om opstropping van de film tegen te gaan.
+
+5.1.9 Reset noodstop
+
+u
+
+Figuur 121 — Reset noodstop
+
+Deze drukknop moet men indrukken na een
+noodstop om de machine te resetten. Na het
+opstarten van de machine moet men ook de
+machine resetten alvorens men de machine kan
+starten. Als de oranje signaallamp brandt, is de
+machine gereset.
+
+5750W High Speed Wicketer
+
+Elektrisch
+
+5.1.10 Noodstop machine
+
+Figuur 122 — Noodstop
+
+Deze drukknop moet men gebruiken als er
+gevaarlijke situaties gecreéerd worden er/of als
+er iets mis loopt met de machine. Rond de
+machine staan een aantal van deze
+drukknoppen zodat men zo snel mogelik kan
+ingrijpen bij een voorval.
+
+5.1.11 Stop machine
+
+Figuur 123 — Stop machine
+
+Wanneer men op deze drukknop duwt, dan zal
+de machine op een normale manier stoppen.
+
+5.1.12 Start machine
+
+©
+
+Figuur 124 — Drukknop start machine
+
+Als men op de start drukknop duwt zal de
+machine starten nadat het geluidssignaal is
+gestopt. De rode signaallamp zal melden dat de
+machine in werking is.
+
+SECTIE 5.2 B&R AANRAAKSCHERM
+
+Het B&R aanraakscherm heeft als doel de
+machine op een gemakkelijke manier te
+kunnen bedienen. De volgende pagina's geven
+
+103
+
+
+--- deel2 pagina 17 ---
+“=
+
+= 3
+ma.
+on
+=
+
+=
+
+\]
+
+104
+
+|
+:
+4
+a
+7
+J
+Me
+th
+ie
+i
+
+Elektrisch
+
+een overzicht van de verschillende schermen
+die kunnen voorkomen op de machine. De
+meeste schermen zijn rechtstreeks toegankelijk
+en enkele schermen bevinden zich onder een
+Paswoord. Onder de paswoordschermen Zijn ef
+
+schermen toegankelijk voor de operator en
+
+schermen voor de Huds on-Sharp enginieur.
+
+Hupson-SHARP
+
+@
+
+NOTA: Wanneer men in een actief scherm
+een parameter heeft veranderd moet men
+
+telkens op het VINKJE duwen om de
+waarde te bevestigen.
+
+3750W High Speed Wicketer
+
+
+--- deel2 pagina 18 ---
+@. Me ene YUM ea Gs «.
+
+Ajuo dieyg-uospny <—__— Psomsseg J93se yy << -—_—___ res
+
+Pe Lee ial /
+on ‘
+
+4 Heemee sutasee @ rain, Bi ot oe oe
+aa MS MOTO] ee tere
+
+. — = I L
+SY SST? SSeS NS MPS Seen | | a kd |! lw
+. * *
+
+, \ SR
+
+ix |*oeary
+
+[et mmtawy
+
+At
+
+4U41P5S AhUMUOe be Bantes |
+°F 198% Sma ate mms “ ]
+
+>
+—
+OO cscnmteee,
+oma
+
+2etdey erease D rma fannaegy
+
+PAVIIS-KOSaNT]
+
+MAAN LLELTOODETHUNTTGG.2T HD 84) | ERETEY ~
+|e MANr aro OM rem 11 ehd Lavenperery >
+Senne bys ro PRPS creates EE Gry ’
+uberinebeubidelteta TT ,
+AAeV Nid Mendes cremrese ery 38 Ase ePAaNarwe -
+
+24084 dkaiae paws @D mr dn pee
+
+avg NOSATIfY
+
+; s bie gg
+3 Pies ce es - (F
+ee ay
+bare pag t 5_ WAR Re |
+
+— Se 3; hee. pes
+
+1 Bag , mee 3-5 24
+
+fe <4 * 3 itm 7 a Bee |
+
+ere? 2 eed ee
+
+. By eee oe BI
+
+, ace ; BER = Be
+
+~~ , Riss “2 Ve — . 2a,
+
++ pay I iigk r] wily ered
+t @eeWiht pice t ice} neee
+yh area} Sek rt |
+ae he & BSE | 5 ys =! |
+tpn teed bre AOMORI ©" AGES ]
+
+Ru ea
+
+Ta bee
+
+Ween Ww are
+
+- OSs Cr 09 O68 6e er eres ene
+
+|
+
+t2ettea “40554 Jay A4t&
+
+GA ANNUM ROA Bude has uy
+
+
+--- deel2 pagina 19 ---
+a | ee | | ore |
+
+Hupson- SHARP
+aes
+
+5.2.1 Navigatie scherm "SCREEN
+HOPPER"
+
+Bij het opstarten van de machine komen we bi
+het "SCREEN HOPPER" scherm terecht. Dit
+scherm fungeert als navigatie scherm tussen
+alle hoofdschermen. In dit scherm staat bij elke
+selectie toets een korte scherm omschrijving en
+
+«
+Ul
+
+tUDSON-
+Converting xuipracnt Screen hopper
+
+~
+
+P aa
+Tw 5 ra ay
+
+|
+
+A ig eg! a
+x 40 Yo. dh, ‘
+
+We LI ee
+
+,* a . ;
+
++ | Whew Laven
+
+* ey RAs Be oe hh ak oD,
+
+> Wear eas
+Te Aaewann
+| Toe
+
+mA S Sek ®
+¥ ul
+
+7
+wisererwy
+
+~\ =
+
+Elektrisch
+
+een symbool afgebeeld dat steeds terugkeert
+tidens het navigeren. Drukken we bijvoorbeeld
+op de toets 'go to run screen’ dan komen we in
+het "RUN SCREEN" terecht. D.w.z. overal
+
+waar we op het - symbooltje drukken,
+keren we steeds terug naar het "RUN
+SCREEN".
+
+$3 Hudson-Sharp only
+ae
+
+everwhere ey eo
+
+Figuur 125 - "SCREEN HOPPER" scherm
+
+5750W High Speed Wicketer
+
+107
+
+
+--- deel2 pagina 20 ---
+Elektrisc Hupson-S
+ktrisch —
+
+Omschrijving "RUN" scherm
+: ane cn Sa
+
+ale NR in rete ae Lath PET itl) hae
+
+— ge
+
+a ding tet Had a hil a Toe
+LLL eT
+Metuelpecatereuter mee |
+
+Lie : + 7 {
+
+abul wae Atoverent
+7 we  Alorateat
+we Kf fie
+| Se f
+
+Figuur 126 - "SCREEN HOPPER" scherm
+
+Vanuit dit scherm kunnen we alle
+
+hoofdinstellingen uitlezen en aanpassen zoals ec komt er _soms een slot (6 )
+
+temperatuur lasmes, doorvoorlengte, snelheid, tevoorschijn, d.w.z. dat deze P Gram eters met
+, instelbaar zijn tijdens het oplichten van dit slot.
+
+o Samengevat alle instellingen nodig tijdens
+productie van de machine. Naast enkele
+
+Tekstophet | Verklaring Typische Min-Max instelling
+scherm waarde
+
+Eee mica ©
+
+ons dat de machine op zoek is
+achter het merkteken. Dit enkel
+als de fotocel ingeschakeld is.
+(Zie ook "SERVICE SCREEN")
+
+Dit veld geeft het aantal
+merktekens aan dat de fotocel
+niet gedetecteerd heeft.
+
+LET OP: De machine stopt pas
+van zodra dat het aantal zakken
+ingesteld in 'Out of register stop’
+overschreden wordt. Deze
+parameter is in te stellen in het
+"SERVICE SCREEN"
+
+Ditis de gemeten doorvoerlengte
+(= zaklengte) tydens
+printregistratie
+
+.
+Speed Geeft de ingestelde 0 - 500 zakken per minuut
+| machinesnelheid aan in zakken (afhankelijk van
+per minuut materiaaleigenschappen)
+| 108 5750W High Speed Wicketer
+
+ws "Wise © Wer ame, Vay bres an —~ A, IW Por [es (Le \ {| \ ontiin
+
+
+--- deel2 pagina 21 ---
+5750W High Speed Wicketer
+
+Hupson ‘SHARP Elektrisch
+
+Tekst op het ‘| Verklaring Typische Min-Max instelling
+scherm waarde
+
+Draw length Hier kunnen we de zaklengte 85-390
+instellen in mm. 25.620
+A fhankelijk van het machinetype
+Seal dwel Hier kunnen we de lastijd 5-350 ms, 0-1000 ms
+instellen van de hoofdlasbalk. i
+Geeft de lastijd van de
+hoofdlasbalk in ms aan.
+
+Recipe item Geeft aan welk opgeslagen menu
+aktief is. Fabrieksinstellingen
+kunnen opgeladen worden via het
+"RECIPE LOAD" scherm
+
+Geeft de status van de machine
+weer. Vb. homing, wachten, ...
+
+Deze teller telt het aantal
+gemaakte zakken per pak. De
+teller wordt automatische gereset
+bij elke indexering van de
+stapelaar.
+
+Met deze toets kunnen we het
+
+aantal getelde zakken per pak
+
+ek oa resetten.
+
+Actual count Met deze toets schakelen we de
+zakteller per pak aan of uit.
+
+con Schakelt men de counter uit, dan
+
+zal de stapelaar NIET indexeren.
+
+Total count Deze teller telt het aantal
+gemaakte zakken.
+
+Total count Met deze toets kunnen we de
+aa) totale zakteller resetten.
+PP:
+
+Temperature Hier stellen we de temperatuur
+sealbar Setpoint | van het hoofdlasmes in. Met
+behulp van 't' en '-' kunnen de
+temperatuur per graad verhogen
+of verlagen. Drukken we op het
+veld van de ingestelde
+temperatuur dan kunnen we een
+numerieke waarde ingeven.
+
+400-420°C
+PE:
+500-540 °C
+
+109
+
+Se
+
+
+--- deel2 pagina 22 ---
+Elektrisch Hupson-SHARP
+cs een,
+
+Tekst op het Verklaring Typische Min-Max instelling
+scherm waarde
+
+Via deze toets kunnen we
+
+procesparmaters van de
+
+temperatuurregelaar veranderen
+
+Hier lezen we de gemeten
+temperatuur af.
+
+Temperature
+sealbar Temp
+
+Hier lezen we het uitgestuurde
+vermogen afin % om de
+ingestelde temperatuur te
+
+Wanneer men op deze toets duwt,
+dan schakelt men de fotocel in of
+uit.
+Als we op deze toets drukken,
+dan zullen de doorvoerrollen
+doorvoeren tot dat de fotocel een
+merkteken gevonden heeft. Dit
+alleen als de fotocel ingeschakeld
+is. Als we dan de machine starten
+en de fotocel ziet enkele keren
+geen merkteken meer, dan zal de
+machine stoppen.
+
+110 5750W High Speed Wicketer
+
+
+--- deel2 pagina 23 ---
+Elektrisch
+
+ence Sey
+
+Met deze toets kunnen we de
+fotocellen op de hole punch bank
+in- of uitschakelen. Als deze aan
+staat, zal bij produktie de
+stapelaar de hole punch bank
+volgen zodat de zakken steeds
+kunnen opgevangen worden. Dat
+we de fotocellen kunnen afzetten
+is handig bij de invoer van de
+film, zodat de stapelaar niet
+steeds van de ene kant naar de
+andere kant gaat bewegen.
+
+Wanneer we op deze toets
+drukken, dan zal de stapelaar een
+pakwissel uitvoeren.
+
+Actual warnings | In dit venster verschijnen de
+& error foutmelding en waarschuwingen
+
+Met deze toets kan men de
+foutmelding op het scherm
+resetten. Dit alleen als de fout
+verholpen is. Met behulp van de
+pijltjestoetsen kunnen we de
+eventuele volgende foutmelding
+selecteren.
+Deze toets komt enkel
+tevoorschijn als er een fout
+opgetreden is bij een servo
+controller. Hiermee kunnen we de
+betreffende foutmelding van de
+servo controller oproepen.
+Deze toets geeft ons de toegang
+om naar het "ACTIVE RECIPE
+ITEMS screen #1" te gaan.
+Deze toets geeft ons de toegang
+om naar het "ACTIVE RECIPE
+ITEMS screen #2" te gaan.
+Deze toets geeft ons de toegang
+om naar het "ACTIVE RECIPE
+ITEMS screen #3" te gaan.
+Deze toets geeft ons de toegang
+om naar het "ACTIVE RECIPE
+ITEMS screen #4” te gaan.
+
+Time based
+PLS
+
+Degree based
+PLS
+
+Basic motion
+setup
+
+Attachment
+motion setup
+
+5750W High Speed Wicketer
+
+
+--- deel2 pagina 24 ---
+Deze toets leidt ons naar het
+"ENABLE RECIPE" scherm. Dit
+scherm laat ons toe om de
+
+produktieparameters op te slaan.
+
+Display degrees |Dit scherm toont ons het aantal
+graden van de wicketmolen
+
+Typische Min-Max instelling
+waarde
+
+S750W High Speed Wicketer
+
+, a “| »
+
+aT eS) wo
+
+
+--- deel3 pagina 1 ---
+Hupson-‘SHARP —
+
+o
+
+5.2.2 Omschrijvin g "ACTIVE RECIPE ITEMS screen #1"
+Heo ine tias Senton'sy
+
+Oe ee Peet OO) ee eee ee ee
+
+hee fi ate.
+
+Figuur 127 - Scherm "ACTIVE RECIPE ITEMS screen #1"
+
+In dit scherm kunnen we 8 verschillende Bij elke puls kunnen we telkens een
+
+pulsen instellen, de pulsen vinden hun 'vervroeging’ en een 'Duur instellen.
+oorsprong bij de vaste puls 'einde doorvoer’
+
+Tekst op het | Verklaring Typische waarde | Min-Max instelling
+scherm
+
+Vervroeging Hier stellen we het aantal ms in
+voor het einde van de doorvoer
+dat de desbetreffende uitgang
+aankomt.
+Hier stellen we de duur van de
+Me opener
+
+Pons 1 Bvb. Stapelponsen
+
+Pons 3 etic’
+
+—~geae a id
+
+BST Autocorrectie
+Statische lader | Dubbel niveau statische lader
+
+Pneumatisch | (Optie)
+attachment
+
+(Optie)
+(Optie)
+
+113
+
+
+
+--- deel3 pagina 2 ---
+neerwaartse
+7 blazers
+
+S| ACTIVE RECIPE
+Deh emb Ponto EE SR Ie
+a ES ERIN RNA eet SRR DR Hl EELS BER RE Oe
+1 ; fi . fi 2 :
+Pe %, ae Ad I ‘> F a4 ; ~ ,
+atead eee 0) poe 1
+5 ft , ; ]
+
+Figuur 128 - Scherm "ACTIVE RECIPE ITEMS screen #2"
+
+Ly
+i
+
+m In dit scherm stellen we de blazers in. Het De periode van één cyclus is 0° tot 360°, dit is
+Gydstip van opkomen en afvallen wordt eveneens de  perode  tussen twee
+
+bekeken to.v. de stand van de vacuumarmen. vacuumarmen.
+
+ee Tekstophet | Verklaring Typische | Min-Max instelling
+scherm waarde
+Z Neerwaartse _| Blazers op de hoofdlasbalk
+J blazers
+
+Bovenste Start en stop moment voor de On: 85° - 140°
+bovenste blazers op de lasbalk. Off 300° - 340°
+
+Middenste Start en stop moment voor de
+neerwaartse middenste blazers op de lasbalk.
+blazers
+Onderste Start en stop moment voor de
+neerwaartse onderste blazers op de lasbalk.
+blazers
+Blaaspijpjes __| Blazers in de groeven van de
+doorvoerwalsen.
+Start en stop moment voor de On: 350° -30° (Hoe sneller de
+blazers in de bovenste
+
+machine loopt, hoe vroeger
+de start)
+Off: 60° - 240°
+
+(Hoe langer de lastijd, hoe
+vroeger men moet stoppen)
+
+doorvoerwals
+
+5730W High Speed Wicketer
+
+ct ed os oo
+
+eer e
+
+As Ji
+
+Si gow a UWE ES
+
+~~ ten’ geet i ——- os i |
+
+
+--- deel3 pagina 3 ---
+Hupson-SHARP Elektrisch
+|
+
+Typische Min-Max instelling
+waarde
+
+Start en stop moment voor de On: 350° -30° (Hoe sneller de
+
+blazers in de onderste machine loopt, hoe vroeger
+d
+oorvoerwals de start)
+
+Off: 100° - 260°
+
+(Hoe langer de lastijd, hoe
+vroeger men moet stoppen)
+
+Hier kan men het afpik moment
+instellen. Op het ogenblik dat de
+vacuumarmen de zak loslaten,
+wordt er perslucht in de armen
+geblazen om het loslaten te
+vergemakkelijken.
+
+5750W High Speed Wicketer 115
+
+
+--- deel3 pagina 4 ---
+rr es Ly j j ATEN « . on a > me we ;
+
+Elektrisch Hupson-SHARP
+
+5.2.4 Omschrijvin g "ACTIVE RECIPE ITEMS screen #3"
+tubs y D SO SO N- -SE : TARP [ARP ACTIVE RECIPE
+
+“onverting iio 1TEMS SCREEN #3
+
+DO .MM.°Y HHIRM:SS
+
+Figuur 129 - Scherm "ACTIVE RECIPE ITEMS screen #3"
+
+Tekstophet | Verklaring Typische Min-Max instelling
+scherm waarde
+
+Set interupt Hier kunnen we het aantal lege
+takten tidens een pakwissel ae
+instellen. van de
+, snelheid.
+
+Probeer deze
+parameter zo
+laag
+mogelijk te
+houden.
+
+Hier kunnen we het aantal lege
+takten die de machine nog maakt
+bij het stoppen instellen.
+
+Position stop
+delay
+
+Bags tillindex | Hier kunnen we de vertraging van
+_ rey Neon : stapelaar Di) De waard zo klein mogelijk
+pakwissel instellen. houden, ervoor zorgen dat de
+laatste zak nog op de pinnen ligt.
+Bags tillrear | Hier kunnen we het aantal zakken
+stack lin het nieuwe pak instellen
+
+waarna de achterste stapelpoort
+slut.
+
+De filmdoorvoer start als ic
+lasbalk het ingestelde aantal mm
+
+Draw start
+geopend is. (begin doorvoer)
+Draw stop De filmdoorvoer stopt als de
+lasbalk het ingestelde aantal mm
+geopend is. (einde doorvoer)
+
+116
+
+:
+
+6-12
+Waarde zo klein mogelijk
+proberen te houden.
+4-8
+
+Waarde zo klein mogelijk
+proberen te houden.
+
+MEM es Ree ta) wees CNS ely! [wks bio ea ccs NSCOR ee
+
+44 +2 4H ro 1
+
+| ~#VY.| Y' | att _| hee oe ee
+
+
+--- deel3 pagina 5 ---
+Hupson-SHARP Elektrisch
+ee
+
+Tekst op het Le eee Typische Min-Max instelling
+scherm ini er Ves
+
+Pick Off De zak wordt weggenomen als de | 4 2-6 voor PE
+lasbalk het ingestelde aantal mm 0-2 voor PP
+geopend is. We kunnen deze
+waarde ook negatief maken,
+d.w.z. dat we zak reeds beginnen
+op te pikken als de lasbalk nog
+gesloten is (ms).
+
+5750W High Speed Wicketer 117
+
+si Rinwva” ve
+
+i aa
+
+
+--- deel3 pagina 6 ---
+‘eh “ES NS Se SET ee | Ma i = [ms PENS. A a Wa ee ve white Oo
+
+Elektrisch Hupson-SHARP
+
+5.2.5 Omschrijving "ACTIVE RECIPE ITEMS screen #4"
+Tovoray etomet@_itene ‘sense oe
+
+OO m4. VY Mire SS
+
+Schakelt het servo attachment
+(voorlasapparaat, vierkante of
+ronde bodem lasser) aan of uit.
+
+Na het aan of uitzetten van het
+
+Tekst op het
+scherm
+attachment is het noodzakelijk
+
+Attachment
+
+ON/OFF
+om de PLC te herstarten.
+
+Attachment rise | Als referentiepunt gebruiken we
+de beginfase van de stopcyclus
+van de film. De lasbalken van het
+servo attachment moeten nog het
+hier ingestelde aantal mm
+afleggen voordat deze gesloten
+Zijn.
+
+Attachment Geeft de lastijd in ms aan van het
+
+dwell servo attachment
+(voorlasapparaat, vierkante of
+ronde bodem lasser)
+
+118 5750W High Speed Wicketer
+
+WY | 12 i) a ON NW aa ee eee
+
+
+--- deel3 pagina 7 ---
+Semon Stans Elektrisch
+
+5.2.6 Omschrijvin g scherm "ENABLE RECIPE"
+
+DO .M4.vY BHIMM:SS
+
+GNABLE RECIPE
+
+Figuur 131 - Scherm "ENABLE RECIPE"
+
+Via dit scherm kunnen we de opgeslagen menu's activeren. In totaal kunnen er 100 (0-99) menu's
+opgeslagen worden.
+
+Tekstop het | Verklaring Typische Min-Max instelling
+scherm waarde
+Via deze toetsen kunnen we een
+bepaald opgeslagen menu
+selecteren.
+
+Via deze toets gaan we het
+selecteerde opgeslagen menu
+openen.
+
+Indien er meer dan 10 menu's zijn
+opgeslagen kunnen we met
+behulp van deze toets naar de
+volgende 10 menu's scrollen
+
+Door deze toets te activeren
+zullen alle parameters
+overschreven worden door de
+fabrieksinstellingen. De
+parameters opgeslagen in de
+menu's blijven bewaard.
+
+Recipe name _| Dit veld geeft de naam van het
+geselecteerde menu weer.
+
+Status Geeft de status van de actie weer.
+Vb. menu overschreven
+
+5750W High Speed Wicketer 119
+
+
+--- deel3 pagina 8 ---
+Elektrisch
+
+Tekst op het
+scherm
+
+120
+
+Verklaring
+
+Vooraleer we een menu kunnen
+
+Typische
+waarde
+
+Min-Max instelling
+
+opslaan, moeten we dit menu een
+naam geven "RECIPE NAME".
+Drukken we nu op (el en vullen
+het paswoord in, dan komen we
+terecht in het scherm "SAVE-
+DELETE RECIPE".
+
+LET OP: Selecteer een lege
+locatie met behulp van de pijltjes
+voor het menu dat men wenst op
+te slaan, anders wordt er een
+vorig menu overschreven.
+
+3750W High Speed Wicketer
+
+|) ae QTTh ( @ we
+
+‘OF A’ |) bla
+
+~All. wv
+
+wih
+
+TWAT ATS 1 RS
+
+
+--- deel3 pagina 9 ---
+= ST ee, oh Naa PS aa | i cae , ios eed - Re 7 i erraes et ai al
+Hupson-SHARP Elektrisch
+SE
+
+> —$—<—
+
+5.2.7 Omschrijvin g scherm "DISPLAY DEGREES"
+eg DISPLAY DEGREES
+
+0D .MM.7Y HHIMMISS
+
+Figuur 132 - Scherm "DISPLAY DEGREES"
+
+Tekstop het | Verklaring Typische Min-Max instelling
+scherm waarde
+
+Degrees of Dit scherm toont de positie van
+
+de vacuumarmen gedurende een
+
+cyclus.
+
+De periode van één cyclus is 0°
+
+tot 360° (= periode tussen twee
+
+vacuumarmen)
+
+cycle
+
+5750W High Speed Wicketer 121
+
+|. Foie ASS ONE ee a Cee ee oie Sa
+
+i] erie Bake!) ‘rons ;
+
+i Pee PIL ee
+
+Ce FZ he
+
+GF Geect 2 2IN Te BO 4s eet
+
+rt sha PT 0 1 ae aaa eT ee VO ae as
+
+~ / Bak
+
+1)
+
+ih AN 4A wrt U1!
+
+ith |
+
+
+--- deel3 pagina 10 ---
+EE EE
+
+- —.. ae; Ts“ig | » \ wl > ive j j + 7 ir . ad a ati ‘
+
+ridaas Hupson-SHARP
+
+5.2.8 Omschrijving scherm "SAVE - DELETE RECIPE"
+eee nae SAVE-DELETE RECIPE
+
+-_— ———
+
+00. .¢¥ HHIMM:SS
+
+ms bas _Y ; .
+se " i {
+P| : . cp tated bon rep ented teed oA : 4
+, 4 68S ataeoeres 1 rad (oe : santa ’
+4 Ta ;Aanet : yas o _ RAF
+A. ET Tt, Ast mame ;
+ty TSS C at : ve {
+. es a -— hed %y ix ¢
+atonke S, “ ; -
+4 pete td Ae oocyte A, heap 4am —
+bee 2 ey ay
+25 wre 4 Maes eethseins a
+ia aye —
+i aca : ee oni wen tnAdet :
+PP Ty ‘ ee ie é ; a : \ '
+v re er ed afte f
+en eT > 7
+es i r
+J
+7
+
+mast
+deter tert tontott
+— eye Ad ALI Be neo rpyyas J ~ :
+Germ se of . ‘oa ry ; . :
+0) ABEL OOCESI EY Deed he = Las f / ‘
+
+necive ela TITTALI LL aL
+
+necire MAME ALG Cate : gohari
+
+OTATUG Ae Ob Cetetel ten
+
+le
+
+Figuur 133 - Scherm " SAVE - DELETE RECIPE "
+Na het invullen van het paswoord komen we in opslaan in menu's. In totaal kunnen er 100 (0-
+dit scherm terecht waar we de ingestelde 99) menu's opgeslagen worden.
+
+parameters voor een bepaald produkt kunnen
+
+Tekst op het Verklaring Typische
+scherm waarde
+
+Recipe name In dit veld geven we de naam in
+van het nieuwe op te slagen
+menu.
+
+Min-Max instelling
+
+Via deze toetsen kunnen we een
+locatie selecteren om een nieuw
+menu op te slaan of een vorig
+
+menu te overschrijven.
+
+Indien er meer dan 10 menu's zijn
+opgeslagen kunnen we met
+behulp van deze toets naar de
+volgende 10 menu's scrollen
+
+Met deze toets kunnen we naar de
+vorige 10 menu's scrollen
+
+Geeft de status van de actie weer.
+Vb. menu opgeslagen
+
+LET OP: Vooraleer we een menu
+kunnen opslaan, moeten we dit
+menu een naam geven "RECIPE
+NAME" en een locatie selecteren.
+Selecteer een lege locatie met
+behulp van de pijltjes voor het
+menu dat men wenst op te slaan,
+anders wordt er een vorig menu
+overschreven. Drukken we nu op
+fl dan worden de huidige
+parameters opgeslagen.
+
+eteual.,
+
+122 5750W High Speed Wicketer
+
+
+--- deel3 pagina 11 ---
+SL SR . GNA
+
+5750W High Speed Wicketer
+
+Tekst op het Verklaring
+scherm
+
+Elektrisch
+
+Typische Min-Max instelling
+waarde
+
+123
+
+=. eee SS
+
+
+--- deel3 pagina 12 ---
+Elektrisch
+
+H S
+DDSON- SHARE,
+
+5.2.9 Omschrijvin g scherm "TEMPERATURE II"
+
+Hupson-S
+
+0D... VY Mile SS
+
+FON SHARP |
+inverting Equipment @ | TEMPERATURE 11
+
+— meee
+
+—@ ew ee sO oe + Or e+ 8 8
+
+Figuur 134 - Scherm "TEMPERATURE II”
+
+Dit scherm geeft een overzicht van de
+verschillende temperatuurregelaars weer. Per
+regelaar zijn de  belangrijkste parameters
+
+Tekst op het
+scherm
+
+Verklaring
+
+sealbar Setpoint | van het hoofdlasmes in. Met
+behulp van 't’ en '-' kunnen de
+temperatuur per graad verhogen
+of verlagen. Drukken we op het
+veld van de ingestelde
+temperatuur dan kunnen we een
+numerieke waarde ingeven.
+
+Via deze toets kunnen we
+procesparmaters van de
+temperatuurregelaar veranderen
+
+Hier lezen we de gemeten
+
+Temperature
+temperatuur af.
+
+sealbar Temp
+[aC]
+
+Temperature
+sealbar Output
+[%]
+
+Hier lezen we het uitgestuurde
+vermogen afin % om de
+ingestelde temperatuur te
+bereiken.
+
+Hier lezen we de opgenomen
+sealbar Current |stroom af.
+
+124
+
+zichtbaar gemaakt. Procesparameters kunnen
+worden aangepast door op “ te drukken.
+
+Nota: Procesparamaters mogen enkel door een
+gekwalificeerd technicus aangepast worden!!!
+
+Min-Max instelling
+
+ON-OFF
+
+PE:
+400-420°C
+PE:
+500-540 °C
+
+3750W High Speed Wicketer
+
+L icy
+
+ET)
+
+te
+a
+
+ih]
+
+Nit wi
+
+Ls oo I
+
+TT Wa
+
+$f
+e
+
+¥
+7
+
+eo ae ee eat cle eet Ae
+
+LALA
+
+- =
+
+Lie
+
+ae
+
+— l
+IZ | 1
+
+—
+“
+
+Were.
+
+Ye
+——
+
+wn |
+Lae"
+
+
+--- deel3 pagina 13 ---
+Pi oe -=4 — ai Bi.” Gi et
+
+semen Sean Elektrisch
+
+5750W High Speed Wicketer 12
+5
+
+
+--- deel3 pagina 14 ---
+Elektrisch
+
+5.2.10 Omschrijvin g scherm "BST"
+
+verting a
+
+est
+
+Figuur 135 - Scherm "BST"
+
+Dit scherm geeft een overzicht van de BST-
+units van de afwikkelaar en de autocorrectie.
+Dit geeft de mogelijkheid aan de operator om
+
+vanop het bedieningspaneel de toestand van de
+BST-units te bekijken en eventueel aan te
+
+126
+
+00 .4M.YY HHIMGISS
+
+passen. Voor een nadere  beschrijving
+
+betreffende de gebruikte symbolen, raadpleeg
+het hoofdstuk van de afwikkelstand en/of
+
+autocorrectie.
+
+5750W High Speed Wicketer
+
+Ber PO WSS, Seem creer
+
+a. “ee
+
+
+--- deel3 pagina 15 ---
+hy Elektrisch
+
+5.2.11 Omschrijving "SERVICE SCREEN" & "SERVICE SCREEN #2"
+
+t
+
+DO .M4.TY Maren SSE. i SHARP 00.4. YY MarMerSS
+temporarily warn start aaa . ' genmvice scaeen #2
+’
+
+=
+=
+
+~ *.? > . wi« |
+od tt ee SE reeh ‘Re
+Aah Dat : ~t vie
+— +a} - . eh vb
+
+fe)
+
+Figuur 136 - "SERVICE SCREEN" & "SERVICE SCREEN #2"
+
+Om toegang tot deze schermen te krijgen In deze schermen gaan we enkele algemene
+moeten we het paswoord 'niveau 1' ingeven voorkeuren instellen. Ook kunnen we enkele
+vanuit de "SCREEN HOPPER". Een volgende uitgangen testen door op de desbetreffende
+paragraaf leert ons hoe we een paswoord toets te drukken.
+
+kunnen veranderen.
+
+Tekstop het | Verklaring Typische Min-Max instelling
+scherm waarde
+Activeren van uitgangen
+
+Actual Dit veld geeft de stand van de
+Lubrication bag | PLC weer vooraleer de
+
+count automatische smering geactiveerd
+wordt.
+
+Interval tussen 2 pulsen van de
+automatische smering (uitgedrukt
+in aantal zakken)
+
+Door deze toets te activeren
+kunnen de automatische smering
+manueel in werking stellen.
+
+By 0 : machine gaat zelf het
+merkteken zoeken als het
+drukregister niet in het venster
+gezien is. De verplaatsing die de
+machine hiervoor uitvoert = de
+zaklengte + 1/2 venster
+
+Bij > 0 : machine stopt nadat ze
+gedurende dit aantal
+opeenvolgende zakken geen
+drukregister in het venster heeft
+gezien. Hiervoor is de
+
+verplaatsing = de zaklengte
+
+5750W High Speed Wicketer se
+
+SNS IN NE A ys ase, WEES. | SUS RRA Say 0] = V* GQRGIRCESTS. emp, SE” 208g oe temo’ ge ee ET a ree
+
+
+--- deel3 pagina 16 ---
+Dh Elektrisch HUDSON SHARD, :
+
+Ve . Tekst op het Verklaring Typische Min-Max instelling ’
+T | scherm waarde
+
+) Breedt in mm van het venster
+voor printregistratie
+
+a
+a
+
+—
+
+_
+
+|
+
+wa
+SEN Pvt RS
+
+a
+J Reg window
+
+J
+
+Ditis de verplaatsing die de
+machine extra zal doorvoeren om
+
+a. Temp zones? _| Hier stellen we het aantal O,1,30f5 |0-5 '
+\ gebruikte temperatuurregelaars ;
+
+ka in.
+Li | Time setup Datum en tijd zijn in te stellen .
+
+door op de digits te drukken.
+
+| a Language setup | Met de pijltjes toetsen kunnen we
+—— de taal van het scherm
+{
+
+5750W High Speed Wicketer
+
+’ F “ne \] rot wy ‘ » 4 ie f r r a
+tr Ae aN ee), a a iw. oe Sok. al
+ene ere ~ ita et | | . —— :
+, ~ ii 4 ty pe Ys . wo a Eh ee A eS q ™ ~ et —y
+
+
+--- deel3 pagina 17 ---
+HUDSON SHARE. Smering & onderhoud
+
+HOOFDSTUK 6 - PREVENTIEF
+ONDERHOUD
+
+SECTIE 6.1 DAGELIJKS PREVENTIEF ONDERHOUD
+
+1500 V- BOARD
+
+Figuur 137 — Dagelijks preventief onderhoud
+
+(LLL LLM
+4 ¢
+
+Y
+MoD WAARSCHUWING Ni xf
+
+ZET DE MACHINE SPANNINGSLOOS EN VERGRENDEL DE
+HOOFDSCHAKELAAR ALVORENS TE STARTEN MET ONDERHOUD
+AAN DE MACHINE. WERKEN ONDER SPANNING KAN LEIDEN TOT
+ERNSTIGE BRANDWONDEN OF ZELFS DOODSLAG TOT GEVOLG.
+
+WEES VOORZICHTIG MET COMPONENTEN DIE NOG HEET
+KUNNEN ZIJN NADAT DE MACHINE SPANNINGSLOOS IS GEZET.
+
+~
+
+MARAT
+
+AAA
+
+EEN OPERATOR ZOU DE VOLGENDE PUNTEN MOETEN CONTROLEREN:
+4. Kontroleer of er geen film  tussen
+
+1. Reinig de lens van de fotocel indien nodig.
+tandwielen en/of ketting zit.
+
+2. Verwijder alle vuil of stof op de machine.
+3. Reinig de vloer rond en in de machine per
+shift.
+
+5750W High Speed Wicketer 131
+
+VB Ge, Shee YS Be og an NL i PKS Ti : x
+
+W a \s “VT i's -2T § {
+
+~~ Le” F
+
+
+--- deel3 pagina 18 ---
+ree i OO ER
+
+Smering & onderhoud
+
+Hupson-SHARP
+
+SECTIE 6.2 WEKELIJKS PREVENTIEF ONDERHOUD
+
+130 ¥ BOARD
+
+Figuur 138 — Wekelijks preventief onderhoud
+
+~
+
+AAWELULAARAANEOEVASAAARRA
+
+a
+Sess ISG:
+
+SIIIIS SIELLLLLLLAAASL LALA AAAAAAAAASLLLELMAAANLADALADEAS DAS D DDD DED &
+
+oP WAARSCHUWING Ni xf
+
+ZET DE MACHINE SPANNINGSLOOS EN VERGRENDEL DE
+HOOFDSCHAKELAAR ALVORENS TE STARTEN MET ONDERHOUD
+AAN DE MACHINE. WERKEN ONDER SPANNING KAN LEIDEN TOT
+ERNSTIGE BRANDWONDEN OF ZELFS DOODSLAG TOT GEVOLG.
+
+WEES VOORZICHTIG MET COMPONENTEN DIE NOG HEET
+
+KUNNEN ZIJN NADAT DE MACHINE SPANNINGSLOOS IS GEZET.
+
+TIMEIILIIINADEIEASI NIA ALL ASIN DAI ET AAS IL AEA IIAIIA IIE IIAID DG
+
+AAA AAAAARNRAAAAAAANS
+
+EEN OPERATOR ZOU DE VOLGENDE PUNTEN MOETEN CONTROLEREN:
+
+L:
+vas
+3:
+
+132
+
+Reinig doorvoerrollen
+Reinig rubberen invoerrollen
+
+Controleer de kwaliteit van de Teflon rond
+de lasrol en de verwarmingsplaten van de
+servo attachments.
+
+Kontoleer de kwaliteit van de reflecterende
+plakband op de eenheid van de fotocel.
+Kontroleer of de tandwielen van de
+doorvoerrollen zuiver zijn.
+
+. : COPS SW) See
+
+6.
+
+10.
+
+ll.
+
+Kontroleer de ionisatiestaven op stof,
+oxidatie en plastiekdeeltjes.
+
+Kontoleer de positie van de fotocel.
+
+Kontoleer de  afvalzak van het
+
+afvalafzuigsysteem.
+
+Kontroleer de riempjes van de aflegtafel op
+slitage.
+Kontroleer de
+vacuumarmen.
+
+vacuum op de
+
+Smeer de tandwielen van de doorvoerrollen.
+
+5750W High Speed Wicketer
+
+a a mena, ————$ ———
+‘ ’ \\ ' ‘ \
+
+
+--- deel3 pagina 19 ---
+ra aad Smering & onderhoud
+
+EEN TECHNICIEN ZOU DE VOLGENDE PUNTEN MOETEN CONTROLEREN:
+
+| 12. Kontroleer de speling aan de excentriek van
+a de lasmesaandrijving.
+
+13. Kontroleer de scherpte van de stapelgaten
+
+| | ponsen.
+
+Speed Wicketer 133
+
+
+--- deel3 pagina 20 ---
+Smering & onderhoud Hupson-SHARP
+
+SECTIE 6.3 MAANDELIJKS PREVENTIEF ONDERHOUD
+
+Figuur 139 — Maandelijks preventief onderhoud
+
+JDPLILIPDLDLDLDLP LDL DDDLDD LDA I DDL LL LDS LLLLLDLIE SLL LSD SPI ALL PL SPSS DSS,
+
+d bP WAARSCHUWING Nk xf
+
+ZET DE MACHINE SPANNINGSLOOS EN VERGRENDEL DE
+HOOFDSCHAKELAAR ALVORENS TE STARTEN MET ONDERHOUD
+AAN DE MACHINE. WERKEN ONDER SPANNING KAN LEIDEN TOT
+ERNSTIGE BRANDWONDEN OF ZELFS DOODSLAG TOT GEVOLG.
+
+WEES VOORZICHTIG MET COMPONENTEN DIE NOG HEET
+KUNNEN ZIJN NADAT DE MACHINE SPANNINGSLOOS IS GEZET.
+
+a Se it a gt ed he A a PP TO SOA OS PS SO OSS PS PD ODP SF OD BA —P—F - 9 2 —- PP SS
+ee ee ee ee ee ee ee ee ee ee ee ee
+
+NAAAAAR A AARAAARAAAAY
+
+EEN OPERATOR ZOU DE VOLGENDE PUNTEN MOETEN CONTROLEREN:
+
+1. Kontroleer de conditie van de stapelpinnen. 4. Kontroleer de neerwaartse luchtblazers op
+2 Kontroleer de staat van de vacuumslangen verstoppingen.
+
+op lekken. 5. Kontroleer de blaaspijpjes tussen de
+3. Reinig het B&R-scherm met display- doorvoerrollen op verstoppingen.
+
+reiniger. 6. Noteer de produktie uren van de machine.
+
+5750W High Speed Wicketer
+
+
+--- deel3 pagina 21 ---
+ee.
+
+Smering & onderhoud
+
+TN
+
+EEN TECHNICIEN ZOU DE VOLGENDE PUNTEN MOETEN CONTROLEREN:
+13. Reinig de lens van de fotocel op de
+
+rE
+
+10.
+
+1].
+
+lz:
+
+Reinig vacuumbuizen, afzuigslangen, filter,
+turbine en vacuumarmen. Kontroleer op
+plasiek resten.
+
+Kontroleer het circuit van de waterkoeler op
+lekken en druk.
+
+Vorm een visueel beeld van alle versleten
+of te vervangen onderdelen.
+
+Vorm een visueel beeld van alle elektrische
+componenten zoals_ relais, voedingen,
+verwarmingselementen, condensatoren,
+enz.
+
+Kontroleer de spanning van alle riemen en
+kettingen.
+
+Kontroleer of de blaaspijpjes tussen de
+doorvoerrollen nog vrij kunnen bewegen in
+de groeven.
+
+5750W High Speed Wicketer
+
+14.
+
+15:
+
+16.
+ki].
+18.
+
+19:
+
+20.
+Zk.
+
+afwikkelstand volgens de voorschriften van
+de producent.
+
+Kontroleer de filters van alle ventilatoren,
+speciaal deze van de kast van de servo-
+
+modules.
+Reinig de vacuumarmen en fnaven.
+Kontroleer zeker de staat van de armen.
+
+Kontroleer het lasmes op slijtage.
+
+Smeer geleiding van de éénrol danser.
+Kontroleer de werking van het automatisch
+smering systeem.
+
+Kontroleer het
+tandwielkasten.
+
+Smeer de scharnierpunten van het lasmes.
+
+Smeer de autocorrectiegeleiding + de
+lineaire lagers (optie)
+
+oliepijl van alle
+
+135
+
+my
+
+| as
+
+TO  gasee) ¢ bal | ap
+
+
+--- deel3 pagina 22 ---
+j
+/
+
+Smering & onderhoud
+
+Hupson-SHARP
+
+SECTIE 6.4 3-MAAAND ELIJKS PREVENTIEF ONDERHOUD
+
+Figuur 140 — 3-Maandelijks onderhoud
+
+-SVRNAANANTRAAAANTEOCRN
+
+PRLLILLLD ILL ELLA DE ILLL LSI DLL LIL LADS ILLL LALLA DILL DLS LPP I PLP PADD GS,
+
+Mo pwaasrschuwine Nk zf
+
+ZET DE MACHINE SPANNINGSLOOS EN VERGRENDEL DE
+HOOFDSCHAKELAAR ALVORENS TE STARTEN MET ONDERHOUD
+AAN DE MACHINE. WERKEN ONDER SPANNING KAN LEIDEN TOT
+ERNSTIGE BRANDWONDEN OF ZELFS DOODSLAG TOT GEVOLG.
+
+WEES VOORZICHTIG MET COMPONENTEN DIE NOG HEET
+
+KUNNEN ZIJN NADAT DE MACHINE SPANNINGSLOOS IS GEZET.
+
+6 ee a ae ee ae ae ea ae '
+LIPPPPLAPPLLPPMADLAA PARADE RADDA ALAA LLARAPOEOOOAAAOO OS
+
+A
+
+A NAAARAARAAAARARRAAAA
+
+a
+
+EEN TECHNICIEN ZOU DE VOLGENDE PUNTEN MOETEN CONTROLEREN:
+
+l.
+
+136
+
+Kontroleer de luchtfilters van de perslucht
+op vervuiling.
+
+Kontoleer de goede werking van alle
+veiligheidscontacten en deurschakelaars.
+
+Kontroleer de goede werking van alle
+eindeloopschakelaars.
+
+Reinig de vacuumarmen en verzeker u dat
+deze in goede staat zijn.
+
+Smeer de spindel van de vouwdriehoek.
+
+Smeer de lagers van het invoergedeelte.
+
+3750W High Speed Wicketer
+
+
+--- deel3 pagina 23 ---
+samen Sane Smering & onderhoud
+behest me Ao icine alee em
+
+SECTIE 6.5 HALF-JAAR LIJKS PREVENTIEF ONDERHOUD
+
+Figuur 141 — Half-jaarlijks onderhoud
+
+LILIES PPLIPIDSSA PDP LLP DDSI PDP LD SDD DP DL IDI DSI DL PIDISD PPP PLSD ADAP SDSS So
+
+gop WAARSCHUWING N& 2f
+
+ZET DE MACHINE SPANNINGSLOOS EN VERGRENDEL DE
+HOOFDSCHAKELAAR ALVORENS TE STARTEN MET ONDERHOUD
+AAN DE MACHINE. WERKEN ONDER SPANNING KAN LEIDEN TOT
+ERNSTIGE BRANDWONDEN OF ZELFS DOODSLAG TOT GEVOLG.
+
+WEES VOORZICHTIG MET COMPONENTEN DIE NOG HEET
+
+KUNNEN ZIJN NADAT DE MACHINE SPANNINGSLOOS IS GEZET.
+
+CLEILIINDLILEIINSE IIIA IIIA D ELLIS SIN ADIL OI AIE IAI IIIA IDE EA IMAP AI IIL GS,
+
+-_
+
+- ~ = a _ = call - coll — = = - i
+PAARAALEALULARAAALE®
+
+qd WE RWAANANAAA LRAAANTAY
+
+®.aAY
+
+f
+7
+
+EEN TECHNICIEN ZOU DE VOLGENDE PUNTEN MOETEN CONTROLEREN:
+
+1. Smeer alle lagers van de stapelaar. 3. Remuig de vacuumturbine.
+2. Kontroleer de werking van alle ventilatoren, 4. Kontroleer alle rollen en reinig indien
+speciaal deze van servo-modules. nodig.
+5750W High Speed Wicketer 137
+
+
+--- deel3 pagina 24 ---
+Smering & onderhoud Hupson-SHARP
+
+SECTIE 6.6 DAGELIJKS PREVENTIEF ONDERHOUD
+
+VACUUM
+TURBINE
+
+AIR
+CONNEC TION
+
+Figuur 142 — Jaarlijks onderhoud
+
+PLLLLLLELLL LEAMA RRMA hhh hdhdddddddddddididddidieded
+
+sD WAARSCHUWING Ni xf
+
+ZET DE MACHINE SPANNINGSLOOS EN VERGRENDEL DE
+HOOFDSCHAKELAAR ALVORENS TE STARTEN MET ONDERHOUD
+AAN DE MACHINE. WERKEN ONDER SPANNING KAN LEIDEN TOT
+ERNSTIGE BRANDWONDEN OF ZELFS DOODSLAG TOT GEVOLG.
+
+WEES VOORZICHTIG MET COMPONENTEN DIE NOG HEET
+
+KUNNEN ZIJN NADAT DE MACHINE SPANNINGSLOOS IS GEZET.
+
+CIIIIIINNELIALIISNIADIAIDONIMILITE PIII P III IMAM IDEA IIIA AED IIE II II IL
+
+VANANANTUNRRAAAAAD
+
+SAA AAAARAARARARAAAR
+
+oT ay
+
+EEN TECHNICIEN ZOU DE VOLGENDE PUNTEN MOETEN CONTROLEREN:
+
+1. Vervang de filters van de persluchtfilters. 2. Vul de vetpot van het automatische smering
+systeem. Type vet: Vloeibaar vet graad 0.
+
+138 375O0W High Speed Wicketer
+
+
+--- deel4 pagina 1 ---
+ca — JF
+a a ;
+
+4 7 J
+
+foo) found
+
+Smering & onderhoud
+
+SECTIE 6.6 DAGELIJKS PREVENTIEF ONDERHOUD
+
+VACUUM
+TURBINE
+
+RAP REMOVER AIR
+op CONNEC TION
+
+Figuur 142 — Jaarlijks onderhoud
+
+ZSAPPPLILDPLDIIIAS DID PDIDP IS SSNS SDPAILDSD SASS LISDSDS SSIS LDSS SS PL DISS SSD DP >
+
+SPD WAARSCHUWING Ni xf
+
+ZET DE MACHINE SPANNINGSLOOS EN VERGRENDEL DE
+HOOFDSCHAKELAAR ALVORENS TE STARTEN MET ONDERHOUD
+AAN DE MACHINE. WERKEN ONDER SPANNING KAN LEIDEN TOT
+ERNSTIGE BRANDWONDEN OF ZELFS DOODSLAG TOT GEVOLG.
+
+WEES VOORZICHTIG MET COMPONENTEN DIE NOG HEET
+
+KUNNEN ZIJN NADAT DE MACHINE SPANNINGSLOOS IS GEZET.
+
+GIFFIGASIADIIFI NAN IP III PAIN NII III LOPS LIISA ID III IIIA IED I EOI IIIS 1
+
+X
+
+CURARAARTCOCRARAAAD
+
+AN AAAAAAAAASAAANARARANS
+
+EEN TECHNICIEN ZOU DE VOLGENDE PUNTEN MOETEN CONTROLEREN:
+
+1. Vervang de filters van de persluchtfilters. 2. Vul de vetpot van het automatische smering
+systeem. Type vet: Vloeibaar vet graad 0.
+
+138 5750W High Speed Wicketer
+
+~ Oo) eo RSA RSS STIR ZS Do PRAT OANA OND DAG PRACT OV OT Oat ROOT
+
+
+--- deel4 pagina 2 ---
+a, Probleemlijst
+
+HOOFDSTUK 7 - PROBLEEMLIJST
+
+een nuttig hulpmiddel zyn. U vindt in deze tabel
+de volgende zaken terug: beschrijving van de
+
+ee ee eee foutmelding, referentiecode van het 5 ree
+: let
+
+Bij een fout geeft de computer een foutmelding te opal 20 aes rai = :
+
+In geval dat er een fout optreedt, kan deze tabel schema en het nummet ce tact
+
+15841 blz 15 input 3
+
+W: LIMIT PUNCH ALIGNMENT WEB _____—_[15842 biz 1S input
+W:LIMITPINDISTANCE PLUS ____———=*(SS71 biz input 1
+
+W:LIMITPINDISTANCEMIN [9881 biz 9 input 14
+
+W:LIMITBAGLIPPLUS—————————«*RST We 1B input 12
+W:LIMITBAGLIPMIN ___—SS—~=* SDB IBinpot 13
+W:LIMITSIDELAY AIR __————=* SB We input 14
+W:LIMITSIDELAYWEB__——=S——~—=*i SDB TBinpot 1
+W: COUPLING WICKETARNSNOTOK ____|11871 blz 1 inpot 15
+W:SEALHEAD OUT OF POSITION ___|15853 blz input”
+
+W: START CANCELLED: SEALHEAD OUT OF|/15S53 blz 15 input 7
+POSITION
+W: CONVEYOR NOT CLOSED 11856 blz 11 input 10
+
+W: START CANCELLED: CONVEYOR NOT CLOSED | 11856 blz 11 input 10
+W: START CANCELLED: STOP COMMAND ACTIVE |98S32 blz 9 input 2
+
+W: CONVEYOR LOADED 11S42 blz 11 input 6
+W: CONVEYOR SAFETY BEAM INTERRUPT 11841 blz 11 input 5
+
+W: CONVEYOR LAG WARNING DURING INDEX internal
+
+W: STACKER STOPPED ON LIMIT SWITCH 6S11 of 6821 blz 6
+
+HUN
+
+errors
+9845 blz 9 input 4
+
+11861 blz 11 input 13
+
+E-STOP OPERATOR
+E-STOP PICKUP STACKER
+E-STOP BLOCKING ON STRIPPER FINGERS 15843 blz 15 input 5
+E-STOP PICKUP WEB 15851 blz 15 input 6
+{5871 blz 15 input 10
+E-STOP INFEED WEB 15872 blz 15 input 11
+15885 blz 15 input 14
+17852 bl 17 input 7
+
+E-STOP LONGSEALER CABINET 14S21.blz 14 input 1
+141
+
+4)
+~]
+g
+a
+=
+=
+(A
+4.7,
+:
+Pu
+=
+a
+)
+
+. =, . ae Ee - li corset Veet i ~ ‘. Ee a ee 5 et: “ Sb ~~ VV GT BI PSEA AY val ="y — ; ; vat
+
+
+--- deel4 pagina 3 ---
+Hupson-SHARP
+i
+
+ESTOPUNWIND CABINET —____———=( 18843 bl 1Sinput
+ESTOPUNWINDDRIVEROLL | 18851 biz 18input
+E-STOPREMOTE MACHINE | 17854 blz 17 input
+DOORPICKUP «SSA 1 input
+DOOR COW)PICKUP «(SSS Bi TH input
+DOORINFEED = 58 15 input 1
+DOOR ANTI-BOUNCE = S882 Bi 15 inpot 1
+DOORLONGSEALER LEFT =| 14822 bz 14 input
+[DOOR LONG SEALER RIGHT __————=*( A831 Biz 4 input 3
+GUARD WEB
+
+CAN COMMUNICATION ERROR WITH ONE OF’ Internal
+UNITS: MAXNR BOOTUP
+
+CAN COMMUNICATION ERROR WITH ONE OF'|Internal
+UNITS: TIMEOUT
+
+(COUPLING WICKETARMS NOT OK DURING RON _ [11871 biz 11 input 13
+CONVEYOR FULL INDEXINTERRUPTED ——_|1S42biz 11 input
+SAFETY BEAM INTERRUPT: INDEX INTERRUPTED [11S41 biz 11 inpot3
+TAMMINGNOTICEDBY PHOTOCELL __| 11872 biz I input 16
+LENZEINFEED CANRESTART ‘intemal
+LENZEUNWIND CANRESTART | Interna
+BSTUNWINDCANRESTART ‘intemal
+[BSTAUTOCORRECTION CAN RESTART Interna
+
+Probleemlijst
+
+GEFRAN CAN RESTART Internal
+TEMP FAULT MAIN SEALER Internal
+
+TEMPFAULTZONET——*teral
+TEMPFAULTZONE2 ‘internal
+
+TEMP FAULTZONESSSS~SC* trl
+
+TEMP FAULTZONE# =item
+
+CBSERVOMOTORSEAL__—===SS~S~S=*iSQ2 Dz input
+CBSERVOMOTORDRAW———S~S~S~=«*iSQ7L Biz Tint 3
+CBSERVOMOTORSEALROLL___—_—=*([AQ71 bla 12 input
+CBSERVOMOTORSINGLEROLL ______[4Q21 biz 12 input 4
+CBSERVOMOTORMASTER _——~—~—~—=«(SQ21 biz 2 input
+CBSERVOMOTOR ATTACHMENT _____[SQ71 bz 12 input
+CBSERVOMOTORSTACKER———~—~—~=*(6Q21 bla 1 input 7
+
+5750W High Speed Wicketer
+
+a"
+=
+bo
+
+ZSERIES? PROSTREET eT
+
+
+--- deel4 pagina 4 ---
+Hupson-SHARP Probleemliyst
+ee.
+
+CBSERVOMOTORINDEX_———_—*(SQ71 Wi IP input
+CBVACUUMTURBINE —___————=+(Q6L Wl 12 inpot
+CBVACUUMTURBINE? —____——=*(RQTE nT input 10
+CBMOTORPINDISTANCE———————_—*(1Q81 blz 12 inp
+
+INFEED: DANCER TO HIGH
+
+INFEED: COMMUNICATION ERROR CAN-BUS
+INFEED: DRIVE INHIBIT
+
+INFEED: STOPPED BECAUSE OF | internal
+UNWINDPROBLEM
+
+UNWIND: ESTOPUNWINDCABINET ____|18843 bla I8inpot
+UNWIND: ESTOPUNWINDDRIVEROLLER __|18851 biz 18 input
+UNWIND: ENDOFROLL _———S~S~=*i S33 ETB inp 2
+UNWIND: FILMBREAK ———————=*( S31 Bl 18 impat
+UNWIND: PUSHROLLUP [18842 biz ISinput 4
+UNWIND: COMMUNICATIONERRORCAN [internal
+
+UNWIND: DANCER TOHIGH.___————intena
+
+UNWIND: CB MOTOR RIGHT 23Q31 blz 20 input 15
+UNWIND: CBMOTORLEFT _____—_—_—~—~—=«éRS QUT Biz 20mput 16
+UNWIND: DRIVEINEIBIT =i
+
+UNWIND: CHUCK RIGHT OPEN DURING RUN... [20861 bla 20inpat 1
+
+UNWIND: CHUCK LEFT OPEN DURING RUN... 20S 62 blz 20 input 12
+
+W: UNWIND: LIMIT LEFT ARM 20851 blz 20 input 9
+
+20852 biz 20 inpat 10
+20561 biz 20 input 11
+20562 biz 20 input 1
+20871 Biz 20 input 1
+20563 blz 20 input 13
+
+erro
+
+A
+a.
+Z
+
+E
+:
+:
+z
+
+HE
+
+|
+
+5750W High Speed Wicketer 143
+
+\ 268 @ ioe CORAL) SANS AEE SS aR” WINN SOARS Pieter cay, apunsaldagre es
+
+a ae | a} ,
+
+An coe
+
+I
+
+
+--- deel4 pagina 5 ---
+atari Technische informatie
+A Se ET ES STN see Rn a INN RMN nT MEE nae a
+
+HOOFDSTUK 8 - TECHNISCHE
+INFORMATIE
+
+SECTIE 8.1 GELUIDSN IVEAU RECHTSHANDIGE MACHINE
+
+% os
+= OM
+i) **
+| 286
+—~ as
+s28S
+AUY 2a.
+3435 S&F os
+eo 8 o ¢ & A 5
+Efes =~28¢8
+385 83
+ee | Sb :
+SUL 3263
+e
+Figuur 143 - Geluidsniveau rechtshandige machine
+5750W High Speed Wicketer
+
+145
+
+Ra? ES te _ Ee ic, We et
+
+
+
+--- deel4 pagina 6 ---
+ETS a EY ra io oT wh Mal SCS
+
+Technische informatie
+
+SECTIE 8.2 GELUIDSNIVEAU LINKSHANDIGE MACHINE
+
+—
+£38
+
+eda)
+
+Sfhe 22
+
+sisi 2882
+134i Eas
+iiaa 324)
+
+Figuur 144 - Geluidsniveau linkshandige machine
+
+146 5750W High Speed Wicketer
+
+
+
+--- deel4 pagina 7 ---
+MACHINE INFORMATIE |
+
+HABRICATIRDA TUM Eco coe ccc cccccrw se ccsiceue cesses seedsecacnsices reer
+
+Se Os te ew Le
+
+THE HUDSON-SHARP MACHINE COMPANY BVBA
+
+oi Converting Equipment
+Es Doornveld 15
+B-1731 Zellik, Belgium
+! | Tel: +32 (0)2 464 01 10
+a3 | Fax: +32 (0)2 463 51 87
+a THE HUDSON-SHARP MACHINE COMPANY
+~a Converting Equipment
+
+975 Lombardi Avenue
+PO Box 19038
+Green Bay WI 54307-9038
+
+i
+
+F Phone: 920-494-457]
+
+a Parts & Service: 1-800-950-4362
+Algemene fax: 920-496-1322
+
+E
+
+]
+
+|
+
+Fax engineering: 920-496-1418
+
+Copyright 2005 by The Hudson-Sharp Machine Company
+
+Alle rechten voorbehouden. Geen enkel deel van deze publicatie mag op enige wijze gekopieerd of
+gereproduceerd worden zonder de uitdrukkelijke, schriftelijke toelating van
+The Hudson-Sharp Machine Company
+
+Versie: Juni 2005
+
+SEATMATARSS 4 RASS aes
+
+3 —— —_ —
+el as ee, ak LD py | i \ ei A ee e i
+
+
+--- deel4 pagina 8 ---
+i
+
+gag el et a
+
+a)
+
+= —_ vent ; = iat
+{OEIC eR SS SS
+
+OVER DEZE HANDLEIDING
+
+Lees deze sectie eerst door.
+
+GEFELICITEERD! De aankoop van uw 5750W Wicket-machine is een verstandige investering.
+De naam Hudson-Sharp staat garant voor kwalitatieve en duurzame machines voor het maken van
+zakken. Deze machine werd gefabriceerd met het oog op een jarenlange, betrouwbare werking, mits
+ze normaal gebruikt en onderhouden wordt.
+
+Deze handleiding is bedoeld als een hulp en gids om u te helpen bij de installatie, het gebruik en het
+onderhoud van uw machine. De inhoud ervan is opgedeeld in verschillende hoofdstukken om het
+opzoeken te vergemakkelijken en te versnellen.
+
+Lees elk hoofdstuk grondig door alvorens de machine te gebruiken. De informatie in elk hoofdstuk is
+essentieel voor de veilige werking, maar ook om dure stilstandtijden te vermijden.
+
+Uw tevredenheid over de machine en haar levensduur zullen grotendeels bepaald worden door de
+manier waarop u met uw machine omgaat.
+
+Deze handleiding bevat belangrijke informatie! Lees de secties die als volgt gemarkeerd zijn,
+zeker door:
+
+eVeiligheid
+ekeuze van de juiste plaats voor de opstelling
+eHet verplaatsen van de machine
+
+Let vooral op de speciale WAARSCHUWINGEN die in deze handleiding gegeven worden. Ze
+verschaffen informatie over zaken die van groot belang zijn, zowel voor uw eigen veiligheid en
+welzijn als voor de veiligheid en het welzijn van andere personen die op of in de buurt van de
+machine werken. Deze waarschuwingen wijzen u op gevaren, zoals knelpunten of
+wrijvingspunten en elektrische gevaren.
+
+De gedeelten van deze handleiding met als titel OPGELET en WAARSCHUWING bevatten
+belangrijke informatie over de werking en de procedures voor het onderhoud. Deze informatie
+helpt u om vergissingen te vermijden die uw taken bemoeilijken of die (soms ernstige) schade
+aan de machine kunnen veroorzaken.
+
+Deze handleiding is bedoeld voor personeelsleden die met de machine moeten werken, de nodige
+vakkennis hebben en die ervaring met dergeliyjkke machines hebben. Bygevolg werd de gewone
+lekentaal, zoals “maak de schroef los en verwijder ze” of “maak de tapbout los met behulp van een
+metrische sleutel van 10 en verwijder hem” kortweg vervangen door “verwijder de bout.” Deze
+handleiding gaat ervan uit dat een ervaren onderhoudsmechanicus weet hoe hij deze gangbare items
+moet verwijderen en welk gereedschap hij daarvoor moet gebruiken. Voor procedures die specifiek
+zijn voor deze zakmachine, staan de instructies gedetailleerd en stap voor stap vermeld. Alle
+procedures worden steeds zo volledig mogelijk beschreven. Alleen het taalgebruik werd
+vereenvoudigd.
+
+Deze handleiding bevat zowel instructies voor de werking als voor het onderhoud van uw 5750W
+Wicket-machine. Elk hoofdstuk bevat één of meerdere secties. Om u het gemakkehjker te maken
+staat de titel van elk hoofdstuk bovenaan op elke pagina vermeld. Als u informatie over een
+specifiek onderwerp zoekt, kunt u de inhoudstafel vooraan in de handleiding raadplegen.
+
+De aanbevelingen en de informatie in deze handleiding vertegenwoordigen de laatst beschikbare
+informatie op het moment van het drukken en kunnen zonder voorafgaand bericht gewijzigd worden.
+Aangezien de randapparatuur van de machine, zoals klantgerichte invoereenheden, enz. kunnen
+verschillen volgens de werkomstandigheden en de toepassingen, kunt u best contact opnemen met uw
+
+
+
+--- deel4 pagina 9 ---
+-
+
+“eat Pry
+—
+
+or
+
+v
+
+F
+
+Tore ee
+
+~s
+
+oe
+
+’
+
+i
+
+verkoper of met de klantendienst van Hudson-Sharp als u informatie wenst over een thema dat buiten
+de omvang van deze handleiding valt.
+
+Gelieve in alle briefwisseling met betrekking tot de machine het model en het SERIEN UMMER
+van de machine te vermelden.
+
+Se a gE ee
+
+
+--- deel4 pagina 10 ---
+soon
+
+iy
+
+(-—=-.- 2 §—-...._._. —
+
+INHOUDSTABEL
+
+HOOFDSTUK 1 - Velighd boise
+
+SECTIE 1.1 Veiligheid ae ih eee ce ei am ee pee nei Sah SS Ge HN ARE AR REO 23
+1.1.1 Person enbescherming BPs ls wn deg nina gue ing ia, AO LISATGE Nino fe Eee iiten oe BF aap Reed ae 23
+ah DiWelthed atedeceD cece aac eeretntetbesvactetebeusuateiuussstunesanes contest ctsesenan/seueneebnicgeenterttetesgréeer cerca 24
+CAN BM CIGMSCH ENN ON ics vichocstcsslee i aA
+
+1 BS BR Machine herstelling en bnderhoud MTTTITITITITITITTTITITTTTITITIOITTTTITITiTiTircerirriiiriiiirrti tli
+114B we Wow BES CT ONGCTTOUG.. iscessiresessssccsenevsccecescsvoveseressscete seceseessesesssededsese cadecssones secvaveresieesasreeseesssucusensnss 25
+Ave ESEMMUDUVOINGINR Solcisccisersrereslieicl niacin neica 27
+A“L'S Mikchitive ingtalloren en -verp lamtwen 5.065000) 55000 soe OI ella csceacinetcosedsvconeicsoutcreeee BT
+
+1.1.7 Schoonmaak oplosmiddelen ......cccccs-.csecsccseccccocesee. 28
+1.1.8 Bédwola Gade en°vacasvaceh: RE ee oe ee ee -
+11) itleitechs Vernionen avediknas 2a eee i ctcmaper eerie s 2
+ia bce aetna en stickers. iota ois pecans hele hp es eeiie : 29
+1 sacleks Vellisholdeis sssseneecenennsnsssseenenceceenceesanseccenecanunsneetnannnastesnnnsssssenanssssss ;
+nOGibeTor 2. bien, =e * ee ee EI SA OT ONT cs ahs ccenolbsecncesoeveccesrvenints
+SCTE Shige 33
+21 PS 7S0W ee ee nen, eee ern i ne ee
+2:1:2' Maching hendleiding 2000008) 9 es hice ee ee ans ere 33
+2.1.3 Assemblage tekeningen & Onderdelen 'lijaten 22025022050 6.072 ee ee sca scclstassatectocsdevogeaets 33
+2 LG HieKiiechne SCH amie Soe roc coc SEs 07 NOSSO MIRED Ue Ri eee ear et reacaes 33
+2.1.5 Rlentendienst/bestellinigen on derddel en 92.5550 corcccsleocecase scoceccolocceo occcortcs ecetacee ens toilis cecuatptarevessucsetdosncerstoasess ie
+SE. CTIE 2.2 Machin © Comp om emt 16 Citi € Cath. ccc occcecocees cocssccesoss scscroccsovecesescasans soccccsens eiccessstsopenssceseess sssesessescessermnane® 33
+7 Aad Ad Wey 1 es ga med aos fnpel ea HREY TA ro on i a Mr AR hoe Capt vag: LAIR RI A OTR Aaa ats SN ap pees arnt i
+Perderde “COMTIOMISER OR wccccacerceleacesscseccatescorsesecstbststrcih coptnsecescanetcreie ees eect dae Aiea ences oegt cna tacsahig as gssesnatbemweonees .33
+ted SSWMMAMAUT MNS cs a-csassecocuuctociiticsetuccediectecerecesttsastds slates scaciserest vst estenrss-laretoornyaotiscetexe nctesteettad aac cooees man secsieeenameaee 33
+fT Be atest in leer cana iy aaah ea A aa I Ry et ln ARR TG ADRK) im ayn Ma Sl .33
+Dad W OMNOPCIOTOGR, cai iccocccadcanscsvocecsncsvacsusselasenatcesschetocececesatusgounresviscesbatust uate ceazsex tochcaesdecre ces utetein euseentaoietoatenareees 34
+DZ. Oy RAMIS MO LOMINNNI gogo cae conch cencccsoses tiswelncetecadis scuauens sxtenctens cones teccde (ti ectaenyie eel pete er esd Week reise a wotconien 34
+DBF FOCI WONN UVR ooo ooo ccs ok dc occa cavchecrece Secucnzccedccuaseastccat tisi coch re ose pe a ee ota cua nsatgotametaresuns 34
+D2. B RORCTEMUG DCTTONERIG ( ODENG )oicciccccs cos scones secon cect ceckcec cies traces ctecs ecesdene nase eecinece Sorgeeeet eareuere coe esamisedomnerumee 34
+Rad AA A Lr ~ pla aa RR ty elon ANS OR BRAC tl eA delta rg OR i AACR SRLS. Seisia ay ia po eh aN ra ae 34
+22:10 Snelheids controlerende dan ser Sy steew si ice2o sooo oe ao sikoi ccc coceoncccee cccccccpooce cvvessarecen cesvavsecsac Gcoveveeund bsasaneueresceuronsens 34
+FOE erry RECO VENT COl1 TOL COMIDOI SIMON, conse: scxccocinvence taacietinnecoxtiestovsasnemetsrcosede ooceamertaneteeed sevte essen oceaiencihatees ean
+FEUD CROCE OU) CRIMISCONTOCENG (IONE Ds cpecenacesnstic ni can cnssner a tlirentad cutectssaseeniebueseioorase ccs tunaapene nocensaaceeeteneientnn sane gesend ee .34
+POTS Se maemCihe POCUOTS ooo oss ls cook doccass cad cceeeevsvidecevdussecewetion in aseecovoscecectouve. vostosvonctecdaaue eam conesa icussdsceenctreesesveetewsacinn 34
+OTA PEACE ECAIO CONMEME Foon os acess sence car adic she rar asentt va chia beucsvn suxannne ty ancganessustasenea Ueiargecenontereiacsa pat ecmunernoe mame 34
+2:32:15 Stanelgaten eenheid en afecheurperforalte. ...<:..0.....eccssscsovesvovsvesesessveseseveve susaseenssieon cvoweveneben Soseresuece seraeveneeucnesveasass .34
+DD 1G Leman A LOR (ONIN) ooo ooo sso sec sacs ccaescscevsbccsscescnsa cesencnnencosvoveoseneeceoreves ve seovessevevemrwvoseeneseeavervonsseaseesione Seaseoesgon 34
+PF ere ATU ITAT OMNES (HIND ) osc coe ogee cc cacy Sc bc nats Gausescneceysesevessamntverenees sastrettuvenseussevedeoseniverateqeeecesessoceseretens 34
+2.2.18 Fotocel printregistratic.............ccssssssssssscecsenssssscaesesssesssoersassnsnsseessenorssess seesnsecsns seceeensnres senseeesecesnsncnseseesreenceenes 34
+FOES CET peh Oh CC OE OCRTONLEND oso ooo ta sce ch ocvalea lupscsnshnes oaseussoensnunsvavbernetcataatesece ecipeasens cesbacersasend seatowesunnanectneens 34
+2.2.20 Persluchtcilinders op doorvoer4rollen ............ssssssscsscssssscescssnsesnsassnressnsncoscncaserecnes esesesevare seeeneneesanceacsensnseasesesnense 34
+2.2.21 Blaaspijpjes tussen de doorvoerrollen .........ssssssssssssssssssesssnessseesansssesnnessnssecsssensnsoresnecsnensseneeanensne stsanennnenceaenasen i
+2.2.22 Lasmes @andrijVing........secsscsssssessssssecsessesseensnseneensenssnsnssnesnsssenesoesssssnsessusonensnesassnsessussucnnene sesnenecnsesensauensensnesseneens 35
+2.2.23 Koelplaat......sessecssssssssssssesssnescceneecsseeressnesnsaeesecssssessesnscssnscsnnsnusessuseesecansecsussueesanecenasneenonscenssuecnunenananecennaennsnsennans .35
+D2.A Lasrolececcccscocecescsesesessecscsssscsscossssseesesscssssneneseueanenenssssnenecnensnsnecnuanssansausnecesssenssuas snvesaveneacenecaseacauens seeneneenseaceneaaes 35
+2.2.25 Ondersteunings rollen lasrol........ssscscsssssssesneseesssssseesesnecnnecansnecaneenneseesuesanenssanensuecnsauesnecones squuteneensaueanenaeesseueenensns 35
+2.26 LASMES cosscececsescececesseeecsesesecscsescnssssecsesseeseatsnenaesnsnssnenscansananenecansneenenesquenssucaeesuenecnenanensnenannenaeansnensns peneneneenscuaneananes cas
+7 9.27 Neerwaartse blaaspijpjes ......-ssssssesessecsesseesssueeneesnenesnsenseanecesneensesnesenneenseasenennesnasesaesauenneane cesneanennenesuseneenenennennenny Kh
+> 2.28 Statische ontladers .......cssccsesssesecsessseescenseseesneseeenessstensensenssssssnecanecavesessncencenquecsuseans asncsueensunennesnaesceneenuenasanenanayan 35
+> 2.29 Pneumatisch bedieningspaneel .........s:cssessessessseeecssssssseescesneessneessennereuensennsecnneessouetanecsnsanesanecnncencaneeanenananeeaneanns me be
+> 2.30 Ondersteuning lip en bodemvouw.......sssessssssesssessssssseersnnestensnneesensnurecsnseeessunecsueesescusesenssusenunecennsseesuneceas etanesnans 35
+> 2.31 Rookscherm (optic)........:.ss-ssscsssssseccsssesssssnsesessnnesnnsneessscnnsenrsenseseasavecensaensssersnecaves usussennsens ussnnscussaeannecase senssenne a
+9 2.32 Elektrische hoofdkast........s:.ssssssssssessssssscsessssssssnessncessensnncensennsersnesssessecsnsessenanennnrersennscanes ensueceane venaneceuceeneeseyeas 35
+2.2.33 Aflegtatiel ......cssccccconeessssssssesesssnssssooossusssssovoeesuressssegeesnnsssssooesnentnnsnasssernnnnyves eanensunsyecenenngnees ennmmenene enanaeseer suanasseee ae SS
+2.2.34 Opstroppings fotocel.......ssscssssssseesssssnsssssnseeseseeeeeenenensennenssssnsssnsssseceresceressnunuauanasseseeececcesanuaastasscnrseesnsns essere a
+2.2.35 Vacuum SYStECM .......-csssssesessseccssssessssssessnne svsessaseencencnnssansceanvcesanecnsscntanee eccnanscca cenusscqnascqtas asersnnsegscnaeerane teceeveates aE
+9 2.36 VaCUUM BITED ..ccesscssssssesssseessesesnsesen oessessssnsenuscnssnscnsscccnsssasuesoesnecsuvecnanasersensaneccensnensseceasesseennueenensenevecnare neetenseee .36
+2.2.37 Stapelpimmen .---ereccecccasevsevesesssssoceeenescneeescccecccnunnnnnsne usnnnnnnneqesusnansnssessecneees eeceeeee nneereneneeeemeeeeenee erect ee ees 36
+2.2.38 Stapelpoort.....ssssvevssscccessseccocsssesecencnereccecencrssuneeceencencnnssecescenseneceensnrecececeeennecanececganannnenreecanamanaenrassssevanaesteorenenen 36
+2.2.39 Index stapelband .........ssssssssessvssssesesessssnnnnsnanseennnesssnsnnnnnennnanasenecnnnnnnsusssssazestannaussscsssennnnesssssoananecarscpanssssses necennen .36
+
+NS ISIS Tn oe FES OST Ra se a eee OS
+
+A Eg —
+
+
+
+--- deel4 pagina 11 ---
+2.2.40 Automatisch uitlijnen van st
+2.41 Het bedieningspaneel......... aie vsvensnssivesssesucstussoven ueseesneses sosvsseoveue dssvensennes soeeneensees gusavonsensé veneonenane yovereveney e400 36
+HOOFDSTUK 3 - iid arr MMMPRebe tintin besonedin key iter rcrirnree saptreertien eS 36
+BOSTIE 3.1 Installatie van de machines tttssmnsnnnnmnnannannaninnnnn 39
+3 11 POMtSKEUZO isccsstcnsscstccenisieecec cn renmanenstnennane setae et TC LT 39
+3a Geluidsnivean.... ott nntnnsnnnesnensnnnetnnnmnemnmnemmnninn in 39
+3g PerBHUCHE nice nen snnnnsnmannnnnnnanemnmneimenmnsinsnnn 39
+a7 Verplantsen van de maching Tt enetsmsnsmnnnnnnisnmnnmnmnmmeimmnnnnnatn 39
++ 1'5 Verpekkingsmateriaal en tranepog( et ttersneennnmnnnenennnnannt 39
+§ 1G Stel pORjenssisecnivsiscscccclec ccc ne elastase iineniesa aren etttbtend terete 40
+a 7 Het waterpas zetten von de necchi ge ttnnsnennnnsnnnnnmnnnnrnannnnnsnnnnn tt 41
+A 42
+ikivatihokiahi ce sano sotnsscesscssnssnnsssontssnesseversnesncsntocnearonasossosesounecceeroent tes 43
+3 1.8:2 Vouwdrish Ook Jn Lin met sy hiram Ssh sua edb avade igeebbc iste ghalocicalutieiedntededlgpcheserqurysrvt 43
+3.1.8.3 Vouwdriehoek boven afwikicalies (coe INE... vooee sastennes seesnuseececennuesensensnuuscsensnensseesnssessenennseg settee eee Settee eee e000 43
+9 1.9 RSME eStiisiateinmntrccix: PACTS UItVOETING).......cccceeccssssrcense secsecsssserceeseceesenscvseceesenen snnasanser cents 43
+SO Serine eters mamnmemnnmmrmmanmennanninamans 43
+a Riles eee nee 43
+See Wieden erent et An 43
+e 1 1SBedchermiuppen ree eer 43
+ey ick trac nn eee 43
+3115 Nubmibiipeeg ica. tei aereomaarienit smear iter rmoetres oneal reser eee ay 43
+3.1.16 Mechine ee ee co eeaanmaha aa ae einen: re
+3.1.17 Rotatierichting eaalida conipnitenion Retna: Soot eres re ee “
+‘Mithbiimke 0 er ee 9
+3.1.19 Afstand tussen stapelpinnen en VacHUMEMEN. ccc ccencccccenmccneunennsnarannnnnnnanecen Sl
+11 Wiesetithnesictetceke 44
+HOOFDSTUK 4- Machine Se eee aes poorer ene enero ee a
+TECHIE 4:1 ORPERVIIAEIEGEDURVEN TCE GEILE AERIREL EO
+ZONDER EX BANSIE-AS «cccccsscnsessesecesserssecoetacoresies peice Saori ase ait 47
+iia. ee
+M1. WW ea RR neo vesse sick ssn cesnsnsnoseouecraveccnspanachshinecsscunecbesdva Serstiosseossossusvissoveonysonee sseceescousen nwemeseepacansedoreent see senciegteecs 47
+4.1.3 Pneumatische regelcompomenten ...............csscssssscssssessececssssccsasecsccssssssecccsnscnnsnercensenacaesanessenssanacsnsccenesseuscessres sence 47
+4.1.4 Afregeling analoge naderingsschakelaar .............sssssssssssssseeeseseecsesessesensnsenscsnsenerenenssneneasasnenesenenasnananeqaaanassens tees 48
+4.1.5 Functionele parameters...............:scscsssssscesssssscessseserecesssssssssscessseeceseseeseascnseseeseseessssceacsas snanescceuscnsecasensaenecasanses 0170s 48
+4.1.6 Filmdoorvoer op afwikkelaar .............csscsssssssesesssssssessssssscssssssessesesesseseeasanensnsnesesnenenenenasaenansanassnenenenaneasanenssens o2ees 48
+4.1.7 Elektrische bedieming ..............c:c:sssssssssssssssssessssssessssssnsessssnssescesesnenenescnscecscscveceesanansuenee suenenencanceenrsnsnenceassensees 20ee 48 |
+4.1.7.1 Filmro] omhoog/omlaag ...........cssscessssssssesessosssessssessesssenecnscencecenssesansnssnsnesnucasacenenossnsnssenenseraraenens sensasessee 20ee 49
+4.1.7.2 Aandriffrol op / Meer........sssssessssssssesseseessessseensonsessesssesessnesnncensenecanecasenecnsccanansenecnscnnenceusenacanaeceanensessreseesees eees 49
+4.1.7.3 Motorrem ontgrendeling............ssssssssssssessesessecnscneessnssssssesseenceneessseensensnnanenecanensnsscasenennsasscaccnsaten seasesenses reas 49
+4.1.7.4 Stop machine ......s..ccnsssssccsssssesesossseccnssecsseessssesscsnssse queseccsnnsccnsssssnnssennnonecensueccauesensecceraaeseaee, oeeeen tes eeeentre00e ere 49
+4.1.7.5 Eide filemrol..ccnicsosconsiascccoossosseccnsescosssssuesonenen onssesssensonsssnsvessennscsaneesnensernocssesnnccnsceaescenaccuace escenscensacenseensen case 49
+A176 Baba bow eek cise scscssices sesecnd ston aescnvenbustedstnsisncoscnjocenncnnesonnscenesansssonnensecsnnie yenapgesnas meoesoencnraeene ge renerantetensranets fe 49
+4.1.7. TNoodstop machine.....-.s-csssssscsssssssssseseseesssssneeesessesenseeseeerenecunnnannanasseerecennnnssaeaneseens eee ene ee teeta ee 49
+4:1. 7.8 Tito qnootte 26 caccsiess cesses Lceennsonssesesnsnan sinonencennnreeensoapsossnunangnannmnnens tenements een ee Ea 50
+4.1.7.9 Fike weledcliriggscskcsctssctsetonntsstsebiseressensssannesoseersientrepesonseennrennnenensnnrncnetrnte earn toe nT 50
+4.1.7.10 Liftarmen open/dicht (alleen asloze afwikkelaar) .....ssssssscsssessesescessssensneeconensnesnesaneneetaneneseceneneaenanenenensa tenes 50
+4.1.7.11 Filmrol links/rechts (alleen asloze afwikkelaar .......cccccscecsssssssssecessssenseseceenssensese cosessanscazsnensenenee seeannanen teens 50
+SE CTIE 4.2 Baamsturing BST cccscssonesecrsnsessesnssrertemsesseesnnceteeenseeaacennereans neater ees 51 !
+MOAT) ea te ets sale cd beens nme cancepennrsonsntennrentenanecnonanennene nteen ate NERF BET TEEN ETT 51 :
+4:2.2 Type eansluitcompemetitem -sstegn ites nee: cbtypentetienrrentenscereersneenznen nee an PS ETT 51
+4.2.3 Inbedrijfstelling BST 'ekrPro Com AO! .....ccccsusscssecnessvssneesssssasensen nscnnenoes cansansancenseeansqnsonageneznonnen cuanecanae ennanennenesene 51
+G5 3:1) Eherivare irate lin Os jcscpcmsenncetecenseteeerenrerennm torres ge Ny aE 52
+4.2.3.2 Inbedrijfstellmg sensoren Op BST 'ekrPro Com 40! ....ssssessssssssssssessesnsecsnnseseessanecsansnnecennecensancnnnennscanennaserseses 52
+4.2.3.3 Inbedrijfstelling actuator BST ‘ekaPro Com 40) ..esssssssvsssssssscessssnssesecsssnnescecnnvsscccnensennngnnanscunnannaergercennnaseng ee 52
+4.2.3.4 Bewegingsbegrenzingen afstellen van de actuator. ....csssssssssssssseeeecssssseseeesscecesssztnseseecensensezsqznzannnssnennnneny eee 52
+1:0 4: Adicicheeintoandd ectunitew ef ICM cncesnryconsresnncrommssstacuzcansrnenyyeenmanan when tae nn OST sy 53
+4.2.3.6 Basic setup’ voor de sensoren (sensor 1 & sensor 2) WitVOCTEN ....ecssseecesesseeessneeeecensersnneensnnnecensensessecenecan ness 53
+4.2.3.7 Basic setup’ voor contrastsensor (sensor 3) UitVOETEM osevnsssvreereresreensererareenerangernnannnrecamaneenanerennen ees 53
+4.2.4 Materiaal-set-up.......--sssscrssreerensersrere nreeeieenncerieneceenesi ante eee ea Se 53
+4.2.4.1 Materiaal-set-up voor zijkant-stunng (sensor 1 of sensor 2) sesssssesesesneeseenseenssteacerasensnsnssaneneareneas cessnencanenn cosas 53
+4.2.4.2 Materiaal-set-up voor center-sturing (sensor 1 en sensor Q).ececsesssesessesesrenssnensseeeeeenensenenenensannensnaneensenenanaeenees 53
+4.2.4.3 Materiaal-set-up voor lijnsturing (wernsoar 3) ssryenvnseseererenecerennesonnntyrnensneen 20S RE 54
+SECTin «sis Geet —_—— een 34
+PERE i eR a acre ou ae RNS 5s 54
+
+
+
+--- deel4 pagina 12 ---
+MG
+f \
+‘i
+\ , 0.9.2 WOKING sisseissviniccaac.s
+433 Aftegelin sisitswcnicsec nt Mitra atiati 54
+SECTIR AANeuwielthet ric ee ee 54
+) ————
+' ( 442 Werking ship ibe oo oe nee ini Lest PARE EEL EL ELE TET ETT iid we
+4.4.3 Spanningen in de film... WN ee a
+. GECTIE GS Film gilding 0 inns ntinnsrssanicainincripimaisneiiseonitnchenincenceon 38
+A5A Doel tOPROOANN ONn an EEOaeesnetesseuess eenneeA NOON eRe te etna intl ee Oe ee 56
+k NS Wiking adit en iustialdesnapictc clad eT
+AAS Alvegclngdichig ht ninaclnlaciihinasicctaacagedccne adel Gciaacountl Ss
+SECTIE 4.6 Bodemvonw-vormneg ne titttttserssesssssesasseissonseosenseateosuoesiouneat sioeesnesoetenes enor 56
+4.6.1 Doel bbb bbb bab EDEL iti itt Teer hae ee tt ttA Wk Want Binihadt bed pblanigaes aaiclibiicas nia eal a : 56
+4.6.2. V ertikale bodemvouw-vormer cc ntamonmaeetennnnaanauacnsnesssaniaseninntscnandcarineonennnnnne inet 56
+AGL APERELEM veces tt ttttessesssseensetsetssseeesseenssnssssasnnseesssnvussnnsenseeesnsnesnnneneni 56
+4.6.3 Tip bodemvouw-vormer mt tttttttessestssensseeensessanscssecsseessuseeusntsnseensenansnrnntenensenneen 56
+SECTIE 4.7 Roterende perforati cir Marra gy e¥ROMbe GAUGE SUNGR SON isanaansabagaseuuad ebebesbasieaiarabaionNs 56
+wether ato caper szneossdseeepeepeoeryftrentceneroreti
+4.7.1 Doel SERNERNOS DORN ON ANN ON OReeeeNOnORNEans : PEC) smmeeermnnnene snece ILUIiTriitiiiiiiiitiiiiiiiiii tli PTITTTT TLL PTTTTTI LLL per Y
+472 Drukkracht Bsn ae tenet I eens neh teen ares anaes eoeeceen Vere 57
+; SECTIE 48 BASY THREADING inva. cL EEE en ten me eee ne cane Be 9
+AS1 Doel ieeilatann gi ES ee eeenens Peneeneens seenee Ii ones nanee TI §7
+4.8.2 Werking RN i ae ete ee ao mee oh
+4.8.3 Danserspennin cari aR snaneye Puvvevavesay descugveses sonsenconsecenssoenenpocsepnedetv decverveegdcose essvudeenseseceeeocooceneovesscouseovelEeene 58
+S- control
+4.8.4 "Servo gedreven enkele rot” dancer ERNST OT ii scnosjesiccssxoceseesscossssnnsrbveopsesasoss gercasvocourseqeeyrveeemomears 58
+RAV Amn driving Re ericson agar acaes ameter © 58
+sSVilanwersc ee ee oe ee ee eee 59
+‘cemdutahsacadia. eee
+43.7 Afregeling analoge naderingsschakelaar Heo ee oe es "59
+Selihduaiecs ee ;
+ucitGQsulitnhina ee on
+| Silda ee et
+iW ee ce
+Sink
+Mike ee a
+ScRitnes ee ,
+(Mitac. ee
+4:10:2 Type aanshattcom ponentetys.5...:.c:..csccscssecsressseousecosarecesoroeessoncdessoesnssangronssee sovanenacensetsevecees esscavonsoevnavenenwesseae aretens .62
+| 4.10.3 Inbedrijfstelling BST 'ekrPro Com 40)..............sssscsssscsecossssnssesescsesscsssne sescesasenesecusssnseeesuenensorense seareeecousseesaeusers 62
+| 4:10.3.1 Hardware instellingen .............csscsssssssssscssssesesssnssnssssneseesnsscsses sescorscsees soseverenses seeumensoven anpuaneave eseacaesaweanreworenss .62
+4.10.3.2 Inbedrijfstelling contrast sensor op BST 'ekrPro Com 40) ........ccsssssescssesseesseseesnennsensnesnsensens nnaseanencensnensenneny 63
+4.10.3.3 Inbedrijfstelling actuator BST 'ekrPro Com 40)... csssssssssesssnsenneensneennenneeecntsnnseasscencenssncessncensnnensneeneneas 63
+1 4.10.3.4 Bewegingsbegrenzingen afstellen van de actuator. .....ssssscsssssssssssssseeeeesssssseeeescsssansnesssannvesssnsnuesscenuasssten .63
+A 10.3.5 Middenstand actuator afstellem ............cccssssssessesssssssssssnessescenssscsenseeeneeasensssnsntsnsenansncaeasenesesenesnensasasenennss .63
+4.10.4 Materiaal-set-up voor contrast sensor (Sensor 3).......sssssssssssssenssssesssenssnnssssnnsesesseennnnneesstennsnnass snesesnusensnnsnanesentn 64
+4.10.5 Werken zonder autocorrectic.....ssssssccssssssssssseesssssesssesssnnseessesssnnessesessnsesssnecsnseessnsessenennsecnassanansaneeseensananeesennansnsnes 64
+q A.10.6 Werken met autocorrectic......sssssssssssssssssssnsesnnssessssesssssnsesssnuesessnnnseensnnacensseesansnnsessesersanescensnsgnsssnasnsanesuassesnnses 64
+4.10.6.1 Proportionele verplaatsing,.....sssssssssssssssssssssseesssseseeeenennesnnsnnnnnnsnseecenereessuausasssses cussananseesseennnnanesseneeennnn .64
+\ 4 10.6.2 Instellen van een nieuwe funktic .........sssssssesssssvessssssnnsemnansssssasssesesenarenennngsneannasnnsennerennennsanaaasaaas cananannse .64
+4 4.10.6.3 Bewegingstijd van de autocorrectic...s.sjsssessnsstntnrenmatnsstntannarsannnanssnrneaneanenrnrrtnennessneaetat 65
+4.10.6.4 Selectieschakelaar AUTO/MAN occcsssssssssecsssssnssscssssssonssnecensesnseusessnessnsanensnscnnsnscnnsennnensensecnsennanenanannenacancnnaes 65
+AA 6.5 Fotocel Wit register atie ooscansscosssonesseerenees naneoseos¢ranreoeensinnrcoeventerereromnne ereeranrerecenetnameamareasnersaznnanaante ren 65
+4 10.6.6 Gedetailleerde instellingen BST regelapparaat........ssssscsssssssssssssssnessssnneseseesensensnnnnnessneerensnncessussacsanseeensnssss 65
+SECTIE 4.11 Stapelgaten cembreld...sescsssessunnseemmnmsnemenenenanannestennearemeeaee anette ee ee .66
+Aryeh sence deneemtiecepertvo comments ntormetenyr nen neg RES eT RATT TTT 66
+AV1.2 Werking .......ssesssccsseeseceeesssenees ee cieineere ti mee EA a NAT TT oO 66
+4.11.3 Plaats van de stapelgaten eseantn ih ocosssevassoeesnvonsnnnnvs sqnnacenensbeonnnnnsnnnceesesanosinemmnuensusqqrecanananseeennemmanevaqens eens Yaeeen= 66
+VAs CE re ee 67
+44 PA iad cnclen Snoballel cncienererer orn ore mre mete een en a a 67
+AAA 6 Cie Dikaealig seen omnenneenemencer neernce am eae 68
+SECTIE 4.12 Lasbeveiliger (egt8 0 eee cere =
+Rao N a sd Staipcaittenvemerrremrtv meen re eee Ne ae er .
+a ener oe ees =
+SECTIE 4.13 Servo attachments (op tie) ec oe i
+SECTIE 4.14 Fotocel Tak cag lett OND caer Tear ay
+4.14.1 Doel ee ee ee eA _
+iA re
+
+ATARI Se eo
+' Wo - Gail ~ t \ i\ @ . \ VR r <2 l \ — <a ¥ h 4
+pe RW PRBS LISS ST RUN VSS PS
+
+- . | &)> bet <7. . | ha
+
+- — ~~
+: - —
+
+
+
+--- deel4 pagina 13 ---
+if 4,14:3 WEIS ores visisssccin ccttassciesciscescs
+r 4.14.3.1 Registreren van richtpunt ...00 1 tr ttessseeeesssssensee
+ONAS2 Ven see cn eg etna n int acctatll 69
+TT 4. 14.3.3 Testafstend fotocel._ Sebati ate ccc. nent endasdoen sta dtaebtdosarcneeeee WevescetatR esters vo 69
+| ’ 4.14.3.4 Reflecterende roth unas ia Ee re 69
+f 4.14.3.5 Afregelen gevoeligheid amreeweuans rs tec Teme PS Mr ee anes espe sicattotier 70
+fide 6 Pinaaig hu ic ec ee 70
+l 443.7 Schoonteaak vou de Beggar "1
+| 4145818 Relieve ica ee 72
+SeCTIE 4.15 Seorveorrélion itm shinnchnnasecierearre tient 72
+T PSD ia eel a 73
+| Gish Wate) init 73
+Gis Dak eorvocile tha
+G 15.4 Cliipane teneiovtala cp i a 73
+4519/5 Bibeeplinios tassen Ge dices oo enter nseseeinansaia il cle ta he ce
+i, LTSIS1 Afregtlin blaheptinjes a siasebeesd eres toes tbevacocesletaceci Grsbbsceuic “sobs LeVal is) s0Se SAUMUR’. sess 14
+4.15.5.2 Tijdsinstellingen van de afstrijklucht.. "vvrreenesceeenrennaneeganseeeneasnseeneunteqaesseesntessuaansenasesecunessane see 74
+Usi5.5.3 Mbropsctektar cS a te 74
+415.638 Reterentig 75 |
+SECTIE (16 Lemnunantrijving 2 75
+iil 75 |
+416.2 Waking Srneeentensesvarassseneconneennengauuauannanansaggggsscegcessecenens uananuunasseecenacangqunnanassen teen 75
+46.3 POGMiS Cars Cenc td i eee ce al 75 |
+SicausRe Aicaite : ee zi oe Det emNCS heii sii tae en le 16
+ECE Ai lemelitng eee 16
+‘71Dbulawmenveg 16
+SCE (it Packtied lace ee 76
+4.18.1 Doel en omschrijving cn ten 78
+(a2Pucteklinnh eee 78
+4.18 2:1 Penctratic eh ce ee See oe a ee 78
+$18.22 Installatie van een aicws Legg orem :
+SECTIE:4.19-Wermteschewsian ee 81
+4.19.1 Doel en omschnjving en enna. orn da no nne pn Ge Ts" eae $1
+SECTIE 4:20 Laerel em aemdrijving 000 es ae ig
+4.20:1 Doel enn Omi SCR agen i ocd cncesicinescosasideuvcsd coer tocstio dod reke oclag tN ee ance ie $2
+4.20:2 Oncersteun mpsrollen voor lasrolii..5i6 0s gicc ice coc cela ie eB as er ade Rag at $2
+ZO SV CL OMRON VIN LOT MIN 8 osc c cans snuccsavacvusudncadiSsondeconacedicscsescehistace cht eclicsicausce cos Uh, Riis Be i i sights $2
+MAD ONT SS Ne CN CROTIRNO coo esse ch 5s Sos cc oacbe shcc du accbcdcacwsusataciscnssceoceseaucice ce lecee on uebbcs oa decag Bite sige d Fie Shin BE it $3
+enna ee a a ctlann pc daaaent sath gnieacistsmemeumcnceneipocmcansaiss mamas ts eam a ENS E IS Bee gs ins Se 83
+BZ UPN TG h CAs ONIN BCRIN AS VIN 203 5050050 5nc0ccscess0dbsoctveresee'encsiudencesanecdvseatssisspacsssuoncoecestveibotass sesctoecssecbericastoibcesiinsdetatuwantes 83
+BED 19 FMR NNN oi oe ooo ise eis acest sdecsvevssesdSbsévcosods sevesoteedeibscsuss sees sacessusesesovestesenssUsseteseees Sacseosones D scceuiecad Sescecmeessiea 83
+PD PPT ARES AAMT M OLR occ 5 cio cco dence ccccosorvasctpenes nossassaie sosesatatasesscsas nana guongarsenss ectwmemnersecotoeein ee toeueee sed Cat ca cboct eden $3
+42.1541 WV MUINSST GLEN PEN OEK: V CAN ETON 7. 5.-20:.005-k:secenaecevsecsorecvsvccevere souesenasens esweqnesnenoenttesseess woeeyneweses cacvayaeseusssucceseeneunes 84
+4.21.5 Las temperatuur..........scesecesssseseeecenssescscercesssnsnsnecesnsnsnensnsenensneneasesesesesesecenenenenssseseneneneneseneersesaeesnenenee ceeaeaneess eeets $4
+4.21.6 Tip van het lasmes veran deren .........ssssscescseesseerssesssesnneesessecssncenssnecunesnsesessnessnes seanesnucnasnassussnsensaecnssneesenseneenee sense 84
+BOT 1 TAS Rhea th roo vnc chedcadeececostanen dnssod scosiva sescosvones sosuveseesnecoreesouvwoseonppenceneeenenssendd sseevesetvnsaeereingresnecs $5
+4.21.7 Lasmes radius bepalen.......sssssssssssssseesescensensessenssneensssnessennennenensnsenseenseeconconsesss seanseneenssesueconsnsonsnncanancuseneenans sneey 86
+SECTIE, 4.22 Neerwaartse blaaspijp jes -ss-sssssssssssssssesssnsenesnenesssnsnnennnesntansansnnseensenenessnssnenseneneneanenens soneneatane susnnanenassnaae 87
+4.22.1 Doel .......- ccc cccccccecesecesessesssenscesssescsscnssesssssecueseacsssscsesnsnsaeesneneenenensucaseneneas saneensnceesensazsuenssuanuansnes cunsauaueuseusnananane cates $7
+A222 WW cabin soso psec cctesesctonnchenordveasonnenssssenormensseneion osnennnnnsteteeseseerarosersrass oensseetate guiness tras tgpiseerseerse te 87
+4:29:5 T igchaina eb eb btuagy 33.5. co cceiops Secasebeves Sonnboauceeoedssonnnbepsesvcncvecs reverses tonenennrtonivereey See igvanccahse sates tHE S00 SE Se $7
+42 ARs hence ichabarngy 0a cotenatcasvnnnpcnontannpecevstuen cecenenecnncnenonesremseateeyecenrmrannend ey traverse er ees 87
+BD8 GT bth Be rarer tone eagatnogonssnnarnnnesccestonrnny entrance iensnnseazorent oe suiePeteys rinse tars ret sete 87
+SECTIE 4.23 Statische ontlad ers (ELA UG)s-ccssessssssssossnscnsssescnnsenssssssence annevereen sennnassereneeennausvensennouanans enauenenaze arenanenea cease 88
+BFF yh aa ac cab cecenesonsassennsereecnstesognenvageronnansneneecenee antictats este on Tas antares
+O78 Wy kine oS css sto ecienevereeorr eet ermene e e e  ee oe
+4.23.3 Dipti access ceeccsestceesemenrnermeeetemerepmentntemn oe oo gae oe -
+4.23.4 Creche fnew aatecstsreemrmmremn emer ee ear
+SECTIE 4.24 Pneumatische b edienin gen Se ee eee eee He
+4.24.1 Pneumatische bedieningen lasmes meena een 7 2a ae
+4.24.2 Doel Se ee 0 = zs
+PAs ire eect a ee °
+4.24797 Nesrwendise binaeplipies (1-2-3) mem ncsuni eric at eeet et 289
+4.24.3.2 Blaaspijpjes tussen doorvoerrollen se Te 2S sacanannnt conetagenaton etsuusyelete ee ea 89
+4MAA AGrescling 2 enn
+
+ewes _ ASA yy
+
+
+--- deel4 pagina 14 ---
+ew |
+. we ~
+
+ee ee an, lll
+
+ee ee coe
+
+4.24.5 Pneumatische bedieningen
+
+Te saaeadledk ta (2andanen VER Go lemme G6 Ctbbasssicc cscs sssvoncessccsssivecnitin sonttisuctseetavmnersorelecbete 89
+24.5. Bil Ba ee Nini ancsiansda icin cig
+4.24.6 Afregeling............. e aa aan lasrol GQ) bcwuise co ee ‘
+4.24.7 Pneumatische saan itp a a
+eel Eaten ce 90
+ATE er meant crepe ee RC AAT
+f20.73 Ea cbeniocaing aM cence
+4:24.74 Blapelpoott (4) Raid He et ithe satsdedtamastaecssacinss docvnercotrtteienissstraninice eee 90
+124.7.5 Dodenvonwead Bac ethbbentisiabs bck pususesa pecdbuabesin sebseciesas canes dssbst eddcscsentse sessendcstonetesowoenterevallai
+4.24.7.6 Lip ondersteuning (6). ® So FPA pierced esGldviverens cit udeichectslncisssclla okssobslpcite ac kara 90
+£.24:7.7 Lnemes OP / feer cc ele rissa Sessa stl cent tbc 90
+HAAG AGroa Ulin cic cise teasers insted dle triterineieaee yb 90
+4:24,6.1 Wlekiriache pchiaelaacg rte itrnereetieessniasnatascatnsesttiann etnies nltetetrnes 91
+SECTIE 4.25 Opniomm ee cette mttaer 91
+C= eee is tay cae deborah easy sobs es seob ioe sseddesas etnsoeacladnenbinctinisnemmmnons 91
+525.2 Working tnertrtstrrtnig ern cnr nr 91
+4.25.3 HS Referentio nem nenenrenenee nents ssnae mmr 91
+4.25.4 Aflegtafel nn etree ae nnienstntneete nnn anne manntninnttn 92
+4.25.5 Opstroppingafotocel, 2222's mnnnnnnnnnsnnnesmnnntammnenntn 92
+425.6 Vacuum system, nesmnnnasnnnnnmeennmnnnnnnnannnnnmmneint 92
+PETA 92
+£25.62 Werking trem nnnnnnnnnemannnemnmannmnmenannsnt 92
+125.63 Afstelling Treen nnnnnnnsnnnnnnmnmnmnnnnnnsnnt 92
+425-7 Vacuumern eg ttetnnnnnnnnennmnntmninmnmnnnnmnnmnmmnnnit tt 93
+125-71 Doel ee tinmnmnmnnnsnnnnnannnannnnermmnnnmannnnnsntt 93
+£25.72 Usliining nc 93
+1 25.7.3 Opneemn aang nem -
+495.74 Afemlina occa seseennsnnnenecenecnnnnnnnnneccneneesnnnncennennnenancennennanenqnnanannnasssessssssts
+SECTIE 4.26 Stapelp Se aaa i z OP VACUUMAFM aAN LiPZijde.........eeeeseeeesceececeresereseessnenseaaenns eesansenenee enenseneens 94
+ARO Dede *
+SECTIE 4.27 Stapelaar Cane Cie Oa, ee eee oe sean
+itd ee 7
+‘Hive. Se Se ee
+Gegune een
+4.27.4 Automatisch uitlijnen van stapelaar............ssssssssesecessseesesescscseeececssesssseecosescsnsnsensensesenss ceessenenenesusanennenesensensnases 96
+MZ TAT DOC ooo rnss caccscccsce cscccestonsicventaicen ssssnccseans sesseveocensonseateoterenreydebese7 encbhssness besreneonees samnoennees easeepbunet soowaenmanncoenssieetes .96
+HOOFDS TUK 5 - EleKtrisch.....c.csssscssssssssscssssssscssess sosssssssesssssesscssescsscssecnessnsessssscsesusenensnes snsenessucs sscensasans tnnensnnens cveneanas 101
+SECTIE 5.1 Bediemingspameel -.ssssssssssssssssssecsessnseseeenssmneeessersmneenensncnnnsnnesannenenneeennnncaneeananessananeneanaenanaaaaes1aeate 101
+ST 1 Ty perch ec ee OC eee eee ee eee cence 101
+5.1.2 Film geleiding.............cssssssssssssesssesssssessessssseeconcsneeneecensenessneessnssnssssensnsanecnsensesnsensenensnnennanesaeseaecaseens sensananennesnesenes 101
+5.1.3 Jog machine ..........ssssssssssssessescssnesssessssneesneecnssneessnessnsasecsnecsassneceasesascnssnsesansusasasssassnsconsanasannersnscnscescuenasenasensaeenn 102
+5.1.4 Positie stapelaar ..........sssscssscsessssesssesensssecssecsnesecnseessssuessnsensnesessanecsnensesnsensusesequecsaneencanconssanssnsaneansanscscascnnaras seensens 102
+5.1.5 Positie stapelpinmen .........sssssssssecssscssseeseessnsesercesssneecsnessnsesssanecnscnnnseeseceusessnsseunssnsnuassenanesnassanecganacenensgansenn cusses 102
+5.1.6 Afstand tussen stapelpinmen .........ss:ssssssessssesssecsneessnssseessssesnsnsnsensnsssuessnsesnussusennaessnsanensnecanensnenecnnscencnsaennannenaesens 102
+S17 T Ort on. ossce cok ssosovssnseseovvovnvin sooyconysansnasecsnesonosnostenses sovcnnssens nvesenneeseoqnsasensed unenvenneran renreoneers raeessnetnonene nantes teens 102
+5.1.8 Jog doorvoesrollen...csscoccssssscesscereeesesssasneessenecsegetenecereceoorantanteeqnerranaanntersevonenenananensintneeeeeeeanas tte at 103
+$1 9 Reged vobetOp ac. cccssssscseccaseoscoaptoccapeeeneeenocogntioesseayerencensomeersnunaneoeuenms rerereaeet rarer Tonn™mecetcaeeseee tree ora 103
+§ 1:10 Noodsbop mm achitne .c..acsccocesestsscionniooesocersonrserceotevnnre oenesnesonggeernneres reemerecegsensrmenrr tee ecto" tremens reer eed 103
+S411 Stig mae eae esetscetp cesses ssmucteeneconer reenter crcromeeggtenneree ems nce eae 103
+S44 Ribcart cu ehebehe soso ceitect ncqyecietacrentzemtnconerneneerconnreeponensrahensieosabtesonaieeraze fa aoe oe 103
+CE CTT. 5.2, B&R AamrenkSch ee csovetesrreeemsessssererssncreenenunrermseneestenttaree anette, oe a 103
+5.2.1 Navigatie scherm "SCREEN HOPPER" ou sssssssssssssssssssssessesnsessunesuecsnnecsnssusennnscensenseennecansnscenscensenecnsennccnacessuananes 107
+5.2.2 Omschrijving "ACTIVE RECIPE ITEMS screen uel se Ue agents coke cs success cal oaaeus waecieecraccuenqeaonacortes canes en cefureans 113
+5.2.3 Omschrijving "ACTIVE RECIPE ITEMS screen ne PT. a anes vad akececan gta meneeascuveee nse cercgnentennesieos agente nanrsran 114
+5.2.4 Omschrijving "ACTIVE RECIPE ITEMS screen hee SI a oy oe cena rade rte tasted wate ca@naeneadews acsasennn 116
+5.2.5 Omschrijving "ACTIVE RECIPE ITEMS scryen SAW i a cgacentushkougenndt (eaeiets eocaueangnnenel Canvatsasennnasihaaiansens 118
+5.2.6 Omschnijving scherm "ENABLE RECIPE zr oc ccuuunennsane censeeseceasuensnenauensuenannaeeceangeceneeeceuseeansne neananeasaascueasaes 119
+oy Be Omschnjvmg scherm "DISPLAY DEGREES i lll : — sceueunenansusnnsences sceseeeeeeescuaguanuauen sauusaceuan taneeeueuen caneeteneeseas eaesentes oe
+528 Omschrijving scherm "SAVE - DELETE RECT 2 —ccuuauuseeansncns senenuseeaes sessenenennacueeueeeanae seenererseeaceuseaaueueen sunseeaes aa
+5.2.9 Omschrijving scherm on laa ee on a aga no a arena he
+5.2.10 Omschrijving scherm "BST" ....---------- eer npgatnnerrnn mene i
+See cece ee PHERVICE OCRRENT & "SERVICE CRMRE NT A 2
+HOOFDSTUK 6. Prevent 0nd <0 nn gered
+
+SECTIE 6.1 Dagelijks preventief ond exh OU soseecssasseensersensnnneennssersnreenenees teens
+
+a a
+
+2)
+- ;
+. .»
+: PA '
+
+[{t\,
+
+
+
+--- deel4 pagina 15 ---
+a
+
+Oe ee ee
+
+j
+
+sECTIE 6.2 Wekelijks preventief onderhoud .
+
+sECTIE 6.3 Maan delijks preventief onderhoud CRs TEE Be ee a
+sECTIE 6.4 3-Maaan delijks preventief Hished. 00 Ce ee ae ee see
+sECTIE 6.5 Half-jaarlijks preventief onderhoud “eds che Oe Cee tT eee eT EP eee aE Re ° es
+sECTIE 6.6 Dagelijks preventief Mitktb a ee ee a
+HOOFDSTUK y an Probleemlijst See Ieee en es fp
+sECTIE 71 B&R Foutmeldingen ie ee CE Te meme emt re Ee a
+HOOFDSTUK § - Technisch e inform atie St Pe ee ree ER ae
+SECTIE 8.1 Geluidsnivean rechtshan dige making ee ee ee = Te
+SECTIE 8.2 Geluidsniveanu linkshan dine ackigg eee ee =r
+
+
+
+--- deel4 pagina 16 ---
+—
+2 JST
+| Figuur | - Transport basismachine.....
+aii Figuur 2 — Transport stapelaar istancressebeUGQGate ic 3c hore ca ret PMO aMLEUS lucas of bes SuauTE CU GESU0Cb sl tAasPOD CASED dv ceeuue 40
+Figuur 3 i Transport elektrische kast Tee Se Whee ReastB MCU AALSLGAAGcedudcayaushiusaneeoncvuustbesibsda bcasvvedeslebdawevemndcesr 40
+Figuur A si Transport vouw driehoek SN asl couse NANOSAT attains nesses clatud edd dts pcctessddgbceteneveresenenpelt 40
+Li Pigaur 5— Tremeport wiwikkelaar i tttshessssseiesoessnsounateatoateunsoansutoontontnsoeusosseneevuveeneanesunege 41
+Figuur 6 ag Waterpas zetten van de machine settee meemnnnnntnaneennnennestnrseneeatenneseesnennennennenennnnnenneaa genes Al
+: Figuur 7 —Positie stapelaar & wicketmolen.... EOPTE= ae epee teas aaa CRIMES yr
+f | Figuur 8 am boreg eel H stapelpinnen Cee * “
+~" Figuur 9 - Elekro / pneumatische afwikkelaar met PAS ator aca oy SSR CS «
+Figuur 10 - Regelcomponenten compens sr eres emuensetas meatier eabeegesonn eb ereetsCoseceerert eee ge er a
+’ Figuor 11 - Drokregeling Wendrijfinm afwikkelear en reremmrnrtnnnneennrtretteatners neni “
+4 Figu ur 12 ie Filmdoorv oer afwikkelaar Rich chit gi ER EM a eae e es caer ane tries renner or aa . iF
+Figuur 13 ni Drukknop filmro| omlaag Chich ceGGag eign Ge en ern er mec eauree te oem ‘6
+F Figuur 14 ea Schakelaar aandrijfrol op j neer UMninlicatpae cual gen ere ae “49
+|. | Figuur 15 a Drukknop motorrem ontgrendeling.... Becke se Gane. AG
+— Figuur 16 ae Drukknop stop machine Be ete eR as Aap agin Oe se ¥
+| Figuur 17 ae Schakelaar einde fil | ic Ot ened tapnagag Bees Us a oo ogee ARRAN ee es ies oe ‘
+1 Figuur 18 bai Schakelaar filmbreuk OFF j ON so esa fannie eo suis eee ei a ‘49
+SM = fagmet 19 — NOM noes Salt itt, Gia sya nancgon oe po atoaglon Rai geeranianion OMe 49
+Figuer 20 = Schiekelaar Lip grote are och witness ep teibgtaiin  Meocomaei es 30
+Figwer 21 — Schekelemr film Seleiding i. es ers seks ie onion de meas eg Se 50
+‘ft Figuor 22 - Schakelaar Filmrol'links/rechts —.... 255 tne es ee le i tei or 50
+’ sh a - nar M ee reese: asloza afwikkelaar (compacte Versie)...ssssssssssssssscesssessssnsssuusssssneesssssseestensssnsensetts ;
+| RE Ee I OE a EEE OEY: cccenesnuc nncccnnnccnscccnnscsecsncecscsssecl Cocco cbs ter cco re Ee ee ccc davacascenedsunaososnsvecepbosenceeuucnnene :
+li Figuur 25 -. Label gebrukte modes op BST 'ekrProCom' 40): ee Se er eegers 51
+_ Figaur 26 - Prmtplast dexsel "ekrPro: Com 40 052 Fr ee cise inscaate eousaceenterererpes 52
+) Viguur: 27, — Liparootte regelinig soccer i ae gee er ae a a coon vere 54
+Pope 20 — VC WVCRUCHOCK ccccscssstcuscest cles ctesnrcati cecteteceencttorseer neo egies crn ten Reece 0 NO fcr epee esperar scneoeere meres 55
+Figuur 29 — SpMMNM CaO eras eee cence eccscccacessvncenccctercceie cnaceetoSoee entar need anaanasios iataeuiraesticmacabens aueaeounens apeooeatans enauesoeae naewret crass 55
+Figuur 30— V erplaatsingsmechamisme vouwdriehoek ........ cc csssssssesescsesssssssssessssssesesesesnssnesensnsncanen sansnenenenenaensaeanensesenenseess 56
+Figuur 31 — Filmdoorvoer vertikale bodemvouw-vormerr ......ss-sssssssssessssssssssnseeseesessossssnnnsnnseerencennnseeennnnnannsennnnnnananennesssss 56
+Figuur 32 — Tip bodemvouw-vormer ........ssscssssssssssssssssssesssnsnssnssssssesscessnsnnnnusasseerennnnnenseeenennnneesuvssssanensuasssanensssaaaensnnssenensessss ad
+Figuur 33 — Perforatie aan lipZijde .........ssssssssssssssseesssssensesssseessnnnsssnsnnnneeneeeseeneesuassussnnnnnenssnnnnnnenegennnnnnangngsusnenenenggesessesee : ;
+Figuur 34 — Perforatie in bodemvouw.......ssssssssssssssssussessseeennneeeseennseneseesnsnsensnesnaneenesquennerensqquunnnnsanenanannssennnnees genre t
+Figuur 35 — Invoer.......:s:ssssee eesnertenneenentaneesenenenernentntnennanneeanearatanaenes eta nn eee ee iis
+Figuur 36 - Preumatisch bediening imVvoer........ecsssssssssessssesessnsesssseesssssssssseeenssnsensnnsseensecasaausegseennnesseyssennsensnssnunancnneasuseensnte .
+Figuur 37 - Preumatisch bedieming iMvoer.........-ssssssssssssssseesssesssmmsessessnvesnsssssecennnnsnnasssereennanneseennenanassqennnasess auanaasonngsennenyesss : .
+Figuur 38 — “Servo gedreven enkele rol” SADE perenne a eg
+Figuur 39 - Film invoer ee ee es =
+Figuur 40 - Analoge naderingsschakelaar ......sssssscsssssssssessmanessseennsneereennnrennscnnneensnnsnnneesas een :
+a tpakelaar OV cesssssssssssssssssssssscccsssssesesseeesnssnnssnsecssssnsssssecnnsssssecessnsstsnneeseennnanuassnasnsssat
+igen 41 — Bostic Aa Rlogy eee eee ee leon to ere ee 60
+Figear.42- Posiie Ansloge naderingsechce a ve een ae 61
+B igsoer 3 — SemeNactle 1OMNeSELe OEY CO wa mis Pence ome Tk 0 rc 61
+Ragu 44 — Statenclte Viner vosnnssenne ce ee alae raremnenmmeseren 61
+Figuur 45 — Tonisatie 0p dt 188.....-err reine auntnnsennntnnesnntntntninenns anna annnnnnenananensneeene 62
+Eigen 46 — Amtico et ere 62
+Figuur 47 - BST 'ekrPro Com 40 vse em AO! nsstsntnernsnsntnnstnnnntnsennnnennnnntnentnenennnntnnnennnen 62
+agent 48 Teel gubrakis modes op BST TT eters ee om @
+Figuur 49 - Printplaat deksel 'ektPro Com 0 nein seunnvnnnnnannnannmnnnnnnnn 65
+Figuur 50 - Contrastovergang TW st enccc  nee sanennnentneenrntnnstentntnennnnnnntenenanaenenannennnnaan 65
+Figuar 51 - Schakelear AU TO/MAD von n en ssacannnovnsnrnnnnenernnnnenmnneninennrarenannne arnt 66
+Figuur 52 — Stapelgaten en afscheurp efor enn unnnnnnarnnnnnnnnnn 6
+Figuur 33 is Stapelgaten eenheid re ies sar Secs SHCLGT ota aq tgunenaneeennsnsnteenveanyenvensyt sete reqear? necsanenarers verecysvofeyermgs 0
+daar ee :
+Figaur 55 — Filmnlijin....----e--orrer 0 nnn
+Figuur 56 — Stelknop fotocellen op stapelg ikke gina sivcnsrereerevrsrerereer —ememererernnrer nner te ee a 68
+Figuur 57 — Afregelen fotocellen stapelgaien OPT on in tig 2 aarnennnnetrntntnentntntnerntnentnetntnenesntneanaseantts 68
+3 Figuur 58 — Afregelen fotocellen stapelgatem C80 ie tne snmnnnnnnnnsnnmmnnnnnnnnnnnnnnnn 68
+ened «ie wanes slags CCC eee en te cr ae ei a 68
+; Figuur 39 “ds Afregelen fotocellen _ : ee eccnememeetnenn
+| Figuur 60 — Lasbeveiliging I paunesannosos onneee
+
+| 2 Al cS Daw tant \' \ ~ : , on; "3 ta wr de fw Fi) ‘ 1 " x *
+vw ~~ . en ee A A\ a> X \ $ f\ ' ry ma) .t Ne “4. | Ri ' a. Tin IR\y WAGs . \%
+
+
+--- deel4 pagina 17 ---
+cS.
+
+af
+
+a
+
+=
+
+“4
+-
+ah
+“2fe
+
+5 a
+
+61 - Zakken MUOM FORMAT MG iia sisseccsccac 69
+piguut 69 _ Registreren merktekens ese eT RE aM ornate ePIC eS a OR Sal a ;
+piguel oe Registreren richtpunt seine Erie Erte atatlOtOP shes siatcscd hoes ius esasccesludzscoduueol <ecteueisea woeopoedtaoneee os
+piguul 64 - FING GODEVORT sists ete tits castes ricci anata Yio csacaad sce bicontassuce <spocscacsccs aceeeasLaboaoncucei se
+Figul 65- "Teach Ha LOCOCO caress. recast cepts a oda bn aan scdgmsceula lees eectsocd duced oczscoscovercconcchsvovve
+figuul cs Fotocel schijnt op achtergrond RE ccc a eee Trent AaNSot dd sash bch ed bsta dda dese ccd eiptickac cn sbuconcel aedaoomieloted 71
+figuul 61 - Fotocel schijnt op merkteken..... STUD ESTItISY obs Ssibe seoustsrendaseatvuasecdCcsmabesasascassisies dgisdevasen sicenvconse seis He
+Fen cae: Fotocel onder hoek plaatsen bij ster tafhcharandls Flag 3 eee ence nemeeseme be
+Fig? -69 — Film Wh Peg MAT MRC ici isi icsciccitiossass get atte tMasteb lant sabedanrenasdstnneetesbeverrsont tema is
+Figuu a _ Film vit ORME Ne iii ciestitinsiieiiicecs ead SRN hada vb sonia tenbecedussnsssposervuenevecestont ouziliier i
+Figur ie ; Doorvoertollen eumeisiesuRigednuduce a, EN SRE SRRPNH BT oaeuedtzassetetsodvesbevaotesnsé daavectoseussasiousts vannncvegioceseeontti¥ eve oe
+Figu 73 a Ran doorvoerrolien wseviiewssnbveesnsbtbeososcl cc atnnteesteaserdtusossansosscsssounnsssestnescosossseennesestoneessonerennoocerse ons -
+ye 74 - Steunrol doorvoerrollen cdc i ORE y I a Nag eee aaa RAEI a4
+Age Ta Alteasion Memmi A cr nennnnn
+riguut 76 — Blaaspiipies tussen doorvoerrollen "ennai a
+Fe 77 - Stropdetektor SM err ee a
+re or 78 - Lasmes EOS erring ee ee 15
+Fig £795 Nleeie Op MA Neuexcentticken. ce ee ee 76
+Pegi Lames lifiing ee ee ae ee 16
+fgot OLA Ror "3
+sper 8] -Poastratie ngolcumipeamtes 0 be
+Dae 3 — SCHR EIRAL MN OB ntsc esenecerrcrcierne pt ae Ot eee pee ee 79
+he it 94 — Pan CORTON OONRE ons rmeeesiaesecsrersisees se ee ge 79
+mont g5 — Verdraaien van STMMOCMEtACheM ee a es re 79
+Figuur 86 — Merkteken op nul plaatsen Sry ours nat) OUUSNS Neuteussases eaten gs le ousiaaies peed eouscartcies oocesesUsess sic oe occts Lane saone eta covcuesiaoroceesmantonee “i
+Figuur 87 —Instellen NMS PONG MIE O59 MUN sciicieah ce ee ee Gr, ee :
+Figuur $8 — Afregeling warmtescherm pag ivshan Sha UsOResnns aes tenvese seetesces sani ediaeirdsalacoustaeeted ses eetonn ieiiittesiodiad olaspiekocav in taneneaseaviataaawacae :
+Figuur 89 = LesrOl CR GON ONS VINR ooo sscincin ye oe ee POE Uae po. ME ay ens
+Figuur 90 — Stemmmollen Laer Ol esses sescsacnscncsscsscidiogeec ie eee Se SAY WO cee iaet ae Bie th
+Raear 91 — Vervangem vam tetlon sn icccsscccclieies cece ee Ns SS a ee re
+Rpgumr. Jz —Lasmes summemmte dag onan ccscspaoeteaeioeasscestees eecssoe seoectc sin oacecs is ce =
+Figur 93 — Hellamgshook bememes -osooooseoo oo ccccecesse teeth eae csseacs soci ee =
+Figuur 94 — Rechtstaance meetopstellimg lasm eg 2.0000. acccscsteececsciesete sees occn octet ee -
+Risen. 95 —Liggende meetopstelling laces ooo. cc ssces cee oes cchcssvaesststecsck cased bosos in socbscssensSsecbu ssa tscotateck busteleentteosesscsenas ters a
+Figuur 96 — Lasmes uk eee ss
+Figuur 97 — Lasmes radius DMEM RE oe ee ae mi
+
+Figuur 98 — Blaasrichting...... seseeenseennsenseecensseeeseensnnes sane ee ee ae ss
+Figuur 99 — Pneumatisch bedieningspaneel lasmes sectie ee ee Se i
+Figuur 100 - Pneumatische bedieningen zijkant lasmes ec Guae aes eee Sa
+Figuur 101 - Pneumatisch bedieningspaneel ee a on ere cae ee ay
+ee CPN sent eT eae Te aa
+asm 103 - se Aga A RA RR ES YT ape oe ee RR =
+ee =
+oat 93
+es “
+ee :
+es ee 95
+ee ee 6
+Figuur 110 — Stapelpinnen .......---------+----- Seu eee ec ee eo eee
+Figur 111 Eindeloopschakelaar beeing tapes +
+pe pu emer sto go eee ee 101
+al cr peeauay ne sR a ‘a
+pean plareasp- tap aunt cs ea SPN 102
+Figuur i 15 i Drukkn op Jog macane Ae ae cy ewe a io eo ° ap
+ti lan poste spn 102
+gE aes pele ee 102
+en et c
+Figuur 119 a Schakelaar lasmes eee TAOYNTT  ____..-ssesuucessuueeneusesnnneneennennecesnncansecenaneneesaasennananesunacensaneannecaneseecusennene °
+Figur 120 - Schakelaar doorvoerrollen eae mamnnnnnnnnanseenmmnnn Snes 103
+Fgnr 121 Rese 2004509 nn 10
+an ea ie ae 103
+Se a er ET 103
+Figuur ane x Drukkn op start macuine. i OE Eran comntptenmnernenmeneen Ten ae
+Figuur 125 - "SCREEN HOPPER” scherm.....--+-
+
+
+
+--- deel4 pagina 18 ---
+Figuur pes : sceisia "ASE tee Waanwlainice ‘ia )
+. yur 127 - Scherm E ITEMS 27" gurres cenenetVAOU4 BubaebLdid se astuhianestanéeriisicodiveclaicnedice iosudereemdoeaneatie
+Zs ae 128 - Scherm ACTIVE RECIPE ITEMS shes ra Ss ol eentannanananesccceccegasssnscscoesdansaneuesesennnascssorcnnsenssiesatenticte aes i
+riguur 129 - Scherm "ACTIVE RECIPE ITEMS Screen fyM et rteteessnesmtntanstsenanununenenannnene sins oo
+Figuur 130 - Scherm ACTIVE RECIPE ITEMS Screen Hgn i ettttttessessessssssesessessssssessnsoussessnsssnsessaneen rp
+Figuur 131 - Scherm "ENABLE eC iststNGtiiciscinccc ce eet ttttttetioostiseeccoeeionsentasnsouetrosnssatorattertes ie.
+Figuur 132 -Scherm "DISPLAY DEGREES" 1c etertntnsteteesoesseneasesesessssnsssnsseseeessanescovnscosnes ssa os
+Figuur 133 - Scherm " SAVE .- DELETE RECIPE " eG oT eneeenaeseeeeenaanseeuuausuasusiesnasevsnnasisisennuancns manne eis ee
+Figuur 134 ha Scherm "TEMPERATURE Tr" sone hese rag ae ener martes cevbns oes ebieeeaenter anes ey
+Figuur 13 : am nanan fiona = sessenennnnssessessegntgngssgs nn eeerentneneennnananeanansnensnceecccnenssscvonssunuascusanananes essen ine |
+jouur 136 - 2 CR FEN' "SERVICE raeens : wut ee eeeOe CSS ORO Cee ees cones suKececeee.6eousecseeseseuesereeos desceverees coovesee |
+moa 137 - Dagelijks preventief onderhoud......_ ae Co ee ae 7
+Figuur 138— Wekelijks preventief ondethoud......... Skt a Gre hee A = a5 f
+Figuur 139—- Maandelijks Proventief On dethoud inven. 5) WEPREST MCI T Tae ee TIE ie =F
+eta ee ee ee 136 ‘
+Fim — Bale jeriicscndachond 39 -
+Le Ne ee et titan a a 138 Ns
+FIN een ecumandige machiig fe mee 145 3
+geet 1: aves bitedpakig ee fo 146
+cs
+
+SER el OST Irs
+
+* - Ge ‘ °¢ c A
+
+ya e.
+
+a
+
