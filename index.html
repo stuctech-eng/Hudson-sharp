@@ -3919,7 +3919,110 @@ WICKET PROBLEMEN:
 DOORVOERINSTELLINGEN:
 - Start doorvoer ~18mm, stop doorvoer ~5mm (standaard)
 - Rafelig seal → stop doorvoer verhogen (bijv. 5 naar 7-10mm)
-- Verander start en stop NOOIT tegelijk`;
+- Verander start en stop NOOIT tegelijk
+
+LASMES (uit handboek sectie 4.21):
+- Lastemperatuur: 380–540°C afhankelijk van filmdikte en snelheid
+- PE film: typisch 400–420°C; LDPE/dikkere film: 500–540°C
+- Elk lasmes is door Hudson-Sharp afgesteld op 500°C
+- Penetratie lasmes: max 0,70 mm bij 5 bar cilinderdmk
+- Standaard penetratie: 0,5 mm (merkteken op 0,5 plaatsen)
+- Nul penetratie = lasmes raakt juist de lasrol
+- Hellingshoek: als leading edge slecht → lasmes voorwaarts; als trailing edge slecht → lasmes achterwaarts
+- Cyclustijd lasmes: standaard 57 msec (op en neer beweging)
+- Lasrol: bedekken met teflon (760mm × 138mm, HS Ref #9D3530), naad afdekken met 25mm kleefteflon (HS Ref #5.7093.906.008)
+- Ondersteuningsrollen lasrol: mogen lasrol NIET raken, alleen beschermen tegen te hoge penetratie
+
+DOORVOERROLLEN (uit handboek sectie 4.15):
+- Doel: tijdelijke doorvoer van film voorbij het lasmes voor zakproductie
+- Druk op doorvoerrollen: 5–6 bar (persluchtcilinders op bovenste doorvoerrol)
+- Blaaspijpjes tussen doorvoerrollen: gemonteerd in gleuven boven/onder doorvoerrol
+- Onderste blaaspijpjes: 1 mm boven top van lasrol plaatsen
+- Speling tussen boven/onder blaaspijpjes: max 5 mm (anders filmopstropping)
+- Blaaspijpjes mogen NOOIT de doorvoerrollen aanraken
+- Tijdsinstellingen blaaspijpjes (afstrijklucht): on 350°–30°, off 60°–260°
+- Druk blaaspijpjes doorvoerrollen: 0,8–1 bar
+
+NEERWAARTSE BLAASPIJPJES (sectie 4.22):
+- Doel: zak vlak houden op aflegtafel voor opname door vacuumarmen
+- Bovenste neerwaartse blaaspijpjes: 1,5–2 bar
+- Middelste neerwaartse blaaspijpjes: 1,5–2 bar
+- Onderste neerwaartse blaaspijpjes: 1–1,5 bar
+- Timing: beginnen blazen nadat vorige zak ver genoeg verwijderd is; stoppen net voor volgende zak opgenomen wordt
+- Blazers op de hoofdlasbalk: on 85°–140°, off 300°–340°
+- Zakafblazer (opnemer): 1,5–2 bar
+
+WARMTESCHERM (sectie 4.19):
+- Beschermt rubberen doorvoerrollen van hitte van lasmes
+- Hoogte: 2 mm boven de bovenste blaaspijpjes instellen
+- Koelwater: druk max 4 bar; debiet ~5,5 l/min; temperatuur omgeving +5°C
+- Te koud water → condensatie → filmopstropping in boven blaaspijpjes
+
+VACUUMARMEN / OPNEMER (sectie 4.25):
+- Afneem moment (Pick Off): standaard 4 mm voor PE, 0–2 mm voor PP
+- PP film: zak vroeger opnemen, waarde 0 invoeren, vacuumarmen iets hoger dan lasrol
+- Vacuumarm aan lipzijde: 3 mm speling t.o.v. punt van stapelpinnen
+- Film op vacuumarm lipzijde: minimum 10 mm
+- Aflegtafel (koordjestafel): 3 mm van bovenzijde lasrol (PP: 6 mm)
+
+STAPELAAR (sectie 4.27):
+- Vaste pin (B) staat altijd het dichtst bij het lasmes
+- Centerafstand stapelpinnen = centerafstand stapelgaten
+- Biepsignaal = stapelaar gaat indexeren → geen zakken meer wegnemen!
+- Fotocel detecteert volle stapelaar → biepsignaal → niet indexeren bij zakken wegnemen
+
+BEDIENINGSPANEEL (sectie 5.1):
+- Lasmes schakelaar links = lasmes blijft beneden (NOOIT te lang laten!)
+- Lasmes schakelaar rechts = één cyclus (neer + omhoog)
+- Jog doorvoerrollen: schakelaar rechts vasthouden = snel; loslaten en terug = trager (CONT)
+- Reset noodstop: oranje lamp = machine gereset
+- Scherm parameters bevestigen: altijd op VINKJE drukken na wijziging
+
+ACTIVE RECIPE SCHERM parameters:
+- Draw length (zaklengte): 85–390 mm
+- Seal dwell (lastijd): 5–350 ms (standaard); max 1000 ms
+- Temperature sealbar: PE 400–420°C, LDPE/dikke film 500–540°C
+- Draw start: begin doorvoer in mm dat lasmes geopend is
+- Draw stop: einde doorvoer in mm dat lasmes geopend is
+- Pick Off: opneemmoment in mm dat lasmes geopend is (negatief = al voor lasmes open)
+
+PREVENTIEF ONDERHOUD:
+DAGELIJKS (operator):
+- Lens fotocel reinigen
+- Vuil/stof verwijderen van machine
+- Vloer reinigen per shift
+- Controleer geen film tussen tandwielen/ketting
+
+WEKELIJKS (operator):
+- Doorvoerrollen reinigen
+- Rubberen invoerrollen reinigen
+- Kwaliteit teflon op lasrol controleren
+- Reflecterende plakband op fotocel eenheid controleren
+- Tandwielen doorvoerrollen controleren op vuil en smeren
+- Ionisatiestaven controleren op stof/oxidatie/plastieksresten
+- Positie fotocel controleren
+- Riempjes aflegtafel controleren op slitage
+- Vacuum op vacuumarmen controleren
+
+MAANDELIJKS (operator):
+- Conditie stapelpinnen controleren
+- Vacuumslangen op lekken controleren
+- B&R-scherm reinigen met displayreiniger
+- Neerwaartse luchtblazers controleren op verstoppingen
+- Blaaspijpjes tussen doorvoerrollen controleren op verstoppingen
+- Productiuren noteren
+
+STATISCHE LADER (sectie 4.9):
+- 2 ionisatiestaven: één op mondkant zak, één op bodemvouw
+- Niveau 1 = continu werking; Niveau 2 = puls op lasplaats
+- Staaf mondkant lip: altijd in gebruik (puls) om filmbeweging te voorkomen
+- Staaf bodemvouw: ingeschakeld als stapel te dik is; anders uitgeschakeld
+- Potentiometer 1 = niveau 1 (continu); Potentiometer 2 = niveau 2 (puls)
+- Ionisatiestaven altijd goed geaard houden
+
+STROPDETEKTOR (sectie 4.15.5.3):
+- Detecteert filmopstropping; bij 1 mm beweging van arm → noodstop machine
+- Max 1 mm speling instellen; minder → vals alarm door trillingen`;
       const messages = henkGeschiedenis.slice(-10); // max 10 berichten context
       const resp = await fetch(HENK_PROXY_URL, {
         method: 'POST',
